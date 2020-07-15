@@ -1,19 +1,18 @@
-const express = require("express")
-const router = express.Router();
-const { Vocablist } = require('../model');
+const router = require("express").Router();
+const { vocablists } = require('../model');
 
-router.get("/api/vocab", (req, res) => {
-    Vocablist.find({})
+router.get("/vocab", (req, res) => {
+    vocablists.find({})
     .then(data => {
-        console.log()
+        console.log(data)
         res.json(data);
       })
     .catch(err => res.status(404).json(err))
 });
 
-router.post("/api/vocab", function (req, res) {
+router.post("/vocab", function (req, res) {
   console.log(req.body);
-  const words = new Vocablist(req.body) 
+  const words = new vocablists(req.body) 
   words.save(function (err) {
     res.json(words)
   });

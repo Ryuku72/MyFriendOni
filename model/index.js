@@ -1,3 +1,3 @@
 module.exports = {
-    Vocablist: require("./vocablist.js")
+    vocablists: require("./vocablist.js")
 }

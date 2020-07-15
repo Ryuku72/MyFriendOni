@@ -16,10 +16,22 @@ if (process.env.NODE_ENV === "production") {
 }
 
 // API routes app.use(require("./routes"));
-const routes = require("./routes");
-app.use(routes);
 
-mongoose.connect(process.env.MONGO || 'mongodb://localhost/quiz');
+app.use(require("./routes/html"));
+app.use("/api", require("./routes/api"));
+
+mongoose.connect('mongodb://localhost/quiz',  {
+  useNewUrlParser: true,
+  useFindAndModify: false,
+  useUnifiedTopology: true,
+});
+
+mongoose.connection
+  .once("open", () => console.log("Connected to Mongoose"))
+  .on("error", (error) => {
+    console.log("Your Error: ", error);
+  });
+
 app.listen(PORT, () => {
   console.log(`🌎 ==> API server now on port ${PORT}!`);
 });

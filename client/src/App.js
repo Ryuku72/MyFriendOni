@@ -31,8 +31,8 @@ console.log(words)
           My Friend Oni!
         </p>
         {words.map(vocab =>
-        <ul>
-          <li>id: {vocab._id}</li>
+        <ul key={vocab._id}>
+          <li>Row: {vocab.Row}</li>
           <li>Japanese: {vocab.Japanese}</li>
           <li>English: {vocab.English}</li>
         </ul>

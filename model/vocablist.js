@@ -1,12 +1,12 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const vocabSchema = new Schema({
-  row: { type: Number },
-  japanese: { type: String },
-  english: { type: String},
+  Row: { type: String, required: true },
+  Japanese: { type: String, required: true },
+  English: { type: String, required: true },
 })
 
-const Vocablist = mongoose.model("Vocablist", vocabSchema);
+const vocablists = mongoose.model("vocablists", vocabSchema);
 
-module.exports = Vocablist;
+module.exports = vocablists;
