@@ -1,0 +1,728 @@
+﻿_id,Japanese,English
+0,ああ,"Ah!, Oh!"
+1,あう,"to meet, to see"
+2,あお,blue
+3,あおい,blue
+4,あか,red
+5,あかい,red
+6,あかるい,"bright, cheerful"
+7,あき,"autumn, fall"
+8,あく,"to open, to become open"
+9,あける,to open
+10,あげる,to give
+11,あさ,morning
+12,あさごはん,breakfast
+13,あさって,day after tomorrow
+14,あし,"foot, leg"
+15,あした,tomorrow
+16,あそこ,"there, over there, that place"
+17,あそぶ,"to play, to enjoy oneself"
+18,あたたかい,"warm, mild"
+19,あたま,head
+20,あたらしい,new
+21,あちら,"there, yonder, that"
+22,あつい,"hot, warm"
+23,あつい,hot (thing)
+24,あつい,"kind, warm(hearted), thick, deep"
+25,あっち,over there
+26,あと,"afterwards, since then, in the future"
+27,あなた,you
+28,あに,(hum) older brother
+29,あね,(hum) older sister
+30,あの,that over there
+31,あの,um...
+32,アパート,apartment (abbr)
+33,あびる,"to bathe, to shower"
+34,あぶない,"dangerous, critical, watch out!"
+35,あまい,"generous, sweet"
+36,あまり,"not very, not much"
+37,あめ,rain
+38,あめ,"(hard) candy, toffee"
+39,あらう,to wash
+40,ある [存在],to be
+41,ある [所有],to have
+42,あるく,to walk
+43,あれ,"that, that thing"
+44,いい/よい,good
+45,いいえ,"no, not at all"
+46,いう,to say
+47,いえ,"house, family"
+48,いかが,"how, in what way"
+49,いく/ゆく,to go
+50,いくつ,"how many?, how old?"
+51,いくら,"how much?, how many?"
+52,いけ,pond
+53,いしゃ,doctor (medical)
+54,いす,chair
+55,いそがしい,"busy, irritated"
+56,いたい,painful
+57,いち,one
+58,いちにち,1 day (duration)
+59,いちばん,"best, first, number one"
+60,いつ,when
+61,いつか,"five days, the fifth day (of the month)"
+62,いっしょ,together
+63,いつつ,five
+64,いつも,"always, every time"
+65,いぬ,dog
+66,いま,now
+67,いみ,meaning
+68,いもうと,younger sister
+69,いや,"disagreeable, no"
+70,いりぐち,"entrance, gate"
+71,いる,"(hum) to be (animate), to exist"
+72,いる,to need
+73,いれる,to put in
+74,いろ,colour
+75,いろいろ,various
+76,うえ,"above, on top of"
+77,うしろ,"behind, rear"
+78,うすい,"thin, weak"
+79,うた,song
+80,うたう,to sing
+81,うち,house (one's own)
+82,うまれる,to be born
+83,うみ,"sea, beach"
+84,うる,to sell
+85,うるさい,"noisy, loud, annoying"
+86,うわぎ,"coat, jacket"
+87,え,"picture, drawing, painting, sketch"
+88,えいが,"movie, film"
+89,えいがかん,"movie theatre (theater), cinema"
+90,えいご,the English language
+91,ええ,yes
+92,えき,station
+93,エレベーター,elevator
+94,～えん,yen (currency)
+95,えんぴつ,pencil
+96,お～,honourable ～ (honorific)
+97,おいしい,"delicious, tasty"
+98,おおい,many
+99,おおきい,big
+100,おおきな,big
+101,おおぜい,great number of people
+102,おかあさん,(hon) mother
+103,おかし,"confections, sweets, candy"
+104,おかね,money
+105,おきる,"to get up, to rise"
+106,おく,"to put, to place"
+107,おくさん,(hon) wife
+108,おさけ,"alcohol, sake (rice wine)"
+109,おさら,"plate, dish"
+110,おじ・さん,"uncle, middle aged man"
+111,おじいさん,"grandfather, male senior citizen"
+112,おしえる,"to teach, to inform"
+113,おす,"to push, to press"
+114,おそい,"late, slow"
+115,おちゃ,tea (green)
+116,おてあらい,"toilet, lavatory, bathroom"
+117,おとうさん,(hon) father
+118,おとうと,younger brother
+119,おとこ,man
+120,おとこのこ,boy
+121,おととい,day before yesterday
+122,おととし,year before last
+123,おとな,adult
+124,おなか,stomach
+125,おなじ,"same, identical, similar"
+126,おにいさん,(hon) older brother
+127,おねえさん,(hon) older sister
+128,おばさん,aunt
+129,おばあさん,"grandmother, female senior-citizen"
+130,おふろ,bath
+131,おべんとう,boxed lunch
+132,おぼえる,"to remember, to memorize"
+133,おまわりさん,policeman (friendly term)
+134,おもい,heavy
+135,おもしろい,"interesting, amusing"
+136,およぐ,to swim
+137,おりる,"to alight (eg from bus), to get off"
+138,おわる,"to finish, to close"
+139,おんがく,music
+140,おんな,"woman, girl, daughter"
+141,おんなのこ,girl
+142,～かい,counter for occurrences
+143,～かい,counter for storeys of a building
+144,がいこく,foreign country
+145,がいこくじん,foreigner
+146,かいしゃ,"company, corporation"
+147,かいだん,stairs
+148,かいもの,shopping
+149,かう,to buy
+150,かえす,to return something
+151,かえる,"to go home, to return"
+152,かお,face (person)
+153,かかる,"to take (eg time, money)"
+154,かぎ,key/s
+155,かく,to write
+156,がくせい,student
+157,～かげつ,(number of) months
+158,かける,to put on (eg glasses)
+159,かける,to dial/call (eg phone)
+160,かさ,umbrella
+161,かす,to lend
+162,かぜ,"wind, breeze"
+163,かぜ,"cold, illness"
+164,かた,person
+165,かぞく,family
+166,かたかな,katakana
+167,～がつ,month of year
+168,がっこう,school
+169,カップ,cup
+170,かてい,"home, household"
+171,かど,corner (e.g. desk)
+172,かばん,"bag, basket"
+173,かびん,(flower) vase
+174,かぶる,"to wear, to put on (head)"
+175,かみ,paper
+176,カメラ,camera
+177,かようび,Tuesday
+178,からい,"spicy, salty"
+179,からだ,body
+180,かりる,"to borrow, to have a loan"
+181,～がる,feel
+182,かるい,"light, non-serious, minor"
+183,カレー,curry
+184,カレンダー,calendar
+185,かわ,river
+186,～がわ,～ side
+187,かわいい,"cute, charming"
+188,かんじ,"kanji, Chinese character"
+189,き,"tree, wood"
+190,きいろ,yellow
+191,きいろい,yellow
+192,きえる,"to go out, to vanish"
+193,きく,"to hear, to listen, to ask"
+194,きた,north
+195,ギター,guitar
+196,きたない,"dirty, messy"
+197,きっさてん,coffee lounge
+198,きって,stamp (eg. postage)
+199,きっぷ,ticket
+200,きのう,yesterday
+201,きゅう,nine
+202,ぎゅうにく,beef
+203,ぎゅうにゅう,milk
+204,きょう,"today, this day"
+205,きょうしつ,classroom
+206,きょうだい,siblings (brothers and sisters)
+207,きょねん,last year
+208,きらい,"dislike, hate"
+209,きる,"to cut, to chop"
+210,きる,"to wear, to put on (from shoulders down)"
+211,きれい,"pretty, clean, nice, tidy"
+212,キロ/キログラム,kilo (kilogram)
+213,キロ/キロメートル,kilo (kilometre)
+214,ぎんこう,bank
+215,きんようび,Friday
+216,く,nine
+217,くすり,medicine
+218,ください,(with te-form verb) please do for me
+219,くだもの,fruit
+220,くち,"mouth, orifice, opening"
+221,くつ,"shoes, footwear"
+222,くつした,socks
+223,くに,country
+224,くもり,"cloudiness, cloudy weather"
+225,くもる,"to become cloudy, to become dim"
+226,くらい,"dark, gloomy"
+227,～くらい/ぐらい,approximate (quantity)
+228,クラス,class
+229,グラム,gram
+230,くる,to come
+231,くるま,"car, vehicle"
+232,くろ,black
+233,くろい,black
+234,けいかん,policeman
+235,けさ,this morning
+236,けす,"to erase, to delete, to turn off power"
+237,けっこう,"nice, enough"
+238,けっこん ,marriage
+239,げつようび,Monday
+240,げんかん,"entrance-way, entry hall"
+241,げんき,health
+242,～こ,counter for small items
+243,ご,five
+244,～ご,"word, language"
+245,こうえん,(public) park
+246,こうさてん,intersection
+247,こうちゃ,black tea
+248,こうばん,police box
+249,こえ,voice
+250,コート,coat
+251,コーヒー,coffee
+252,ここ,"here, this place"
+253,ごご,"afternoon, P.M."
+254,ここのか,"nine days, the ninth day (of the month)"
+255,ここのつ,nine
+256,ごぜん,"morning, A.M."
+257,こたえる,"to answer, to reply"
+258,こちら,"this eg person, way"
+259,こっち,"this eg person, way"
+260,コップ,cup
+261,ことし,this year
+262,ことば,word
+263,こども,"child, children"
+264,この,this
+265,ごはん,"rice (cooked), meal"
+266,コピー・する,to copy
+267,こまる,"to be worried, to be bothered"
+268,これ,this
+269,～ころ/～ごろ,"about, approximately (time)"
+270,こんげつ,this month
+271,こんしゅう,this week
+272,こんな,"such, like this"
+273,こんばん,"tonight, this evening"
+274,さあ,"come now, well"
+275,～さい,～years-old
+276,さいふ,wallet
+277,さかな,fish
+278,さき,"the future, former, previous"
+279,さく,to bloom
+280,さくぶん,"composition, writing"
+281,さす,"to raise (stretch out) hands, to raise (eg umbrella)"
+282,～さつ,counter for books
+283,ざっし,magazine
+284,さとう,sugar
+285,さむい,cold (e.g. weather)
+286,さらいねん,year after next
+287,～さん,Mr or Mrs
+288,さん,three
+289,さんぽ ,"walk, stroll"
+290,し,four
+291,～じ,time (～ O'clock)
+292,しお,salt
+293,しかし,"however, but"
+294,じかん,time
+295,～じかん,～hours
+296,しごと,"work, occupation, employment"
+297,じしょ,dictionary
+298,しずか,"quiet, peaceful"
+299,した,"under, below, beneath"
+300,しち,seven
+301,しつもん,"question, inquiry"
+302,じてんしゃ,bicycle
+303,じどうしゃ,automobile
+304,しぬ,to die
+305,じびき,dictionary
+306,じぶん,"myself, oneself"
+307,しまる,"to close, to be closed"
+308,しめる,"to close, to shut"
+309,しめる,"to tie, to fasten"
+310,じゃ/じゃあ,"well, well then"
+311,しゃしん,photograph
+312,シャツ,"shirt, singlet"
+313,シャワー,shower
+314,じゅう,ten
+315,～じゅう,"during, while"
+316,～しゅうかん,～weeks
+317,じゅぎょう,"lesson, class work"
+318,しゅくだい,homework
+319,じょうず,"skill, skillful, dexterity"
+320,じょうぶ,"strong, solid, durable"
+321,しょうゆ,soy sauce
+322,しょくどう,"cafeteria, dining hall"
+323,しる,"to know, to understand"
+324,しろ,white
+325,しろい,white
+326,～にん,counter for people
+327,しんぶん,newspaper
+328,すいようび,Wednesday
+329,すう,"to smoke, to breathe in, to suck"
+330,スカート,skirt
+331,すき,"liking, fondness, love"
+332,～すぎ,"to exceed, ～ too much"
+333,すくない,"a few, scarce"
+334,すぐ・に,"immediately, instantly"
+335,すこし,"little, few"
+336,すずしい,"cool, refreshing"
+337,～ずつ,"at a time, gradually"
+338,ストーブ,heater (lit: stove)
+339,スプーン,spoon
+340,スポーツ,sport
+341,ズボン,trousers (fr: jupon)
+342,すむ,"to reside, to live in"
+343,スリッパ,slippers
+344,する,"to do, to try"
+345,すわる,to sit
+346,せい,"height, stature"
+347,せいと,pupil
+348,セーター,"sweater, jumper"
+349,せっけん,soap
+350,せびろ,business suit
+351,せまい,"narrow, confined, small"
+352,ゼロ,zero
+353,せん,"thousand, many"
+354,せんげつ,last month
+355,せんしゅう,"last week, the week before"
+356,せんせい,"teacher, master, doctor"
+357,せんたく,"washing, laundry"
+358,ぜんぶ,"all, entire, whole"
+359,そう/そうです,"appears, to be the case"
+360,そうじ ,"cleaning, sweeping"
+361,そうして/そして,"and, like that"
+362,そこ,"that place, there"
+363,そちら,over there
+364,そっち,over there
+365,そと,"outside, exterior"
+366,その,that
+367,そば,"near, close, beside"
+368,そら,sky
+369,それ,"it, that"
+370,それから,"and then, after that"
+371,それでは,"in that situation, well then..."
+372,～だい,counter for vehicles/machines
+373,だいがく,university
+374,たいしかん,embassy
+375,だいじょうぶ,"safe, all right, O.K."
+376,だいすき,"very likeable, like very much"
+377,たいせつ,important
+378,だいどころ,kitchen
+379,たいへん,very
+380,たいへん,"difficult situation, tough situation"
+381,たかい,"tall, high"
+382,たかい,expensive
+383,～だけ,"only ～, just ～"
+384,たくさん,"many, a lot, much"
+385,タクシー,taxi
+386,だす,"to put out, to send"
+387,～たち,plural suffix
+388,たつ,to stand
+389,たて,"length, height"
+390,たてもの,building
+391,たのしい,"enjoyable, fun"
+392,たのむ,"to request, to ask"
+393,たばこ,"tobacco, cigarettes"
+394,たぶん,"perhaps, probably"
+395,たべもの,food
+396,たべる,to eat
+397,たまご,egg(s)
+398,だれ,who
+399,だれか,"someone, somebody"
+400,たんじょうび,birthday
+401,だんだん,"gradually, by degrees"
+402,ちいさい,"small, little"
+403,ちいさな,"small, little"
+404,ちかい,"near, close by, short"
+405,ちがう,to differ (from)
+406,ちかく,near
+407,ちかてつ,"underground train, subway"
+408,ちず,map
+409,ちち,(one's own) father
+410,ちゃいろ,brown
+411,ちゃわん,rice bowl
+412,～ちゅう,"during, while ～ing"
+413,ちょうど,"just, right, exactly"
+414,ちょっと,"a little, somewhat"
+415,ついたち,"for one day, first of month"
+416,つかう,to use
+417,つかれる,"to get tired, to tire"
+418,つぎ,next
+419,つく,"to arrive at, to reach"
+420,つくえ,desk
+421,つくる,"to make, to create"
+422,つける,to turn on (eg a light)
+423,つとめる,"to serve, to work (for)"
+424,つまらない,"insignificant, boring"
+425,つめたい,cold (to the touch)
+426,つよい,"strong, powerful"
+427,て,hand
+428,テープ,tape
+429,テープレコーダー,tape recorder
+430,テーブル,table
+431,でかける,"to depart, to go out"
+432,てがみ,letter
+433,できる,to be able to
+434,でぐち,exit
+435,テスト,test
+436,では,with that...
+437,デパート,department store
+438,でも,"but, however"
+439,でる,"to appear, to leave"
+440,テレビ,"television, TV"
+441,てんき,weather
+442,でんき,"electricity, (electric) light"
+443,でんしゃ,electric train
+444,でんわ,telephone
+445,と,door (Japanese style)
+446,～ど,counter for occurrences
+447,ドア,door (Western style)
+448,トイレ,toilet
+449,どう,"how, in what way"
+450,どうして,"why?, for what reason"
+451,どうぞ,"please, kindly, by all means"
+452,どうぶつ,animal
+453,どうも,"thanks, very"
+454,とお,ten
+455,とおい,"far, distant"
+456,とおか,"ten days, the tenth (day of the month)"
+457,～とき,at the time of ～
+458,ときどき,sometimes
+459,とけい,"watch, clock"
+460,どこ,"where, what place"
+461,ところ,place
+462,とし,"year, age"
+463,としょかん,library
+464,どちら,"which, which way"
+465,どっち,"which one, which way"
+466,とても,very
+467,どなた,who
+468,となり,"next to, next door to"
+469,どの,which
+470,とぶ,"to fly, to hop"
+471,とまる,to come to a halt
+472,ともだち,friend
+473,どようび,Saturday
+474,とり,bird
+475,とりにく,chicken meat
+476,とる,to take
+477,とる,to take (a photo)
+478,どれ,which (of three or more)
+479,どんな,"what, what kind of"
+480,ない,"there isn't, doesn't have"
+481,ナイフ,knife
+482,なか,"inside, middle, among"
+483,ながい,long
+484,～ながら,"while ~ing, during, although"
+485,なく,"to sing (bird), to make sound (animal)"
+486,なくす,to lose something
+487,なぜ,why
+488,なつ,summer
+489,なつやすみ,"summer vacation, summer holiday"
+490,～など,et cetera
+491,ななつ,seven
+492,なん/なに,what
+493,なのか,"seven days, the seventh day (of the month)"
+494,なまえ,name
+495,ならう,to learn
+496,ならぶ,"to line up, to stand in a line"
+497,ならべる,"to line up, to set up"
+498,なる,to become
+499,なん～,what sort of ～
+500,に,two
+501,にぎやか,"bustling, busy"
+502,にく,meat
+503,にし,west
+504,～にち,"～ day of the month, for ～ days"
+505,にちようび,Sunday
+506,にもつ,luggage
+507,ニュース,news
+508,にわ,garden
+509,～にん,counter for people
+510,ぬぐ,to take off clothes
+511,ぬるい,lukewarm
+512,ネクタイ,"tie, necktie"
+513,ねこ,cat
+514,ねる,"to go to bed, to sleep"
+515,～ねん,～ years
+516,ノート,"notebook, exercise book"
+517,のぼる,to climb
+518,のみもの,"drink, beverage"
+519,のむ,to drink
+520,のる,"to get on, to ride in, to board"
+521,は,tooth
+522,パーティー,party
+523,はい,yes
+524,～はい,counter for cupfuls
+525,はいざら,ashtray
+526,はいる,"to enter, to contain, to hold"
+527,はがき,postcard
+528,はく,"to wear, to put on (trousers)"
+529,はこ,box
+530,はし,bridge
+531,はし,chopsticks
+532,はじまる,to begin
+533,はじめ,"beginning, start"
+534,はじめて,for the first time
+535,はしる,to run
+536,バス,bus
+537,バター,butter
+538,はたち,"20 years old, 20th year"
+539,はたらく,to work
+540,はち,eight
+541,はつか,"twenty days, twentieth (day of the month)"
+542,はな,flower
+543,はな,nose
+544,はなし,"talk, story"
+545,はなす,to speak
+546,はは,(one's own) mother
+547,はやい,early
+548,はやい,"quick, fast"
+549,はる,spring
+550,はる,"to stick, to paste"
+551,はれ,clear weather
+552,はれる,to be sunny
+553,はん,half
+554,ばん,evening
+555,～ばん,～st/th best
+556,パン,bread
+557,ハンカチ,handkerchief
+558,ばんごう,number
+559,ばんごはん,"dinner, evening meal"
+560,はんぶん,half
+561,ひがし,east
+562,～ひき,counter for small animals
+563,ひく,to pull
+564,ひく,"to play (piano, guitar)"
+565,ひくい,"short, low"
+566,ひこうき,"aeroplane, airplane"
+567,ひだり,left hand side
+568,ひと,"man, person"
+569,ひとつ,one
+570,ひとつき,one month
+571,ひとり,one person
+572,ひま,"free time, leisure"
+573,ひゃく,"100, hundred"
+574,びょういん,hospital
+575,びょうき,"illness, disease, sickness"
+576,ひらがな,hiragana
+577,ひる,"noon, daytime"
+578,ひるごはん,"lunch, midday meal"
+579,ひろい,"spacious, wide"
+580,フィルム,film (roll of)
+581,ふうとう,envelope
+582,プール,swimming pool
+583,フォーク,fork
+584,ふく,"to blow (wind, etc)"
+585,ふく,clothes
+586,ふたつ,two
+587,ぶたにく,pork
+588,ふたり,two people
+589,ふつか,"second day of the month, two days"
+590,ふとい,"fat, thick"
+591,ふゆ,winter
+592,ふる,"to precipitate, to fall (e.g. rain)"
+593,ふるい,"old (not person), aged, ancient"
+594,ふろ,bath
+595,～ふん,～minutes
+596,ぶんしょう,"sentence, text"
+597,ページ,page
+598,へた,"unskillful, poor"
+599,ベッド,bed
+600,ペット,pet
+601,へや,room
+602,へん,"area, vicinity"
+603,ペン,pen
+604,べんきょう ,"study, diligence"
+605,べんり,"convenient, handy"
+606,ほう,way
+607,ぼうし,hat
+608,ボールペン,ball-point pen
+609,ほか,"other place, the rest"
+610,ポケット,pocket
+611,ほしい,"want, in need of, desire"
+612,ポスト,post
+613,ほそい,"thin, slender, fine"
+614,ボタン,button
+615,ホテル,hotel
+616,ほん,book
+617,～ほん,counter for long cylindrical things
+618,ほんだな,bookshelves
+619,ほんとう,"reality, truth"
+620,～まい,counter for flat things
+621,まいあさ,every morning
+622,まいげつ/まいつき,"every month, monthly"
+623,まいしゅう,every week
+624,まいにち,every day
+625,まいねん/まいとし,"every year, annually"
+626,まいばん,every night
+627,まえ,"before, in front"
+628,～まえ,in front of ～
+629,まがる,"to turn, to bend"
+630,まずい,"unappetising, unpleasant (taste)"
+631,また,"again, and"
+632,まだ,"yet, still, besides"
+633,まち,"town, city"
+634,まつ,to wait
+635,まっすぐ,"straight (ahead), direct"
+636,マッチ,match
+637,まど,window
+638,まるい,"round, circular"
+639,まん,"ten thousand, everything"
+640,まんねんひつ,fountain pen
+641,みがく,to brush (teeth)
+642,みぎ,right hand side
+643,みじかい,short
+644,みず,water
+645,みせ,"store, shop, establishment"
+646,みせる,"to show, to display"
+647,みち,"road, street"
+648,みっか,"three days, the third day (of the month)"
+649,みっつ,three
+650,みどり,green
+651,みなさん,everyone
+652,みなみ,"South, proceeding south"
+653,みみ,ear
+654,みる,"to see, to watch"
+655,みんな,"all, everyone, everybody"
+656,むいか,"six days, sixth (day of month)"
+657,むこう,"beyond, over there"
+658,むずかしい,difficult
+659,むっつ,six
+660,むら,village
+661,め,"eye, eyeball"
+662,メートル,"metre, meter"
+663,めがね,"spectacles, glasses"
+664,もう,already
+665,もう,again
+666,もくようび,Thursday
+667,もしもし,hello (on phone)
+668,もつ,"(1) to hold, to carry, (2) to possess"
+669,もっと,"more, longer, farther"
+670,もの,"thing, object"
+671,もん,gate
+672,もんだい,"problem, question"
+673,～や,～ shop
+674,やおや,greengrocer
+675,やさい,vegetable
+676,やさしい,"easy, plain, simple"
+677,やすい,"cheap, inexpensive"
+678,やすみ,"rest, vacation, holiday"
+679,やすむ,"to rest, to have a break, to take a day off"
+680,やっつ,eight
+681,やま,mountain
+682,やる,to do
+683,ゆうがた,evening
+684,ゆうはん,dinner
+685,ゆうびんきょく,post office
+686,ゆうべ,last night
+687,ゆうめい,famous
+688,ゆき,snow
+689,ゆっくり・と,"slowly, at ease"
+690,ようか,"eight days, the eighth (day of the month)"
+691,ようふく,Western-style clothes
+692,よく,"frequently, often"
+693,よく,"well, skillfully"
+694,よこ,"beside, side, width"
+695,よっか,"(1) 4th day of month, (2) four days"
+696,よっつ,four
+697,よぶ,"to call out, to invite"
+698,よむ,to read
+699,よる,"evening, night"
+700,よわい,"weak, feable"
+701,らいげつ,next month
+702,らいしゅう,next week
+703,らいねん,next year
+704,ラジオ,radio
+705,ラジカセ,radio cassette player
+706,りっぱ,"splendid, fine"
+707,りゅうがくせい,overseas student
+708,りょうしん,"parents, both parents"
+709,りょうり,"cooking, cuisine"
+710,りょこう,"travel, trip"
+711,れい,"zero, nought"
+712,れいぞうこ,refrigerator
+713,レコード,record
+714,レストラン,restaurant
+715,れんしゅう,(to) practice
+716,ろうか,corridor
+717,ろく,six
+718,ワイシャツ,"shirt (lit: white shirt), business shirt"
+719,わかい,young
+720,わかる,to understand
+721,わすれる,to forget
+722,わたし,"I, myself"
+723,わたくし,"I, myself"
+724,わたす,"to pass over, to hand over"
+725,わたる,"to cross over, to go across"
+726,わるい,"bad, inferior"
