@@ -20,7 +20,7 @@ if (process.env.NODE_ENV === "production") {
 app.use(require("./routes/html"));
 app.use("/api", require("./routes/api"));
 
-mongoose.connect('mongodb://localhost/quiz',  {
+mongoose.connect(process.env.MONGO ||'mongodb://localhost/quiz',  {
   useNewUrlParser: true,
   useFindAndModify: false,
   useUnifiedTopology: true,
