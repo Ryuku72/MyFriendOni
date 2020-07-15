@@ -1,0 +1,41 @@
+{
+  "name": "my_friend_oni",
+  "version": "1.0.0",
+  "description": "Japanese Word Quiz using M.E.R.N",
+  "main": "server.js",
+  "scripts": {
+    "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
+    "start:prod": "node server.js",
+    "start:dev": "concurrently \"nodemon --ignore 'client/*'\"  \"npm run client\"",
+    "client": "cd client && npm run start",
+    "seed": "node scripts/seedDB.js",
+    "install": "cd client && npm install",
+    "build": "cd client && npm run build",
+    "heroku-postbuild": "cd client && npm install && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ryuku72/MyFriendOni.git"
+  },
+  "keywords": [
+    "Japanese",
+    "Quiz",
+    "MERN",
+    "React",
+    "Express",
+    "MongoDB",
+    "Node.JS",
+    "Hooks"
+  ],
+  "author": "Joshua K Bader",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ryuku72/MyFriendOni/issues"
+  },
+  "homepage": "https://github.com/Ryuku72/MyFriendOni#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongodb": "^3.5.9",
+    "mongoose": "^5.9.24"
+  }
+}
