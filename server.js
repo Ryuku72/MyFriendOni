@@ -15,6 +15,7 @@ if (process.env.NODE_ENV === "production") {
 }
 
 // API routes app.use(require("./routes"));
+app.use(require("./routes"))
 
 app.listen(PORT, () => {
   console.log(`🌎 ==> API server now on port ${PORT}!`);
