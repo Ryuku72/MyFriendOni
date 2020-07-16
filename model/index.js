@@ -1,3 +1,5 @@
 module.exports = {
-    vocablists: require("./vocablist.js")
+    letters: require("./letters"),
+    vocablists: require("./vocablists.js"),
+    users: require("./users")
 }

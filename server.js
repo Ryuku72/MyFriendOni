@@ -18,7 +18,7 @@ if (process.env.NODE_ENV === "production") {
 // API routes app.use(require("./routes"));
 
 app.use(require("./routes/html"));
-app.use("/api", require("./routes/api"));
+app.use(require("./routes/api"));
 
 mongoose.connect(process.env.MONGO ||'mongodb://localhost/quiz',  {
   useNewUrlParser: true,

@@ -1,44 +1,27 @@
-import React, {useState, useEffect } from 'react';
-import API from "./utils/API";
+import React from 'react';
+import Login from "./pages/login"
+import Signup from "./pages/signup"
+import Quiz from "./pages/quiz"
+import Footer from "./component/Footer"
+import PrivateRoute from './PrivateRoute'
+import { BrowserRouter as Router, Route} from "react-router-dom";
+import { AuthContext } from "./utils/auth"
+import Wrapper from './component/Wrapper';
 
 function App() {
-
-  const [words, setWordList] = useState([])
-    
-  useEffect(() => {
-      loadVocabList()
-    }, [])
-
-  //console.log(projects)
-
-  // Loads all books and sets them to books
-  function loadVocabList() {
-  API.getVocab()
-    .then(res => {
-      console.log(res.data)
-      setWordList(res.data)
-    })
-    .catch(err => console.log(err));
-};
-
-console.log(words)
-
-
   return (
-    <div>
-      <header>
-        <p>
-          My Friend Oni!
-        </p>
-        {words.map(vocab =>
-        <ul key={vocab._id}>
-          <li>Row: {vocab.Row}</li>
-          <li>Japanese: {vocab.Japanese}</li>
-          <li>English: {vocab.English}</li>
-        </ul>
-        )}
-      </header>
-    </div>
+    <AuthContext.Provider value={false}>
+    <Router>
+    <>
+    <Route exact path="/" component={Login} />
+    <Route exact path="/login" component={Login} />
+    <Route path="/signup" component={Signup} />
+    <PrivateRoute path="/quiz" component={Quiz} />
+    </>
+    </Router>
+    <Footer />
+    
+    </AuthContext.Provider>
   );
 }
 

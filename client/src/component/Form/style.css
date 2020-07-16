@@ -1,0 +1,7 @@
+.loginForm {
+    width: calc(100vw - 65vw);
+}
+
+.signup {
+    font-family: 'Nanum Pen Script', cursive;
+}

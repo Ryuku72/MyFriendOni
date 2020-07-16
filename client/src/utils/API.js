@@ -2,8 +2,8 @@ import axios from "axios";
 
 export default {
   // Gets all books
-  getVocab: function() {
-    return axios.get("/api/vocab");
+  getDatabase: function() {
+    return axios.get("/api/database");
   },
   // Gets the book with the given id
   getVocabRow: function(id) {
