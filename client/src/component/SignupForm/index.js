@@ -39,7 +39,7 @@ return (
     </Link>
     </div>
     </form>
-    <img src={Tengu} style={{height:"50vh"}} />
+    <img src={Tengu} style={{height:"50vh"}} alt="Tengu Face" />
 </div>
 
 )

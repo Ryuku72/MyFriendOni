@@ -33,7 +33,7 @@ function Form(props){
           <p className="flex text-right mt-12 px-4 text-red-700 font-bold text-sm">...if your new please click <Link to="/signup" className="signup cursor-pointer text-6xl text-green-600 hover:text-green-800">HERE!!!</Link></p>
         </form>
       </div>
-      <img src={Tengu} style={{height:"50vh"}} />
+      <img src={Tengu} style={{height:"50vh"}} alt="Tengu Teacher"/>
       </div>
       );
 }

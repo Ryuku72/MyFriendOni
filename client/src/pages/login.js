@@ -1,58 +1,47 @@
 import React, {useState } from 'react';
-import { Redirect } from "react-router-dom";
-import { useAuth } from "../utils/auth";
-import axios from 'axios';
+import { useHistory } from "react-router-dom";
 import Form from "../component/Form"
+import axios from "axios";
 import Header from "../component/Header"
 
-function Login(props){
-  const [isLoggedIn, setLoggedIn] = useState(false);
-  const [isError, setIsError] = useState(false);
+function Login(){
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
-  const { setAuthTokens } = useAuth();
+  const [error, setError] = useState(false)
+
+  let history = useHistory();
 
   function postLogin(event) {
       event.preventDefault();
-    axios.post("https://www.somePlace.com/auth/login", {
-      userName,
-      password
-    }).then(result => {
-      if (result.status === 200) {
-        setAuthTokens(result.data);
-        setLoggedIn(true);
-      } else {
-        setIsError(true);
+      let request = {
+        username: userName,
+        password: password
       }
-    }).catch(e => {
-      setIsError(true);
-    });
-  }
-
-  const referer = props.location.state.referer || '/';
-
-  if (isLoggedIn) {
-    return <Redirect to={referer} />;
-  }
-
+    axios.post('/api/login', request).then(result => { 
+      history.push('/quiz')
+    })
+    .catch( err => 
+      setError(true)
+      )
+    }
   function onHandleUserName(event){
-    setUserName(JSON.stringify(event.target.value.trim().toLowerCase()))
+    console.log(event.target.value.trim().toLowerCase())
+    setUserName(event.target.value.trim().toLowerCase())
   }
 
   function onHandlePassword(event){
-    setPassword(JSON.stringify(event.target.value.trim().toLowerCase()))
+    console.log(event.target.value.trim().toLowerCase())
+    setPassword(event.target.value.trim().toLowerCase())
   }
 
-
     return (
+  
        <div className="flex flex-col justify-center items-center bg-gray-300" style={{height:"92vh"}}>
         <Header/>
         <Form  
         onHandleUserName={onHandleUserName} 
         onHandlePassword={onHandlePassword}
         postLogin={postLogin}
-        isError={isError}
-        Error={Error}
         />
         </div>
       );

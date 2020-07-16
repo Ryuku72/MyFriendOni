@@ -1,33 +1,24 @@
 const router = require("express").Router();
 const { vocablists, letters, users } = require('../model');
 
-router.post("/api/login",  function(req, res) {
-});
-
-router.post("/api/signup", function(req, res) {
-});
-
-// Route for logging user out
-router.get("/logout", function(req, res) {
-  req.logout();
-  res.redirect("/");
-});
-
-// Route for getting some data about our user to be used client side
-router.get("/api/user_data", function(req, res) {
-if (!req.user) {
-  // The user is not logged in, send back an empty object
-  res.json({});
-} else {
-  // Otherwise send back the user's email and id
-  // Sending back a password, even a hashed password, isn't a good idea
-  res.json({
-    email: req.user.email,
-    id: req.user.id
-  });
-}
-});
-
+router.post("/api/login", function (req, res){
+  let userName = users.find({ username: req.body.username })
+  if(userName){
+    userName.then(result => {
+      if (result[0].password == req.body.password) {
+        res.status(200).send({
+          message: "Successful login!"
+        })
+      } else {
+        res.status(200).send({
+          message: "Error, incorrect Password"
+      })
+      }
+    }).catch(err => res.status(404).send({
+      message: "Error, incorrect User"
+  }))
+  }
+})
 
 
 router.get("/api/database", (req, res) => {

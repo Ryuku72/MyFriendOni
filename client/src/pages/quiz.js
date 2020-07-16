@@ -1,8 +1,6 @@
 import React, {useState, useEffect } from 'react';
 import API from "../utils/API";
 import Wrapper from '../component/Wrapper'
-import LogOutButton from '../component/LogOutButton'
-import { useAuth } from "../utils/auth";
 
 function Quiz(props){
 const [words, setWordList] = useState([])
@@ -23,12 +21,6 @@ useEffect(() => {
       .catch(err => console.log(err));
   };
 
-  const { setAuthTokens } = useAuth();
-
-  function logOut() {
-    setAuthTokens();
-  }
-
 
   console.log(words)
 
@@ -36,7 +28,6 @@ useEffect(() => {
         <div>
           <header>
             <Wrapper>
-            <LogOutButton onClick={logOut} title="Log out" onCLick={logOut}/>
 
 
             <p>
