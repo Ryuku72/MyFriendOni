@@ -1,14 +1,15 @@
 import React, {useState, useEffect } from 'react';
 import API from "../utils/API";
 import Wrapper from '../component/Wrapper'
+import LogOutButton from '../component/LogOutButton'
+import { useAuth } from "../utils/auth";
 
-function Quiz(){
+function Quiz(props){
+const [words, setWordList] = useState([])
 
-    const [words, setWordList] = useState([])
-    
-    useEffect(() => {
-        loadVocabList()
-      }, [])
+useEffect(() => {
+    loadVocabList()
+  }, [])
   
     //console.log(projects)
   
@@ -22,12 +23,22 @@ function Quiz(){
       .catch(err => console.log(err));
   };
 
+  const { setAuthTokens } = useAuth();
+
+  function logOut() {
+    setAuthTokens();
+  }
+
+
   console.log(words)
 
     return (
         <div>
           <header>
             <Wrapper>
+            <LogOutButton onClick={logOut} title="Log out" onCLick={logOut}/>
+
+
             <p>
               My Friend Oni!
             </p>
