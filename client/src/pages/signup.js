@@ -1,55 +1,63 @@
 import React, { useState } from 'react';
-import { Redirect } from "react-router-dom";
-import { useAuth } from "../utils/auth";
+import { useHistory } from "react-router-dom";
 import axios from 'axios';
 import Header from "../component/Header"
 import SignUpForm from "../component/SignupForm"
 
 function SignUp(){
 
-  const [isLoggedIn, setLoggedIn] = useState(false);
-  const [isError, setIsError] = useState(false);
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [passwordOne, setPasswordOne] = useState("");
   const [passwordTwo, setPasswordTwo] = useState("");
-  const { setAuthTokens } = useAuth();
+  const [isError, setIsError] = useState(false);
+
+  let history = useHistory();
+
+  function clearForm() {
+    document.getElementById("signupform").reset();
+    setUserName("")
+    setPasswordOne("")
+    setPasswordTwo("")
+  }
 
   function postSignUp(event) {
     event.preventDefault();
     if (passwordOne === passwordTwo) {
         setPassword(passwordOne)
-        axios.post("https://www.somePlace.com/auth/signup", {
-            userName,
-            password
-          }).then(result => {
-            if (result.status === 200) {
-              setAuthTokens(result.data);
-              setLoggedIn(true);
-            } else {
-              setIsError(true);
-            }
-          }).catch(e => {
-            setIsError(true);
-          });
-    } 
-    setIsError(true);
-}
-
-if (isLoggedIn) {
-  return <Redirect to="/quiz" />;
+        event.preventDefault();
+        let request = {
+        "username": userName,
+        "password": password
+      }
+      console.log(request)
+      axios.post('/api/user', request).then(result => { 
+        console.log(result)
+        history.push('/quiz')
+      })
+      .catch(err => console.log(err), 
+        setIsError(true),
+        clearForm()
+      )
+      }
+      else {
+          console.log(passwordOne)
+          console.log(passwordTwo)
+          setIsError(true)
+          clearForm()
+      }
 }
 
 function onHandleUserName(event){
-    setUserName(JSON.stringify(event.target.value.trim().toLowerCase()))
+    setUserName(event.target.value.trim().toLowerCase())
   }
 
   function onHandlePasswordOne(event){
-    setPasswordOne(JSON.stringify(event.target.value.trim().toLowerCase()))
+    setPasswordOne(event.target.value.trim().toLowerCase())
 }
 
 function onHandlePasswordTwo(event){
-    setPasswordTwo(JSON.stringify(event.target.value.trim().toLowerCase()))
+    setPasswordTwo(event.target.value.trim().toLowerCase())
 }
 
     return (
@@ -60,8 +68,7 @@ function onHandlePasswordTwo(event){
         onHandlePasswordOne={onHandlePasswordOne}
         onHandlePasswordTwo={onHandlePasswordTwo}
         postSignUp={postSignUp}
-        isError={isError}
-        Error={Error}
+        style={{ opacity : isError ? "1" : "0" }}
         />
         </div>
       );

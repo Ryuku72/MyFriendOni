@@ -10,22 +10,38 @@ router.post("/api/login", function (req, res){
           message: "Successful login!"
         })
       } else {
-        res.status(200).send({
-          message: "Error, incorrect Password"
-      })
+        res.status(401).send({
+          message:"Incorrect Password"})
       }
-    }).catch(err => res.status(404).send({
-      message: "Error, incorrect User"
-  }))
-  }
+    }).catch(err => 
+      res.status(401).send({
+        message:"Incorrect Username"}
+        )
+    )
+    }
+})
+
+router.post("/api/user", function (req, res){
+    console.log(req.body)
+    users.findOne(req.body)
+    .then(result => {
+      if (result) {
+        res.status(401).send({
+          message:"User Already Exists"})
+      } else {
+        users.create(req.body)
+        .then(dbModel => res.json(dbModel))
+        .catch(err => res.status(422).json(err));
+      }
+    })
+   
+   
 })
 
 
 router.get("/api/database", (req, res) => {
     users.find({}).then(profile => {
-        
     letters.find({}).then(words => {
-        
     vocablists.find({}).then(data => {
         
         res.json({User: profile, Characters: words, List: data});
