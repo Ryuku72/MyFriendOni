@@ -52,3 +52,4 @@
 // });
 
 "mongoimport --type csv -d quiz -c vocablist --headerline  Book1.csv"
+"mongodb+srv://Ryuku72:7201Ryuku@foreigntoolkit.pqhje.mongodb.net/quiz?retryWrites=true&w=majority"
