@@ -1,18 +1,22 @@
 import React, { useState } from 'react';
-import { useHistory } from "react-router-dom";
+import { useHistory, Redirect } from "react-router-dom";
 import axios from 'axios';
 import Header from "../component/Header"
 import SignUpForm from "../component/SignupForm"
+import { useAuth } from "../utils/auth";
 
-function SignUp(){
+function SignUp(props){
 
   const [userName, setUserName] = useState("");
-  const [password, setPassword] = useState("");
   const [passwordOne, setPasswordOne] = useState("");
   const [passwordTwo, setPasswordTwo] = useState("");
   const [isError, setIsError] = useState(false);
 
+  const [isLoggedIn, setLoggedIn] = useState(false);
+  const { setAuthTokens } = useAuth();
+
   let history = useHistory();
+  //const referrer = props.location.state.referrer || '/';
 
   function clearForm() {
     document.getElementById("signupform").reset();
@@ -24,16 +28,22 @@ function SignUp(){
   function postSignUp(event) {
     event.preventDefault();
     if (passwordOne === passwordTwo) {
-        setPassword(passwordOne)
         event.preventDefault();
         let request = {
         "username": userName,
-        "password": password
+        "password": passwordOne
       }
-      console.log(request)
-      axios.post('/api/user', request).then(result => { 
-        console.log(result)
-        history.push('/quiz')
+      //console.log(request)
+      axios.post('/api/user', request)
+      .then(result => { 
+        if (result.status === 200) {
+            setAuthTokens(result.data);
+            setLoggedIn(true);
+            console.log("login successful")
+            history.push('/quiz')
+          } else {
+            setIsError(true);
+          }
       })
       .catch(err => console.log(err), 
         setIsError(true),
@@ -60,6 +70,8 @@ function onHandlePasswordTwo(event){
     setPasswordTwo(event.target.value.trim().toLowerCase())
 }
 
+const existingTokens = localStorage.getItem("tokens");
+if ((existingTokens === "undefined") || (existingTokens === null)) {
     return (
        <div className="flex flex-col justify-center items-center bg-gray-300 f-full" style={{height:"92vh"}}>
         <Header />
@@ -72,6 +84,8 @@ function onHandlePasswordTwo(event){
         />
         </div>
       );
+}else {
+return <Redirect to="/quiz" />;
 }
-
+}
 export default SignUp;

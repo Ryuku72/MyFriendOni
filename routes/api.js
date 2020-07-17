@@ -2,24 +2,22 @@ const router = require("express").Router();
 const { vocablists, letters, users } = require('../model');
 
 router.post("/api/login", function (req, res){
-  let userName = users.find({ username: req.body.username })
-  if(userName){
-    userName.then(result => {
-      if (result[0].password == req.body.password) {
-        res.status(200).send({
-          message: "Successful login!"
-        })
-      } else {
-        res.status(401).send({
-          message:"Incorrect Password"})
-      }
-    }).catch(err => 
-      res.status(401).send({
-        message:"Incorrect Username"}
+  users.find({ username: req.body.username })
+  .then(result => {
+    console.log(result)
+
+        if (result[0].password == req.body.password) {
+          res.status(200).json(result)
+        } else {
+          res.status(401).send({
+            message:"Incorrect Password"})
+        }
+      }).catch(err => 
+          res.status(401).send({
+            message:"Incorrect Username"}
+            )
         )
-    )
-    }
-})
+  })
 
 router.post("/api/user", function (req, res){
     console.log(req.body)
