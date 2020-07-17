@@ -7,7 +7,7 @@ router.post("/api/login", function (req, res){
     console.log(result)
 
         if (result[0].password == req.body.password) {
-          res.status(200).json(result)
+          res.status(200).json(result[0]._id)
         } else {
           res.status(401).send({
             message:"Incorrect Password"})
@@ -31,25 +31,18 @@ router.post("/api/user", function (req, res){
         .then(dbModel => res.json(dbModel))
         .catch(err => res.status(422).json(err));
       }
-    })
-   
-   
+    }) 
 })
 
-
 router.get("/api/database", (req, res) => {
-    users.find({}).then(profile => {
-    letters.find({}).then(words => {
-    vocablists.find({}).then(data => {
-        
-        res.json({User: profile, Characters: words, List: data});
+    letters.find({}).then(character => {
+    vocablists.find({}).then(term=> {
+        res.json({words: term, letters: character});
       })
     .catch(err => res.status(404).json(err))
 }) 
 .catch(err => res.status(404).json(err));
 }) 
-.catch(err => res.status(404).json(err))
-})
 
 router.post("/api/vocab", function (req, res) {
   console.log(req.body);

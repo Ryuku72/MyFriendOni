@@ -13,20 +13,20 @@ return (
       <label className="block px-1 uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
         Username
       </label>
-      <input className="appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white" id="username" type="text" placeholder="Joshua" value={props.userName} onChange={props.onHandleUserName}/>
+      <input className="appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white" id="username" type="text" placeholder="Username" value={props.userName} onChange={props.onHandleUserName}/>
     </div>
     <div className="w-full flex mb-5">
     <div className="w-2/5 md:mb-0 mb-2 mr-4">
       <label className="block px-1 uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 mt-4">
         Password
       </label>
-      <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="password" placeholder="**********" value={props.passwordOne} onChange={props.onHandlePasswordOne}/>
+      <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="password" placeholder="********" value={props.passwordOne} onChange={props.onHandlePasswordOne}/>
     </div>
     <div className="w-2/5 md:mb-0 mb-2">
       <label className="block px-1 uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 mt-4">
         Confirm Password
       </label>
-      <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="password" placeholder="**********" value={props.passwordTwo} onChange={props.onHandlePasswordTwo}/>
+      <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="password" placeholder="********" value={props.passwordTwo} onChange={props.onHandlePasswordTwo}/>
     </div> 
     </div>
     <p className="text-red-400 mb-2" style={props.style}>The username or password provided were incorrect!</p> 

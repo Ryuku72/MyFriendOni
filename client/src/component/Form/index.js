@@ -19,7 +19,7 @@ function Form(props){
             <label className="block text-gray-700 text-sm font-bold mb-2" name="password">
               Password
             </label>
-            <input className="shadow appearance-none rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="password" id="password" type="password" placeholder="******************" value={props.password} onChange={props.onHandlePassword}/>
+            <input className="shadow appearance-none rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="password" id="password" type="password" placeholder="**********" value={props.password} onChange={props.onHandlePassword}/>
           </div>
           <p className="text-red-400 mb-4" style={props.style}>The username or password provided were incorrect!</p> 
           <div className="flex items-start justify-between">
