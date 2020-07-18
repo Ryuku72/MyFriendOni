@@ -3,105 +3,137 @@ import API from "../utils/API";
 import Wrapper from '../component/Wrapper'
 import { useAuth } from "../utils/auth";
 import Card from '../component/Card';
+import Navbar from '../component/Navbar';
 
 function Quiz(props){
-  
-  const initialState = {
-  Japanese: [], English: [], Question: [], Answer: [], currentArray: [], Score: 0, Position: 0
-  }
 
-  const [words, setWordList] = useState(initialState)
+// States
+  const [words, setWords] = useState({
+    Question: [], 
+    Answer: [], 
+    position: 0
+    })
+
+  const [user, setUser] = useState({})
+
+  const [points, setPoints] = useState({
+    score: 0,
+  })
+
+  const [timeLeft, setTimeLeft] = useState(null)
+
+// useEffects
 
   useEffect(() => {
     loadVocabList()
-    }, [])
+    getUser()
+    }, [points.score])
 
-    const { setAuthTokens } = useAuth();
-  
-    function logOut() {
-      setAuthTokens();
-    }
-
-    function shuffle(array) {
-      var currentIndex = array.length, temporaryValue, randomIndex;
-    
-      // While there remain elements to shuffle...
-      while (0 !== currentIndex) {
-    
-        // Pick a remaining element...
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex -= 1;
-    
-        // And swap it with the current element.
-        temporaryValue = array[currentIndex];
-        array[currentIndex] = array[randomIndex];
-        array[randomIndex] = temporaryValue;
+  useEffect(()=> {
+      if (timeLeft <= 0){
+          setTimeLeft(0)
       }
-    
-      return array;
-    }
-  
-    //console.log(projects)
-  
-    // Loads all books and sets them to books
-    function loadVocabList() {
-    API.getDb()
-      .then(res => {
-        //console.log(res.data.words)
-        const List = res.data.words
-        const japaneseWords = List.map(result => {
-          return {
-            id: result.Row,
-            Japanese: result.Japanese
-          }
-        })
-        const englishWords = List.map(result => {
-          return {
-            id: result.Row,
-            English: result.English
-          }
-        }) 
-        
-        const question = List[Math.floor(Math.random() * List.length)]
-        //console.log(question)
-        let newWordArray = List.filter(element => element.Row !== question.Row)
-        //console.log(newWordArray)
-        let answerArray = []
-        for (let i = 0; i < 3; i++){
-          let answer = newWordArray[Math.floor(Math.random() * newWordArray.length)]
-          newWordArray.splice(JSON.parse(answer.Row), 1)
-          //console.log(newWordArray)
-          answerArray.push(answer)
-        }
-        answerArray.push(question)
-        console.log(answerArray)
+      if (!timeLeft) return;
+      const intervalId = setInterval(()=> {
+          setTimeLeft(timeLeft - 1)
+      }, 1000)
+      return () => clearInterval(intervalId)
+  }, [timeLeft])
 
-        setWordList({...words, Japanese: japaneseWords, English: englishWords, Question: question, Answer: answerArray, currentArray: newWordArray})
-      })
-      .catch(err => console.log(err));
-  };
 
-  const shuffleAnswer = shuffle(words.Answer).map(results => {
-    return (
-      results.English
-    )
-  })
+// Database Calls
 
-  console.log(shuffleAnswer[1])
+function getUser() {
+  const user = localStorage.getItem("tokens")
+  setUser(JSON.parse(user))
+  //console.log(JSON.parse(user))
+}
+
+function loadVocabList() {
+  API.getJapanese()
+    .then(res => {
+      //console.log(res)
+
+// Sort Functions
+function shuffle(array) {
+  var currentIndex = array.length, temporaryValue, randomIndex;
+
+  // While there remain elements to shuffle...
+  while (0 !== currentIndex) {
+
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    // And swap it with the current element.
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+  return array;
+}
+
+const shuffleAnswer = shuffle(res.data.answer).map(results => {
+  return (
+    results.English
+  )
+}) 
+      setWords({ ...words, Answer: shuffleAnswer, Question: res.data.question})
+    })
+    .catch(err => console.log(err));
+};
+
+// Auth
+
+const { setAuthTokens } = useAuth();
+
+function logOut() {
+  setAuthTokens();
+}
+
+// Handlers
+
+function handleUserInput(event) {
+  event.preventDefault()
+  const buttonInput = event.target.innerText.toLowerCase()
+  const answer = words.Question.English
+  if (buttonInput === answer ){
+    //console.log("correct")
+    const addPoints = points.score + 1;
+    setPoints({...points, score: addPoints })
+  } else {
+    //console.log("wrong")
+    //console.log("correct")
+    const minusPoints = points.score - 1;
+    setPoints({...points, score: minusPoints })
+  }
+  loadVocabList()
+}
+
+function startQuiz(event){
+  event.preventDefault()
+  setTimeLeft(60)
+}
 
     return (
         <div className="w-screen" style={{height:"92vh"}}>
+             <Navbar 
+             logout={logOut}
+             user={user.username}
+             highscore={user.highScore}
+             totalscore={user.totalScore}
+             score={points.score}
+             time={timeLeft}
+             startQuiz={startQuiz}
+             />
             <Wrapper>
-            <button onClick={logOut}>Log Out</button>
-            <p>
-              My Friend Oni!
-            </p>
              <Card
               question={words.Question.Japanese}
-              answer1={shuffleAnswer[0]}
-              answer2={shuffleAnswer[1]}
-              answer3={shuffleAnswer[2]}
-              answer4={shuffleAnswer[3]}
+              userInput={handleUserInput}
+              answer1={words.Answer[0]}
+              answer2={words.Answer[1]}
+              answer3={words.Answer[2]}
+              answer4={words.Answer[3]}
               />
             </Wrapper>
         </div>

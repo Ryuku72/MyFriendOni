@@ -13,10 +13,10 @@ return (
         <img src={Oni} alt="Oni" className="w-1/4 m-6"/>        
         </div>
     <div className="flex items-center justify-center">
-        <Button question={props.answer1} />
-        <Button question={props.answer2} />
-        <Button question={props.answer3} />
-        <Button question={props.answer4} />
+        <Button question={props.answer1} userInput={props.userInput} />
+        <Button question={props.answer2} userInput={props.userInput} />
+        <Button question={props.answer3} userInput={props.userInput} />
+        <Button question={props.answer4} userInput={props.userInput} />
     </div>
     </div>
 )
