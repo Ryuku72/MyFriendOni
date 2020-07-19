@@ -4,6 +4,7 @@ import axios from 'axios';
 import Header from "../component/Header"
 import SignUpForm from "../component/SignupForm"
 import { useAuth } from "../utils/auth";
+import Footer from '../component/Footer';
 
 function SignUp(props){
 
@@ -73,7 +74,7 @@ function onHandlePasswordTwo(event){
 const existingTokens = localStorage.getItem("tokens");
 if ((existingTokens === "undefined") || (existingTokens === null)) {
     return (
-       <div className="flex flex-col justify-center items-center bg-gray-300 f-full" style={{height:"92vh"}}>
+       <div className="flex flex-col justify-center items-center bg-gray-300 f-full h-screen">
         <Header />
         <SignUpForm 
         onHandleUserName={onHandleUserName} 
@@ -82,7 +83,11 @@ if ((existingTokens === "undefined") || (existingTokens === null)) {
         postSignUp={postSignUp}
         style={{ opacity : isError ? "1" : "0" }}
         />
+          <Footer>
+         <div></div>
+         </Footer> 
         </div>
+        
       );
 }else {
 return <Redirect to="/quiz" />;

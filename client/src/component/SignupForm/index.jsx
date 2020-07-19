@@ -5,7 +5,7 @@ import "./style.css";
 
 function SignUpForm(props) {
 return (
-<div className="w-3/4 flex items-center justify-center border-2">
+<div className="signUp w-3/4 flex items-center justify-center border-2">
 <form id="signupform" className="w-3/4">
 <p className="text-gray-700 font-bold">Welcome Newbie...</p>
 <p className="mb-8 text-gray-700">Please fill out the information below</p>

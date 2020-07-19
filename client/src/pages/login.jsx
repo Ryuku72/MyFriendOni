@@ -4,13 +4,13 @@ import Form from "../component/Form"
 import axios from "axios";
 import Header from "../component/Header"
 import { useAuth } from "../utils/auth";
+import Footer from '../component/Footer';
 
 function Login(props){
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [isError, setIsError] = useState(false)
-
-  const [isLoggedIn, setLoggedIn] = useState(false);
+ const [isLoggedIn, setLoggedIn] = useState(false);
   const { setAuthTokens } = useAuth();
 
   let history = useHistory();
@@ -62,7 +62,7 @@ function Login(props){
 
     return (
   
-      <div className="flex flex-col justify-center items-center bg-gray-300" style={{height:"92vh"}}>
+      <div className="h-screen flex flex-col justify-center items-center bg-gray-300">
        <Header/>
        <Form  
        clearForm={clearForm}
@@ -71,6 +71,9 @@ function Login(props){
        postLogin={postLogin}
        style={{ opacity : isError ? "1" : "0" }}
        />
+       <Footer>
+         <div></div>
+         </Footer> 
        </div>
      );
   

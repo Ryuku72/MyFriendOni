@@ -3,7 +3,7 @@ import "./style.css";
 
 function Character(props) {
 return (
-    <p className="text-6xl">{props.question}</p>
+    <p className="kanji">{props.question}</p>
 )
 }
 

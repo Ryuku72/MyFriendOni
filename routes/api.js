@@ -42,9 +42,9 @@ router.get("/api/japanese", (req, res) => {
       let answerArray = []
     for (let i = 0; i < 3; i++){
       const answer = newWordArray[Math.floor(Math.random() * newWordArray.length)]
-      console.log(answer)
+      //console.log(answer)
       newWordArray.splice(JSON.parse(answer.Row, 1))
-      console.log(newWordArray)
+      //console.log(newWordArray)
       answerArray.push(answer)
     }
      answerArray.push(question)

@@ -6,8 +6,8 @@ import Tengu from "../../assets/img/onilogin.png"
 function Form(props){
 
     return (
-      <div className="flex justify-center items-center">
-        <div className="loginForm">
+      <div className="loginForm flex justify-center items-center w-full">
+        <div className="">
         <form id="loginform" className="px-8 pt-6 pb-8 mb-4">
           <div className="mb-6 mt-6">
             <label className="block text-gray-700 text-sm font-bold mb-2" name="username">

@@ -1,0 +1,10 @@
+.icon-button {
+    transition: filter 300ms;
+    filter: brightness(0.9)
+}
+
+.icon-button:hover {
+    filter: brightness(1.2);
+    border-color: rgb(155, 75, 75);
+    border-width: 3px;
+}

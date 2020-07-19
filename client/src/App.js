@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import { AuthContext } from "./utils/auth";
 import PrivateRoute from "./PrivateRoute"
 
+
 function App() {
   const existingTokens = localStorage.getItem("tokens");
   const [authTokens, setAuthTokens] = useState(existingTokens);
@@ -26,7 +27,6 @@ function App() {
     <Route path="/signup" component={Signup} />
     <PrivateRoute path="/quiz" component={Quiz} />
     </>
-    <Footer />
     </Router>
     </AuthContext.Provider>
   );

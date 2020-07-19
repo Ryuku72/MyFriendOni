@@ -1,10 +1,11 @@
 import React from 'react';
 import Letter from "../Letter";
+import "./style.css"
 
 function Header() {
 
 return (
-<div className="w-full inline-flex justify-center">
+<div className="header w-full inline-flex justify-center">
             <Letter value="M" color="#4a4e4d" />
             <Letter value="Y" color="#0e9aa7" />
             <Letter value="_" color="#f6cd61" />
