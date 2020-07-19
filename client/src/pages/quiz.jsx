@@ -113,6 +113,7 @@ function Quiz(props) {
       //console.log("wrong")
       //console.log("correct")
       const minusPoints = points.score - 3;
+      setTimeLeft(timeLeft - 10);
       setPoints({ ...points, score: minusPoints });
     }
       loadVocabList();
@@ -168,7 +169,7 @@ function Quiz(props) {
             </NavDropDown> 
         </NavItem>
       </Navbar>
-      <div style={{backgroundImage: quizToggle ? `url(${bgImg2})` : `url(${bgImg})`, height:"80vh", backgroundSize:"100vw 80vh"}}>
+      <div className="border-b-2 border-t-2 border-orange-300" style={{backgroundImage: quizToggle ? `url(${bgImg2})` : `url(${bgImg})`, height:"80vh", backgroundSize:"100vw 80vh"}}>
         <Card
           style={{display: quizToggle ? "block" : "none"}}
           question={words.Question.Japanese}
