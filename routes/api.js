@@ -48,7 +48,32 @@ router.get("/api/japanese", (req, res) => {
       answerArray.push(answer)
     }
      answerArray.push(question)
-      res.json({question: question, answer: answerArray })  
+
+        // Sort Functions
+        function shuffle(array) {
+          var currentIndex = array.length,
+            temporaryValue,
+            randomIndex;
+
+          // While there remain elements to shuffle...
+          while (0 !== currentIndex) {
+            // Pick a remaining element...
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex -= 1;
+
+            // And swap it with the current element.
+            temporaryValue = array[currentIndex];
+            array[currentIndex] = array[randomIndex];
+            array[randomIndex] = temporaryValue;
+          }
+          return array;
+        }
+
+        const shuffleAnswer = shuffle(answerArray).map((results) => {
+          return results.English;
+        });
+
+      res.json({question: question, answer: shuffleAnswer })  
       })
     .catch(err => res.status(404).json(err))
 }) 

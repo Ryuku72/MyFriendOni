@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import API from "../utils/API";
 import { useAuth } from "../utils/auth";
 import Card from "../component/Card";
@@ -42,7 +42,7 @@ function Quiz(props) {
   useEffect(() => {
     loadVocabList();
     getUser();
-  }, [points.score]);
+  }, []);
 
   useEffect(() => {
     if (timeLeft <= 0) {
@@ -57,7 +57,7 @@ function Quiz(props) {
   }, [timeLeft]);
 
   // useRef
-  let btnRef = useRef();
+ 
 
   // Database Calls
 
@@ -72,37 +72,13 @@ function Quiz(props) {
       .then((res) => {
         //console.log(res)
 
-        // Sort Functions
-        function shuffle(array) {
-          var currentIndex = array.length,
-            temporaryValue,
-            randomIndex;
-
-          // While there remain elements to shuffle...
-          while (0 !== currentIndex) {
-            // Pick a remaining element...
-            randomIndex = Math.floor(Math.random() * currentIndex);
-            currentIndex -= 1;
-
-            // And swap it with the current element.
-            temporaryValue = array[currentIndex];
-            array[currentIndex] = array[randomIndex];
-            array[randomIndex] = temporaryValue;
-          }
-          return array;
-        }
-
-        const shuffleAnswer = shuffle(res.data.answer).map((results) => {
-          return results.English;
-        });
-
         setTimeout(function() {
         setWords({
           ...words,
-          Answer: shuffleAnswer,
+          Answer: res.data.answer,
           Question: res.data.question,
         });
-      }, 350); 
+      }, 300); 
       })
       .catch((err) => console.log(err));
   }
@@ -127,11 +103,6 @@ function Quiz(props) {
 
   function handleUserInput(event) {
     event.preventDefault();
-
-    if(btnRef.current){
-      btnRef.current.setAttribute("disabled", "disabled");
-    }
-    
     const buttonInput = event.target.innerText.toLowerCase();
     const answer = words.Question.English;
     if (buttonInput === answer) {

@@ -1,6 +1,5 @@
 import React from "react";
 import "./style.css";
-import Stat from "../Stat"
 
 function Footer(props) {
   return (

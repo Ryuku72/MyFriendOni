@@ -1,10 +1,10 @@
 .loginForm {
-    height: 70vh;
+    height: 80vh;
 }
 
 .loginForm div {
-    width: 45vw;
-    padding-right: 40px;
+    width: 40vw;
+    padding-right: 6vw;
 }
 
 .signup {

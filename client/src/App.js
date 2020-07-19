@@ -2,7 +2,6 @@ import React, { useState} from 'react';
 import Login from "./pages/login"
 import Signup from "./pages/signup"
 import Quiz from "./pages/quiz"
-import Footer from "./component/Footer"
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { AuthContext } from "./utils/auth";
 import PrivateRoute from "./PrivateRoute"
