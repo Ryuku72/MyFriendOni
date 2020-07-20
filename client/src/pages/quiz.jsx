@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from "react";
 import API from "../utils/API";
 import { useAuth } from "../utils/auth";
-import Card from "../components/Card";
-import Navbar from "../components/Navbar"
-import NavItem from "../components/NavItem"
 import bgImg from "../assets/img/background.jpg"
 import bgImg2 from "../assets/img/hiraganabg.jpg"
 import quizIcon from "../assets/svg/monster.svg"
@@ -21,7 +18,10 @@ import outside from "../assets/svg/plug.svg"
 import NavDropDown from "../components/NavDropDown";
 import NavDropDownItem from "../components/NavDropDownItem";
 import Footer from "../components/Footer";
-import ScoreCard from "../components/ScoreCard"
+import ScoreCard from "../components/ScoreCard";
+import Card from "../components/Card";
+import Navbar from "../components/Navbar";
+import NavItem from "../components/NavItem";
 
 function Quiz(props) {
   // States

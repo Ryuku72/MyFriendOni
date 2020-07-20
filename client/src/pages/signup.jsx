@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useHistory, Redirect } from "react-router-dom";
 import axios from 'axios';
-import Header from "../component/Header"
-import SignUpForm from "../component/SignupForm"
+import Header from "../components/Header";
+import SignUpForm from "../components/SignupForm";
 import { useAuth } from "../utils/auth";
-import Footer from '../component/Footer';
+import Footer from '../components/Footer';
 
 function SignUp(props){
 
