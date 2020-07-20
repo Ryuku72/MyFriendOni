@@ -37,43 +37,35 @@ router.post("/api/user", function (req, res){
 router.get("/api/japanese", (req, res) => {
 
     vocablists.find({}).then(term=> {
-      const question = term[Math.floor(Math.random() * term.length)]
+      let response = term[Math.floor(Math.random() * term.length)];
+      let question = response.toObject()
+      question.Correct = "true";
       let newWordArray = term.filter(element => element.Row !== question.Row)
       let answerArray = []
     for (let i = 0; i < 3; i++){
-      const answer = newWordArray[Math.floor(Math.random() * newWordArray.length)]
-      //console.log(answer)
-      newWordArray.splice(JSON.parse(answer.Row, 1))
-      //console.log(newWordArray)
+      let filter = newWordArray[Math.floor(Math.random() * newWordArray.length)]
+      let answer = filter.toObject()
+      answer.Correct = "false";
       answerArray.push(answer)
     }
      answerArray.push(question)
 
-        // Sort Functions
-        function shuffle(array) {
-          var currentIndex = array.length,
-            temporaryValue,
-            randomIndex;
+     function shuffle(arra1) {
+      let ctr = arra1.length;
+      let temp;
+      let index;
 
-          // While there remain elements to shuffle...
-          while (0 !== currentIndex) {
-            // Pick a remaining element...
-            randomIndex = Math.floor(Math.random() * currentIndex);
-            currentIndex -= 1;
-
-            // And swap it with the current element.
-            temporaryValue = array[currentIndex];
-            array[currentIndex] = array[randomIndex];
-            array[randomIndex] = temporaryValue;
-          }
-          return array;
-        }
-
-        const shuffleAnswer = shuffle(answerArray).map((results) => {
-          return results.English;
-        });
-
-      res.json({question: question, answer: shuffleAnswer })  
+      while (ctr > 0) {
+          index = Math.floor(Math.random() * ctr);
+          ctr--;
+          temp = arra1[ctr];
+          arra1[ctr] = arra1[index];
+          arra1[index] = temp;
+      }
+      return arra1;
+  }
+      let shuffleArray = shuffle(answerArray);
+      res.json({question: question, answer: shuffleArray })  
       })
     .catch(err => res.status(404).json(err))
 }) 

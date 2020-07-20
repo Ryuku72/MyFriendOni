@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import API from "../utils/API";
 import { useAuth } from "../utils/auth";
-import Card from "../component/Card";
-import Navbar from "../component/Navbar"
-import NavItem from "../component/NavItem"
+import Card from "../components/Card";
+import Navbar from "../components/Navbar"
+import NavItem from "../components/NavItem"
 import bgImg from "../assets/img/background.jpg"
 import bgImg2 from "../assets/img/hiraganabg.jpg"
 import quizIcon from "../assets/svg/monster.svg"
@@ -18,36 +18,43 @@ import furi from "../assets/svg/book1.svg"
 import player from "../assets/svg/troll.svg"
 import about from "../assets/svg/sushi.svg"
 import outside from "../assets/svg/plug.svg"
-import NavDropDown from "../component/NavDropDown";
-import NavDropDownItem from "../component/NavDropDownItem";
-import Footer from "../component/Footer";
+import NavDropDown from "../components/NavDropDown";
+import NavDropDownItem from "../components/NavDropDownItem";
+import Footer from "../components/Footer";
+import ScoreCard from "../components/ScoreCard"
 
 function Quiz(props) {
   // States
   const [user, setUser] = useState({});
   const [points, setPoints] = useState({ score: 0 });
-  const [timeLeft, setTimeLeft] = useState(null);
+  const [timeLeft, setTimeLeft] = useState("end");
   const [words, setWords] = useState({
     Question: [],
     Answer: [],
+    btnColor:[],
+    WrongAnswers: [],
+    CorrectAnswers: [],
     position: 0,
   });
   const [quizToggle, setQuizToggle] = useState(false) 
+  const [scoreToggle, setScoreToggle] = useState(false)
   const [openOne, setOpenOne] = useState(false);
   const [openTwo, setOpenTwo] = useState(false);
   const [openThree, setOpenThree] = useState(false);
-
-  // useEffects
-
+  const [activeBtn, setActiveBtn] = useState(0)
+  const [btnColor, setBtnColor] = useState(false)
+  
+// useEffects
   useEffect(() => {
-    loadVocabList();
+   loadVocabList();
     getUser();
   }, []);
 
   useEffect(() => {
     if (timeLeft <= 0) {
-      setTimeLeft(0);
+      setTimeLeft("end");
       setQuizToggle(false)
+      setScoreToggle(true)
     }
     if (!timeLeft) return;
     const intervalId = setInterval(() => {
@@ -70,21 +77,21 @@ function Quiz(props) {
   function loadVocabList() {
     API.getJapanese()
       .then((res) => {
-        //console.log(res)
-
-        setTimeout(function() {
+        setTimeout(() => {
+        setActiveBtn(1)
+        setBtnColor(false)
+        //console.log(res.data)
         setWords({
           ...words,
           Answer: res.data.answer,
           Question: res.data.question,
         });
-      }, 300); 
+      },350)
       })
       .catch((err) => console.log(err));
   }
 
   // Auth
-
   const { setAuthTokens } = useAuth();
 
   function logOut(event) {
@@ -92,26 +99,45 @@ function Quiz(props) {
     setAuthTokens();
   }
 
+  // functions
+  let today = new Date()
+  let dd = String(today.getDate()).padStart(2, '0');
+  let mm = String(today.getMonth() + 1).padStart(2, '0');
+  let yyyy = today.getFullYear();
+  today = dd + '/' + mm + '/' + yyyy;
+
   // Handlers
 
   function startQuiz(event) {
     event.preventDefault();
     setQuizToggle(true)
+    setBtnColor(false)
+    setScoreToggle(false)
     setTimeLeft(120);
-    console.log("QUiz Started")
+    console.log("Quiz Started")
   }
 
   function handleUserInput(event) {
     event.preventDefault();
-    const buttonInput = event.target.innerText.toLowerCase();
-    const answer = words.Question.English;
-    if (buttonInput === answer) {
+    const buttonInput = event.target.value;
+    const answer = words.Question.English
+    //console.log(answer)
+    setActiveBtn(0)
+    setBtnColor(true)
+    if (buttonInput === "true") {
       //console.log("correct")
       const addPoints = points.score + 5;
+      words.CorrectAnswers.push(answer)
       setPoints({ ...points, score: addPoints });
+    } else if (buttonInput === "false" && timeLeft <= 10) {
+        words.WrongAnswers.push(answer)
+        setTimeLeft("end");
+        setQuizToggle(false)
+        setScoreToggle(true)
     } else {
       //console.log("wrong")
       //console.log("correct")
+      words.WrongAnswers.push(answer)
       const minusPoints = points.score - 3;
       setTimeLeft(timeLeft - 10);
       setPoints({ ...points, score: minusPoints });
@@ -135,6 +161,10 @@ function Quiz(props) {
     setOpenThree(!openThree)
     setOpenTwo(false)
     setOpenOne(false)
+  }
+
+  function onHandleExitScore() {
+    setScoreToggle(false)
   }
 
   return (
@@ -169,16 +199,20 @@ function Quiz(props) {
             </NavDropDown> 
         </NavItem>
       </Navbar>
-      <div className="border-b-2 border-t-2 border-orange-300" style={{backgroundImage: quizToggle ? `url(${bgImg2})` : `url(${bgImg})`, height:"80vh", backgroundSize:"100vw 80vh"}}>
+      <div className="border-b-2 border-t-2 border-orange-300 flex justify-center items-center" style={{backgroundImage: quizToggle ? `url(${bgImg2})` : `url(${bgImg})`, height:"80vh", backgroundSize:"100vw 80vh"}}>
         <Card
-          style={{display: quizToggle ? "block" : "none"}}
+          btnColor={btnColor}
+          style={{display: quizToggle ? "flex" : "none"}}
           question={words.Question.Japanese}
           userInput={handleUserInput}
-          answer1={words.Answer[0]}
-          answer2={words.Answer[1]}
-          answer3={words.Answer[2]}
-          answer4={words.Answer[3]}
+          answer={words.Answer}
+          disable={activeBtn}
         />
+      <ScoreCard score={points.score} wrong={words.WrongAnswers} correct={words.CorrectAnswers} highScore={user.highScore} 
+      style={{display: scoreToggle ? "flex" : "none"}}
+      date={today}
+      click={onHandleExitScore}
+      />
       </div>
       <Footer user={user.username}>
   <p className="px-2 inline-flex text-3xl font-mono capitalize text-red-500" style={{opacity: quizToggle ? "1" : "0" }}><span className="text-gray-800 text-4xl mr-2">Time: </span> {timeLeft}</p>
