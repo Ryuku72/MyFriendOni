@@ -119,6 +119,7 @@ function Quiz(props) {
 
   function handleUserInput(event) {
     event.preventDefault();
+    event.stopPropagation();
     const buttonInput = event.target.value;
     const answer = words.Question.English
     //console.log(answer)
