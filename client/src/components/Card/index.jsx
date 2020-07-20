@@ -15,7 +15,7 @@ return (
     <div className="flex items-center justify-center p-2">
         {props.answer.map(result => (
             //console.log(result),
-        <Button question={result.English} btnColor={props.btnColor} key={result.Row} value={result.Correct} userInput={props.userInput} disble={props.disbale} color={props.color}/>
+        <Button question={result.English} btnColor={props.btnColor} key={result.Row} value={result.Correct} userInput={props.userInput} disable={props.disable} color={props.color}/>
         ))}
         </div>
     </div>

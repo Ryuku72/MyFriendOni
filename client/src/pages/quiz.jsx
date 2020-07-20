@@ -46,6 +46,7 @@ function Quiz(props) {
   
 // useEffects
   useEffect(() => {
+   setActiveBtn(0)
    loadVocabList();
     getUser();
   }, []);
@@ -77,16 +78,16 @@ function Quiz(props) {
   function loadVocabList() {
     API.getJapanese()
       .then((res) => {
+        setActiveBtn(0)
         setTimeout(() => {
-        setActiveBtn(1)
         setBtnColor(false)
-        //console.log(res.data)
+        setActiveBtn(1)
         setWords({
           ...words,
           Answer: res.data.answer,
           Question: res.data.question,
         });
-      },350)
+      },500)
       })
       .catch((err) => console.log(err));
   }
@@ -113,17 +114,17 @@ function Quiz(props) {
     setQuizToggle(true)
     setBtnColor(false)
     setScoreToggle(false)
+    setActiveBtn(1)
     setTimeLeft(120);
     console.log("Quiz Started")
   }
 
   function handleUserInput(event) {
     event.preventDefault();
-    event.stopPropagation();
+    setActiveBtn(0)
     const buttonInput = event.target.value;
     const answer = words.Question.English
     //console.log(answer)
-    setActiveBtn(0)
     setBtnColor(true)
     if (buttonInput === "true") {
       //console.log("correct")
@@ -135,7 +136,7 @@ function Quiz(props) {
         setTimeLeft("end");
         setQuizToggle(false)
         setScoreToggle(true)
-    } else {
+    } else if  (buttonInput === "false") {
       //console.log("wrong")
       //console.log("correct")
       words.WrongAnswers.push(answer)
