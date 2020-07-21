@@ -38,6 +38,7 @@ function Quiz(props) {
   });
   const [quizToggle, setQuizToggle] = useState(false);
   const [scoreToggle, setScoreToggle] = useState(false);
+  const [highScore, setHighScore] = useState(0)
   const [openOne, setOpenOne] = useState(false);
   const [openTwo, setOpenTwo] = useState(false);
   const [openThree, setOpenThree] = useState(false);
@@ -124,12 +125,18 @@ function Quiz(props) {
     const buttonInput = event.target.value;
     const answer = words.Question.English;
     //console.log(answer)
+    
     setBtnColor(true);
     if (buttonInput === "true") {
       //console.log("correct")
       const addPoints = points.score + 5;
       words.CorrectAnswers.push(answer);
+      if (addPoints > highScore) {
+        setHighScore(addPoints)
+        setPoints({ ...points, score: addPoints });
+      } else {
       setPoints({ ...points, score: addPoints });
+      }
     } else if (buttonInput === "false" && timeLeft <= 10 && points.score >= 3) {
       words.WrongAnswers.push(answer);
       const minusPoints = points.score - 3;
@@ -178,12 +185,14 @@ function Quiz(props) {
 
   function onHandleExitScore() {
     setScoreToggle(false);
+    setPoints({...points, score: 0})
+    setHighScore(0)
   }
 
   return (
     <div>
       <Navbar
-        highscore={user.highScore}
+        highscore={highScore}
         totalscore={user.totalScore}
         score={points.score}
       >
@@ -304,7 +313,7 @@ function Quiz(props) {
           score={points.score}
           wrong={words.WrongAnswers}
           correct={words.CorrectAnswers}
-          highScore={user.highScore}
+          highScore={highScore}
           style={{ display: scoreToggle ? "flex" : "none" }}
           date={today}
           click={onHandleExitScore}

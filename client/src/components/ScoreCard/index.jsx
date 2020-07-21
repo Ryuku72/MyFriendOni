@@ -50,24 +50,24 @@ function ScoreCard(props) {
             <p className="text-6xl">{props.date}</p>
             </div>
         
-        <div className="flex justify-between items-center px-4 my-2">
-            <p className="text-4xl">Total Score:</p> 
-            <p className="text-6xl">{props.score}</p>
-            </div>
-
             <div className="flex justify-between items-center px-4 my-2">
         <p className="text-4xl">Correct Answers:</p>
-        <p className="text-6xl"> {props.correct.length}</p>
+        <p className="text-6xl"> {props.correct.length} words</p>
         </div>
 
         <div className="flex justify-between items-center px-4 my-2">
         <p className="text-4xl">Wrong Answers:</p>
-        <p className="text-6xl">  {props.wrong.length}</p>
+        <p className="text-6xl">  {props.wrong.length} words</p>
         </div>
 
         <div className="flex justify-between items-center px-4 my-2">
+            <p className="text-4xl">Total Score:</p> 
+            <p className="text-6xl">{props.score} points</p>
+            </div>
+
+        <div className="flex justify-between items-center px-4 my-2">
         <p className="text-4xl">Highest Score:</p>
-        <p className="text-6xl"> {props.highScore}</p>
+        <p className="text-6xl"> {props.highScore} points</p>
         </div>
         
         </div>
