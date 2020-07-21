@@ -1,3 +1,7 @@
 footer {
     height: 10vh
 }
+
+footer p {
+    font-family: 'Nanum Pen Script', cursive;
+}

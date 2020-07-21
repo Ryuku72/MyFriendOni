@@ -86,7 +86,7 @@ function Quiz(props) {
             Answer: res.data.answer,
             Question: res.data.question,
           });
-        }, 500);
+        }, 350);
       })
       .catch((err) => console.log(err));
   }
@@ -194,7 +194,7 @@ function Quiz(props) {
           open={openOne}
         >
           <NavDropDown
-            color="bg-gray-300 border-teal-500 mt-3"
+            color="bg-gray-300 border-teal-500"
             onHandleDropDown={onHandleDropDownOne}
           >
             <p className="m-2 font-mono text-center underline text-2xl">Quiz</p>
@@ -231,7 +231,7 @@ function Quiz(props) {
           open={openTwo}
         >
           <NavDropDown
-            color="bg-gray-300 border-pink-600 mt-4"
+            color="bg-gray-300 border-pink-600 mt-1"
             onHandleDropDown={onHandleDropDownTwo}
           >
             <p className="m-2 font-mono text-center underline text-xl">
@@ -258,7 +258,7 @@ function Quiz(props) {
           open={openThree}
         >
           <NavDropDown
-            color="bg-gray-300 border-yellow-600 mt-6"
+            color="bg-gray-300 border-yellow-600 mt-2"
             onHandleDropDown={onHandleDropDownThree}
           >
             <p className="m-2 font-mono text-center underline text-xl">
@@ -285,7 +285,7 @@ function Quiz(props) {
         </NavItem>
       </Navbar>
       <div
-        className="border-b-2 border-t-2 border-orange-300 flex justify-center items-center"
+        className="border-b-2 border-t-2 border-pink-300 flex justify-center items-center"
         style={{
           backgroundImage: quizToggle ? `url(${bgImg2})` : `url(${bgImg})`,
           height: "80vh",
@@ -315,7 +315,7 @@ function Quiz(props) {
           className="px-2 inline-flex text-3xl font-mono capitalize text-red-500"
           style={{ opacity: quizToggle ? "1" : "0" }}
         >
-          <span className="text-gray-800 text-4xl mr-2">Time: </span> {timeLeft}
+          <span className="score-sheet text-gray-800 text-4xl mr-2">Time: </span> {timeLeft}
         </p>
       </Footer>
     </div>

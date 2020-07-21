@@ -1,6 +1,7 @@
 .icon-button {
     transition: filter 300ms;
-    filter: brightness(0.9)
+    filter: brightness(0.9);
+    width: 3.5rem
 }
 
 .icon-button:hover {

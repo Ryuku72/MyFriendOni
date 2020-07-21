@@ -3,7 +3,7 @@ import "./style.css";
 
 function Letter(props) {
 return (
-    <span style={{color:`${props.color}`}}>{props.value}</span>
+    <span className="letters" style={{color:`${props.color}`}}>{props.value}</span>
 )
 }
 

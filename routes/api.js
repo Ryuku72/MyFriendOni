@@ -4,7 +4,7 @@ const { vocablists, letters, users } = require('../model');
 router.post("/api/login", function (req, res){
   users.find({ username: req.body.username })
   .then(result => {
-    console.log(result)
+    //console.log(result)
 
         if (result[0].password == req.body.password) {
           res.status(200).json(result[0])
@@ -72,7 +72,7 @@ router.get("/api/japanese", (req, res) => {
 
 
 router.post("/api/vocab", function (req, res) {
-  console.log(req.body);
+  //console.log(req.body);
   const words = new vocablists(req.body) 
   words.save(function (err) {
     res.json(words)

@@ -52,8 +52,8 @@ function SignUp(props){
       )
       }
       else {
-          console.log(passwordOne)
-          console.log(passwordTwo)
+         // console.log(passwordOne)
+         // console.log(passwordTwo)
           setIsError(true)
           clearForm()
       }

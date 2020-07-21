@@ -27,10 +27,10 @@ function Login(props){
         "username": userName,
         "password": password
       }
-      console.log(request)
+      //console.log(request)
     axios.post('/api/login', request)
     .then(result => { 
-      console.log(result)
+      //console.log(result)
       if (result.status === 200) {
         setAuthTokens(result.data);
         setLoggedIn(true);
