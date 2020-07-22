@@ -38,7 +38,7 @@ function ScoreCard(props) {
     const result = grade(props.score)
 
     return (
-        <div className="score-sheet w-full h-full bg-yellow-500" style={props.style}>
+        <div className="score-sheet w-full h-full bg-yellow-300" style={props.style}>
             <div className="w-1/2 h-full inline-flex flex-col leading-10">
                 <div className="flex justify-center items-center" style={{height:"35%"}}>
         <p className="text-6xl text-gray-800">Grade: </p>
@@ -49,7 +49,6 @@ function ScoreCard(props) {
             <p className="text-4xl">Date:</p>
             <p className="text-6xl">{props.date}</p>
             </div>
-        
             <div className="flex justify-between items-center px-4 my-2">
         <p className="text-4xl">Correct Answers:</p>
         <p className="text-6xl"> {props.correct.length} words</p>

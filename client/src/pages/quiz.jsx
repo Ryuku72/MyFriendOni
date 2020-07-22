@@ -44,6 +44,7 @@ function Quiz(props) {
   const [openThree, setOpenThree] = useState(false);
   const [activeBtn, setActiveBtn] = useState(0);
   const [btnColor, setBtnColor] = useState(false);
+  const [language, setLanguage] = useState("")
 
   // useEffects
   useEffect(() => {
@@ -57,6 +58,7 @@ function Quiz(props) {
       setTimeLeft("end");
       setQuizToggle(false);
       setScoreToggle(true);
+      setBtnColor(true)
     }
     if (!timeLeft) return;
     const intervalId = setInterval(() => {
@@ -79,14 +81,12 @@ function Quiz(props) {
     API.getJapanese()
       .then((res) => {
         setActiveBtn(0);
+        console.log(res.data);
         setTimeout(() => {
           setBtnColor(false);
           setActiveBtn(1);
-          setWords({
-            ...words,
-            Answer: res.data.answer,
-            Question: res.data.question,
-          });
+            setWords({...words, Answer: res.data.answer, Question: res.data.question}); 
+            console.log(words)
         }, 350);
       })
       .catch((err) => console.log(err));
@@ -107,10 +107,11 @@ function Quiz(props) {
   let yyyy = today.getFullYear();
   today = dd + "/" + mm + "/" + yyyy;
 
-  // Handlers
+  // InfoRequests
 
-  function startQuiz(event) {
+  function startJpnQuiz(event) {
     event.preventDefault();
+    setLanguage("Japanese")
     setQuizToggle(true);
     setBtnColor(false);
     setScoreToggle(false);
@@ -119,6 +120,19 @@ function Quiz(props) {
     console.log("Quiz Started");
   }
 
+  function startEngQuiz(event) {
+    event.preventDefault();
+    setLanguage("English")
+    setQuizToggle(true);
+    setBtnColor(false);
+    setScoreToggle(false);
+    setActiveBtn(1);
+    setTimeLeft(120);
+    console.log("Quiz Started");
+  }
+  
+
+  // Handlers
   function handleUserInput(event) {
     event.preventDefault();
     setActiveBtn(0);
@@ -189,6 +203,15 @@ function Quiz(props) {
     setHighScore(0)
   }
 
+  function onHandleExitQuiz(){
+    setTimeLeft("end");
+    setBtnColor(true);
+    setTimeout(() => {
+    setQuizToggle(false);
+    setScoreToggle(true);
+    }, 350);
+  }
+
   return (
     <div>
       <Navbar
@@ -211,12 +234,13 @@ function Quiz(props) {
               icon={japan}
               color="p-1 bg-gray-300"
               text="Japanese"
-              click={startQuiz}
+              click={startJpnQuiz}
             />
             <NavDropDownItem
               icon={english}
               color="p-1 bg-blue-100"
               text="English"
+              click={startEngQuiz}
             />
             <NavDropDownItem
               align="flex-row-reverse"
@@ -304,10 +328,12 @@ function Quiz(props) {
         <Card
           btnColor={btnColor}
           style={{ display: quizToggle ? "flex" : "none" }}
-          question={words.Question.Japanese}
+          question={words.Question}
           userInput={handleUserInput}
           answer={words.Answer}
           disable={activeBtn}
+          exitQuiz={onHandleExitQuiz}
+          language={language}
         />
         <ScoreCard
           score={points.score}

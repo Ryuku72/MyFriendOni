@@ -15,10 +15,7 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
 
-// API routes app.use(require("./routes"));
-
-app.use(require("./routes/html"));
-app.use(require("./routes/api"));
+app.use(require("./routes"));
 
 mongoose.connect(process.env.MONGO ||'mongodb://localhost/quiz',  {
   useNewUrlParser: true,
