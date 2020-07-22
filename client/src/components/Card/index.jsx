@@ -34,6 +34,12 @@ function Card(props) {
             case "English":
                 parentLanguage = "Japanese";
               break;
+              case "Hiragana":
+                parentLanguage = "Romaji";
+              break;
+              case "Katakana":
+                parentLanguage = "Romaji";
+              break;
             default:
                 parentLanguage = "English";
               break;
@@ -42,7 +48,7 @@ function Card(props) {
             <Button
               question={result[parentLanguage]}
               btnColor={props.btnColor}
-              key={result.Row}
+              key={result._id}
               value={result.Correct}
               userInput={props.userInput}
               disable={props.disable}

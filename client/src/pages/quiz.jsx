@@ -44,14 +44,17 @@ function Quiz(props) {
   const [openThree, setOpenThree] = useState(false);
   const [activeBtn, setActiveBtn] = useState(0);
   const [btnColor, setBtnColor] = useState(false);
-  const [language, setLanguage] = useState("");
+  const [language, setLanguage] = useState("Hiragana");
 
   // useEffects
   useEffect(() => {
-    setActiveBtn(0);
-    loadVocabList();
     getUser();
   }, []);
+
+  useEffect(()=> {
+    setActiveBtn(0);
+    loadVocabList();
+  },[language])
 
   useEffect(() => {
     if (timeLeft <= 0) {
@@ -78,18 +81,31 @@ function Quiz(props) {
   }
 
   function loadVocabList() {
-    API.getJapanese()
-      .then((res) => {
+    if (language === "Hiragana" || language === "Katakana"){
+      API.getLetters().then(res =>{
+        console.log(res.data)
         setActiveBtn(0);
-        console.log(res.data);
         setTimeout(() => {
           setBtnColor(false);
           setActiveBtn(1);
             setWords({...words, Answer: res.data.answer, Question: res.data.question}); 
-            console.log(words)
+           console.log(words)
+        }, 350);
+      })
+    } else {
+    API.getJapanese()
+      .then(res => {
+        setActiveBtn(0);
+        //console.log(res.data);
+        setTimeout(() => {
+          setBtnColor(false);
+          setActiveBtn(1);
+            setWords({...words, Answer: res.data.answer, Question: res.data.question}); 
+           // console.log(words)
         }, 350);
       })
       .catch((err) => console.log(err));
+}
   }
 
   // Auth
@@ -122,6 +138,28 @@ function Quiz(props) {
   function startEngQuiz(event) {
     event.preventDefault();
     setLanguage("English")
+    setQuizToggle(true);
+    setBtnColor(false);
+    setScoreToggle(false);
+    setActiveBtn(1);
+    setTimeLeft(120);
+    console.log("Quiz Started");
+  }
+
+  function startKataQuiz(event) {
+    event.preventDefault();
+    setLanguage("Katakana")
+    setQuizToggle(true);
+    setBtnColor(false);
+    setScoreToggle(false);
+    setActiveBtn(1);
+    setTimeLeft(120);
+    console.log("Quiz Started");
+  }
+  
+  function startHiraQuiz(event) {
+    event.preventDefault();
+    setLanguage("Hiragana")
     setQuizToggle(true);
     setBtnColor(false);
     setScoreToggle(false);
@@ -246,12 +284,14 @@ function Quiz(props) {
               icon={kana}
               color=" bg-orange-500"
               text="Katakana"
+              click={startKataQuiz}
             />
             <NavDropDownItem
               align="flex-row-reverse"
               icon={hiragana}
               color="bg-green-300 p-2"
               text="Hiragana"
+              click={startHiraQuiz}
             />
           </NavDropDown>
         </NavItem>
