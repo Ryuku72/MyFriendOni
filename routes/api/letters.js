@@ -1,9 +1,9 @@
-const { vocablists } = require('../../model');
+const { letters } = require('../../model');
 const router = require("express").Router();
 
 router.get("/", (req, res) => {
 
-    vocablists.find({}).then(term=> {
+    letters.find({}).then(term=> {
       let response = term[Math.floor(Math.random() * term.length)];
       let question = response.toObject()
       question.Correct = "true";

@@ -6,18 +6,7 @@ import Oni from "../../assets/img/onilogin.png";
 import close from "../../assets/svg/close.svg";
 
 function Card(props) {
-
-  function resolveAnswerLanguage() {
-      switch(props.language){
-          case "English":
-            return 'Japanese' 
-          default:
-              return 'English';
-        }
-  }
-
-  console.log(resolveAnswerLanguage());
-
+  let parentLanguage = ""
   return (
     <div
       className="relative w-3/4 h-full text-center flex-col items-center justify-center text-4xl p-8"
@@ -40,17 +29,27 @@ function Card(props) {
         <img src={Oni} alt="Oni" className="w-1/4 m-1" />
       </div>
       <div className="flex items-center justify-center p-2">
-        {props.answer.map((result) => (
-          <Button
-            question={result[resolveAnswerLanguage()]}
-            btnColor={props.btnColor}
-            key={result.Row}
-            value={result.Correct}
-            userInput={props.userInput}
-            disable={props.disable}
-            color={props.color}
-          />
-        ))}
+        {props.answer.map((result) => {
+          switch (props.language) {
+            case "English":
+                parentLanguage = "Japanese";
+              break;
+            default:
+                parentLanguage = "English";
+              break;
+          }
+          return (
+            <Button
+              question={result[parentLanguage]}
+              btnColor={props.btnColor}
+              key={result.Row}
+              value={result.Correct}
+              userInput={props.userInput}
+              disable={props.disable}
+              color={props.color}
+            />
+          );
+        })}
       </div>
     </div>
   );

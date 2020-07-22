@@ -44,7 +44,7 @@ function Quiz(props) {
   const [openThree, setOpenThree] = useState(false);
   const [activeBtn, setActiveBtn] = useState(0);
   const [btnColor, setBtnColor] = useState(false);
-  const [language, setLanguage] = useState("")
+  const [language, setLanguage] = useState("");
 
   // useEffects
   useEffect(() => {
@@ -108,7 +108,6 @@ function Quiz(props) {
   today = dd + "/" + mm + "/" + yyyy;
 
   // InfoRequests
-
   function startJpnQuiz(event) {
     event.preventDefault();
     setLanguage("Japanese")
@@ -130,7 +129,6 @@ function Quiz(props) {
     setTimeLeft(120);
     console.log("Quiz Started");
   }
-  
 
   // Handlers
   function handleUserInput(event) {
