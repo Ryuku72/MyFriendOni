@@ -16,7 +16,7 @@ router.get("/", (req, res) => {
       
       let newLetterArray = term.filter((element) => element.Hiragana != question.Hiragana);
       //¬console.log("NewArray1 length: " + newLetterArray.length)
-      let responseOne = newLetterArray[Math.floor(Math.random() * term.length)];
+      let responseOne = newLetterArray[Math.floor(Math.random() * newLetterArray.length)];
       let answerOne = responseOne.toObject();
       answerOne.Correct = "false"
       answerArray.push(answerOne);

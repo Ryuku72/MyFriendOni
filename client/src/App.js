@@ -2,6 +2,7 @@ import React, { useState} from 'react';
 import Login from "./pages/login"
 import Signup from "./pages/signup"
 import Quiz from "./pages/quiz"
+import Study from "./pages/study"
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { AuthContext } from "./utils/auth";
 import PrivateRoute from "./PrivateRoute"
@@ -25,6 +26,7 @@ function App() {
     <Route exact path="/login" component={Login} />
     <Route path="/signup" component={Signup} />
     <PrivateRoute path="/quiz" component={Quiz} />
+    <PrivateRoute path="/study" component={Study} />
     </>
     </Router>
     </AuthContext.Provider>
