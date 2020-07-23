@@ -3,7 +3,9 @@
     text-shadow:
     2px 3px 0 rgb(182, 206, 183),
   -3px -2px 0 rgb(142, 148, 179);
-    font-size: 4rem;
+  --max-size: 30;
+  --min-size: 10;
+  font-size: var(--responsive);
     margin-bottom: -0em;
     margin-top: -0.4em;
     font-family: monospace;

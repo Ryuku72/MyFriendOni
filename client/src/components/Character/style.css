@@ -1,6 +1,8 @@
 .kanji {
     font-family: 'Kosugi Maru', sans-serif;
-    font-size: 6.5rem;
+    --max-size: 50;
+    --min-size: 25;
+    font-size: var(--responsive);
     margin-top: -10px;
     margin-bottom: -10px;
     text-shadow:

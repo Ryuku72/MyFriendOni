@@ -386,10 +386,10 @@ function Quiz(props) {
       </div>
       <Footer user={user.username}>
         <p
-          className="px-2 inline-flex text-3xl font-mono capitalize text-red-500"
+          className="footer px-2 inline-flex font-mono capitalize text-red-500"
           style={{ opacity: quizToggle ? "1" : "0" }}
         >
-          <span className="score-sheet text-gray-800 text-4xl mr-2">Time: </span> {timeLeft}
+          <span className="footer score-sheet text-gray-800 mr-2">Time: </span> {timeLeft}
         </p>
       </Footer>
     </div>
