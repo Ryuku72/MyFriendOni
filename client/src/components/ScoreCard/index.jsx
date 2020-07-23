@@ -34,7 +34,8 @@ function grade(input){
 }
 
 function ScoreCard(props) {
-
+    //console.log(props.wrong)
+    //console.log(props.correct)
     const result = grade(props.score)
 
     return (
@@ -79,15 +80,15 @@ function ScoreCard(props) {
             <p className="text-4xl mb-3">Remember to keep studying...</p>
                 <p>Correct Answers :</p>
             <div className="w-full grid grid-cols-3 gap-4 mb-3">
-        {props.correct.map(result => (
-        <p key={result} className="p-2 flex items-center justify-center border border-gray-600 bg-green-600 text-white text-centre m-2 rounded-lg">{result}</p>
-        ))}
+        {props.correct.map((result, index) => (
+        <p key={index} className="p-2 flex items-center justify-center border border-gray-600 bg-green-600 text-white text-centre m-2 rounded-lg">{result}</p>
+        ))},
         </div>
         <p>Wrong Answers :</p>
         <div className="w-full grid grid-cols-3 gap-4 mb-3">
-        {props.wrong.map(result => (
-        <p key={result} className="p-2 flex items-center justify-center border border-gray-600 bg-red-600 text-white m-2 text-centre rounded-lg">{result}</p>
-        ))}
+        {props.wrong.map((result, index) => (
+        <p key={index} className="p-2 flex items-center justify-center border border-gray-600 bg-red-600 text-white m-2 text-centre rounded-lg">{result}</p>
+        ))},
         </div>
     </div>
     </div>

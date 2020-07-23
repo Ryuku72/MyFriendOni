@@ -44,7 +44,7 @@ function Quiz(props) {
   const [openThree, setOpenThree] = useState(false);
   const [activeBtn, setActiveBtn] = useState(0);
   const [btnColor, setBtnColor] = useState(false);
-  const [language, setLanguage] = useState("Hiragana");
+  const [language, setLanguage] = useState("");
 
   // useEffects
   useEffect(() => {
@@ -173,9 +173,9 @@ function Quiz(props) {
     event.preventDefault();
     setActiveBtn(0);
     const buttonInput = event.target.value;
-    const answer = words.Question.English;
-    //console.log(answer)
-    
+      let answer = language === "Hiragana" || language === "Katakana" ? words.Question.Romaji : words.Question.English;
+    console.log(answer)
+    console.log(buttonInput)
     setBtnColor(true);
     if (buttonInput === "true") {
       //console.log("correct")
@@ -242,6 +242,8 @@ function Quiz(props) {
   function onHandleExitQuiz(){
     setTimeLeft("end");
     setBtnColor(true);
+    setLanguage("");
+    setWords(words)
     setTimeout(() => {
     setQuizToggle(false);
     setScoreToggle(true);
@@ -280,7 +282,6 @@ function Quiz(props) {
             />
             <NavDropDownItem
               align="flex-row-reverse"
-              icon={hiragana}
               icon={kana}
               color=" bg-orange-500"
               text="Katakana"

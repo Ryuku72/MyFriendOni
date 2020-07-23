@@ -29,7 +29,7 @@ function Card(props) {
         <img src={Oni} alt="Oni" className="w-1/4 m-1" />
       </div>
       <div className="flex items-center justify-center p-2">
-        {props.answer.map((result) => {
+        {props.answer.map((result, index) => {
           switch (props.language) {
             case "English":
                 parentLanguage = "Japanese";
@@ -48,8 +48,8 @@ function Card(props) {
             <Button
               question={result[parentLanguage]}
               btnColor={props.btnColor}
-              key={result._id}
-              value={result.Correct}
+              key={index}
+              value={result['Correct']}
               userInput={props.userInput}
               disable={props.disable}
               color={props.color}
