@@ -83,7 +83,7 @@ function Quiz(props) {
   // Database Calls
   function getUser() {
     const user = localStorage.getItem("tokens");
-    const userID = JSON.parse(user)
+    const userID = JSON.parse(user)['_id']
     //console.log(userID)
     API.getUser(userID)
     .then(result => {

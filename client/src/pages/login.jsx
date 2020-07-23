@@ -1,16 +1,15 @@
 import React, {useState } from 'react';
 import { useHistory, Redirect } from "react-router-dom";
 import Form from "../components/Form";
-import axios from "axios";
 import Header from "../components/Header";
 import { useAuth } from "../utils/auth";
 import Footer from '../components/Footer';
+import API from '../utils/API';
 
 function Login(props){
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [isError, setIsError] = useState(false)
- const [isLoggedIn, setLoggedIn] = useState(false);
   const { setAuthTokens } = useAuth();
 
   let history = useHistory();
@@ -28,12 +27,11 @@ function Login(props){
         "password": password
       }
       //console.log(request)
-    axios.post('/api/login', request)
+    API.createUser(request)
     .then(result => { 
       //console.log(result)
       if (result.status === 200) {
         setAuthTokens(result.data);
-        setLoggedIn(true);
         console.log("login successful")
         history.push('/quiz')
       } else {

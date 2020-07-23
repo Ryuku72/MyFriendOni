@@ -5,6 +5,7 @@ import Header from "../components/Header";
 import SignUpForm from "../components/SignupForm";
 import { useAuth } from "../utils/auth";
 import Footer from '../components/Footer';
+import API from '../utils/API';
 
 function SignUp(props){
 
@@ -32,8 +33,8 @@ function SignUp(props){
         "username": userName,
         "password": passwordOne
       }
-      console.log(request)
-      axios.post('/api/users', request)
+      //console.log(request)
+      API.createUser(request)
       .then(result => { 
         if (result.status === 200) {
             setAuthTokens(result.data);
