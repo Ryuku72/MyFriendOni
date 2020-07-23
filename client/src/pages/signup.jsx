@@ -12,8 +12,6 @@ function SignUp(props){
   const [passwordOne, setPasswordOne] = useState("");
   const [passwordTwo, setPasswordTwo] = useState("");
   const [isError, setIsError] = useState(false);
-
-  const [isLoggedIn, setLoggedIn] = useState(false);
   const { setAuthTokens } = useAuth();
 
   let history = useHistory();
@@ -34,12 +32,11 @@ function SignUp(props){
         "username": userName,
         "password": passwordOne
       }
-      //console.log(request)
-      axios.post('/api/user', request)
+      console.log(request)
+      axios.post('/api/users', request)
       .then(result => { 
         if (result.status === 200) {
             setAuthTokens(result.data);
-            setLoggedIn(true);
             console.log("login successful")
             history.push('/quiz')
           } else {

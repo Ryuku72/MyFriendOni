@@ -25,9 +25,19 @@ import NavItem from "../components/NavItem";
 
 function Quiz(props) {
   // States
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState({
+    createdAt: "",
+    engHighScore: 0,
+    hiraHighScore: 0,
+    jpnHighScore: 0,
+    kataHighScore: 0,
+    password: "",
+    totalScore: 0,
+    updatedAt: "",
+    username: "",
+  });
   const [points, setPoints] = useState({ score: 0 });
-  const [timeLeft, setTimeLeft] = useState("end");
+  const [highScore, setHighScore] = useState(0);
   const [words, setWords] = useState({
     Question: [],
     Answer: [],
@@ -36,9 +46,12 @@ function Quiz(props) {
     CorrectAnswers: [],
     position: 0,
   });
+
+  const [timeLeft, setTimeLeft] = useState("end");
+
+  //toggles
   const [quizToggle, setQuizToggle] = useState(false);
   const [scoreToggle, setScoreToggle] = useState(false);
-  const [highScore, setHighScore] = useState(0)
   const [openOne, setOpenOne] = useState(false);
   const [openTwo, setOpenTwo] = useState(false);
   const [openThree, setOpenThree] = useState(false);
@@ -51,17 +64,14 @@ function Quiz(props) {
     getUser();
   }, []);
 
-  useEffect(()=> {
+  useEffect(() => {
     setActiveBtn(0);
     loadVocabList();
-  },[language])
+  }, [language]);
 
   useEffect(() => {
     if (timeLeft <= 0) {
-      setTimeLeft("end");
-      setQuizToggle(false);
-      setScoreToggle(true);
-      setBtnColor(true)
+      onHandleExitQuiz();
     }
     if (!timeLeft) return;
     const intervalId = setInterval(() => {
@@ -70,43 +80,56 @@ function Quiz(props) {
     return () => clearInterval(intervalId);
   }, [timeLeft]);
 
-  // useRef
-
   // Database Calls
-
   function getUser() {
     const user = localStorage.getItem("tokens");
-    setUser(JSON.parse(user));
-    //console.log(JSON.parse(user))
+    const userID = JSON.parse(user)
+    //console.log(userID)
+    API.getUser(userID)
+    .then(result => {
+      setUser(result.data)
+    })
   }
 
   function loadVocabList() {
-    if (language === "Hiragana" || language === "Katakana"){
-      API.getLetters().then(res =>{
-        console.log(res.data)
-        setActiveBtn(0);
-        setTimeout(() => {
-          setBtnColor(false);
-          setActiveBtn(1);
-            setWords({...words, Answer: res.data.answer, Question: res.data.question}); 
-           console.log(words)
-        }, 350);
-      })
-    } else {
-    API.getJapanese()
-      .then(res => {
-        setActiveBtn(0);
+    if (language === "Hiragana" || language === "Katakana") {
+      API.getLetters().then((res) => {
         //console.log(res.data);
+        setActiveBtn(0);
         setTimeout(() => {
           setBtnColor(false);
           setActiveBtn(1);
-            setWords({...words, Answer: res.data.answer, Question: res.data.question}); 
-           // console.log(words)
+          setWords({
+            ...words,
+            Answer: res.data.answer,
+            Question: res.data.question,
+          });
+          //console.log(words);
         }, 350);
-      })
-      .catch((err) => console.log(err));
-}
+      });
+    } else {
+      API.getJapanese()
+        .then((res) => {
+          setActiveBtn(0);
+          //console.log(res.data);
+          setTimeout(() => {
+            setBtnColor(false);
+            setActiveBtn(1);
+            setWords({
+              ...words,
+              Answer: res.data.answer,
+              Question: res.data.question,
+            });
+            // console.log(words)
+          }, 350);
+        })
+        .catch((err) => console.log(err));
+    }
   }
+
+  // function updateStats(){
+  //   console.log("hello")
+  // }
 
   // Auth
   const { setAuthTokens } = useAuth();
@@ -116,7 +139,7 @@ function Quiz(props) {
     setAuthTokens();
   }
 
-  // functions
+  // Date functions
   let today = new Date();
   let dd = String(today.getDate()).padStart(2, "0");
   let mm = String(today.getMonth() + 1).padStart(2, "0");
@@ -126,46 +149,50 @@ function Quiz(props) {
   // InfoRequests
   function startJpnQuiz(event) {
     event.preventDefault();
-    setLanguage("Japanese")
+    setLanguage("Japanese");
     setQuizToggle(true);
     setBtnColor(false);
     setScoreToggle(false);
+    setPoints({ ...points, score: 0 });
+    setHighScore(0);
     setActiveBtn(1);
     setTimeLeft(120);
-    console.log("Quiz Started");
   }
 
   function startEngQuiz(event) {
     event.preventDefault();
-    setLanguage("English")
+    setLanguage("English");
     setQuizToggle(true);
     setBtnColor(false);
     setScoreToggle(false);
+    setPoints({ ...points, score: 0 });
+    setHighScore(0);
     setActiveBtn(1);
     setTimeLeft(120);
-    console.log("Quiz Started");
   }
 
   function startKataQuiz(event) {
     event.preventDefault();
-    setLanguage("Katakana")
+    setLanguage("Katakana");
     setQuizToggle(true);
     setBtnColor(false);
     setScoreToggle(false);
+    setPoints({ ...points, score: 0 });
+    setHighScore(0);
     setActiveBtn(1);
     setTimeLeft(120);
-    console.log("Quiz Started");
   }
-  
+
   function startHiraQuiz(event) {
     event.preventDefault();
-    setLanguage("Hiragana")
+    setLanguage("Hiragana");
     setQuizToggle(true);
     setBtnColor(false);
     setScoreToggle(false);
+    setPoints({ ...points, score: 0 });
+    setHighScore(0);
     setActiveBtn(1);
     setTimeLeft(120);
-    console.log("Quiz Started");
   }
 
   // Handlers
@@ -173,19 +200,22 @@ function Quiz(props) {
     event.preventDefault();
     setActiveBtn(0);
     const buttonInput = event.target.value;
-      let answer = language === "Hiragana" || language === "Katakana" ? words.Question.Romaji : words.Question.English;
-    console.log(answer)
-    console.log(buttonInput)
+    let answer =
+      language === "Hiragana" || language === "Katakana"
+        ? words.Question.Romaji
+        : words.Question.English;
+    //console.log(answer);
+    //console.log(buttonInput);
     setBtnColor(true);
     if (buttonInput === "true") {
       //console.log("correct")
       const addPoints = points.score + 5;
       words.CorrectAnswers.push(answer);
       if (addPoints > highScore) {
-        setHighScore(addPoints)
+        setHighScore(addPoints);
         setPoints({ ...points, score: addPoints });
       } else {
-      setPoints({ ...points, score: addPoints });
+        setPoints({ ...points, score: addPoints });
       }
     } else if (buttonInput === "false" && timeLeft <= 10 && points.score >= 3) {
       words.WrongAnswers.push(answer);
@@ -234,20 +264,62 @@ function Quiz(props) {
   }
 
   function onHandleExitScore() {
+    let request = {
+      "engHighScore": user.engHighScore,
+      "hiraHighScore": user.hiraHighScore,
+      "jpnHighScore": user.jpnHighScore,
+      "kataHighScore": user.kataHighScore,
+      "totalScore": user.totalScore,
+    }
+    API.updateUser(user._id, request).then(result => {
+      getUser()
+      }).catch(err => console.log(err));
     setScoreToggle(false);
-    setPoints({...points, score: 0})
-    setHighScore(0)
+    setPoints({ ...points, score: 0 });
+    //console.log(user);
   }
 
-  function onHandleExitQuiz(){
-    setTimeLeft("end");
-    setBtnColor(true);
-    setLanguage("");
-    setWords(words)
-    setTimeout(() => {
-    setQuizToggle(false);
-    setScoreToggle(true);
-    }, 350);
+  function onHandleExitQuiz() {
+    let scoreLanguage = "";
+    switch (language) {
+      case "English":
+        scoreLanguage = "engHighScore";
+        break;
+      case "Hiragana":
+        scoreLanguage = "hiraHighScore";
+        break;
+      case "Katakana":
+        scoreLanguage = "kataHighScore";
+        break;
+      default:
+        scoreLanguage = "jpnHighScore";
+        break;
+    }
+
+    if (highScore > user[scoreLanguage]) {
+      //console.log("correct");
+      let totalPoints = points.score + user.totalScore;
+      setUser({ ...user, totalScore: totalPoints, [scoreLanguage]: highScore });
+      setTimeLeft("end");
+      setBtnColor(true);
+      setLanguage("");
+      setWords(words);
+      setTimeout(() => {
+        setQuizToggle(false);
+        setScoreToggle(true);
+      }, 350);
+    } else {
+      let totalPoints = points.score + user.totalScore;
+      setUser({ ...user, totalScore: totalPoints });
+      setTimeLeft("end");
+      setBtnColor(true);
+      setLanguage("");
+      setWords(words);
+      setTimeout(() => {
+        setQuizToggle(false);
+        setScoreToggle(true);
+      }, 350);
+    }
   }
 
   return (
@@ -389,7 +461,8 @@ function Quiz(props) {
           className="footer px-2 inline-flex font-mono capitalize text-red-500"
           style={{ opacity: quizToggle ? "1" : "0" }}
         >
-          <span className="footer score-sheet text-gray-800 mr-2">Time: </span> {timeLeft}
+          <span className="footer score-sheet text-gray-800 mr-2">Time: </span>{" "}
+          {timeLeft}
         </p>
       </Footer>
     </div>

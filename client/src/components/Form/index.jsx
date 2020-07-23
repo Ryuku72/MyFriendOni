@@ -4,7 +4,6 @@ import "./style.css"
 import Tengu from "../../assets/img/onilogin.png"
 
 function Form(props){
-
     return (
       <div className="loginForm flex justify-center items-center w-full">
         <div className="">
