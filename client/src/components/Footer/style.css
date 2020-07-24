@@ -1,13 +1,17 @@
 footer {
-    height: 10vh
+    height:8vh
 }
 
 footer p {
     font-family: 'Nanum Pen Script', cursive;
+    --max-size: 30;
+    --min-size: 15;
 }
 
+
 .footer {
-        --max-size: 20;
-    --min-size: 10;
-  font-size: var(--responsive);
+        font-family: 'Press Start 2P', cursive;
+        --max-size: 10;
+        --min-size: 5;
+      font-size: var(--responsive);
 }

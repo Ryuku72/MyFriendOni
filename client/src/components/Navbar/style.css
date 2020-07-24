@@ -8,3 +8,11 @@
     max-width: 100%;
     height: 100%;
 }
+
+.menuTitle {
+    --max-size: 25;
+    --min-size: 17.5;
+    font-size: var(--responsive);
+    font-family: 'Permanent Marker', cursive;
+    text-shadow: rgb(106, 106, 106) 2px 2px;
+}

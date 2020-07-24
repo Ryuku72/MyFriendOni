@@ -1,27 +1,11 @@
 import React, { useState, useEffect } from "react";
 import API from "../utils/API";
-import { useAuth } from "../utils/auth";
 import bgImg from "../assets/img/background.jpg";
 import bgImg2 from "../assets/img/hiraganabg.jpg";
-import quizIcon from "../assets/svg/monster.svg";
-import studyIcon from "../assets/svg/book2.svg";
-import japan from "../assets/svg/japan.svg";
-import english from "../assets/svg/australia.svg";
-import kana from "../assets/svg/kana.svg";
-import hiragana from "../assets/svg/hiragana.svg";
-import menuIcon from "../assets/svg/watermelon.svg";
-import vocab from "../assets/svg/book3.svg";
-import furi from "../assets/svg/book1.svg";
-import player from "../assets/svg/troll.svg";
-import about from "../assets/svg/sushi.svg";
-import outside from "../assets/svg/plug.svg";
-import NavDropDown from "../components/NavDropDown";
-import NavDropDownItem from "../components/NavDropDownItem";
 import Footer from "../components/Footer";
 import ScoreCard from "../components/ScoreCard";
 import Card from "../components/Card";
 import Navbar from "../components/Navbar";
-import NavItem from "../components/NavItem";
 
 function Quiz(props) {
   // States
@@ -52,9 +36,6 @@ function Quiz(props) {
   //toggles
   const [quizToggle, setQuizToggle] = useState(false);
   const [scoreToggle, setScoreToggle] = useState(false);
-  const [openOne, setOpenOne] = useState(false);
-  const [openTwo, setOpenTwo] = useState(false);
-  const [openThree, setOpenThree] = useState(false);
   const [activeBtn, setActiveBtn] = useState(0);
   const [btnColor, setBtnColor] = useState(false);
   const [language, setLanguage] = useState("");
@@ -125,18 +106,6 @@ function Quiz(props) {
         })
         .catch((err) => console.log(err));
     }
-  }
-
-  // function updateStats(){
-  //   console.log("hello")
-  // }
-
-  // Auth
-  const { setAuthTokens } = useAuth();
-
-  function logOut(event) {
-    event.preventDefault();
-    setAuthTokens();
   }
 
   // Date functions
@@ -245,25 +214,8 @@ function Quiz(props) {
     loadVocabList();
   }
 
-  function onHandleDropDownOne() {
-    setOpenOne(!openOne);
-    setOpenTwo(false);
-    setOpenThree(false);
-  }
-
-  function onHandleDropDownTwo() {
-    setOpenTwo(!openTwo);
-    setOpenOne(false);
-    setOpenThree(false);
-  }
-
-  function onHandleDropDownThree() {
-    setOpenThree(!openThree);
-    setOpenTwo(false);
-    setOpenOne(false);
-  }
-
   function onHandleExitScore() {
+    console.log(user.totalScore)
     let request = {
       "engHighScore": user.engHighScore,
       "hiraHighScore": user.hiraHighScore,
@@ -299,6 +251,7 @@ function Quiz(props) {
     if (highScore > user[scoreLanguage]) {
       //console.log("correct");
       let totalPoints = points.score + user.totalScore;
+      console.log(totalPoints)
       setUser({ ...user, totalScore: totalPoints, [scoreLanguage]: highScore });
       setTimeLeft("end");
       setBtnColor(true);
@@ -310,6 +263,7 @@ function Quiz(props) {
       }, 350);
     } else {
       let totalPoints = points.score + user.totalScore;
+      console.log(totalPoints)
       setUser({ ...user, totalScore: totalPoints });
       setTimeLeft("end");
       setBtnColor(true);
@@ -328,112 +282,17 @@ function Quiz(props) {
         highscore={highScore}
         totalscore={user.totalScore}
         score={points.score}
-      >
-        <NavItem
-          icon={quizIcon}
-          color="bg-green-300"
-          onHandleDropDown={onHandleDropDownOne}
-          open={openOne}
-        >
-          <NavDropDown
-            color="bg-gray-300 border-teal-500"
-            onHandleDropDown={onHandleDropDownOne}
-          >
-            <p className="m-2 font-mono text-center underline text-2xl">Quiz</p>
-            <NavDropDownItem
-              icon={japan}
-              color="p-1 bg-gray-300"
-              text="Japanese"
-              click={startJpnQuiz}
-            />
-            <NavDropDownItem
-              icon={english}
-              color="p-1 bg-blue-100"
-              text="English"
-              click={startEngQuiz}
-            />
-            <NavDropDownItem
-              align="flex-row-reverse"
-              icon={kana}
-              color=" bg-orange-500"
-              text="Katakana"
-              click={startKataQuiz}
-            />
-            <NavDropDownItem
-              align="flex-row-reverse"
-              icon={hiragana}
-              color="bg-green-300 p-2"
-              text="Hiragana"
-              click={startHiraQuiz}
-            />
-          </NavDropDown>
-        </NavItem>
-        <NavItem
-          icon={studyIcon}
-          color="bg-pink-300"
-          onHandleDropDown={onHandleDropDownTwo}
-          open={openTwo}
-        >
-          <NavDropDown
-            color="bg-gray-300 border-pink-600 mt-1"
-            onHandleDropDown={onHandleDropDownTwo}
-          >
-            <p className="m-2 font-mono text-center underline text-xl">
-              Study Material
-            </p>
-            <NavDropDownItem
-              align="flex-row-reverse"
-              icon={vocab}
-              color="p-1 bg-purple-200"
-              text="Vocabulary"
-            />
-            <NavDropDownItem
-              align="flex-row-reverse"
-              icon={furi}
-              color="p-1 bg-teal-100"
-              text="Furigana"
-            />
-          </NavDropDown>
-        </NavItem>
-        <NavItem
-          icon={menuIcon}
-          color="bg-yellow-300"
-          onHandleDropDown={onHandleDropDownThree}
-          open={openThree}
-        >
-          <NavDropDown
-            color="bg-gray-300 border-yellow-600 mt-2"
-            onHandleDropDown={onHandleDropDownThree}
-          >
-            <p className="m-2 font-mono text-center underline text-xl">
-              Systems
-            </p>
-            <NavDropDownItem
-              align="flex-row-reverse"
-              icon={player}
-              color="p-1 bg-purple-200"
-              text="Player Stats"
-            />
-            <NavDropDownItem
-              icon={about}
-              color="p-1 bg-green-300"
-              text="About"
-            />
-            <NavDropDownItem
-              icon={outside}
-              click={logOut}
-              color="bg-gray-200"
-              text="Log Out"
-            />
-          </NavDropDown>
-        </NavItem>
-      </Navbar>
+        startJpnQuiz={startJpnQuiz}
+        startEngQuiz={startEngQuiz}
+        startKataQuiz={startKataQuiz}
+        startHiraQuiz={startHiraQuiz}
+      />
       <div
         className="border-b-2 border-t-2 border-pink-300 flex justify-center items-center"
         style={{
           backgroundImage: quizToggle ? `url(${bgImg2})` : `url(${bgImg})`,
-          height: "80vh",
-          backgroundSize: "100vw 80vh",
+          height: "82vh",
+          backgroundSize: "100vw 82vh",
         }}
       >
         <Card
@@ -458,10 +317,10 @@ function Quiz(props) {
       </div>
       <Footer user={user.username}>
         <p
-          className="footer px-2 inline-flex font-mono capitalize text-red-500"
+          className="footer px-2 text-2xl inline-flex font-mono capitalize text-red-500"
           style={{ opacity: quizToggle ? "1" : "0" }}
         >
-          <span className="footer score-sheet text-gray-800 mr-2">Time: </span>{" "}
+          <span className="footer text-2xl score-sheet text-gray-800 mr-2">Time: </span>{" "}
           {timeLeft}
         </p>
       </Footer>

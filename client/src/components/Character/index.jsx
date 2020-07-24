@@ -9,8 +9,12 @@ function Character(props) {
       return <p key={props.key} className="kanji">{props.question.Katakana}</p>;
     case "Hiragana":
       return <p key={props.key} className="kanji">{props.question.Hiragana}</p>;
+    case "Vocab":
+      return <p key={props.key} className="kanji2 text-center">{props.character}</p>;
+      case "Japanese":
+    return <p key={props.key} className="kanji">{props.question.Japanese}</p>;
     default:
-      return <p key={props.key} className="kanji">{props.question.Japanese}</p>;
+      return <p kclassName="kanji">Unknown</p>;
   }
 }
 

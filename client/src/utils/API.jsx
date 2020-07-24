@@ -11,9 +11,10 @@ export default {
   getLetters: function() {
     return axios.get("/api/letters");
   },
-  getVocab: function(id) {
-    return axios.get("/api/vocab" + id);
+  getVocab: function(){
+    return axios.get("/api/vocab")
   },
+  
   //Create User
   createUser: function(request){
     return axios.post('/api/login', request)
@@ -21,5 +22,10 @@ export default {
   //Update User
   updateUser: function(id, body){
     return axios.put("/api/users/update/" + id, body)
+  },
+
+  //Search for particular word
+  getWord: function(id) {
+    return axios.post("/api/vocab" + id);
   },
 }
