@@ -4,9 +4,10 @@ import "./style.css";
 function NavItem(props) {
   return (
     <li className="nav-item mx-4"> 
-    <a href="/#" className="focus:outline-none"><img className={`rounded-full border-2 border-gray-600 icon-button p-1 ${props.color}`} src={props.icon} alt="menu icon" onClick={props.onHandleDropDown} 
-    onMouseEnter={props.onHandleDropDown}></img>
-    </a>
+    <button href="/#" className="focus:outline-none">
+      <img className={`rounded-full border-2 border-gray-600 icon-button p-1 ${props.color}`} src={props.icon} alt="menu icon" onClick={props.onHandleDropDown} 
+    onMouseEnter={props.onHandleDropDown} />
+    </button>
     { props.open && props.children }
     </li>
   )
