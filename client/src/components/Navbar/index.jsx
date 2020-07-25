@@ -56,7 +56,7 @@ function Navbar(props) {
   const btnBg02 = location.pathname ===  "/study" ? "bg-pink-200" : "bg-gray-300";
   const btnBg03 = location.pathname ===  "/about" ? "bg-orange-200" : "bg-gray-300";
   let navTitle = location.pathname.slice(1)
-  console.log(navTitle)
+  //console.log(navTitle)
 
  function bgColor(){
   let color = ""
@@ -84,7 +84,7 @@ function Navbar(props) {
 <Stat title="Total Score" value={props.totalscore}/>
 </div>
 <div className="flex h-full px-4 py-1">
-<ul className="flex items-end">
+<div className="flex items-end">
 <Link to="/quiz">
 <NavItem
           icon={quizIcon}
@@ -190,7 +190,7 @@ function Navbar(props) {
           </NavDropDown>
         </NavItem>
         </Link>
-  </ul>
+  </div>
 </div>
 </div>
 </nav>

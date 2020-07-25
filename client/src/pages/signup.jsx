@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useHistory, Redirect } from "react-router-dom";
-import axios from 'axios';
 import Header from "../components/Header";
 import SignUpForm from "../components/SignupForm";
 import { useAuth } from "../utils/auth";

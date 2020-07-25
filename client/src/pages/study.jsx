@@ -6,7 +6,7 @@ import Wrapper from "../components/Wrapper";
 import SearchNav from "../components/SearchNav";
 import SearchCard from "../components/SearchCard";
 
-function Study() {
+function Study(props) {
   const [user, setUser] = useState({
     createdAt: "",
     engHighScore: 0,
@@ -19,16 +19,21 @@ function Study() {
     username: "",
   });
 
-  const [searchState, setSearchState] = useState({
-    search: "",
-    language: "",
+  const [words, setWords] = useState([])
+
+  const initialState = {
+    search: JSON.stringify(""),
+    language: "Vocab",
+    array: words,
     vocab: [],
     results: [],
     error: "",
     length: 0,
     sort: "Sort By",
     order: "Order By",
-  });
+  }
+
+  const [searchState, setSearchState] = useState(initialState);
 
   const [orderState, setOrderState] = useState({
     ascend: false,
@@ -41,14 +46,19 @@ function Study() {
     Row: false,
   });
 
-  // useEffects
+  // API calls
   useEffect(() => {
-      API.getVocab()
-      .then(lists => {
-        let list = lists.data
-        setSearchState({...searchState, vocab: list, language: "Vocab"});
+    API.getVocab()
+      .then((lists) => {
+        let list = lists.data;
+        let rowArray = list.map(result => result.Row)
+        let jpnArray = list.map(result => result.Japanese)
+        let engArray = list.map(result => result.English)
+        const database = rowArray.concat(jpnArray, engArray)
+        //console.log(database)
+        setWords(list)
+        setSearchState({ ...searchState, array: list, vocab: database});
       })
-      .catch(error => console.log(error));
     getUser();
   }, []);
 
@@ -62,28 +72,20 @@ function Study() {
     });
   }
 
-  //handlers
-  function onHandleInputChange(event) {
-    event.preventDefault();
-    //console.log(event.target.value)
-    setSearchState({
-      ...searchState,
-      search: JSON.stringify(event.target.value.trim().toLowerCase()),
-    });
-  }
+ //handler
 
   function onHandleOrder(event) {
     event.preventDefault();
     //console.log("clicked")
     //console.log(event.target.name)
     setSearchState({ ...searchState, order: event.target.name });
-    if (event.target.name === "rowTab") {
+    if (event.target.name === "Row") {
       setSortState({ Row: !false });
     }
-    if (event.target.name === "jpnTab") {
+    if (event.target.name === "Japanese") {
       setSortState({ Japanese: !false });
     }
-    if (event.target.name === "engTab") {
+    if (event.target.name === "English") {
       setSortState({ English: !false });
     }
   }
@@ -102,38 +104,93 @@ function Study() {
   }
 
   function clearForm() {
-    document.getElementById("create-course-form").reset();
-    setSearchState(searchState);
+    document.getElementById("searchBar").reset();
+    //console.log(searchState)
+    setSearchState(initialState);
     setOrderState(orderState);
     setSortState(sortState);
   }
-  
+
+   function onHandleInputChange(event) {
+    event.preventDefault();
+    //console.log(event.target.value)
+    setSearchState({
+      ...searchState, search: JSON.stringify(event.target.value.trim().toLowerCase()),
+    });
+  }
+
+  function onHandleSubmit(event){
+    event.preventDefault()
+    console.log(searchState)
+    let searchFeild = searchState.search;
+    const entry = JSON.stringify("");
+    let newArray = searchState.array;
+    let searchArray = newArray.filter((obj) => {
+      var flag = false;
+      Object.values(obj).forEach((val) => {
+        if (String(val).indexOf(JSON.parse(searchFeild)) > -1) {
+          flag = true;
+          return;
+        }
+        return null;
+      });
+      if (flag) return obj;
+      return null;
+    });
+
+    console.log(searchArray)
+
+    const japanese = searchState.Japanese;
+    const english = searchState.English;
+    const row = searchState.row;
+    const ascend = searchState.ascend;
+    const descend = searchState.descend;
+    const searchLength = searchArray.length;
+
+    if (searchFeild.length === 0 || searchArray === undefined){
+     setSearchState({ ...searchState, error: "Alert: No Results Found",length: 0 })
+    }else{
+      setSearchState({ ...searchState, length: searchLength, results: searchArray });
+    }
+     
+  } 
+
   return (
     <>
       <Navbar highscore={0} totalscore={user.totalScore} score={0} />
-      <SearchNav 
-      style={{ opacity: searchState.length ? "1" : "0" }}
-      onHandleOrder={onHandleOrder}
-      onHandleSort={onHandleSort}
-      onHandleInputChange={onHandleInputChange}
-      clearForm={clearForm}
-      length={searchState.length}
+      <SearchNav
+        name={searchState.vocab}
+        length={searchState.length}
+        order={searchState.order}
+        sort={searchState.sort}
+        onHandleOrder={onHandleOrder}
+        onHandleSort={onHandleSort}
+        onHandleInputChange={onHandleInputChange}
+        onHandleSubmit={onHandleSubmit}
+        clearForm={clearForm}
+        alert={{ opacity: searchState.error ? "1" : "0" }} 
+        error={searchState.error}
+        style={{ opacity: searchState.length ? "1" : "0" }}
+        row={{ color: sortState.Row ? "#f56565" : "#4a5568" }}
+        jpn={{ color: sortState.Japanese ? "#f56565" : "#4a5568" }}
+        eng={{ color: sortState.English ? "#f56565" : "#4a5568" }}
+        ascend={{ color: orderState.ascend ? "#f56565" : "#4a5568" }}
+        descend={{ color: orderState.descend ? "#f56565" : "#4a5568" }}
       />
       <Wrapper>
-        {searchState.vocab.map((result) => (
-          <SearchCard 
-          key={result._id}
-          language={searchState.language}
-          row={result.Row} 
-          jpn={result.Japanese} 
-          eng={result.English} 
-          style={{
-            display: searchState.vocab.length ? "block" : "none",
-            opacity: searchState.vocab.length ? "1" : "0",
-        }}
-            />
-         
-      ))}
+        {searchState.results.map((result, index) => (
+          <SearchCard
+            key={index}
+            language={searchState.language}
+            row={result.Row}
+            jpn={result.Japanese}
+            eng={result.English}
+            style={{
+            display: searchState.results.length ? "flex" : "none",
+            opacity: searchState.results.length ? "1" : "0",
+            }}
+          />
+        ))}
       </Wrapper>
       <Footer user={user.username}>
         <p
@@ -141,7 +198,10 @@ function Study() {
           //style=""
         >
           <span className="footer text-2xl score-sheet text-gray-800 mr-2">
-            Results : <span className="footer px-2 text-2xl inline-flex font-mono capitalize text-red-500">{searchState.vocab.length}</span> 
+            Results :{" "}
+            <span className="footer px-2 text-2xl inline-flex font-mono capitalize text-red-500">
+              {searchState.results.length}
+            </span>
           </span>
           {""}
         </p>
