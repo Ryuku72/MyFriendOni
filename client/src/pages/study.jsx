@@ -152,21 +152,42 @@ function Study(props) {
      setSearchState({ ...searchState, error: "Alert: Invalid Character or Entry", length: 0 })
     } 
     else if (
-      searchFeild === entry && sortBy === "Sort By" && orderBy === "Order By" || 
-      searchFeild === entry && sortBy === "Japanese" && orderBy === "Order By" || 
-      searchFeild === entry && sortBy === "Japanese" && orderBy === "Ascend"
+      sortBy === "Sort By" && orderBy === "Order By" || 
+      sortBy === "Japanese" && orderBy === "Order By" || 
+      sortBy === "Japanese" && orderBy === "Ascend"
       ) {
-     setSearchState({ ...searchState, length: searchLength, results: searchArray });
+     setSearchState({ ...searchState, length: searchLength, results: searchArray, error: "" });
     }
     else if (
-      searchFeild === entry && sortBy === "Sort By" && orderBy === "Descend" || 
-      searchFeild === entry && sortBy === "Japanese" && orderBy === "Descend"
+      sortBy === "Sort By" && orderBy === "Descend" || 
+      sortBy === "Japanese" && orderBy === "Descend"
       ) {
      let repArray = searchArray.sort(Filters.compareValues("Japanese", "desc"));
-     setSearchState({ ...searchState, length: searchLength, results: repArray });
+     setSearchState({ ...searchState, length: searchLength, results: repArray, error: "" });
     }
-    else{
-      setSearchState({ ...searchState, length: searchLength, results: searchArray });
+    else if (
+      sortBy === "English" && orderBy === "Order By" || 
+      sortBy === "English" && orderBy === "Ascend"
+      ) {
+     let repArray = searchArray.sort(Filters.compareValues("English"));
+     setSearchState({ ...searchState, length: searchLength, results: repArray, error: "" });
+    }
+    else if (
+      sortBy === "English" && orderBy === "Descend"
+      ) {
+     let repArray = searchArray.sort(Filters.compareValues("English", "desc"));
+     setSearchState({ ...searchState, length: searchLength, results: repArray, error: "" });
+    }
+    else if (
+      sortBy === "Row" && orderBy === "Order By" || 
+      sortBy === "Row" && orderBy === "Ascend"
+      ) {
+     let repArray = searchArray.sort(Filters.compareValues("Row"));
+     setSearchState({ ...searchState, length: searchLength, results: repArray, error: "" });
+    }
+    else {
+     let repArray = searchArray.sort(Filters.compareValues("Row", "desc"));
+     setSearchState({ ...searchState, length: searchLength, results: repArray, error: "" });
     }
   } 
 
