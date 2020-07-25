@@ -239,10 +239,10 @@ function Study(props) {
         ascend={{ color: orderState.ascend ? "#f56565" : "#4a5568" }}
         descend={{ color: orderState.descend ? "#f56565" : "#4a5568" }}
       />
-      <Wrapper>
-        <img src={searchState.language === "Letters" ? `${Letters}` : `${Vocab}`} alt="slogan" className={searchState.language === "Letters" ? "p-2" : "absolute bottom-0 right-0 mb-2"} style={{
-            display: searchState.results.length ? "none" : "block"}} />
-        <div className="grid grid-cols-5 gap-3" style={{display: searchState.language === "Letters" ? "none" : "block", height:"71vh"}}>
+      <Wrapper wrap={{display: searchState.language === "Letters" ? "none" : "block"}}>
+        <img src={Vocab} alt="slogan" className="absolute bottom-0 right-0 mb-2" 
+        style={{display: searchState.results.length ? "none" : "block"}} />
+        <div className="grid-cols-5 gap-3" style={{display: searchState.language === "Letters" ? "none" : "grid"}}>
         {searchState.results.map((result, index) => (
           <SearchCard
             key={index}
@@ -257,7 +257,10 @@ function Study(props) {
           />
         ))}
         </div>
-        <div className="grid grid-cols-5 gap-3">
+        </Wrapper>
+        <img src={Letters} alt="slogan" className="p-2 m-6 relative top-0 left-0" 
+        style={{display: searchState.language === "Letters" ? "block" : "none"}} />
+        <div className="grid-cols-5 gap-3 mb-4" style={{display: searchState.language === "Letters" ? "grid" : "none"}}>
          {words.database.map((result, index) => (
         <LetterCard
          display={{display: searchState.language === "Letters" ? "flex" : "none"}}
@@ -269,7 +272,6 @@ function Study(props) {
         />
         ))}
         </div>
-      </Wrapper>
       <Footer user={user.username}>
         <p
           className="footer px-2 text-2xl inline-flex font-mono capitalize text-red-500"
