@@ -3,8 +3,9 @@ import "./style.css";
 import SearchBtn from "../SearchButton";
 
 function SearchNav(props) {
+  console.log(props.error)
   return (
-    <nav className="flex w-full z-20">
+    <nav className="flex w-full z-20 searchNavFont">
       <form id="searchBar" className="w-3/5 inline-flex p-3">
         <div className="form-group inline-flex w-full h-10">
           <div className="border-2 w-1/2 mr-2 shadow-lg p-1 inline-flex align-middle items-center">
@@ -32,8 +33,8 @@ function SearchNav(props) {
             ))}
           </datalist>
           <SearchBtn title={props.sort} style={{ backgroundColor: "#90cdf4" }}>
-            <ul className="absolute pt-2 z-50">
-              <li>
+            <ul className="searchDropdownOne pt-2 z-50">
+            <li>
                 <a
                   href="/#"
                   className="rounded-t w-full bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap"
@@ -69,7 +70,7 @@ function SearchNav(props) {
             </ul>
           </SearchBtn>
           <SearchBtn style={{ backgroundColor: "#a0aec0" }} title={props.order}>
-            <ul className="absolute pt-2 z-50">
+            <ul className="searchDropdownTwo pt-2 z-50">
               <li>
                 <a
                   href="/"
@@ -114,7 +115,7 @@ function SearchNav(props) {
           role="alert"
           className="w-2/3 mx-2 flex flex-col justify-center rounded transition duration-700 ease-out"
           style={{ ...props.alert }}>
-          <p className="bg-red-400 text-gray-100 font-semibold py-2 text-lg px-8 rounded text-center">
+          <p className="bg-red-400 text-gray-100 font-semibold py-2 px-8 rounded text-center">
             {props.error}
           </p>
         </div>

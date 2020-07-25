@@ -22,13 +22,11 @@ function SearchBtn(props) {
     openUp(false)
   };
         return(
-            <div className="flex" ref={node}>
-            <div className="mr-2 relative">
+            <div className="flex mr-2 relative" ref={node}>
             <button type="button" className="text-gray-700 w-32 font-semibold py-2 px-4 rounded inline-block items-center" style={props.style}>
               {props.title}
             </button>
             {open && props.children}
-          </div>
           </div>      
         )
       }

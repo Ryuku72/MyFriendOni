@@ -5,6 +5,7 @@ import Footer from "../components/Footer";
 import Wrapper from "../components/Wrapper";
 import SearchNav from "../components/SearchNav";
 import SearchCard from "../components/SearchCard";
+import Filters from "../utils/Filters"
 
 function Study(props) {
   const [user, setUser] = useState({
@@ -19,13 +20,14 @@ function Study(props) {
     username: "",
   });
 
-  const [words, setWords] = useState([])
+  const [words, setWords] = useState({
+    searchArray: [],
+    database: []
+  })
 
   const initialState = {
     search: JSON.stringify(""),
     language: "Vocab",
-    array: words,
-    vocab: [],
     results: [],
     error: "",
     length: 0,
@@ -56,8 +58,7 @@ function Study(props) {
         let engArray = list.map(result => result.English)
         const database = rowArray.concat(jpnArray, engArray)
         //console.log(database)
-        setWords(list)
-        setSearchState({ ...searchState, array: list, vocab: database});
+        setWords({database: list, searchArray: database})
       })
     getUser();
   }, []);
@@ -109,6 +110,7 @@ function Study(props) {
     setSearchState(initialState);
     setOrderState(orderState);
     setSortState(sortState);
+    
   }
 
    function onHandleInputChange(event) {
@@ -121,10 +123,10 @@ function Study(props) {
 
   function onHandleSubmit(event){
     event.preventDefault()
-    console.log(searchState)
+    //console.log(searchState)
     let searchFeild = searchState.search;
     const entry = JSON.stringify("");
-    let newArray = searchState.array;
+    let newArray = words.database;
     let searchArray = newArray.filter((obj) => {
       var flag = false;
       Object.values(obj).forEach((val) => {
@@ -138,27 +140,43 @@ function Study(props) {
       return null;
     });
 
-    console.log(searchArray)
+    //console.log(searchArray)
 
-    const japanese = searchState.Japanese;
-    const english = searchState.English;
-    const row = searchState.row;
-    const ascend = searchState.ascend;
-    const descend = searchState.descend;
+    let orderBy = searchState.order;
+    let sortBy = searchState.sort;
     const searchLength = searchArray.length;
+    //console.log(searchArray.length)
 
-    if (searchFeild.length === 0 || searchArray === undefined){
-     setSearchState({ ...searchState, error: "Alert: No Results Found",length: 0 })
-    }else{
+    if (
+     searchArray.length === 0 || searchArray === undefined){
+     setSearchState({ ...searchState, error: "Alert: Invalid Character or Entry", length: 0 })
+    } 
+    else if (
+      searchFeild === entry && sortBy === "Sort By" && orderBy === "Order By" || 
+      searchFeild === entry && sortBy === "Japanese" && orderBy === "Order By" || 
+      searchFeild === entry && sortBy === "Japanese" && orderBy === "Ascend"
+      ) {
+     setSearchState({ ...searchState, length: searchLength, results: searchArray });
+    }
+    else if (
+      searchFeild === entry && sortBy === "Sort By" && orderBy === "Descend" || 
+      searchFeild === entry && sortBy === "Japanese" && orderBy === "Descend"
+      ) {
+     let repArray = searchArray.sort(Filters.compareValues("Japanese", "desc"));
+     setSearchState({ ...searchState, length: searchLength, results: repArray });
+    }
+    else{
       setSearchState({ ...searchState, length: searchLength, results: searchArray });
     }
   } 
+
+  //console.log(searchState)
 
   return (
     <>
       <Navbar highscore={0} totalscore={user.totalScore} score={0} />
       <SearchNav
-        name={searchState.vocab}
+        name={words.searchArray}
         length={searchState.length}
         order={searchState.order}
         sort={searchState.sort}
@@ -168,7 +186,7 @@ function Study(props) {
         onHandleSubmit={onHandleSubmit}
         clearForm={clearForm}
         alert={{ opacity: searchState.error ? "1" : "0" }} 
-        error={searchState.error}
+        error={ searchState.error }
         style={{ opacity: searchState.length ? "1" : "0" }}
         row={{ color: sortState.Row ? "#f56565" : "#4a5568" }}
         jpn={{ color: sortState.Japanese ? "#f56565" : "#4a5568" }}

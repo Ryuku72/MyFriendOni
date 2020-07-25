@@ -1,0 +1,24 @@
+.searchNavFont {
+    --max-size: 12;
+    --min-size: 8;
+  font-size: var(--responsive);
+
+}
+
+.searchDropdownOne {
+    position: absolute;
+    top: 5vh;
+    width: 12vw;
+    transform: translateX(0%);
+    border-radius: 15px;
+    box-shadow: rgba(130, 130, 130, 0.317) 1px 1.5px;
+}
+
+.searchDropdownTwo {
+    position: absolute;
+    top: 5vh;
+    width: 12vw;
+    transform: translateX(0%);
+    border-radius: 15px;
+    box-shadow: rgba(130, 130, 130, 0.317) 1px 1.5px;
+}
