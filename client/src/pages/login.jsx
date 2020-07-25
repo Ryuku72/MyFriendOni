@@ -27,7 +27,7 @@ function Login(props){
         "password": password
       }
       //console.log(request)
-    API.createUser(request)
+    API.loginUser(request)
     .then(result => { 
       //console.log(result)
       if (result.status === 200) {

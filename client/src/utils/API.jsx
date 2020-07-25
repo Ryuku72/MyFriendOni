@@ -15,7 +15,10 @@ export default {
     return axios.get("/api/vocab")
   },
   
-  //Create User
+  loginUser: function(request){
+    return axios.post('/api/login', request)
+  },
+    //Create User
   createUser: function(request){
     return axios.post('/api/users', request)
   },
