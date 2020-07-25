@@ -17,7 +17,7 @@ export default {
   
   //Create User
   createUser: function(request){
-    return axios.post('/api/login', request)
+    return axios.post('/api/users', request)
   },
   //Update User
   updateUser: function(id, body){

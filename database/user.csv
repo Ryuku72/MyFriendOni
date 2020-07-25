@@ -1,4 +1,4 @@
-﻿username,password,highScore,totalScore
-joshua,123abc,20,310
-aki,332ahh,0,0
-kokomi,213aaa,0,0
+﻿username,password,jpnHighScore,engHighScore,hiraHighScore,kataHighScore,totalScore
+joshua,123ac,30,20,29,35,273
+aki,123aki,10,10,10,10,120
+kokomi,123koko,10,0,0,0,10

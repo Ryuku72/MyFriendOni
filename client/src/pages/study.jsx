@@ -152,7 +152,6 @@ function Study(props) {
     }else{
       setSearchState({ ...searchState, length: searchLength, results: searchArray });
     }
-     
   } 
 
   return (

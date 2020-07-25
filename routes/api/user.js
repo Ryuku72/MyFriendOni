@@ -9,7 +9,7 @@ router.get("/:id", function (req, res){
 })
 
 router.post("/", function (req, res){
-    //console.log(req.body)
+    console.log(req.body)
     users.findOne(req.body)
     .then(result => {
       if (result) {
