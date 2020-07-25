@@ -97,19 +97,23 @@ function Navbar(props) {
             onHandleDropDown={onHandleDropDownOne}
           >
             <p className="m-2 font-mono text-center underline text-2xl">Quiz</p>
-            
+            <Link to="/quiz/japanese">
             <NavDropDownItem
               icon={japan}
               color="p-1 bg-gray-300"
               text="Japanese"
               click={props.startJpnQuiz}
             />
+            </Link>
+            <Link to="/quiz/english">
             <NavDropDownItem
               icon={english}
               color="p-1 bg-blue-100"
               text="English"
               click={props.startEngQuiz}
             />
+            </Link>
+            <Link to="/quiz/katakana">
             <NavDropDownItem
               align="flex-row-reverse"
               icon={kana}
@@ -117,6 +121,8 @@ function Navbar(props) {
               text="Katakana"
               click={props.startKataQuiz}
             />
+            </Link>
+            <Link to="/quiz/hiragana">
             <NavDropDownItem
               align="flex-row-reverse"
               icon={hiragana}
@@ -124,6 +130,7 @@ function Navbar(props) {
               text="Hiragana"
               click={props.startHiraQuiz}
             />
+            </Link>
           </NavDropDown>
         </NavItem>
         </Link>
@@ -141,18 +148,22 @@ function Navbar(props) {
             <p className="m-2 font-mono text-center underline text-xl">
               Study Material
             </p>
+            <Link to="/study/vocab">
             <NavDropDownItem
               align="flex-row-reverse"
               icon={vocab}
               color="p-1 bg-purple-200"
               text="Vocabulary"
-            />
+
+            /></Link>
+             <Link to="/study/letters">
             <NavDropDownItem
               align="flex-row-reverse"
               icon={furi}
               color="p-1 bg-teal-100"
               text="Furigana"
-            />
+          
+            /></Link>
           </NavDropDown>
         </NavItem>
         </Link>

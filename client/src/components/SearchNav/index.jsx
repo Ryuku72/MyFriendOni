@@ -5,7 +5,7 @@ import SearchBtn from "../SearchButton";
 function SearchNav(props) {
   console.log(props.error)
   return (
-    <nav className="flex w-full z-20 searchNavFont">
+    <nav className="w-full z-20 searchNavFont bg-gray-100" style={{...props.display}}>
       <form id="searchBar" className="w-3/5 inline-flex p-3">
         <div className="form-group inline-flex w-full h-10">
           <div className="border-2 w-1/2 mr-2 shadow-lg p-1 inline-flex align-middle items-center">

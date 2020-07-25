@@ -4,17 +4,19 @@ import "./style.css";
 function Character(props) {
   switch (props.language) {
     case "English":
-      return <p key={props.key} className="kanji">{props.question.English}</p>;
+      return <p className="kanji">{props.question.English}</p>;
     case "Katakana":
-      return <p key={props.key} className="kanji">{props.question.Katakana}</p>;
+      return <p className="kanji">{props.question.Katakana}</p>;
     case "Hiragana":
-      return <p key={props.key} className="kanji">{props.question.Hiragana}</p>;
-    case "Vocab":
-      return <p key={props.key} className="kanji2 text-center">{props.character}</p>;
+      return <p className="kanji">{props.question.Hiragana}</p>;
       case "Japanese":
-    return <p key={props.key} className="kanji">{props.question.Japanese}</p>;
+    return <p className="kanji">{props.question.Japanese}</p>;
+    case "Vocab":
+      return <p className="kanji2 text-center">{props.character}</p>;
+    case "Letters":
+    return <p className="kanji2 mx-8">{props.character}</p>;
     default:
-      return <p kclassName="kanji">Unknown</p>;
+      return <p className="kanji">Unknown</p>;
   }
 }
 

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import API from "../utils/API";
 import bgImg from "../assets/img/background.jpg";
 import bgImg2 from "../assets/img/hiraganabg.jpg";
@@ -39,10 +40,53 @@ function Quiz(props) {
   const [activeBtn, setActiveBtn] = useState(0);
   const [btnColor, setBtnColor] = useState(false);
   const [language, setLanguage] = useState("");
+  const location = useLocation()
 
   // useEffects
   useEffect(() => {
     getUser();
+    if (location.pathname === "/quiz/japanese") {
+    setLanguage("Japanese");
+    setQuizToggle(true);
+    setBtnColor(false);
+    setScoreToggle(false);
+    setPoints({ ...points, score: 0 });
+    setHighScore(0);
+    setActiveBtn(1);
+    setTimeLeft(120);
+    } 
+    else if (location.pathname === "/quiz/english"){
+      setLanguage("English");
+      setQuizToggle(true);
+      setBtnColor(false);
+      setScoreToggle(false);
+      setPoints({ ...points, score: 0 });
+      setHighScore(0);
+      setActiveBtn(1);
+      setTimeLeft(120);
+    }
+    else if (location.pathname === "/quiz/hiragana"){
+      setLanguage("Hiragana");
+      setQuizToggle(true);
+      setBtnColor(false);
+      setScoreToggle(false);
+      setPoints({ ...points, score: 0 });
+      setHighScore(0);
+      setActiveBtn(1);
+      setTimeLeft(120);
+    } else if (location.pathname === "/quiz/katakana") {
+      setLanguage("Hiragana");
+      setQuizToggle(true);
+      setBtnColor(false);
+      setScoreToggle(false);
+      setPoints({ ...points, score: 0 });
+      setHighScore(0);
+      setActiveBtn(1);
+      setTimeLeft(120);
+    } else {
+      console.log("Quiz Page")
+    }
+
   }, []);
 
   useEffect(() => {
@@ -164,6 +208,12 @@ function Quiz(props) {
     setTimeLeft(120);
   }
 
+// Trigger according to location
+
+
+
+
+
   // Handlers
   function handleUserInput(event) {
     event.preventDefault();
@@ -263,7 +313,7 @@ function Quiz(props) {
       }, 350);
     } else {
       let totalPoints = points.score + user.totalScore;
-      console.log(totalPoints)
+      //console.log(totalPoints)
       setUser({ ...user, totalScore: totalPoints });
       setTimeLeft("end");
       setBtnColor(true);

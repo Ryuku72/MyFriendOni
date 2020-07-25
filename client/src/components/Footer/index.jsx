@@ -3,7 +3,7 @@ import "./style.css";
 
 function Footer(props) {
   return (
-    <footer className="w-full flex justify-between my-auto mt-auto mb-0 items-center bg-gray-300 p-6 footer">
+    <footer className="w-full relative flex justify-between my-auto mt-auto mb-0 items-center bg-gray-300 p-6 footer">
       <article>
         {props.children}
       </article>

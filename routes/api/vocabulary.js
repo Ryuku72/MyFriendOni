@@ -8,7 +8,6 @@ router.get("/", function (req, res){
   }) .catch((err) => res.status(404).json(err));
 })
 
-
 router.post("/", function (req, res) {
     //console.log(req.body);
     const words = new vocablists(req.body) 

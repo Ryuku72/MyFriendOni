@@ -14,6 +14,9 @@ export default {
   getVocab: function(){
     return axios.get("/api/vocab")
   },
+  getFurigana: function(){
+    return axios.get("/api/furigana")
+  },
   
   loginUser: function(request){
     return axios.post('/api/login', request)
