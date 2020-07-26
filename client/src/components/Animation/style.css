@@ -13,7 +13,7 @@
   
   #overlay.active {
     opacity: 0.8;
-    background-color: rgba(110, 134, 185, 0.296);
+    background-color: rgba(52, 61, 96, 0.803);
     pointer-events: all;
   }
 
@@ -57,7 +57,7 @@
   }
   
   #moon {
-    background-color: rgb(215, 213, 169);
+    background-color: rgb(216, 211, 116);
     clip-path: circle(12% at 16% 30%);
     -webkit-clip-path: circle(12% at 16% 30%);
     opacity: 1;
@@ -78,7 +78,7 @@
   #smoke {
     width: 10vw;
     transform: rotateZ(3deg);
-    background-color: rgb(124, 127, 136);
+    background-color: rgb(108, 107, 105);
     clip-path: polygon(30% 28%, 38% 12%, 56% 0, 70% 0, 45% 18%, 61% 13%, 53% 30%, 62% 44%, 44% 66%, 35% 100%, 39% 53%, 38% 37%);
     -webkit-clip-path: polygon(30% 28%, 38% 12%, 56% 0, 70% 0, 45% 18%, 61% 13%, 53% 30%, 62% 44%, 44% 66%, 35% 100%, 39% 53%, 38% 37%);
     animation: fadein 12s forwards, smoke 16s infinite 0s;
@@ -224,7 +224,7 @@
 @keyframes house-color {
     0% {
         background-color: rgb(120, 79, 20);
-        width: 19%;
+        width: 16%;
         height: 12%;
     }
 
@@ -236,7 +236,7 @@
     50% {
         background-color: rgb(121, 73, 2);
         ;
-        width: 18.5%;
+        width: 15.5%;
         height: 11.5%;
     }
 
@@ -247,7 +247,7 @@
 
     100% {
         background-color: rgb(120, 79, 20);
-        width: 19%;
+        width: 16%;
         height: 12%;
     }
 }

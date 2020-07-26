@@ -1,0 +1,14 @@
+.playerInfo {
+    font-family: 'Nanum Pen Script', cursive;
+    --max-size: 30;
+    --min-size: 10;
+  font-size: var(--responsive);
+  margin-left: 2%;
+  margin-right: 15%;
+  margin-top: -3%;
+}
+
+.line {
+    line-height: 10px;
+    height: 30px;
+}

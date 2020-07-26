@@ -4,6 +4,7 @@ footer {
 
 footer p {
     font-family: 'Nanum Pen Script', cursive;
+    font-size: var(--responsive);
     --max-size: 30;
     --min-size: 15;
 }
