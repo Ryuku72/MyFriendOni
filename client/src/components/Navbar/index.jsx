@@ -55,7 +55,7 @@ function Navbar(props) {
   const btnBg01 = location.pathname.includes("/quiz") ? "bg-green-200" : "bg-gray-300";
   const btnBg02 = location.pathname.includes("/study") ? "bg-pink-200" : "bg-gray-300";
   const btnBg03 = location.pathname.includes("/about") ? "bg-orange-200" : "bg-gray-300";
-  let navTitle = location.pathname.slice(1)
+ 
   const quizTitle = () => {
     let title; 
     if  (location.pathname.includes("/quiz")){
@@ -70,27 +70,25 @@ function Navbar(props) {
 
   //console.log(quizTitle())
 
- function bgColor(){
-  let color = ""
-    switch(navTitle){
-      case "quiz":
-        color = "text-green-200";
-        break;
-      case "study":
-        color = "text-pink-200"
-        break;
-      default:
-        color = "text-orange-200" 
-    }
-    return color
+
+  let color=""
+  if (location.pathname.includes("/quiz")){
+    color = "text-green-300";
+  } else if (location.pathname.includes("/study")){
+    color = "text-pink-300"
+  } else {
+    color = "text-orange-300" 
   }
+
+  console.log(color)
+
 //console.log(bgColor)
   return (
 
 <nav className="navbar">
   <div className="navbar-nav w-full inline-flex items-end justify-between">
     <div className="inline-flex items-end px-6">
-  <p className={`menuTitle capitalize mr-6 my-2 ${bgColor()}`}>{quizTitle()} {`//`}</p>
+  <p className={`menuTitle capitalize mr-6 my-2 ${color}`}>{quizTitle()} {`//`}</p>
 <Stat title="Score" value={props.score}/>
 <Stat title="High Score" value={props.highscore}/>
 <Stat title="Total Score" value={props.totalscore}/>
