@@ -69,16 +69,15 @@ function Study(props) {
 
          setWords({database: filterArray, searchArray: database});
          setSearchState({ ...searchState, error: "", language: "Letters"})
-        console.log(list)
+        //console.log(list)
       })
     } else {
       API.getVocab()
       .then((lists) => {
         let list = lists.data;
-        let rowArray = list.map(result => result.Row)
         let jpnArray = list.map(result => result.Japanese)
         let engArray = list.map(result => result.English)
-        const database = rowArray.concat(jpnArray, engArray)
+        const database = jpnArray.concat(engArray)
         //console.log(database)
         setWords({database: list, searchArray: database})
         setSearchState({ ...searchState, error: "", language: "Vocab"})
@@ -133,7 +132,6 @@ function Study(props) {
     setSearchState(initialState);
     setOrderState(orderState);
     setSortState(sortState);
-    
   }
 
    function onHandleInputChange(event) {
@@ -260,7 +258,7 @@ function Study(props) {
         </Wrapper>
         <img src={Letters} alt="slogan" className="p-2 m-6 relative top-0 left-0" 
         style={{display: searchState.language === "Letters" ? "block" : "none"}} />
-        <div className="grid-cols-5 gap-3 mb-4" style={{display: searchState.language === "Letters" ? "grid" : "none"}}>
+        <div className="grid-cols-5 gap-5 mb-4 p-6" style={{display: searchState.language === "Letters" ? "grid" : "none"}}>
          {words.database.map((result, index) => (
         <LetterCard
          display={{display: searchState.language === "Letters" ? "flex" : "none"}}

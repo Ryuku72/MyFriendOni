@@ -23,7 +23,7 @@ function SearchBtn(props) {
   };
         return(
             <div className="flex mr-2 relative" ref={node}>
-            <button type="button" className="text-gray-700 w-32 font-semibold py-2 px-4 rounded inline-block items-center" style={props.style}>
+            <button type="button" className="text-gray-700 w-32 font-semibold py-2 px-4 rounded inline-block items-center shadow-lg" style={props.style}>
               {props.title}
             </button>
             {open && props.children}

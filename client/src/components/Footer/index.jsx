@@ -2,8 +2,10 @@ import React from "react";
 import "./style.css";
 
 function Footer(props) {
+  const bgColor = props.style ? "bg-orange-400 border-t-8 border-orange-500" : "bg-gray-300"
+
   return (
-    <footer className="w-full relative flex justify-between my-auto mt-auto mb-0 items-center bg-gray-300 p-6 footer">
+    <footer className={`w-full relative flex justify-between my-auto mt-auto mb-0 items-center  p-6 footer ${bgColor}`}>
       <article>
         {props.children}
       </article>

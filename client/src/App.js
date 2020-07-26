@@ -3,6 +3,7 @@ import Login from "./pages/login"
 import Signup from "./pages/signup"
 import Quiz from "./pages/quiz"
 import Study from "./pages/study"
+import About from "./pages/about"
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { AuthContext } from "./utils/auth";
 import PrivateRoute from "./PrivateRoute"
@@ -27,6 +28,7 @@ function App() {
     <Route path="/signup" component={Signup} />
     <PrivateRoute path="/quiz" component={Quiz} />
     <PrivateRoute path="/study" component={Study} />
+    <PrivateRoute path="/about" component={About} />
     </>
     </Router>
     </AuthContext.Provider>

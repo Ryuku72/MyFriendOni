@@ -208,11 +208,18 @@ function Quiz(props) {
     setTimeLeft(120);
   }
 
-// Trigger according to location
-
-
-
-
+  function exitToQuizPage(event){
+    event.preventDefault()
+    setTimeLeft("end");
+    setBtnColor(true);
+    setQuizToggle(false);
+    setLanguage("");
+    setWords(words);
+    setPoints({ ...points, score: 0 });
+    setHighScore(0);
+    setActiveBtn(0);
+    setScoreToggle(false);
+  }
 
   // Handlers
   function handleUserInput(event) {
@@ -265,7 +272,7 @@ function Quiz(props) {
   }
 
   function onHandleExitScore() {
-    console.log(user.totalScore)
+    //console.log(user.totalScore)
     let request = {
       "engHighScore": user.engHighScore,
       "hiraHighScore": user.hiraHighScore,
@@ -336,12 +343,13 @@ function Quiz(props) {
         startEngQuiz={startEngQuiz}
         startKataQuiz={startKataQuiz}
         startHiraQuiz={startHiraQuiz}
+        exitToQuizPage={exitToQuizPage}
       />
       <div
         className="border-b-2 border-t-2 border-pink-300 flex justify-center items-center"
         style={{
           backgroundImage: quizToggle ? `url(${bgImg2})` : `url(${bgImg})`,
-          height: "82vh",
+          height: `calc(100vh - (10vh + 8vh))`,
           backgroundSize: "100vw 82vh",
         }}
       >

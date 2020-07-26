@@ -3,7 +3,7 @@ import "./style.css";
 import SearchBtn from "../SearchButton";
 
 function SearchNav(props) {
-  console.log(props.error)
+  //console.log(props.error)
   return (
     <nav className="w-full z-20 searchNavFont bg-gray-100" style={{...props.display}}>
       <form id="searchBar" className="w-3/5 inline-flex p-3">
@@ -33,7 +33,7 @@ function SearchNav(props) {
             ))}
           </datalist>
           <SearchBtn title={props.sort} style={{ backgroundColor: "#90cdf4" }}>
-            <ul className="searchDropdownOne pt-2 z-50">
+            <ul className="searchDropdownOne pt-2 z-50 shadow-lg">
             <li>
                 <a
                   href="/#"
@@ -70,7 +70,7 @@ function SearchNav(props) {
             </ul>
           </SearchBtn>
           <SearchBtn style={{ backgroundColor: "#a0aec0" }} title={props.order}>
-            <ul className="searchDropdownTwo pt-2 z-50">
+            <ul className="searchDropdownTwo pt-2 z-50 shadow-lg">
               <li>
                 <a
                   href="/"
@@ -96,7 +96,7 @@ function SearchNav(props) {
           <button
             type="submit"
             onClick={props.onHandleSubmit}
-            className="mr-2 w-32 bg-green-300 text-gray-700 font-semibold py-2 px-4 rounded inline-block items-center"
+            className="mr-2 w-32 bg-green-300 text-gray-700 font-semibold py-2 px-4 rounded inline-block items-center shadow-lg"
           >
             Submit
           </button>
@@ -104,7 +104,7 @@ function SearchNav(props) {
           <button
             type="reset"
             onClick={props.clearForm}
-            className="mr-2 w-32 bg-purple-300 text-gray-700 font-semibold py-2 px-4 rounded inline-block items-center"
+            className="mr-2 w-32 bg-purple-300 text-gray-700 font-semibold py-2 px-4 rounded inline-block items-center shadow-lg"
           >
             Reset
           </button>

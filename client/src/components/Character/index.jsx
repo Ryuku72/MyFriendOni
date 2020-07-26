@@ -14,7 +14,7 @@ function Character(props) {
     case "Vocab":
       return <p className="kanji2 text-center">{props.character}</p>;
     case "Letters":
-    return <p className="kanji2 mx-8">{props.character}</p>;
+    return <span className="kanji2 mx-8">{props.character}</span>;
     default:
       return <p className="kanji">Unknown</p>;
   }

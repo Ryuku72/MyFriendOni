@@ -52,11 +52,23 @@ function Navbar(props) {
 
   const location = useLocation();
 
-  const btnBg01 = location.pathname ===  "/quiz" ? "bg-green-200" : "bg-gray-300";
-  const btnBg02 = location.pathname ===  "/study" ? "bg-pink-200" : "bg-gray-300";
-  const btnBg03 = location.pathname ===  "/about" ? "bg-orange-200" : "bg-gray-300";
+  const btnBg01 = location.pathname.includes("/quiz") ? "bg-green-200" : "bg-gray-300";
+  const btnBg02 = location.pathname.includes("/study") ? "bg-pink-200" : "bg-gray-300";
+  const btnBg03 = location.pathname.includes("/about") ? "bg-orange-200" : "bg-gray-300";
   let navTitle = location.pathname.slice(1)
-  //console.log(navTitle)
+  const quizTitle = () => {
+    let title; 
+    if  (location.pathname.includes("/quiz")){
+      title = "Quiz"
+    } else if (location.pathname.includes("/study")){
+    title = "Study"
+  } else {
+    title = "About"
+  }
+  return title
+}
+
+  //console.log(quizTitle())
 
  function bgColor(){
   let color = ""
@@ -78,30 +90,31 @@ function Navbar(props) {
 <nav className="navbar">
   <div className="navbar-nav w-full inline-flex items-end justify-between">
     <div className="inline-flex items-end px-6">
-  <p className={`menuTitle capitalize mr-6 my-2 ${bgColor()}`}>{navTitle} {`//`}</p>
+  <p className={`menuTitle capitalize mr-6 my-2 ${bgColor()}`}>{quizTitle()} {`//`}</p>
 <Stat title="Score" value={props.score}/>
 <Stat title="High Score" value={props.highscore}/>
 <Stat title="Total Score" value={props.totalscore}/>
 </div>
 <div className="flex h-full px-4 py-1">
 <div className="flex items-end">
-<Link to="/quiz">
 <NavItem
           icon={quizIcon}
           color="bg-green-300"
           onHandleDropDown={onHandleDropDownOne}
           open={openOne}
+          link="/quiz"
+          click={props.exitToQuizPage}
         >
           <NavDropDown
             color={`border-indigo-600 ${btnBg01}`}
             onHandleDropDown={onHandleDropDownOne}
           >
-            <p className="m-2 font-mono text-center underline text-2xl">Quiz</p>
+            <span className="m-2 font-mono text-center underline flex text-xl justify-center">Quiz</span>
             <Link to="/quiz/japanese">
             <NavDropDownItem
               icon={japan}
               color="p-1 bg-gray-300"
-              text="Japanese"
+              text="Japanese Words"
               click={props.startJpnQuiz}
             />
             </Link>
@@ -109,7 +122,7 @@ function Navbar(props) {
             <NavDropDownItem
               icon={english}
               color="p-1 bg-blue-100"
-              text="English"
+              text="English Words"
               click={props.startEngQuiz}
             />
             </Link>
@@ -133,13 +146,12 @@ function Navbar(props) {
             </Link>
           </NavDropDown>
         </NavItem>
-        </Link>
-        <Link to="/study">
           <NavItem
           icon={studyIcon}
           color="bg-pink-300"
           onHandleDropDown={onHandleDropDownTwo}
           open={openTwo}
+          link="/study"
         >
           <NavDropDown
             color={`border-pink-600 mt-1 ${btnBg02}`}
@@ -153,7 +165,7 @@ function Navbar(props) {
               align="flex-row-reverse"
               icon={vocab}
               color="p-1 bg-purple-200"
-              text="Vocabulary"
+              text="Vocabulary Search"
 
             /></Link>
              <Link to="/study/letters">
@@ -161,18 +173,18 @@ function Navbar(props) {
               align="flex-row-reverse"
               icon={furi}
               color="p-1 bg-teal-100"
-              text="Furigana"
+              text="Letter Chart"
           
             /></Link>
           </NavDropDown>
         </NavItem>
-        </Link>
         <Link to="/about">
         <NavItem
           icon={menuIcon}
           color="bg-yellow-300"
           onHandleDropDown={onHandleDropDownThree}
           open={openThree}
+          link="/about"
         >
           <NavDropDown
             color={`bg-gray-300 border-yellow-600 mt-2 ${btnBg03}`}
@@ -190,7 +202,7 @@ function Navbar(props) {
             <NavDropDownItem
               icon={about}
               color="p-1 bg-green-300"
-              text="About"
+              text="About Us"
             />
             <NavDropDownItem
               icon={outside}
