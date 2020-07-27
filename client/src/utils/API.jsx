@@ -18,15 +18,20 @@ export default {
     return axios.get("/api/furigana")
   },
   loginUser: function(request){
-    return axios.post('/api/login', request)
+    return axios.post("/api/login", request)
   },
   //Create User
   createUser: function(request){
-    return axios.post('/api/users', request)
+    return axios.post("/api/users", request)
   },
-  //Update User
+  //Update User points
   updateUser: function(id, body){
     return axios.put("/api/users/update/" + id, body)
+  },
+
+  //Update User details
+  updateLogin: function(id, body){
+    return axios.post("/api/users/" + id, body)
   },
   //Delete User
   deleteUser: function(id){

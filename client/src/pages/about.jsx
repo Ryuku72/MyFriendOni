@@ -39,18 +39,18 @@ function About(){
     });
   }
 
-  function updateUser(event){
+  function updateDetails(event){
     event.preventDefault()
-    // console.log("New User: " + event.target.name)
-    // console.log("New Password: " + event.target.value)
+     //console.log("New User: " + event.target.name)
+     //console.log("New Password: " + event.target.value)
 
     let request = {
         "username": event.target.name,
         "password": event.target.value
     }
-    API.updateUser(user._id, request).then(result => {
+    API.updateLogin(user._id, request).then(result => {
+        //console.log(result)
         getUser()
-        console.log(result)
         }).catch(err => console.log(err));
   }
 
@@ -83,7 +83,7 @@ function About(){
           kata={user.kataHighScore}
           total={user.totalScore}
           update={user.updatedAt}
-          updateUser={updateUser}
+          updateDetails={updateDetails}
           deleteUser={deleteUser}
           password={user.password}
         />

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./style.css";
 
 function PlayerCard(props) {
@@ -12,7 +12,6 @@ function PlayerCard(props) {
     edit: "",  
     delete: ""
   })
-
   const [editForm, setEditForm] = useState(false);
   const [deleteForm, setDeleteForm] = useState(false);
   const [deleteError, setDeleteError] = useState(false)
@@ -21,6 +20,10 @@ function PlayerCard(props) {
     edit: false,
     delete: false,
   });
+
+  useEffect(()=> {
+    confirmUpdate()
+  }, [props.updateDetails])
 
   function toggleEditBox(event) {
     event.preventDefault();
@@ -115,8 +118,7 @@ function PlayerCard(props) {
         setConfirm({ ...confirm, delete: false })
   }
 
-  function confirmUpdate(event){
-      event.preventDefault();
+  function confirmUpdate(){
       setConfirm({ ...confirm, edit: false });
       setUpdateUser("");
       setUpdatePw("");
@@ -333,7 +335,7 @@ function PlayerCard(props) {
                   &#10008;
                 </button>
                 <button className="w-1/6 mr-3 rounded-lg border-2 border-green-500 px-2 text-lg bg-green-500 hover:bg-green-400 hover:text-gray-300 shadow-xl focus:outline-none" value={updatePw} name={updateUser}
-                onClick={props.updateUser, confirmUpdate}
+                onClick={props.updateDetails}
                 >
                   &#10004;
                 </button>
