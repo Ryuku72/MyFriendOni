@@ -1,4 +1,4 @@
-import React, { useState} from "react";
+import React, { useState, useEffect } from "react";
 import { useAuth } from "../../utils/auth";
 import { Link, useLocation } from "react-router-dom";
 import "./style.css";
@@ -50,8 +50,6 @@ function Navbar(props) {
     setAuthTokens();
   }
 
-  
-
   const location = useLocation();
 
   const btnBg01 = location.pathname.includes("/quiz") ? "bg-green-200" : "bg-gray-300";
@@ -70,9 +68,6 @@ function Navbar(props) {
   return title
 }
 
-  //console.log(quizTitle())
-
-
   let color=""
   if (location.pathname.includes("/quiz")){
     color = "text-green-300";
@@ -82,9 +77,6 @@ function Navbar(props) {
     color = "text-orange-300" 
   }
 
- //console.log(color)
-
-//console.log(bgColor)
   return (
 
 <nav className="navbar">
@@ -97,13 +89,14 @@ function Navbar(props) {
 </div>
 <div className="flex h-full px-4 py-1">
 <div className="flex items-end">
+<Link to="/quiz">
 <NavItem
           icon={quizIcon}
           color="bg-green-300"
-          onHandleDropDown={onHandleDropDownOne}
           open={openOne}
-          link="/quiz"
           click={props.exitToQuizPage}
+          onHandleDropDown={onHandleDropDownOne}
+          link="/quiz"
         >
           <NavDropDown
             color={`border-indigo-600 ${btnBg01}`}
@@ -146,6 +139,8 @@ function Navbar(props) {
             </Link>
           </NavDropDown>
         </NavItem>
+        </Link>
+        <Link to="/study">
           <NavItem
           icon={studyIcon}
           color="bg-pink-300"
@@ -178,6 +173,7 @@ function Navbar(props) {
             /></Link>
           </NavDropDown>
         </NavItem>
+        </Link>
         <Link to="/about">
         <NavItem
           icon={menuIcon}
@@ -193,17 +189,21 @@ function Navbar(props) {
             <p className="m-2 font-mono text-center underline text-xl">
               Systems
             </p>
+            <Link to="/about/player">
             <NavDropDownItem
               align="flex-row-reverse"
               icon={player}
               color="p-1 bg-purple-200"
               text="Player Stats"
             />
+            </Link>
+            <Link to="/about/info">
             <NavDropDownItem
               icon={about}
               color="p-1 bg-green-300"
               text="About Us"
             />
+            </Link>
             <NavDropDownItem
               icon={outside}
               click={logOut}

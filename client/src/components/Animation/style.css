@@ -10,10 +10,29 @@
     pointer-events: none;
     transition: 200ms ease-in-out;
   }
+
+  #overlay2 {
+    pointer-events: none;
+    transition: 200ms ease-in-out;
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    transition: 200ms ease-in-out;
+  }
   
   #overlay.active {
     opacity: 0.8;
     background-color: rgba(52, 61, 96, 0.803);
+    pointer-events: all;
+  }
+
+  #overlay2.active {
+    opacity: 0.8;
+    background-color: rgba(27, 95, 54, 0.459);
     pointer-events: all;
   }
 

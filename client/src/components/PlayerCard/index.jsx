@@ -127,7 +127,7 @@ function PlayerCard(props) {
   }
 
   return (
-    <div className="w-full h-full p-12 font-mono inline-flex">
+    <div className="w-full p-12 font-mono inline-flex" style={{...props.windowStyle}}>
       {/* Player Card */}
       <div className="w-1/2 h-full rounded-lg shadow-2xl antialiased">
         <header
@@ -261,6 +261,7 @@ function PlayerCard(props) {
               <form
                 id="editForm"
                 className="w-full p-8 flex flex-col h-full justify-center"
+                onSubmit={onHandleUpdate}
               >
                 <div
                   className="my-2 flex items-end"
@@ -294,6 +295,7 @@ function PlayerCard(props) {
                     id="passwordUpdate"
                     className="w-3/4 h-full p-2 mx-2 outline-none shadow-xl rounded text-base"
                     onChange={(event) => setUpdatePw(event.target.value.toLowerCase())}
+                    onSubmit={onHandleUpdate}
                   />
                 </div>
                 <div className="w-full flex justify-between mt-4  items-center">
@@ -302,12 +304,14 @@ function PlayerCard(props) {
                     </div>
                   <button className="w-1/5 flex justify-center items-center mr-3 rounded-lg border-2 border-gray-600 px-3 py-1 text-xs bg-gray-600 hover:bg-gray-500 hover:text-gray-300 mx-2 shadow-xl focus:outline-none"
                   onClick={resetEditForm}
+                  type="button"
                   >
                     Clear
                   </button>
                   <button
                     className="w-1/5 flex justify-center items-center mr-3 rounded-lg border-2 border-blue-500 px-3 py-1 text-xs bg-blue-500 hover:bg-blue-400 hover:text-gray-300 shadow-xl focus:outline-none"
                     onClick={onHandleUpdate}
+                    type="button"
                   >
                     Submit
                   </button>
@@ -385,6 +389,7 @@ function PlayerCard(props) {
                     id="delUser01"
                     className="w-4/5 h-full p-2 mx-2 outline-none shadow-xl rounded text-base"
                     onChange={(event) => setPasswordOne(event.target.value)}
+                    onSubmit={handleDeleteUser}
                   />
                 </div>
                 <div className="my-2 flex items-end">
@@ -399,6 +404,7 @@ function PlayerCard(props) {
                     id="delUser02"
                     className="w-4/5 h-full p-2 mx-2 outline-none shadow-xl rounded text-base"
                     onChange={(event) => setPasswordTwo(event.target.value)}
+                    onSubmit={handleDeleteUser}
                   />
                 </div>
                 <div className="w-full flex justify-between mt-6 items-center">

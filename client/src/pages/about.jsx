@@ -6,6 +6,7 @@ import Footer from '../components/Footer';
 import Animation from "../components/Animation"
 import PlayerCard from "../components/PlayerCard";
 import { useAuth } from "../utils/auth";
+import AboutCard from "../components/AboutCard";
 
 function About(){
     const location = useLocation()
@@ -23,6 +24,7 @@ function About(){
         username: "",
       });
 
+    const [page, setPage] = useState()
       
     // API calls
   useEffect(() => {
@@ -73,8 +75,12 @@ function About(){
         totalscore={user.totalScore} 
         score={0}
         /><div className="relative" style={{zIndex:2, height: `calc(100vh - (10vh + 8vh))`}} >
-        <Animation />
-        <PlayerCard 
+        <Animation 
+         overlayStyle={{opacity: location.pathname === "/about/player" ?  "1" : "0"}} 
+         overlayStyle2={{opacity: location.pathname === "/about/info" ?  "1" : "0"}} 
+        />
+        <PlayerCard
+          windowStyle={{height: location.pathname === "/about/player" ? "100%" : "0%", opacity: location.pathname === "/about/player" ?  "1" : "0"}} 
           user={user.username}
           start={user.createdAt}
           eng={user.engHighScore}
@@ -87,10 +93,12 @@ function About(){
           deleteUser={deleteUser}
           password={user.password}
         />
+        <AboutCard windowStyle={{opacity: location.pathname === "/about/info" ?  "1" : "0", zIndex: location.pathname === "/about/info" ?  "10" : "0" }} />
+
         </div>
         <Footer 
         user={user.username}
-        style={"true"} 
+        style="true" 
         />
     </div>
     )

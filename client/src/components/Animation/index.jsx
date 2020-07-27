@@ -1,7 +1,8 @@
 import React from "react";
 import "./style.css";
 
-function Animation() {
+
+function Animation(props) {
   return (
     <div
       className="animation flex items-end justify-end bg-black"
@@ -27,7 +28,7 @@ function Animation() {
         className="animation"
         style={{ zIndex:-5 }}
       ></div>
-      <div id="moon" class="animation" 
+      <div id="moon" className="animation" 
       style={{ zIndex: 0 }}></div>
         <div className="w-1/3 mb-6 relative" 
         style={{height:"90%"}}>
@@ -47,7 +48,8 @@ function Animation() {
         }}
       ></div>
     </div>
-    <div id="overlay" class="z-1 opacity-0 bg-gray-300 bg-opacity-50 active"></div>
+    <div id="overlay" className="z-1 opacity-0 bg-gray-300 bg-opacity-50 active" style={{...props.overlayStyle}}></div>
+    <div id="overlay2" className="z-1 opacity-0 bg-gray-300 bg-opacity-50 active" style={{...props.overlayStyle2}}></div>
     </div>
 
   );
