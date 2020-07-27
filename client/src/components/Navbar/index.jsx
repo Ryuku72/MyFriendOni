@@ -50,6 +50,8 @@ function Navbar(props) {
     setAuthTokens();
   }
 
+  
+
   const location = useLocation();
 
   const btnBg01 = location.pathname.includes("/quiz") ? "bg-green-200" : "bg-gray-300";
@@ -80,7 +82,7 @@ function Navbar(props) {
     color = "text-orange-300" 
   }
 
-  console.log(color)
+ //console.log(color)
 
 //console.log(bgColor)
   return (

@@ -17,11 +17,10 @@ export default {
   getFurigana: function(){
     return axios.get("/api/furigana")
   },
-  
   loginUser: function(request){
     return axios.post('/api/login', request)
   },
-    //Create User
+  //Create User
   createUser: function(request){
     return axios.post('/api/users', request)
   },
@@ -29,9 +28,8 @@ export default {
   updateUser: function(id, body){
     return axios.put("/api/users/update/" + id, body)
   },
-
-  //Search for particular word
-  getWord: function(id) {
-    return axios.post("/api/vocab" + id);
-  },
+  //Delete User
+  deleteUser: function(id){
+    return axios.delete("api/users/" +id)
+  }
 }

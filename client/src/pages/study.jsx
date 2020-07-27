@@ -273,7 +273,7 @@ function Study(props) {
       <Footer user={user.username}>
         <p
           className="footer px-2 text-2xl inline-flex font-mono capitalize text-red-500"
-          style={{display: searchState.language === "vocab" ? "block" : "none"}}
+          style={{display: searchState.language === "Vocab" ? "block" : "none"}}
         >
           <span className="footer text-2xl score-sheet text-gray-800 mr-2">
             Results :{" "}

@@ -5,9 +5,12 @@ import Navbar from "../components/Navbar";
 import Footer from '../components/Footer';
 import Animation from "../components/Animation"
 import PlayerCard from "../components/PlayerCard";
+import { useAuth } from "../utils/auth";
 
 function About(){
     const location = useLocation()
+    const { setAuthTokens } = useAuth();
+
     const [user, setUser] = useState({
         createdAt: "",
         engHighScore: 0,
@@ -35,6 +38,33 @@ function About(){
       setUser(result.data);
     });
   }
+
+  function updateUser(event){
+    event.preventDefault()
+    // console.log("New User: " + event.target.name)
+    // console.log("New Password: " + event.target.value)
+
+    let request = {
+        "username": event.target.name,
+        "password": event.target.value
+    }
+    API.updateUser(user._id, request).then(result => {
+        getUser()
+        console.log(result)
+        }).catch(err => console.log(err));
+  }
+
+  function deleteUser(event) {
+    event.preventDefault()
+    console.log(user._id)  
+    
+    API.deleteUser(user._id).then(answer => {
+        console.log(answer)
+        //log out
+        setAuthTokens();
+        }).catch(err => console.log(err));
+  }
+
     
     return (
     <div>
@@ -53,9 +83,13 @@ function About(){
           kata={user.kataHighScore}
           total={user.totalScore}
           update={user.updatedAt}
+          updateUser={updateUser}
+          deleteUser={deleteUser}
+          password={user.password}
         />
         </div>
         <Footer 
+        user={user.username}
         style={"true"} 
         />
     </div>

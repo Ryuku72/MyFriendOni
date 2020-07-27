@@ -25,7 +25,9 @@
   }
   
   #titleSeq1 {
+    background-color: rgb(64, 148, 64);
     animation: 5s green;
+    -webkit-animation: green 5s;
     animation-fill-mode: forwards;
     animation-delay: 1s;
     clip-path: polygon(48% 100%, 100% 100%, 76% 100%, 64% 100%, 31% 100%, 19% 100%, 0 100%);
@@ -33,7 +35,9 @@
   }
   
   #titleSeq2 {
+    background-color: rgb(232, 169, 12);
     animation: 4s orange;
+    -webkit-animation: orange 4s;
     animation-fill-mode: forwards;
     animation-delay: 5s;
     clip-path: polygon(48% 100%, 100% 100%, 76% 100%, 64% 100%, 31% 100%, 19% 100%, 0 100%);
@@ -41,16 +45,19 @@
   }
   
   #titleSeq3 {
+    background-color: rgb(253, 169, 183);
     animation: 8s pink;
+    -webkit-animation: 8s pink;
     animation-fill-mode: forwards;
     animation-delay: 3s;
     clip-path: polygon(48% 100%, 100% 100%, 76% 100%, 64% 100%, 31% 100%, 19% 100%, 0 100%);
     -webkit-clip-path: polygon(48% 100%, 100% 100%, 76% 100%, 64% 100%, 31% 100%, 19% 100%, 0 100%);
-    animation-fill-mode: forwards;
   }
   
   #titleSeq4 {
+    background-color: rgb(100, 172, 201);
     animation: 4s skyblue;
+    -webkit-animation: 4s skyblue;
     animation-fill-mode: forwards;
     clip-path: polygon(48% 100%, 100% 100%, 76% 100%, 64% 100%, 31% 100%, 19% 100%, 0 100%);
     -webkit-clip-path: polygon(48% 100%, 100% 100%, 76% 100%, 64% 100%, 31% 100%, 19% 100%, 0 100%);
@@ -62,6 +69,7 @@
     -webkit-clip-path: circle(12% at 16% 30%);
     opacity: 1;
     animation: 12s moon;
+    -webkit-animation: 12s moon;
     animation-fill-mode: forwards;
   }
   
@@ -78,7 +86,7 @@
   #smoke {
     width: 16vw;
     transform: rotateZ(3deg);
-    background-color: rgb(67, 67, 60);
+    background-color: rgb(167, 167, 164);
     clip-path: polygon(30% 28%, 38% 12%, 56% 0, 70% 0, 45% 18%, 61% 13%, 53% 30%, 62% 44%, 44% 66%, 35% 100%, 39% 53%, 38% 37%);
     -webkit-clip-path: polygon(30% 28%, 38% 12%, 56% 0, 70% 0, 45% 18%, 61% 13%, 53% 30%, 62% 44%, 44% 66%, 35% 100%, 39% 53%, 38% 37%);
     animation: fadein 12s forwards, smoke 16s infinite 0s;

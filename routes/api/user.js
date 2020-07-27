@@ -30,4 +30,14 @@ router.put("/update/:id", function (req, res){
   .catch(err => res.status(422).json(err));
 })
 
+router.delete("/:id", function (req, res){
+  users.findById({ _id: req.params.id })
+  .then(dbModel => {
+    console.log(req.params.id + " Deleted")
+    dbModel.remove();
+  })
+  .then(dbModel => res.json(dbModel))
+  .catch(err => res.status(422).json(err));
+})
+
 module.exports = router;

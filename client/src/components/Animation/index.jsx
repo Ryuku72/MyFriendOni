@@ -9,22 +9,22 @@ function Animation() {
     >
       <div
         id="titleSeq1"
-        className="bg-green-500 animation"
+        className="animation"
         style={{ zIndex:-2}}
       ></div>
       <div
         id="titleSeq2"
-        className="bg-yellow-600 animation"
+        className="animation"
         style={{ zIndex:-3 }}
       ></div>
       <div
         id="titleSeq3"
-        className="bg-pink-500 animation"
+        className="animation"
         style={{ zIndex:-4 }}
       ></div>
       <div
         id="titleSeq4"
-        className="bg-blue-300 animation"
+        className="animation"
         style={{ zIndex:-5 }}
       ></div>
       <div id="moon" class="animation" 
