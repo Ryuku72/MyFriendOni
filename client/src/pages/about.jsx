@@ -93,7 +93,7 @@ function About(){
           deleteUser={deleteUser}
           password={user.password}
         />
-        <AboutCard windowStyle={{opacity: location.pathname === "/about/info" ?  "1" : "0", zIndex: location.pathname === "/about/info" ?  "10" : "0" }} />
+        <AboutCard windowStyle={{opacity: location.pathname === "/about/info" ?  "1" : "0", zIndex: location.pathname === "/about/info" ?  "10" : "-2"}} />
 
         </div>
         <Footer 

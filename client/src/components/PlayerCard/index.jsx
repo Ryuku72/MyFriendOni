@@ -127,7 +127,7 @@ function PlayerCard(props) {
   }
 
   return (
-    <div className="w-full p-12 font-mono inline-flex" style={{...props.windowStyle}}>
+    <div className="w-full p-12 font-mono inline-flex z-20" style={{...props.windowStyle}}>
       {/* Player Card */}
       <div className="w-1/2 h-full rounded-lg shadow-2xl antialiased">
         <header

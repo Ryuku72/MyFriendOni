@@ -3,7 +3,7 @@ import "./style.css";
 
 function AboutCard(props){
     return (
-        <div className="w-full h-full border-8 border-red-700 absolute top-0" style={props.windowStyle}>
+        <div className="w-full h-full absolute top-0" style={props.windowStyle}>
             <div className="h-full w-full text-white text-4xl flex flex-col justify-center p-32">
                 <p className="underline font-mono">About Foreign Toolkit</p>
                 <p>1. `My Friend Oni` was built with MERN stack.</p>
