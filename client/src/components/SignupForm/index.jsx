@@ -29,7 +29,11 @@ return (
       <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="password" placeholder="********" value={props.passwordTwo} onChange={props.onHandlePasswordTwo}/>
     </div> 
     </div>
-    <p className="text-red-400 mb-2" style={props.style}>{props.errors}</p> 
+    <ul style={props.style}>
+      {props.errors.map((results,index) => {
+        return <li key={index} className="text-red-400">{results} </li>
+      })}
+      </ul>
     <div className="flex justify-start py-3">
   <button className="flex-shrink-0 bg-pink-500 hover:bg-pink-700 border-pink-500 hover:border-pink-700 text-sm border-4 text-white py-1 px-4 rounded font-mono" type="button" onClick={props.postSignUp}>
       Sign Up

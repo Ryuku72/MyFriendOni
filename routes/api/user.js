@@ -8,21 +8,6 @@ router.get("/:id", function (req, res){
   .catch(err => res.status(422).json(err));
 })
 
-//create user
-router.post("/", function (req, res){
-    console.log(req.body)
-    users.findOne(req.body)
-    .then(result => {
-      if (result) {
-        res.status(401).send({
-          message:"User Already Exists"})
-      } else {
-        users.create(req.body)
-        .then(dbModel => res.json(dbModel))
-        .catch(err => res.status(422).json(err));
-      }
-    }) 
-})
 
 //update points
 router.put("/update/:id", function (req, res){
@@ -31,6 +16,7 @@ router.put("/update/:id", function (req, res){
   .then(dbModel => res.json(dbModel))
   .catch(err => res.status(422).json(err));
 })
+
 
 //update login details
 router.post("/:id", function (req, res){
@@ -43,6 +29,7 @@ router.post("/:id", function (req, res){
   .then(dbModel => res.json(dbModel))
   .catch(err => res.status(422).json(err));
 })
+
 
 //delete user
 router.delete("/:id", function (req, res){

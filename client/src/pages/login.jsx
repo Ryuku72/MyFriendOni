@@ -20,7 +20,25 @@ function Login(props){
   }
 
   function postLogin(event) {
-      event.preventDefault();
+    event.preventDefault();
+
+    if ((userName === "") && (password === "")){
+      let errorMsg = "Both feilds are _blank"
+      setErrors([...errorMsg])
+      setIsError(true);
+    }
+    else if (userName === "") {
+      let errorMsg = "Username is _blank"
+      setErrors([...errorMsg])
+      setIsError(true);
+    } 
+        else if (password === "") {
+        let errorMsg = "Password is _blank"
+        setErrors([...errorMsg])
+        setIsError(true);
+    } else {
+
+     
       let request = {
         "username": userName,
         "password": password
@@ -28,23 +46,25 @@ function Login(props){
       //console.log(request)
     API.loginUser(request)
     .then(result => { 
-      //console.log(result)
+        const userID = result.data.data._id
+        localStorage.setItem("tokens", userID)
         history.push('/quiz')
     }).catch(err => {
       console.log(err.response);
       if (err.response.data.errors){
         const errorMsg = err.response.data.errors.map(
-          (err) => err.message
+          (err) => err.msg
         );
         setErrors([...errorMsg]);
         setIsError(true);
         clearForm()
+      } else {
+        setErrors(['Whoops please enter your credentials']);
+        setIsError(true);
+        clearForm()
       }
-      setErrors(['Whoops please enter your credentials']);
-      setIsError(true);
-      clearForm()
-    }
-    )
+    })
+  }
   }
 
   function onHandleUserName(event){
@@ -59,11 +79,7 @@ function Login(props){
     setPassword(event.target.value.trim().toLowerCase())
   }
 
-  const existingTokens = localStorage.getItem("tokens");
-  if ((existingTokens === "undefined") || (existingTokens === null)) {
-
     return (
-  
       <div className="h-screen flex flex-col justify-center items-center bg-gray-300">
        <Header/>
        <Form  
@@ -78,11 +94,7 @@ function Login(props){
          <div></div>
          </Footer> 
        </div>
-     );
-  
-    } else {
-      return <Redirect to="/quiz" />;
-    }     
+     ); 
 }
 
 export default Login;

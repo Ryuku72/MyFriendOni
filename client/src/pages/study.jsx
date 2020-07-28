@@ -83,18 +83,17 @@ function Study(props) {
         setSearchState({ ...searchState, error: "", language: "Vocab"})
       })
     }
-   // getUser();
+    getUser();
   }, [location]);
 
   // Database Calls
-  // function getUser() {
-  //   const user = localStorage.getItem("tokens");
-  //   const userID = JSON.parse(user)["_id"];
-  //   //console.log(userID)
-  //   API.getUser(userID).then((result) => {
-  //     setUser(result.data);
-  //   });
-  // }
+  function getUser() {
+    const user = localStorage.getItem("tokens");
+    //console.log(user)
+    API.getUser(user).then((result) => {
+      setUser(result.data);
+    });
+  }
 
  //handler
   function onHandleOrder(event) {

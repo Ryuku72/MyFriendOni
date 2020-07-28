@@ -74,7 +74,7 @@ router.post("/login", (req, res, next) => {
         ],
       });
     }
-    console.log("Backend - Auth Line 77: ", { patron: patron._id });
+    //console.log("Backend - Auth Line 77: ", { patron: patron._id });
     req.logIn(patron, (error) => {
       if (error) {
         return res.status(400).json({

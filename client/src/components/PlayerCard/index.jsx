@@ -21,9 +21,11 @@ function PlayerCard(props) {
     delete: false,
   });
 
+/* eslint react/prop-types: 0 */
   useEffect(()=> {
     confirmUpdate()
   }, [props.updateDetails])
+     /* eslint react/prop-types: 0 */
 
   function toggleEditBox(event) {
     event.preventDefault();

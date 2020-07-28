@@ -31,10 +31,14 @@ function SignUp(props){
         "password_again": passwordTwo
       }
     if (passwordOne !== passwordTwo) {
-      return setErrors(['Passwords do not match!'])
-    }
+      let errorMsg = "  Passwords don't match!"
+      setErrors([...errorMsg])
+      setIsError(true);
+    } else {
       API.createUser(request)
-      .then((result) => { 
+      .then((result) => {
+          const userID = result.data.data._id
+          localStorage.setItem("tokens", userID) 
           history.push('/quiz')
       })
       .catch((err) => {
@@ -44,6 +48,7 @@ function SignUp(props){
         setIsError(true);
         clearForm();
       })
+    }
     }
 
 function onHandleUserName(event){
@@ -57,9 +62,6 @@ function onHandleUserName(event){
 function onHandlePasswordTwo(event){
     setPasswordTwo(event.target.value.trim().toLowerCase())
 }
-
-const existingTokens = localStorage.getItem("tokens");
-if ((existingTokens === "undefined") || (existingTokens === null)) {
     return (
        <div className="flex flex-col justify-center items-center bg-gray-300 f-full h-screen">
         <Header />
@@ -77,8 +79,5 @@ if ((existingTokens === "undefined") || (existingTokens === null)) {
         </div>
         
       );
-}else {
-return <Redirect to="/quiz" />;
-}
 }
 export default SignUp;

@@ -13,7 +13,6 @@ export default {
   logoutUser: function(){
     return axios.get("/api/logout")
   },
-
   getUser: function (id) {
     return axios.get("/api/users/" + id)
   },

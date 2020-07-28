@@ -48,14 +48,12 @@ function Navbar(props) {
 
     try{
       await  API.logoutUser().then(result=> console.log(result))
-      history.push('/')
+      window.localStorage.removeItem("tokens");
+      history.push("/")
     } catch (e) {
       console.log(e.message)
     }
- 
   }
-
-
 
   const location = useLocation();
 
@@ -98,14 +96,13 @@ function Navbar(props) {
 </div>
 <div className="flex h-full px-4 py-1">
 <div className="flex items-end">
-<Link to="/quiz">
+
 <NavItem
           icon={quizIcon}
           color="bg-green-300"
           open={openOne}
           click={props.exitToQuizPage}
           onHandleDropDown={onHandleDropDownOne}
-          link="/quiz"
         >
           <NavDropDown
             color={`border-indigo-600 ${btnBg01}`}
@@ -148,14 +145,11 @@ function Navbar(props) {
             </Link>
           </NavDropDown>
         </NavItem>
-        </Link>
-        <Link to="/study">
           <NavItem
           icon={studyIcon}
           color="bg-pink-300"
           onHandleDropDown={onHandleDropDownTwo}
           open={openTwo}
-          link="/study"
         >
           <NavDropDown
             color={`border-pink-600 mt-1 ${btnBg02}`}
@@ -182,14 +176,11 @@ function Navbar(props) {
             /></Link>
           </NavDropDown>
         </NavItem>
-        </Link>
-        <Link to="/about">
         <NavItem
           icon={menuIcon}
           color="bg-yellow-300"
           onHandleDropDown={onHandleDropDownThree}
           open={openThree}
-          link="/about"
         >
           <NavDropDown
             color={`bg-gray-300 border-yellow-600 mt-2 ${btnBg03}`}
@@ -221,7 +212,6 @@ function Navbar(props) {
             />
           </NavDropDown>
         </NavItem>
-        </Link>
   </div>
 </div>
 </div>

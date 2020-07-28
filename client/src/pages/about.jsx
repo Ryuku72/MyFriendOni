@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useHistory } from "react-router-dom";
 import API from "../utils/API";
 import Navbar from "../components/Navbar";
 import Footer from '../components/Footer';
@@ -8,9 +8,8 @@ import PlayerCard from "../components/PlayerCard";
 import AboutCard from "../components/AboutCard";
 
 function About(){
+    const history = useHistory()
     const location = useLocation()
-
-
     const [user, setUser] = useState({
         createdAt: "",
         engHighScore: 0,
@@ -22,23 +21,23 @@ function About(){
         updatedAt: "",
         username: "",
       });
+    const [about, setAbout] = useState(false)
 
-    const [page, setPage] = useState()
       
     // API calls
   useEffect(() => {
-    //getUser();
+    getUser();
+    setAbout(true)
   }, [location]);
 
   // Database Calls
-  // function getUser() {
-  //   const user = localStorage.getItem("tokens");
-  //   const userID = JSON.parse(user)["_id"];
-  //   //console.log(userID)
-  //   API.getUser(userID).then((result) => {
-  //     setUser(result.data);
-  //   });
-  // }
+  function getUser() {
+    const user = localStorage.getItem("tokens");
+    //console.log(userID)
+    API.getUser(user).then((result) => {
+      setUser(result.data);
+    });
+  }
 
   function updateDetails(event){
     event.preventDefault()
@@ -51,7 +50,7 @@ function About(){
     }
     API.updateLogin(user._id, request).then(result => {
         console.log(result)
-       // getUser()
+       getUser()
         }).catch(err => console.log(err));
   }
 
@@ -62,6 +61,13 @@ function About(){
     API.deleteUser(user._id).then(answer => {
         console.log(answer)
         //log out
+        try{
+          API.logoutUser().then(result=> console.log(result))
+          window.localStorage.removeItem("tokens");
+          history.push('/')
+        } catch (e) {
+          console.log(e.message)
+        }
         }).catch(err => console.log(err));
   }
 
@@ -96,7 +102,7 @@ function About(){
         </div>
         <Footer 
         user={user.username}
-        style="true" 
+        style={about}
         />
     </div>
     )

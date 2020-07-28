@@ -3,6 +3,7 @@ const dotenv = require("dotenv")
 const express = require("express");
 const session = require("express-session")
 const cookieParser = require("cookie-parser");
+const bodyParser = require("body-parser");
 const passport = require("passport");
 const app = express();
 
@@ -18,8 +19,8 @@ const PORT = process.env.PORT || 3001;
 connectDb();
 
 // Middleware
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser(process.env.SESSION_SECRET || "AccessSecret"));
 
 // Heroku static connection
