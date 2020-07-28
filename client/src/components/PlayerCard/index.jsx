@@ -5,6 +5,7 @@ function PlayerCard(props) {
   const [passwordOne, setPasswordOne] = useState("");
   const [passwordTwo, setPasswordTwo] = useState("");
 
+  const [updatePreviousPw, setUpdatePreviousPw] = useState("")
   const [updateUser, setUpdateUser] = useState("")
   const [updatePw, setUpdatePw] = useState("");
 
@@ -12,8 +13,8 @@ function PlayerCard(props) {
     edit: "",  
     delete: ""
   })
-  const [editForm, setEditForm] = useState(false);
-  const [deleteForm, setDeleteForm] = useState(false);
+  const [editForm, setEditForm] = useState(false);  
+  const [deleteForm, setDeleteForm] = useState(true); //editing
   const [deleteError, setDeleteError] = useState(false)
   const [updateError, setUpdateError] = useState(false)
   const [confirm, setConfirm] = useState({
@@ -50,17 +51,33 @@ function PlayerCard(props) {
    //console.log(event);
    setUpdateError(false)
 
-    if  ((updateUser === "" ) && (updatePw === "" )){
+    if  ((updateUser === "" ) && (updatePw === "" ) && (updatePreviousPw === "")){
     setErrorMsg({...errorMsg, edit:"Error: Inputs are blank"})
     setUpdateError(true)
+    setUpdatePreviousPw("")
+    setUpdateUser("")
+    setUpdatePw("")
     }
     else if (updateUser === "" ) {
         setErrorMsg({...errorMsg, edit:"Error: Username is blank"})
         setUpdateError(true)
+        setUpdatePreviousPw("")
+        setUpdateUser("")
+        setUpdatePw("")
     } 
     else if (updatePw === "" ) {
         setErrorMsg({...errorMsg, edit:"Error: Password is blank"})
         setUpdateError(true)
+        setUpdatePreviousPw("")
+        setUpdateUser("")
+        setUpdatePw("")
+    }
+    else if (updatePreviousPw === ""){
+      setErrorMsg({...errorMsg, edit:"Error: Previous Pw is blank"})
+      setUpdateError(true)
+      setUpdatePreviousPw("")
+      setUpdateUser("")
+      setUpdatePw("")
     }
     else {
        setConfirm({ ...confirm, edit: true });
@@ -88,12 +105,18 @@ function PlayerCard(props) {
         setPasswordTwo("");
         setDeleteError(true)
     } else {
+        //compare to previous password
+
+        //if wrong throw error
+        //Error: Previous and Current Pw don't match
+      
         setConfirm({ ...confirm, delete: true}) 
         } 
   }
 
   function resetEditForm(event) {
     event.preventDefault();
+    setUpdatePreviousPw("")
     setUpdateUser("");
     setUpdatePw("");
     setUpdateError(false)
@@ -108,6 +131,7 @@ function PlayerCard(props) {
 
   function cancelUpdate(event){
         event.preventDefault();
+        setUpdatePreviousPw("")
         setUpdateUser("");
         setUpdatePw("");
         setConfirm({ ...confirm, edit: false })
@@ -122,6 +146,7 @@ function PlayerCard(props) {
 
   function confirmUpdate(){
       setConfirm({ ...confirm, edit: false });
+      setUpdatePreviousPw("")
       setUpdateUser("");
       setUpdatePw("");
       setErrorMsg({...errorMsg, edit:"User Details Updated!"})
@@ -236,7 +261,7 @@ function PlayerCard(props) {
 
       <div className="w-1/2 h-full flex flex-col items-end">
         <div
-          className="w-3/4 py-6 pr-20 pl-12"
+          className="w-3/4 py-2 pr-20 pl-12"
           style={{
             height: editForm ? "50%" : "0",
             opacity: editForm ? "1" : "0",
@@ -262,11 +287,29 @@ function PlayerCard(props) {
             <main className="h-full bg-gray-300" style={{ height: "80%" }}>
               <form
                 id="editForm"
-                className="w-full p-8 flex flex-col h-full justify-center"
+                className="w-full px-2 flex flex-col h-full items-center justify-center"
                 onSubmit={onHandleUpdate}
               >
+                <div className="w-full p-2 flex flex-col justify-center" style={{height:"75%"}}>
                 <div
-                  className="my-2 flex items-end"
+                  className="my-2 flex w-full items-end"
+                  style={{ height: "20%" }}
+                >
+                  <label className="w-1/4 text-sm text-gray-800 font-semibold">
+                    Previous Pw
+                  </label>
+                  <input
+                    name="updatePreviousPw"
+                    value={updatePreviousPw}
+                    type="text"
+                    placeholder="#PreviousPw" //current username
+                    id="updatePreviousPw"
+                    className="w-3/4 h-full p-1 mx-4 outline-none shadow-xl rounded text-sm"
+                    onChange={(event) => setUpdatePreviousPw(event.target.value.toLowerCase())}
+                  />
+                </div>
+                <div
+                  className="my-2 flex w-full items-end"
                   style={{ height: "20%" }}
                 >
                   <label className="w-1/4 text-sm text-gray-800 font-semibold">
@@ -278,16 +321,16 @@ function PlayerCard(props) {
                     type="text"
                     placeholder="Lorem Ipsum" //current username
                     id="usernameUpdate"
-                    className="w-3/4 h-full p-2 mx-2 outline-none shadow-xl rounded text-base"
+                    className="w-3/4 h-full p-1 mx-4 outline-none shadow-xl rounded text-sm"
                     onChange={(event) => setUpdateUser(event.target.value.toLowerCase())}
                   />
                 </div>
                 <div
-                  className="my-2 flex items-end"
+                  className="my-2 flex w-full items-end"
                   style={{ height: "20%" }}
                 >
                   <label className="w-1/4 text-sm text-gray-800 font-semibold">
-                    New Password
+                    New Pw
                   </label>
                   <input
                     name="passwordUpdate"
@@ -295,12 +338,13 @@ function PlayerCard(props) {
                     type="text"
                     placeholder="#Secret" //current username
                     id="passwordUpdate"
-                    className="w-3/4 h-full p-2 mx-2 outline-none shadow-xl rounded text-base"
+                    className="w-3/4 h-full p-1 mx-4 outline-none shadow-xl rounded text-sm"
                     onChange={(event) => setUpdatePw(event.target.value.toLowerCase())}
                     onSubmit={onHandleUpdate}
                   />
                 </div>
-                <div className="w-full flex justify-between mt-4  items-center">
+                </div>
+                <div className="w-full flex justify-center px-2 items-center" style={{height:"30%"}}>
                     <div className="w-3/5" style={{opacity: updateError ? "1" : "0"}}>
                         <p className="text-sm text-red-500 font-semibold rounded-lg mr-2">{errorMsg.edit}</p>
                     </div>
@@ -380,7 +424,7 @@ function PlayerCard(props) {
                 className="w-full p-4 flex flex-col h-full justify-center"
               >
                 <div className="my-2 flex items-end" style={{ height: "20%" }}>
-                  <label className="w-1/5 text-sm text-gray-800 font-semibold">
+                  <label className="w-2/5 text-sm text-gray-800 font-semibold">
                     Password
                   </label>
                   <input
@@ -389,14 +433,14 @@ function PlayerCard(props) {
                     type="text"
                     placeholder="Password..." //current username
                     id="delUser01"
-                    className="w-4/5 h-full p-2 mx-2 outline-none shadow-xl rounded text-base"
+                    className="w-4/5 h-full p-2 mx-2 outline-none shadow-xl rounded text-sm"
                     onChange={(event) => setPasswordOne(event.target.value)}
                     onSubmit={handleDeleteUser}
                   />
                 </div>
                 <div className="my-2 flex items-end">
-                  <label className="w-1/5 text-sm text-gray-800 font-semibold">
-                    Confirm Password
+                  <label className="w-2/5 text-sm text-gray-800 font-semibold">
+                    Confirm Pw
                   </label>
                   <input
                     name="delUser02"
@@ -404,7 +448,7 @@ function PlayerCard(props) {
                     type="text"
                     placeholder="Password..." //current username
                     id="delUser02"
-                    className="w-4/5 h-full p-2 mx-2 outline-none shadow-xl rounded text-base"
+                    className="w-4/5 h-full p-2 mx-2 outline-none shadow-xl rounded text-sm"
                     onChange={(event) => setPasswordTwo(event.target.value)}
                     onSubmit={handleDeleteUser}
                   />
