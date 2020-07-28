@@ -2,17 +2,16 @@ import React, {useState } from 'react';
 import { useHistory, Redirect } from "react-router-dom";
 import Form from "../components/Form";
 import Header from "../components/Header";
-import { useAuth } from "../utils/auth";
 import Footer from '../components/Footer';
 import API from '../utils/API';
 
 function Login(props){
+
+  let history = useHistory();
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [isError, setIsError] = useState(false)
-  const { setAuthTokens } = useAuth();
-
-  let history = useHistory();
+  const [errors, setErrors] = useState([]);
 
   function clearForm() {
     document.getElementById("loginform").reset();
@@ -30,16 +29,21 @@ function Login(props){
     API.loginUser(request)
     .then(result => { 
       //console.log(result)
-      if (result.status === 200) {
-        setAuthTokens(result.data);
-        console.log("login successful")
         history.push('/quiz')
-      } else {
+    }).catch(err => {
+      console.log(err.response);
+      if (err.response.data.errors){
+        const errorMsg = err.response.data.errors.map(
+          (err) => err.message
+        );
+        setErrors([...errorMsg]);
         setIsError(true);
+        clearForm()
       }
-    }).catch(err => console.log(err),
-      setIsError(true),
+      setErrors(['Whoops please enter your credentials']);
+      setIsError(true);
       clearForm()
+    }
     )
   }
 
@@ -68,6 +72,7 @@ function Login(props){
        onHandlePassword={onHandlePassword}
        postLogin={postLogin}
        style={{ opacity : isError ? "1" : "0" }}
+       errorMessage={errors}
        />
        <Footer>
          <div></div>

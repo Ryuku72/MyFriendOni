@@ -2,19 +2,17 @@ import React, { useState } from 'react';
 import { useHistory, Redirect } from "react-router-dom";
 import Header from "../components/Header";
 import SignUpForm from "../components/SignupForm";
-import { useAuth } from "../utils/auth";
 import Footer from '../components/Footer';
 import API from '../utils/API';
 
 function SignUp(props){
-
+  let history = useHistory();
   const [userName, setUserName] = useState("");
   const [passwordOne, setPasswordOne] = useState("");
   const [passwordTwo, setPasswordTwo] = useState("");
   const [isError, setIsError] = useState(false);
-  const { setAuthTokens } = useAuth();
-
-  let history = useHistory();
+  const [errors, setErrors] = useState([]);
+  
   //const referrer = props.location.state.referrer || '/';
 
   function clearForm() {
@@ -26,35 +24,27 @@ function SignUp(props){
 
   function postSignUp(event) {
     event.preventDefault();
-    if (passwordOne === passwordTwo) {
-        event.preventDefault();
-        let request = {
+    
+    let request = {
         "username": userName,
-        "password": passwordOne
+        "password": passwordOne,
+        "password_again": passwordTwo
       }
-      //console.log(request)
+    if (passwordOne !== passwordTwo) {
+      return setErrors(['Passwords do not match!'])
+    }
       API.createUser(request)
-      .then(result => { 
-        if (result.status === 200) {
-            setAuthTokens(result.data);
-            console.log("login successful")
-            history.push('/quiz')
-          } else {
-            setIsError(true);
-          }
+      .then((result) => { 
+          history.push('/quiz')
       })
-      .catch(err => console.log(err), 
-        setIsError(true),
-        clearForm()
-      )
-      }
-      else {
-         // console.log(passwordOne)
-         // console.log(passwordTwo)
-          setIsError(true)
-          clearForm()
-      }
-}
+      .catch((err) => {
+        console.log(err.response);
+        const errorMsg = err.response.data.errors.map(err => err.msg);
+        setErrors([...errorMsg]);
+        setIsError(true);
+        clearForm();
+      })
+    }
 
 function onHandleUserName(event){
     setUserName(event.target.value.trim().toLowerCase())
@@ -79,6 +69,7 @@ if ((existingTokens === "undefined") || (existingTokens === null)) {
         onHandlePasswordTwo={onHandlePasswordTwo}
         postSignUp={postSignUp}
         style={{ opacity : isError ? "1" : "0" }}
+        errors={errors}
         />
           <Footer>
          <div></div>

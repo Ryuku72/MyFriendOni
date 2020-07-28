@@ -14,7 +14,7 @@ function AboutCard(props){
                 <p>6. Coffee: Essential Requirement of No Sleep </p>
                 <p>7. Flat Icon & GoogleFont</p>
                 <p>8. UWA+Trilogy 2020</p>
-                <a href="https://joshuakb.netlify.app/">More information @ https://joshuakb.netlify.app/</a>
+                <a href="https://joshuakb.netlify.app/" target="_blank"> More information @ https://joshuakb.netlify.app/</a>
             </div>
 
         </div>

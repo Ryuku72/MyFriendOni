@@ -5,12 +5,11 @@ import Navbar from "../components/Navbar";
 import Footer from '../components/Footer';
 import Animation from "../components/Animation"
 import PlayerCard from "../components/PlayerCard";
-import { useAuth } from "../utils/auth";
 import AboutCard from "../components/AboutCard";
 
 function About(){
     const location = useLocation()
-    const { setAuthTokens } = useAuth();
+
 
     const [user, setUser] = useState({
         createdAt: "",
@@ -28,18 +27,18 @@ function About(){
       
     // API calls
   useEffect(() => {
-    getUser();
+    //getUser();
   }, [location]);
 
   // Database Calls
-  function getUser() {
-    const user = localStorage.getItem("tokens");
-    const userID = JSON.parse(user)["_id"];
-    //console.log(userID)
-    API.getUser(userID).then((result) => {
-      setUser(result.data);
-    });
-  }
+  // function getUser() {
+  //   const user = localStorage.getItem("tokens");
+  //   const userID = JSON.parse(user)["_id"];
+  //   //console.log(userID)
+  //   API.getUser(userID).then((result) => {
+  //     setUser(result.data);
+  //   });
+  // }
 
   function updateDetails(event){
     event.preventDefault()
@@ -51,8 +50,8 @@ function About(){
         "password": event.target.value
     }
     API.updateLogin(user._id, request).then(result => {
-        //console.log(result)
-        getUser()
+        console.log(result)
+       // getUser()
         }).catch(err => console.log(err));
   }
 
@@ -63,7 +62,6 @@ function About(){
     API.deleteUser(user._id).then(answer => {
         console.log(answer)
         //log out
-        setAuthTokens();
         }).catch(err => console.log(err));
   }
 

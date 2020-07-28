@@ -6,7 +6,7 @@ function Animation(props) {
   return (
     <div
       className="animation flex items-end justify-end bg-black"
-      style={{ zIndex:-6 }}
+      style={{ zIndex:-10 }}
     >
       <div
         id="titleSeq1"

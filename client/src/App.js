@@ -1,37 +1,26 @@
-import React, { useState} from 'react';
-import Login from "./pages/login"
-import Signup from "./pages/signup"
-import Quiz from "./pages/quiz"
-import Study from "./pages/study"
-import About from "./pages/about"
-import { BrowserRouter as Router, Route } from "react-router-dom";
-import { AuthContext } from "./utils/auth";
-import PrivateRoute from "./PrivateRoute"
-
+import React from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import GlobalStore from "./utils/GlobalStore";
+import Login from "./pages/login";
+import Signup from "./pages/signup";
+import Quiz from "./pages/quiz";
+import Study from "./pages/study";
+import About from "./pages/about";
 
 function App() {
-  const existingTokens = localStorage.getItem("tokens");
-  const [authTokens, setAuthTokens] = useState(existingTokens);
-  
-  const setTokens = (data) => {
-   // console.log(data)
-    localStorage.setItem("tokens", JSON.stringify(data));
-    setAuthTokens(data);
-  }
-
   return (
-    <AuthContext.Provider value={{ authTokens, setAuthTokens: setTokens }}>
     <Router>
-    <>
-    <Route exact path="/" component={Login} />
-    <Route exact path="/login" component={Login} />
-    <Route path="/signup" component={Signup} />
-    <PrivateRoute path="/quiz" component={Quiz} />
-    <PrivateRoute path="/study" component={Study} />
-    <PrivateRoute path="/about" component={About} />
-    </>
+      <GlobalStore.GlobalProvider>
+        <Switch>
+          <Route exact path="/" component={Login} />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/signup" component={Signup} />
+          <Route path="/quiz" component={Quiz} />
+          <Route path="/study" component={Study} />
+          <Route path="/about" component={About} />
+        </Switch>
+      </GlobalStore.GlobalProvider>
     </Router>
-    </AuthContext.Provider>
   );
 }
 

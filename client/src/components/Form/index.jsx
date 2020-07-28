@@ -20,7 +20,7 @@ function Form(props){
             </label>
             <input className="shadow appearance-none rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="password" id="password" type="password" placeholder="**********" value={props.password} onChange={props.onHandlePassword}/>
           </div>
-          <p className="text-red-400 mb-4" style={props.style}>The username or password provided were incorrect!</p> 
+          <p className="text-red-400 mb-4" style={props.style}>{props.errorMessage}</p> 
           <div className="flex items-start justify-between">
             <button className="bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-6 rounded focus:outline-none focus:shadow-outline" type="submit" onClick={props.postLogin}>
               Sign In

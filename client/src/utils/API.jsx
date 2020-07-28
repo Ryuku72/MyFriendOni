@@ -1,40 +1,51 @@
 import axios from "axios";
 
+const voucher = { withCredentials: true }
+
 export default {
-  //Get Requests for Information
-  getUser: function(id){
-    return axios.get("/api/users/" + id)
+
+  loginUser: function (request) {
+    return axios.post("/api/login", request, voucher)
   },
-  getJapanese: function() {
-    return axios.get("/api/japanese");
+  createUser: function (request) {
+    return axios.post("/api/register", request, voucher)
   },
-  getLetters: function() {
-    return axios.get("/api/letters");
-  },
-  getVocab: function(){
-    return axios.get("/api/vocab")
-  },
-  getFurigana: function(){
-    return axios.get("/api/furigana")
-  },
-  loginUser: function(request){
-    return axios.post("/api/login", request)
-  },
-  //Create User
-  createUser: function(request){
-    return axios.post("/api/users", request)
-  },
-  //Update User points
-  updateUser: function(id, body){
-    return axios.put("/api/users/update/" + id, body)
+  logoutUser: function(){
+    return axios.get("/api/logout")
   },
 
-  //Update User details
-  updateLogin: function(id, body){
+  getUser: function (id) {
+    return axios.get("/api/users/" + id)
+  },
+  
+  updatePoints: function (id, body) {
+    return axios.put("/api/users/update/" + id, body)
+  },
+  updateLogin: function (id, body) {
     return axios.post("/api/users/" + id, body)
   },
-  //Delete User
-  deleteUser: function(id){
-    return axios.delete("api/users/" +id)
-  }
+  deleteUser: function (id) {
+    return axios.delete("api/users/" + id)
+  },
+
+  //Quiz
+  getJapanese: function () {
+    return axios.get("/api/japanese");
+  },
+  getLetters: function () {
+    return axios.get("/api/letters");
+  },
+  getVocab: function () {
+    return axios.get("/api/vocab")
+  },
+  getFurigana: function () {
+    return axios.get("/api/furigana")
+  },
+
+
+
+  //Create User
+
+
+
 }

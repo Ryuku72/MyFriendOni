@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { useAuth } from "../../utils/auth";
-import { Link, useLocation } from "react-router-dom";
-import "./style.css";
+import React, { useState } from "react";
+import { Link, useLocation, useHistory } from "react-router-dom";
+import API from "../../utils/API"
 import quizIcon from "../../assets/svg/monster.svg";
 import studyIcon from "../../assets/svg/book2.svg";
 import japan from "../../assets/svg/japan.svg";
@@ -18,8 +17,10 @@ import Stat from "../Stat";
 import NavItem from "../NavItem";
 import NavDropDown from "../NavDropDown";
 import NavDropDownItem from "../NavDropDownItem"
+import "./style.css";
 
 function Navbar(props) {
+  let history = useHistory();
   const [openOne, setOpenOne] = useState(false);
   const [openTwo, setOpenTwo] = useState(false);
   const [openThree, setOpenThree] = useState(false);
@@ -42,13 +43,19 @@ function Navbar(props) {
     setOpenOne(false);
   }
 
-  // Auth
-  const { setAuthTokens } = useAuth();
-
-  function logOut(event) {
+  async function logout(event){
     event.preventDefault();
-    setAuthTokens();
+
+    try{
+      await  API.logoutUser().then(result=> console.log(result))
+      history.push('/')
+    } catch (e) {
+      console.log(e.message)
+    }
+ 
   }
+
+
 
   const location = useLocation();
 
@@ -76,6 +83,8 @@ function Navbar(props) {
   } else {
     color = "text-orange-300" 
   }
+
+ 
 
   return (
 
@@ -206,7 +215,7 @@ function Navbar(props) {
             </Link>
             <NavDropDownItem
               icon={outside}
-              click={logOut}
+              click={logout}
               color="bg-gray-200"
               text="Log Out"
             />

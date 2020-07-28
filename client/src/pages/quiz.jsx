@@ -44,7 +44,7 @@ function Quiz(props) {
 
   // useEffects
   useEffect(() => {
-    getUser();
+   // getUser();
     if (location.pathname === "/quiz/japanese") {
     setLanguage("Japanese");
     setQuizToggle(true);
@@ -106,15 +106,15 @@ function Quiz(props) {
   }, [timeLeft]);
 
   // Database Calls
-  function getUser() {
-    const user = localStorage.getItem("tokens");
-    const userID = JSON.parse(user)['_id']
-    //console.log(userID)
-    API.getUser(userID)
-    .then(result => {
-      setUser(result.data)
-    })
-  }
+  // function getUser() {
+  //   const user = localStorage.getItem("tokens");
+  //   const userID = JSON.parse(user)['_id']
+  //   //console.log(userID)
+  //   API.getUser(userID)
+  //   .then(result => {
+  //     setUser(result.data)
+  //   })
+  // }
 
   function loadVocabList() {
     if (language === "Hiragana" || language === "Katakana") {
@@ -280,8 +280,8 @@ function Quiz(props) {
       "kataHighScore": user.kataHighScore,
       "totalScore": user.totalScore,
     }
-    API.updateUser(user._id, request).then(result => {
-      getUser()
+    API.updatePoints(user._id, request).then(result => {
+    //  getUser()
       }).catch(err => console.log(err));
     setScoreToggle(false);
     setPoints({ ...points, score: 0 });
