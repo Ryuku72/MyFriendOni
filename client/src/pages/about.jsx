@@ -56,23 +56,6 @@ function About(){
     });
   }
 
-  function deleteUser(event) {
-    event.preventDefault()
-    console.log(user._id)  
-    
-    API.deleteUser(user._id).then(answer => {
-        console.log(answer)
-        //log out
-        try{
-          API.logoutUser().then(result=> console.log(result))
-          window.localStorage.removeItem("tokens");
-          history.push('/')
-        } catch (e) {
-          console.log(e.message)
-        }
-        }).catch(err => console.log(err));
-  }
-
   function onHandlePreviousPassword(event) {
     event.preventDefault()
     //console.log(event.target.value)
@@ -118,33 +101,25 @@ function About(){
    console.log(event);
    setUpdateError(false)
 
-    if  ((updateUser === "" ) && (updatePw === "" ) && (updatePreviousPw === "")){
-    setErrorMsg({...errorMsg, edit:"Error: Inputs are blank"})
-    setUpdateError(true)
-    setUpdatePreviousPw("")
-    setUpdateUser("")
-    setUpdatePw("")
-    }
-    else if (updateUser === "" ) {
-        setErrorMsg({...errorMsg, edit:"Error: Username is blank"})
-        setUpdateError(true)
-        setUpdatePreviousPw("")
-        setUpdateUser("")
-        setUpdatePw("")
-    } 
-    else if (updatePw === "" ) {
-        setErrorMsg({...errorMsg, edit:"Error: Password is blank"})
-        setUpdateError(true)
-        setUpdatePreviousPw("")
-        setUpdateUser("")
-        setUpdatePw("")
-    }
-    else if (updatePreviousPw === ""){
-      setErrorMsg({...errorMsg, edit:"Error: Previous Pw is blank"})
+    function error (message) {
+      setErrorMsg({...errorMsg, edit:message})
       setUpdateError(true)
       setUpdatePreviousPw("")
       setUpdateUser("")
       setUpdatePw("")
+    }
+
+    if  ((updateUser === "" ) && (updatePw === "" ) && (updatePreviousPw === "")){
+      error("Error: Inputs are blank")
+    }
+    else if (updateUser === "" ) {
+      error("Error: Username is blank")
+    } 
+    else if (updatePw === "" ) {
+       error("Error: Password is blank")
+    }
+    else if (updatePreviousPw === ""){
+      error("Error: Previous Pw is blank")
     }
     else {
        setConfirm({ ...confirm, edit: true });
@@ -163,23 +138,29 @@ function updateDetails(event){
   event.preventDefault()
    //console.log("New User: " + event.target.name)
    //console.log("New Password: " + event.target.value)
-
-  let previousPw = { "password": updatePreviousPw}
-
-  let request = {
+   //console.log(previousPw)
+   //console.log(user._id)
+   //console.log(request)
+  
+   let request = {
+      "previouspw": updatePreviousPw,
       "username": updateUser,
       "password": updatePw
   }
-
-  //console.log(previousPw)
-  //console.log(request)
   
-  // API.updateLogin(user._id, request).then(result => {
-  //     console.log(result)
-  //    getUser()
-  //     }).catch(err => console.log(err));
-
-  confirmUpdate()
+   API.updateLogin(user._id, request).then(result => {
+       //console.log(result)
+       confirmUpdate()
+       getUser()
+    }).catch(err => {
+      //console.log(err.response.data)
+      setUpdateError(true)
+      setUpdatePreviousPw("")
+      setUpdateUser("");
+      setUpdatePw("");
+      setConfirm({ ...confirm, edit: false}) 
+      setErrorMsg({...errorMsg, edit: err.response.data.errors})
+    });
 }
 
 function toggleDeleteBox(event) {
@@ -233,20 +214,35 @@ function handleDeleteUser(event) {
       setPasswordOne("");
       setPasswordTwo("");
       setDeleteError(true)
+  } else {
+      setConfirm({ ...confirm, delete: true}) 
   }
-  else if ((passwordOne !== user.password) || (passwordTwo !== user.password)){
-      setErrorMsg({...errorMsg, delete: "Error: Incorrect password"})
+}
+
+function deleteUser(event) {
+  event.preventDefault()
+  console.log("delete button triggered")
+  console.log(user._id)  
+  const request = { "password" : passwordOne}
+  API.deleteUsers(user._id, request)
+  .then(answer => {
+    console.log("hit delete front end")
+      // //log out
+      try{
+        API.logoutUser().then(result=> console.log(result))
+        window.localStorage.removeItem("tokens");
+        history.push('/')
+      } catch (e) {
+        console.log(e.message)
+      }
+    }).catch(err => {
+      console.log(err.response.data)
       setPasswordOne("");
       setPasswordTwo("");
       setDeleteError(true)
-  } else {
-      //compare to previous password
-
-      //if wrong throw error
-      //Error: Previous and Current Pw don't match
-    
-      setConfirm({ ...confirm, delete: true}) 
-      } 
+      setConfirm({ ...confirm, delete: false}) 
+      setErrorMsg({...errorMsg, delete: err.response.data.errors})
+    });
 }
 
 function cancelDelete(event){
@@ -306,8 +302,7 @@ function confirmUpdate(){
           updatePw={updatePw}
           updateEditError={{opacity: updateError ? "1" : "0"}}
           cancelUpdate={cancelUpdate}
-          toggleDeleteStyle={{ height: deleteForm ? "50%" : "0", opacity: deleteForm ? "1" : "0",
-          }}
+          toggleDeleteStyle={{ height: deleteForm ? "50%" : "0", opacity: deleteForm ? "1" : "0"}}
           toggleDeleteBox={toggleDeleteBox}
           closeDeleteBox={closeDeleteBox}
           passwordOne={passwordOne}

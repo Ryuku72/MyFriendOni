@@ -24,7 +24,6 @@ router.post("/register", (req, res, next) => {
       errors: validationErrors,
     });
   }
-
   const patron = new users({
     username: req.body.username,
     password: req.body.password,

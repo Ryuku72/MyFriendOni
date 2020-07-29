@@ -23,8 +23,8 @@ export default {
   updateLogin: function (id, body) {
     return axios.post("/api/users/" + id, body)
   },
-  deleteUser: function (id) {
-    return axios.delete("api/users/" + id)
+  deleteUsers: function (id, body) {
+    return axios.put("/api/users/delete/" + id, body)
   },
 
   //Quiz
