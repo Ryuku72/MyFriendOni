@@ -2,156 +2,6 @@ import React, { useState, useEffect } from "react";
 import "./style.css";
 
 function PlayerCard(props) {
-  const [passwordOne, setPasswordOne] = useState("");
-  const [passwordTwo, setPasswordTwo] = useState("");
-
-  const [updatePreviousPw, setUpdatePreviousPw] = useState("")
-  const [updateUser, setUpdateUser] = useState("")
-  const [updatePw, setUpdatePw] = useState("");
-
-  const [errorMsg, setErrorMsg] = useState({
-    edit: "",  
-    delete: ""
-  })
-  const [editForm, setEditForm] = useState(false);  
-  const [deleteForm, setDeleteForm] = useState(true); //editing
-  const [deleteError, setDeleteError] = useState(false)
-  const [updateError, setUpdateError] = useState(false)
-  const [confirm, setConfirm] = useState({
-    edit: false,
-    delete: false,
-  });
-
-/* eslint react/prop-types: 0 */
-  useEffect(()=> {
-    confirmUpdate()
-  }, [props.updateDetails])
-     /* eslint react/prop-types: 0 */
-
-  function toggleEditBox(event) {
-    event.preventDefault();
-    setEditForm(!editForm);
-    setUpdateUser("");
-    setUpdatePw("");
-    setErrorMsg({...errorMsg, edit:""})
-    setConfirm({ ...confirm, edit: false });
-  }
-
-  function toggleDeleteBox(event) {
-    event.preventDefault();
-    setDeleteForm(!deleteForm);
-    setPasswordOne("");
-    setPasswordTwo("");
-    setErrorMsg({...errorMsg, delete:""})
-    setConfirm({ ...confirm, delete: false });
-  }
-
-  function onHandleUpdate(event) {
-    event.preventDefault();
-   //console.log(event);
-   setUpdateError(false)
-
-    if  ((updateUser === "" ) && (updatePw === "" ) && (updatePreviousPw === "")){
-    setErrorMsg({...errorMsg, edit:"Error: Inputs are blank"})
-    setUpdateError(true)
-    setUpdatePreviousPw("")
-    setUpdateUser("")
-    setUpdatePw("")
-    }
-    else if (updateUser === "" ) {
-        setErrorMsg({...errorMsg, edit:"Error: Username is blank"})
-        setUpdateError(true)
-        setUpdatePreviousPw("")
-        setUpdateUser("")
-        setUpdatePw("")
-    } 
-    else if (updatePw === "" ) {
-        setErrorMsg({...errorMsg, edit:"Error: Password is blank"})
-        setUpdateError(true)
-        setUpdatePreviousPw("")
-        setUpdateUser("")
-        setUpdatePw("")
-    }
-    else if (updatePreviousPw === ""){
-      setErrorMsg({...errorMsg, edit:"Error: Previous Pw is blank"})
-      setUpdateError(true)
-      setUpdatePreviousPw("")
-      setUpdateUser("")
-      setUpdatePw("")
-    }
-    else {
-       setConfirm({ ...confirm, edit: true });
-    }
-  }
-
-  function handleDeleteUser(event) {
-    event.preventDefault();
-
-    if ((passwordOne === "" ) || (passwordTwo === "" )){
-        setErrorMsg({...errorMsg, delete:"Error: Input is blank"})
-        setPasswordOne("");
-        setPasswordTwo("");
-        setDeleteError(true)
-    }
-    else if (passwordOne !== passwordTwo) {
-        setErrorMsg({...errorMsg, delete:"Error: Inputs don't match"})
-        setPasswordOne("");
-        setPasswordTwo("");
-        setDeleteError(true)
-    }
-    else if ((passwordOne !== props.password) || (passwordTwo !== props.password)){
-        setErrorMsg({...errorMsg, delete: "Error: Incorrect password"})
-        setPasswordOne("");
-        setPasswordTwo("");
-        setDeleteError(true)
-    } else {
-        //compare to previous password
-
-        //if wrong throw error
-        //Error: Previous and Current Pw don't match
-      
-        setConfirm({ ...confirm, delete: true}) 
-        } 
-  }
-
-  function resetEditForm(event) {
-    event.preventDefault();
-    setUpdatePreviousPw("")
-    setUpdateUser("");
-    setUpdatePw("");
-    setUpdateError(false)
-  }
-
-  function resetDeleteForm(event) {
-    event.preventDefault();
-    setPasswordOne("");
-    setPasswordTwo("");
-    setDeleteError(false)
-  }
-
-  function cancelUpdate(event){
-        event.preventDefault();
-        setUpdatePreviousPw("")
-        setUpdateUser("");
-        setUpdatePw("");
-        setConfirm({ ...confirm, edit: false })
-  }
-
-  function cancelDelete(event){
-        event.preventDefault();
-        setPasswordOne("");
-        setPasswordTwo("");
-        setConfirm({ ...confirm, delete: false })
-  }
-
-  function confirmUpdate(){
-      setConfirm({ ...confirm, edit: false });
-      setUpdatePreviousPw("")
-      setUpdateUser("");
-      setUpdatePw("");
-      setErrorMsg({...errorMsg, edit:"User Details Updated!"})
-      setUpdateError(true)
-  }
 
   return (
     <div className="w-full p-12 font-mono inline-flex z-20" style={{...props.windowStyle}}>
@@ -167,13 +17,13 @@ function PlayerCard(props) {
           <div className="w-1/2 flex items-start justify-end">
             <button
               className="w-1/6 rounded-full border-2 border-green-700 px-3 py-1 text-sm bg-green-500 hover:bg-green-400 hover:text-gray-300 focus:outline-none shadow-xl"
-              onClick={toggleEditBox}
+              onClick={props.toggleEditBox}
             >
               Edit
             </button>
             <button
               className="w-1/6 rounded-full border-2 border-red-700 px-3 py-1 text-sm bg-red-500 hover:bg-red-400 hover:text-gray-300 focus:outline-none mx-2 shadow-xl"
-              onClick={toggleDeleteBox}
+              onClick={props.toggleDeleteBox}
             >
               Del
             </button>
@@ -262,10 +112,7 @@ function PlayerCard(props) {
       <div className="w-1/2 h-full flex flex-col items-end">
         <div
           className="w-3/4 py-2 pr-20 pl-12"
-          style={{
-            height: editForm ? "50%" : "0",
-            opacity: editForm ? "1" : "0",
-          }}
+          style={{...props.editBoxStyle}}
         >
           <div className="relative w-full h-full border-4 border-green-500 rounded-lg">
             <header
@@ -278,7 +125,7 @@ function PlayerCard(props) {
               <div className="w-1/2 h-full flex items-start justify-end">
                 <button
                   className="rounded-full border border-red-600 px-2 text-base text-red-600 bg-red-600 hover:bg-red-500 hover:text-gray-300 mx-3 my-2 antialiased shadow-xl focus:outline-none"
-                  onClick={() => setEditForm(false)}
+                  onClick={props.closeEditBox}
                 >
                   &#10006;
                 </button>
@@ -288,7 +135,7 @@ function PlayerCard(props) {
               <form
                 id="editForm"
                 className="w-full px-2 flex flex-col h-full items-center justify-center"
-                onSubmit={onHandleUpdate}
+                onSubmit={props.onHandleUpdate} 
               >
                 <div className="w-full p-2 flex flex-col justify-center" style={{height:"75%"}}>
                 <div
@@ -300,12 +147,12 @@ function PlayerCard(props) {
                   </label>
                   <input
                     name="updatePreviousPw"
-                    value={updatePreviousPw}
+                    value={props.updatePreviousPw}
                     type="text"
-                    placeholder="#PreviousPw" //current username
+                    placeholder="#PreviousPw"
                     id="updatePreviousPw"
                     className="w-3/4 h-full p-1 mx-4 outline-none shadow-xl rounded text-sm"
-                    onChange={(event) => setUpdatePreviousPw(event.target.value.toLowerCase())}
+                    onChange={props.onHandlePreviousPassword}
                   />
                 </div>
                 <div
@@ -317,12 +164,12 @@ function PlayerCard(props) {
                   </label>
                   <input
                     name="usernameUpdate"
-                    value={updateUser}
+                    value={props.updateUser}
                     type="text"
-                    placeholder="Lorem Ipsum" //current username
+                    placeholder="Lorem Ipsum"
                     id="usernameUpdate"
                     className="w-3/4 h-full p-1 mx-4 outline-none shadow-xl rounded text-sm"
-                    onChange={(event) => setUpdateUser(event.target.value.toLowerCase())}
+                    onChange={props.onHandleNewUserName}
                   />
                 </div>
                 <div
@@ -334,29 +181,29 @@ function PlayerCard(props) {
                   </label>
                   <input
                     name="passwordUpdate"
-                    value={updatePw}
+                    value={props.updatePw}
                     type="text"
-                    placeholder="#Secret" //current username
+                    placeholder="#Secret" 
                     id="passwordUpdate"
                     className="w-3/4 h-full p-1 mx-4 outline-none shadow-xl rounded text-sm"
-                    onChange={(event) => setUpdatePw(event.target.value.toLowerCase())}
-                    onSubmit={onHandleUpdate}
+                    onChange={props.onHandleNewPassword}
+                    onSubmit={props.onHandleUpdate} 
                   />
                 </div>
                 </div>
                 <div className="w-full flex justify-center px-2 items-center" style={{height:"30%"}}>
-                    <div className="w-3/5" style={{opacity: updateError ? "1" : "0"}}>
-                        <p className="text-sm text-red-500 font-semibold rounded-lg mr-2">{errorMsg.edit}</p>
+                    <div className="w-3/5" style={{...props.editBoxError}}>
+                        <p className="text-sm text-red-500 font-semibold rounded-lg mr-2">{props.editErrorMsg}</p>
                     </div>
                   <button className="w-1/5 flex justify-center items-center mr-3 rounded-lg border-2 border-gray-600 px-3 py-1 text-xs bg-gray-600 hover:bg-gray-500 hover:text-gray-300 mx-2 shadow-xl focus:outline-none"
-                  onClick={resetEditForm}
+                  onClick={props.resetEditForm}
                   type="button"
                   >
                     Clear
                   </button>
                   <button
                     className="w-1/5 flex justify-center items-center mr-3 rounded-lg border-2 border-blue-500 px-3 py-1 text-xs bg-blue-500 hover:bg-blue-400 hover:text-gray-300 shadow-xl focus:outline-none"
-                    onClick={onHandleUpdate}
+                    onClick={props.onHandleUpdate}
                     type="button"
                   >
                     Submit
@@ -366,25 +213,25 @@ function PlayerCard(props) {
             </main>
             <div
               className="bg-black z-10 w-full h-full absolute top-0 flex flex-col justify-center p-8 leading-10"
-              style={{ display: confirm.edit ? "block" : "none" }}
+              style={{ ...props.confirmEdit }}
             >
               <p className="text-white text-center font-mono font-semibold underline">
                 Confirm Update
               </p>
-              <p className="text-white text-centerfont-mono">New UserName: {updateUser}</p>
-              <p className="text-white text-centerfont-mono">New Password: {updatePw}</p>
+              <p className="text-white text-centerfont-mono">New UserName: {props.updateUser}</p>
+              <p className="text-white text-centerfont-mono">New Password: {props.updatePw}</p>
              
               <div className="w-full flex items-start justify-end mt-6">
-              <div className="w-3/5" style={{opacity: updateError ? "1" : "0"}}>
-                        <p className="text-xs text-red-500 font-semibold rounded-lg mr-2">{errorMsg.edit}</p>
+              <div className="w-3/5" style={{...props.updateEditError}}>
+                        <p className="text-xs text-red-500 font-semibold rounded-lg mr-2">{props.editErrorMsg}</p>
                     </div>
                 <button
                   className="w-1/6 mr-3 rounded-lg border-2 border-red-600 px-2 text-lg bg-red-600 hover:bg-red-500 hover:text-gray-300 mx-2 shadow-xl focus:outline-none"
-                  onClick={cancelUpdate}
+                  onClick={props.cancelUpdate}
                 >
                   &#10008;
                 </button>
-                <button className="w-1/6 mr-3 rounded-lg border-2 border-green-500 px-2 text-lg bg-green-500 hover:bg-green-400 hover:text-gray-300 shadow-xl focus:outline-none" value={updatePw} name={updateUser}
+                <button className="w-1/6 mr-3 rounded-lg border-2 border-green-500 px-2 text-lg bg-green-500 hover:bg-green-400 hover:text-gray-300 shadow-xl focus:outline-none"
                 onClick={props.updateDetails}
                 >
                   &#10004;
@@ -396,10 +243,7 @@ function PlayerCard(props) {
 
         <div
           className="w-1/2 p-6"
-          style={{
-            height: deleteForm ? "50%" : "0",
-            opacity: deleteForm ? "1" : "0",
-          }}
+          style={{...props.toggleDeleteStyle}}
         >
           <div className="relative w-full h-full border-4 border-red-500 rounded-lg">
             <header
@@ -412,7 +256,7 @@ function PlayerCard(props) {
               <div className="w-1/2 h-full flex items-start justify-end">
                 <button
                   className="rounded-full border border-indigo-600 px-2 text-base text-indigo-600 bg-indigo-600 hover:bg-indigo-500 hover:text-gray-300 mx-3 my-2 antialiased shadow-xl focus:outline-none"
-                  onClick={() => setDeleteForm(false)}
+                  onClick={props.closeDeleteBox}
                 >
                   &#10006;
                 </button>
@@ -422,6 +266,7 @@ function PlayerCard(props) {
               <form
                 id="deleteForm"
                 className="w-full p-4 flex flex-col h-full justify-center"
+                onSubmit={props.handleDeleteUser} 
               >
                 <div className="my-2 flex items-end" style={{ height: "20%" }}>
                   <label className="w-2/5 text-sm text-gray-800 font-semibold">
@@ -429,13 +274,13 @@ function PlayerCard(props) {
                   </label>
                   <input
                     name="delUser01"
-                    value={passwordOne}
+                    value={props.passwordOne}
                     type="text"
-                    placeholder="Password..." //current username
+                    placeholder="Password..."
                     id="delUser01"
                     className="w-4/5 h-full p-2 mx-2 outline-none shadow-xl rounded text-sm"
-                    onChange={(event) => setPasswordOne(event.target.value)}
-                    onSubmit={handleDeleteUser}
+                    onChange={props.onHandlePasswordOne}
+                    onSubmit={props.handleDeleteUser} 
                   />
                 </div>
                 <div className="my-2 flex items-end">
@@ -444,28 +289,28 @@ function PlayerCard(props) {
                   </label>
                   <input
                     name="delUser02"
-                    value={passwordTwo}
+                    value={props.passwordTwo}
                     type="text"
-                    placeholder="Password..." //current username
+                    placeholder="Password..."
                     id="delUser02"
                     className="w-4/5 h-full p-2 mx-2 outline-none shadow-xl rounded text-sm"
-                    onChange={(event) => setPasswordTwo(event.target.value)}
-                    onSubmit={handleDeleteUser}
+                    onChange={props.onHandlePasswordTwo}
+                    onSubmit={props.handleDeleteUser} 
                   />
                 </div>
                 <div className="w-full flex justify-between mt-6 items-center">
-                    <div className="w-3/5" style={{opacity: deleteError ? "1" : "0"}}>
-                        <p className="text-xs text-red-500 font-semibold rounded-lg mr-2">{errorMsg.delete}</p>
+                    <div className="w-3/5" style={{...props.deleteBoxError}}>
+                        <p className="text-xs text-red-500 font-semibold rounded-lg mr-2">{props.deleteErrorMsg}</p>
                     </div>
                   <button
                     className="w-1/5 mr-3 rounded-lg border-2 border-gray-600 py-1 text-xs bg-gray-600 hover:bg-gray-500 hover:text-gray-300 mx-2 shadow-xl focus:outline-none flex justify-center items-center"
-                    onClick={resetDeleteForm}
+                    onClick={props.resetDeleteForm}
                   >
                     Clear
                   </button>
                   <button
                     className="w-1/5 mr-3 rounded-lg border-2 border-blue-500 py-1 text-xs bg-blue-500 hover:bg-blue-400 hover:text-gray-300 shadow-xl text-center focus:outline-none flex justify-center items-center"
-                    onClick={handleDeleteUser}
+                    onClick={props.handleDeleteUser} 
                   >
                     Submit
                   </button>
@@ -474,7 +319,7 @@ function PlayerCard(props) {
             </main>
             <div
               className="bg-black z-10 w-full h-full absolute top-0 flex flex-col justify-center p-10 leading-10"
-              style={{ display: confirm.delete ? "block" : "none" }}
+              style={{...props.confirmDeleteStyle}}
             >
               <p className="text-white text-center font-mono mb-4 font-semibold underline">
                 Confirm Delete
@@ -485,7 +330,7 @@ function PlayerCard(props) {
               <div className="w-full flex items-start justify-end mt-8">
                 <button
                   className="w-1/6 mr-3 rounded-lg border-2 border-red-600 px-2 text-lg bg-red-600 hover:bg-red-500 hover:text-gray-300 mx-2 shadow-xl focus:outline-none"
-                  onClick={cancelDelete}
+                  onClick={props.cancelDelete}
                 >
                   &#10008;
                 </button>
