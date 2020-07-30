@@ -73,6 +73,18 @@ function Navbar(props) {
   return title
 }
 
+const homeURL = () => {
+  let title; 
+  if  (location.pathname.includes("/quiz")){
+    title = "/quiz"
+  } else if (location.pathname.includes("/study")){
+  title = "/study"
+} else {
+  title = "/about"
+}
+return title
+}
+
   let color=""
   if (location.pathname.includes("/quiz")){
     color = "text-green-300";
@@ -87,22 +99,25 @@ function Navbar(props) {
   return (
 
 <nav className="navbar">
-  <div className="navbar-nav w-full inline-flex items-end justify-between">
-    <div className="inline-flex items-end px-6">
-  <p className={`menuTitle capitalize mr-6 my-2 ${color}`}>{quizTitle()} {`//`}</p>
+  <div className="navbar-nav inline-flex flex-wrap items-end justify-between">
+    <div className="locationDiv inline-flex items-end h-full">
+      <Link to={homeURL} onClick={props.exitToQuizPage}>
+  <span className={`menuTitle capitalize ${color}`} >{quizTitle()} {`//`}</span>
+  </Link>
+  </div>
+  <div className="inline-flex justify-start items-end pointsDiv">
 <Stat title="Score" value={props.score}/>
 <Stat title="High Score" value={props.highscore}/>
 <Stat title="Total Score" value={props.totalscore}/>
 </div>
-<div className="flex h-full px-4 py-1">
-<div className="flex items-end">
-
+<div className="iconsDiv flex justify-end items-end">
 <NavItem
           icon={quizIcon}
           color="bg-green-300"
           open={openOne}
           click={props.exitToQuizPage}
           onHandleDropDown={onHandleDropDownOne}
+          open={openOne}
         >
           <NavDropDown
             color={`border-indigo-600 ${btnBg01}`}
@@ -213,7 +228,6 @@ function Navbar(props) {
           </NavDropDown>
         </NavItem>
   </div>
-</div>
 </div>
 </nav>
   );

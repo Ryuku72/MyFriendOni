@@ -287,7 +287,8 @@ function Quiz(props) {
     //console.log(user);
   }
 
-  function onHandleExitQuiz() {
+  function onHandleExitQuiz(event) {
+    event.preventDefault();
     let scoreLanguage = "";
     switch (language) {
       case "English":

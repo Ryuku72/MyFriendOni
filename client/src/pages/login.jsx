@@ -76,14 +76,14 @@ function Login(props) {
   }
 
   return (
-    <div className="mobile w-full p-0 m-0 bg-gray-300 flex flex-col items-center overflow-y-auto">
-      <div className="w-full flex flex-col" style={{height:"22.5%"}}>
+    <div className="h-screen w-full p-0 m-0 bg-gray-300 flex flex-col items-center overflow-y-auto">
+      <div className="w-full flex flex-col" style={{height:"18vh"}}>
       <Header/>
       <Subheading />
       </div>
-      <div className="flex justify-center items-center my-4" style={{height:"50%"}}>
-      <div className="grid grid-cols-2 md:w-1/2">
-      <div className="flex items-center">
+      <div className="inline-flex my-4 xl:w-1/2 sm:w-full" style={{height:"55vh"}}>
+
+      <div className="flex items-center justify-end mt-2 p-2 w-1/2" style={{height:"100%"}}>
       <Form
         clearForm={clearForm}
         onHandleUserName={onHandleUserName}
@@ -93,20 +93,19 @@ function Login(props) {
         errorMessage={errors}
       />
       </div>
-      <div className="w-full flex justify-center items-center">
-       <img src={Tengu} alt="Tengu Teacher" className="w-full" style={{height:"80%"}}/>
+      <div className="w-1/2 flex items-center justify-center antialiased">
+       <img src={Tengu} alt="Tengu Teacher" className="p-2 tenguTeacher" style={{height:"65%", width:"35vw"}}/>
        </div>
        </div>
+       <div className="inline-flex justify-center items-end w-full text-center" style={{height:"5vh"}}>
+       <div className="h-full">
+       <p className="signUpPtag w-full h-full flex items-center px-4 text-gray-800 font-mono">
+         ...if your new please click </p>
+         </div>
+         <div className="h-full w-1/5">
+           <Link to="/signup" className="cursor-pointer h-full w-full flex items-center"><span className="signupFont flex items-center font-semibold text-pink-500 hover:text-purple-600" >HERE!!!</span></Link></div>
        </div>
-       <div className="flex items-center justify-start w-full text-center" style={{height:"12.5%"}}>
-       <p className="w-full px-4 text-red-700 xl:font-semibold xl:text-base sm:text-xs">
-         ...if your new please click 
-         <span>
-           <Link to="/signup" className="signup cursor-pointer xl:text-6xl md:text-4xl mx-6 text-green-600 hover:text-green-800">
-             HERE!!!
-             </Link></span></p>
-       </div>
-       <div className="flex items-end justify-end w-full" style={{height:"10%"}}>
+       <div className="flex items-end justify-end w-full" style={{height:"15vh"}}>
        <Footer>
        <div></div>
      </Footer>

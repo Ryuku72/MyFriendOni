@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-import { useHistory, Redirect } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import Header from "../components/Header";
 import SignUpForm from "../components/SignupForm";
 import Footer from '../components/Footer';
 import API from '../utils/API';
+import Subheading from '../components/Subheading';
+import "../index.css"
 
 function SignUp(props){
   let history = useHistory();
@@ -12,14 +14,13 @@ function SignUp(props){
   const [passwordTwo, setPasswordTwo] = useState("");
   const [isError, setIsError] = useState(false);
   const [errors, setErrors] = useState([]);
-  
-  //const referrer = props.location.state.referrer || '/';
 
   function clearForm() {
     document.getElementById("signupform").reset();
     setUserName("")
     setPasswordOne("")
     setPasswordTwo("")
+    setErrors([])
   }
 
   function postSignUp(event) {
@@ -31,8 +32,8 @@ function SignUp(props){
         "password_again": passwordTwo
       }
     if (passwordOne !== passwordTwo) {
-      let errorMsg = "  Passwords don't match!"
-      setErrors([...errorMsg])
+      let errorMsg = "Passwords don't match!"
+      setErrors([errorMsg])
       setIsError(true);
     } else {
       API.createUser(request)
@@ -42,11 +43,10 @@ function SignUp(props){
           history.push('/quiz')
       })
       .catch((err) => {
-        console.log(err.response);
-        const errorMsg = err.response.data.errors.map(err => err.msg);
+        console.log(err.response.data);
+        const errorMsg = err.response.data.errors.map((err) => err.msg);
         setErrors([...errorMsg]);
         setIsError(true);
-        clearForm();
       })
     }
     }
@@ -63,8 +63,10 @@ function onHandlePasswordTwo(event){
     setPasswordTwo(event.target.value.trim().toLowerCase())
 }
     return (
-       <div className="flex flex-col justify-center items-center bg-gray-300 f-full h-screen">
+       <div className="xl:flex flex-col justify-center items-center md:block bg-gray-300 w-full h-screen">
         <Header />
+        <Subheading />
+        <div className="xl:w-1/2 sm:w-full p-4 bg-gray-300">
         <SignUpForm 
         onHandleUserName={onHandleUserName} 
         onHandlePasswordOne={onHandlePasswordOne}
@@ -72,7 +74,9 @@ function onHandlePasswordTwo(event){
         postSignUp={postSignUp}
         style={{ opacity : isError ? "1" : "0" }}
         errors={errors}
+        clearForm={clearForm}
         />
+        </div>
           <Footer>
          <div></div>
          </Footer> 

@@ -1,9 +1,11 @@
-.signup {
-    font-family: 'Nanum Pen Script', cursive;
+.signInBtn {
+        --max-size: 12;
+        --min-size: 8;
+        font-size: var(--responsive);
 }
 
-.signInBtn {
-        --max-size: 16;
-        --min-size: 12;
-        font-size: var(--responsive);
+.errorText {
+    --max-size: 16;
+    --min-size: 12;
+    font-size: var(--responsive);
 }

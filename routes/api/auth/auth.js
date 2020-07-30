@@ -7,18 +7,18 @@ router.post("/register", (req, res, next) => {
   const validationErrors = [];
   if (!validator.isAlphanumeric(req.body.username || "", "en-US"))
     validationErrors.push({
-      msg: "Username must only contain letters and numbers",
+      msg: `Username must only contain letters and numbers`,
     });
   if (!validator.isLength(req.body.username || "", { min: 6 }))
     validationErrors.push({
-      msg: "Username must be at least 6 characters long",
+      msg: `Username must be at least 6 characters long`,
     });
   if (!validator.isLength(req.body.password || "", { min: 8 }))
     validationErrors.push({
-      msg: "Password must be at least 8 characters long",
+      msg: `Password must be at least 8 characters long`,
     });
   if (req.body.password !== req.body.password_again)
-    validationErrors.push({ msg: "Passwords do not match" });
+    validationErrors.push({ msg: `Passwords do not match` });
   if (validationErrors.length) {
     return res.status(422).json({
       errors: validationErrors,
@@ -37,7 +37,7 @@ router.post("/register", (req, res, next) => {
       return res.status(422).json({
         errors: [
           {
-            msg: "Account with that username already exists.",
+            msg: "Account already exists.",
           },
         ],
       });
