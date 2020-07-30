@@ -1,0 +1,18 @@
+#quizOverlay {
+    pointer-events: none;
+    transition: 200ms ease-in-out;
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    transition: 200ms ease-in-out;
+  }
+  
+  #quizOverlay.active {
+    opacity: 0.8;
+    background-color: rgba(43, 36, 21, 0.81);
+    pointer-events: all;
+  }

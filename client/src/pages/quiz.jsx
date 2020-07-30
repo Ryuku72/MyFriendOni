@@ -7,6 +7,7 @@ import Footer from "../components/Footer";
 import ScoreCard from "../components/ScoreCard";
 import Card from "../components/Card";
 import Navbar from "../components/Navbar";
+import QuizBackground from "../components/QuizBackground";
 
 function Quiz(props) {
   // States
@@ -207,8 +208,7 @@ function Quiz(props) {
     setTimeLeft(120);
   }
 
-  function exitToQuizPage(event){
-    event.preventDefault()
+  function exitToQuizPage(){
     setTimeLeft("end");
     setBtnColor(true);
     setQuizToggle(false);
@@ -347,12 +347,13 @@ function Quiz(props) {
       />
       <div
         className="border-b-2 border-t-2 border-pink-300 flex justify-center items-center"
-        style={{
-          backgroundImage: quizToggle ? `url(${bgImg2})` : `url(${bgImg})`,
-          height: `calc(100vh - (10vh + 8vh))`,
-          backgroundSize: "100vw 82vh",
-        }}
+        // style={{
+        //   backgroundImage: quizToggle ? `url(${bgImg2})` : `url(${bgImg})`,
+        //   height: `calc(100vh - (10vh + 8vh))`,
+        //   backgroundSize: "100vw 82vh",
+        // }}
       >
+        <QuizBackground />
         <Card
           btnColor={btnColor}
           style={{ display: quizToggle ? "flex" : "none" }}

@@ -128,7 +128,7 @@ return title
             <NavDropDownItem
               icon={japan}
               color="p-1 bg-gray-300"
-              text="Japanese Words"
+              text="Japanese"
               click={props.startJpnQuiz}
             />
             </Link>
@@ -136,7 +136,7 @@ return title
             <NavDropDownItem
               icon={english}
               color="p-1 bg-blue-100"
-              text="English Words"
+              text="English"
               click={props.startEngQuiz}
             />
             </Link>
@@ -144,7 +144,8 @@ return title
             <NavDropDownItem
               align="flex-row-reverse"
               icon={kana}
-              color="bg-orange-500"
+              IconAlign={"flex justify-end"}
+              color="p-1 bg-orange-500"
               text="Katakana"
               click={props.startKataQuiz}
             />
@@ -153,7 +154,8 @@ return title
             <NavDropDownItem
               align="flex-row-reverse"
               icon={hiragana}
-              color="bg-green-300 p-2"
+              IconAlign={"flex justify-end"}
+              color="p-1 bg-green-300"
               text="Hiragana"
               click={props.startHiraQuiz}
             />
@@ -177,6 +179,7 @@ return title
             <NavDropDownItem
               align="flex-row-reverse"
               icon={vocab}
+              IconAlign={"flex justify-end"}
               color="p-1 bg-purple-200"
               text="Vocabulary Search"
 
@@ -185,6 +188,7 @@ return title
             <NavDropDownItem
               align="flex-row-reverse"
               icon={furi}
+              IconAlign={"flex justify-end"}
               color="p-1 bg-teal-100"
               text="Letter Chart"
           
@@ -208,6 +212,7 @@ return title
             <NavDropDownItem
               align="flex-row-reverse"
               icon={player}
+              IconAlign={"flex justify-end"}
               color="p-1 bg-purple-200"
               text="Player Stats"
             />
