@@ -1,12 +1,9 @@
-.loginForm {
-    height: 80vh;
-}
-
-.loginForm div {
-    width: 40vw;
-    padding-right: 6vw;
-}
-
 .signup {
     font-family: 'Nanum Pen Script', cursive;
+}
+
+.signInBtn {
+        --max-size: 16;
+        --min-size: 12;
+        font-size: var(--responsive);
 }

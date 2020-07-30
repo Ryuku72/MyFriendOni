@@ -1,35 +1,31 @@
 import React from 'react';
-import { Link } from "react-router-dom";
 import "./style.css"
-import Tengu from "../../assets/img/onilogin.png"
 
 function Form(props){
     return (
-      <div className="loginForm flex justify-center items-center w-full">
-        <div className="">
-        <form id="loginform" className="px-8 pt-6 pb-8 mb-4">
-          <div className="mb-6 mt-6">
-            <label className="block text-gray-700 text-sm font-bold mb-2" name="username">
+      <div className="loginForm p-2 overflow-auto w-full" style={{height:"45vh"}}>
+        <form id="loginform" className="flex flex-col justify-center items-center h-full">
+        <div className="w-full flex flex-col sm:mt-3" style={{height:"20%"}}>
+            <label className="sm:hidden xl:block w-full text-gray-700 text-sm font-bold" name="username">
               Username
             </label>
-            <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" name="username" type="userName" placeholder="Username" value={props.userName} onChange={props.onHandleUserName}/>
-          </div>
-          <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2" name="password">
+            <input className="w-full py-2 px-3 sm:mt-1 shadow appearance-none border rounded text-gray-700 focus:outline-none focus:shadow-outline" id="username" name="username" type="userName" placeholder="Username" value={props.userName} onChange={props.onHandleUserName}/>
+            </div>
+          <div className="w-full flex flex-col xl:mt-2 sm:mt-6" style={{height:"20%"}}>
+            <label className="sm:hidden xl:block w-full text-gray-700 text-sm font-bold" name="password">
               Password
             </label>
-            <input className="shadow appearance-none rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="password" id="password" type="password" placeholder="**********" value={props.password} onChange={props.onHandlePassword}/>
+            <input className="w-full py-2 px-3 sm:mt-1 shadow appearance-none rounded text-gray-700 focus:outline-none focus:shadow-outline" name="password" id="password" type="password" placeholder="**********" value={props.password} onChange={props.onHandlePassword}/>
+            </div>
+            <div className="w-full flex flex-col items-center xl:mt-0 sm:mt-6" style={{height:"40px"}}>
+          <p className="w-full text-center text-red-400 mb-4 h-full" style={props.style}>{props.errorMessage}</p> 
           </div>
-          <p className="text-red-400 mb-4" style={props.style}>{props.errorMessage}</p> 
-          <div className="flex items-start justify-between">
-            <button className="bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-6 rounded focus:outline-none focus:shadow-outline" type="submit" onClick={props.postLogin}>
-              Sign In
+          <div className="w-full" style={{height:"20%"}}>
+            <button className="ml-2 bg-teal-500 py-2 px-6 hover:bg-teal-700 rounded focus:outline-none focus:shadow-outline" type="submit" onClick={props.postLogin}>
+              <p className="signInBtn text-white font-bold">Sign In</p>
             </button>
           </div>
-          <p className="flex text-right mt-12 px-4 text-red-700 font-bold text-sm">...if your new please click <Link to="/signup" className="signup cursor-pointer text-6xl text-green-600 hover:text-green-800">HERE!!!</Link></p>
         </form>
-      </div>
-      <img src={Tengu} style={{height:"50vh"}} alt="Tengu Teacher"/>
       </div>
       );
 }

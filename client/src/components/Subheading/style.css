@@ -1,0 +1,5 @@
+.subheading {
+    --max-size: 25;
+    --min-size: 16;
+    font-size: var(--responsive);
+}

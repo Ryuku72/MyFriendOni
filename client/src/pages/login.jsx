@@ -1,9 +1,11 @@
 import React, { useState } from "react";
-import { useHistory, Redirect } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import Form from "../components/Form";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import API from "../utils/API";
+import Tengu from "../assets/img/onilogin.png"
+import Subheading from "../components/Subheading";
 
 function Login(props) {
   let history = useHistory();
@@ -74,8 +76,14 @@ function Login(props) {
   }
 
   return (
-    <div className="h-screen flex flex-col justify-center items-center bg-gray-300">
-      <Header />
+    <div className="mobile w-full p-0 m-0 bg-gray-300 flex flex-col items-center overflow-y-auto">
+      <div className="w-full flex flex-col" style={{height:"22.5%"}}>
+      <Header/>
+      <Subheading />
+      </div>
+      <div className="flex justify-center items-center my-4" style={{height:"50%"}}>
+      <div className="grid grid-cols-2 md:w-1/2">
+      <div className="flex items-center">
       <Form
         clearForm={clearForm}
         onHandleUserName={onHandleUserName}
@@ -84,9 +92,25 @@ function Login(props) {
         style={{ opacity: isError ? "1" : "0" }}
         errorMessage={errors}
       />
-      <Footer>
-        <div></div>
-      </Footer>
+      </div>
+      <div className="w-full flex justify-center items-center">
+       <img src={Tengu} alt="Tengu Teacher" className="w-full" style={{height:"80%"}}/>
+       </div>
+       </div>
+       </div>
+       <div className="flex items-center justify-start w-full text-center" style={{height:"12.5%"}}>
+       <p className="w-full px-4 text-red-700 xl:font-semibold xl:text-base sm:text-xs">
+         ...if your new please click 
+         <span>
+           <Link to="/signup" className="signup cursor-pointer xl:text-6xl md:text-4xl mx-6 text-green-600 hover:text-green-800">
+             HERE!!!
+             </Link></span></p>
+       </div>
+       <div className="flex items-end justify-end w-full" style={{height:"10%"}}>
+       <Footer>
+       <div></div>
+     </Footer>
+    </div>
     </div>
   );
 }

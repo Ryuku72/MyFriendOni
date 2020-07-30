@@ -5,7 +5,8 @@ import "./style.css"
 function Header() {
 
 return (
-<div className="header w-full inline-flex justify-center">
+<div className="block w-full" style={{height:"12.5vh"}}>
+    <div className="w-full inline-flex h-full justify-center">
             <Letter value="M" color="#4a4e4d" />
             <Letter value="Y" color="#0e9aa7" />
             <Letter value="_" color="#f6cd61" />
@@ -21,7 +22,8 @@ return (
             <Letter value="N" color="#5e5656" />
             <Letter value="I" color="#3d2352" />
             <Letter value="'" color="#0392cf" />
-            </div>
+    </div>
+</div>
 )
 }
 

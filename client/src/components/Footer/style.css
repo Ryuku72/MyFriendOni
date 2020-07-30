@@ -11,8 +11,8 @@ footer p {
 
 
 .footer {
-        font-family: 'Press Start 2P', cursive;
-        --max-size: 10;
-        --min-size: 5;
+    font-family: 'Nanum Pen Script', cursive;
+        --max-size: 25;
+        --min-size: 15;
       font-size: var(--responsive);
 }

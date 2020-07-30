@@ -1,12 +1,22 @@
 body, html {
   height: 100%;
   margin: 0;
+  padding: 0;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
 }
 
 * {
   /* Calculation */
   --diff: calc(var(--max-size) - var(--min-size));
   --responsive: calc((var(--min-size) * 1px) + var(--diff) * ((100vw - 420px) / (1200 - 420))); /* Ranges from 421px to 1199px */
+  box-sizing: border-box;
+}
+
+.mobile {
+  height: 100vh;
 }
 
 body {
@@ -23,8 +33,3 @@ code {
     monospace;
 }
 
-.footer {
-  --max-size: 20;
---min-size: 10;
-font-size: var(--responsive);
-}

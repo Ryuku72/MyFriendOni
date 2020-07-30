@@ -104,23 +104,29 @@ function About(){
     function error (message) {
       setErrorMsg({...errorMsg, edit:message})
       setUpdateError(true)
-      setUpdatePreviousPw("")
-      setUpdateUser("")
-      setUpdatePw("")
     }
 
     if  ((updateUser === "" ) && (updatePw === "" ) && (updatePreviousPw === "")){
       error("Error: Inputs are blank")
     }
+    else if (updatePreviousPw === ""){
+      error("Error: Previous Password is blank")
+    }
+    else if (updatePreviousPw.length <= 7){
+      error("Error: Previous password must be at least 8 characters")
+    }
     else if (updateUser === "" ) {
       error("Error: Username is blank")
     } 
+    else if (updateUser.length <= 5){
+      error("Error: Username must be at least 6 characters")
+    }
     else if (updatePw === "" ) {
-       error("Error: Password is blank")
-    }
-    else if (updatePreviousPw === ""){
-      error("Error: Previous Pw is blank")
-    }
+      error("Error: Password is blank")
+   }
+    else if (updatePw.length <= 7){
+      error("Error: Previous password must be at least 8 characters")
+    }  
     else {
        setConfirm({ ...confirm, edit: true });
     }
@@ -203,17 +209,27 @@ function resetDeleteForm(event) {
 function handleDeleteUser(event) {
   event.preventDefault();
 
-  if ((passwordOne === "" ) || (passwordTwo === "" )){
-      setErrorMsg({...errorMsg, delete:"Error: Input is blank"})
-      setPasswordOne("");
-      setPasswordTwo("");
-      setDeleteError(true)
+  function error (message) {
+    setErrorMsg({...errorMsg, delete:message})
+    setDeleteError(true)
+  }
+  if ((passwordOne === "" ) && (passwordTwo === "" )){
+    error("Error: Inputs are blank")
+  }
+  else if (passwordOne === "" ){
+    error("Error: Password is blank")
+  }
+  else if (passwordOne.length <= 7 ){
+    error("Error: Password must be at least 8 characters")
+  }
+  else if (passwordTwo === "" ){
+    error("Error: Confirm Password is blank")
+  }
+  else if (passwordTwo.length <= 7 ){
+    error("Error: Confirm Password must be at least 8 characters")
   }
   else if (passwordOne !== passwordTwo) {
-      setErrorMsg({...errorMsg, delete:"Error: Inputs don't match"})
-      setPasswordOne("");
-      setPasswordTwo("");
-      setDeleteError(true)
+      error("Error: Inputs don't match")
   } else {
       setConfirm({ ...confirm, delete: true}) 
   }
@@ -317,7 +333,7 @@ function confirmUpdate(){
           cancelDelete={cancelDelete}
         />
         <AboutCard windowStyle={{opacity: location.pathname === "/about/info" ?  "1" : "0", zIndex: location.pathname === "/about/info" ?  "10" : "-2"}} />
-
+        
         </div>
         <Footer 
         user={user.username}
