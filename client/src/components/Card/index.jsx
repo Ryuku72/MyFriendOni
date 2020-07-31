@@ -6,13 +6,42 @@ import close from "../../assets/svg/close.svg";
 import QuizGif from "../QuizGif";
 
 function Card(props) {
+  let testLanguage = ""
+  let hScore = ""
+  console.log(props.Eng)
+  switch (props.language) {
+    case "English":
+        testLanguage = "English";
+        hScore = props.engHighScore;
+      break;
+      case "Hiragana":
+        testLanguage = "Hiragana";
+        hScore = props.hiraHighScore;
+      break;
+      case "Katakana":
+        testLanguage = "Katakana";
+        hScore = props.kataHighScore;
+      break;
+    default:
+        testLanguage = "Japanese";
+        hScore = props.jpnHighScore;
+      break;
+  }
+ 
+
+
   let parentLanguage = ""
   return (
     <div
-      className="relative w-full h-full text-center items-center justify-center text-4xl p-8 bg-gray-900"
+      className="w-full h-full text-4xl p-8 bg-gray-900 z-1"
       style={props.style}
     >
-<div className="w-1/2 border border-red-500 h-full flex flex-col justify-between items-center">
+<div className="w-1/2 border border-red-500 h-full flex flex-col justify-between items-center relative">
+{props.overlay ? <div id="startOverlay" className="w-full h-full flex flex-col items-center justify-center">
+  <p className="quizTitle text-white underline">Quiz</p> 
+  <p className="quizLang text-white">{ testLanguage }</p>
+  <p className="quizHighScore text-white">High Score: { hScore }</p>
+  </div> : "" }
 <p className="character mt-2">What does this mean?</p>
       <Character {...props} />
 <div className="grid grid-cols-2 p-2">
@@ -66,21 +95,7 @@ function Card(props) {
         btnColor={props.btnColor}
         />
       </div>
-
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-     
+</div> 
     </div>
   );
 }

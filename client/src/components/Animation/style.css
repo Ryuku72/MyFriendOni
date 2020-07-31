@@ -8,7 +8,6 @@
     right: 0;
     bottom: 0;
     pointer-events: none;
-    transition: 200ms ease-in-out;
   }
 
   #overlay2 {
@@ -21,7 +20,6 @@
     right: 0;
     bottom: 0;
     pointer-events: none;
-    transition: 200ms ease-in-out;
   }
   
   #overlay.active {

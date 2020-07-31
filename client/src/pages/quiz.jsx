@@ -28,17 +28,17 @@ function Quiz(props) {
     btnColor: [],
     WrongAnswers: [],
     CorrectAnswers: [],
-    position: 0,
   });
   const [gifState, setGifState] = useState("")
   const [timeLeft, setTimeLeft] = useState("end");
 
   //toggles
-  const [quizToggle, setQuizToggle] = useState(false); 
+  const [quizToggle, setQuizToggle] = useState(false) 
   const [scoreToggle, setScoreToggle] = useState(false);
   const [activeBtn, setActiveBtn] = useState(0);
   const [btnColor, setBtnColor] = useState(false);
   const [language, setLanguage] = useState("English");
+  const [overlay, setOverlay] = useState(false);
   const location = useLocation()
 
   // useEffects
@@ -46,45 +46,72 @@ function Quiz(props) {
     getUser();
     if (location.pathname === "/quiz/japanese") {
     setLanguage("Japanese");
+    setWords({...words,WrongAnswers: [], CorrectAnswers: []})
     setQuizToggle(true);
     setBtnColor(false);
     setScoreToggle(false);
     setPoints({ ...points, score: 0 });
     setHighScore(0);
     setActiveBtn(1);
-    setTimeLeft(120);
+    setTimeLeft(124);
+    setOverlay(true)
+    setTimeout(() => {
+      setOverlay(false)
+    },3500)
     } 
     else if (location.pathname === "/quiz/english"){
       setLanguage("English");
       setQuizToggle(true);
       setBtnColor(false);
       setScoreToggle(false);
+      setWords({...words,WrongAnswers: [], CorrectAnswers: []})
       setPoints({ ...points, score: 0 });
       setHighScore(0);
       setActiveBtn(1);
-      setTimeLeft(120);
+      setTimeLeft(124)
+      setOverlay(true)
+      setTimeout(() => {
+        setOverlay(false)
+      },3500);
     }
     else if (location.pathname === "/quiz/hiragana"){
       setLanguage("Hiragana");
       setQuizToggle(true);
       setBtnColor(false);
       setScoreToggle(false);
+      setWords({...words,WrongAnswers: [], CorrectAnswers: []})
       setPoints({ ...points, score: 0 });
       setHighScore(0);
       setActiveBtn(1);
-      setTimeLeft(120);
-    } else if (location.pathname === "/quiz/katakana") {
+      setTimeLeft(124);
+      setOverlay(true)
+      setTimeout(() => {
+        setOverlay(false)
+      },3500)
+    } 
+    else if (location.pathname === "/quiz/katakana") {
       setLanguage("Hiragana");
       setQuizToggle(true);
       setBtnColor(false);
       setScoreToggle(false);
+      setWords({...words,WrongAnswers: [], CorrectAnswers: []})
       setPoints({ ...points, score: 0 });
       setHighScore(0);
       setActiveBtn(1);
-      setTimeLeft(120);
-    } else {
+      setTimeLeft(124);
+      setOverlay(true)
+      setTimeout(() => {
+        setOverlay(false)
+      },3500)
+    } 
+    else {
       console.log("Quiz Page")
+      setWords({...words,WrongAnswers: [], CorrectAnswers: []})
+      setHighScore(0);
+      setBtnColor(false);
+      setScoreToggle(false);
     }
+    
 
   }, []);
 
@@ -166,9 +193,14 @@ function Quiz(props) {
     setBtnColor(false);
     setScoreToggle(false);
     setPoints({ ...points, score: 0 });
+    setWords({...words,WrongAnswers: [], CorrectAnswers: []})
     setHighScore(0);
     setActiveBtn(1);
-    setTimeLeft(120);
+    setTimeLeft(124);
+    setOverlay(true)
+    setTimeout(() => {
+      setOverlay(false)
+    },3500)
   }
 
   function startEngQuiz(event) {
@@ -178,9 +210,14 @@ function Quiz(props) {
     setBtnColor(false);
     setScoreToggle(false);
     setPoints({ ...points, score: 0 });
+    setWords({...words,WrongAnswers: [], CorrectAnswers: []})
     setHighScore(0);
     setActiveBtn(1);
-    setTimeLeft(120);
+    setTimeLeft(124);
+    setOverlay(true)
+    setTimeout(() => {
+      setOverlay(false)
+    },3500)
   }
 
   function startKataQuiz(event) {
@@ -190,9 +227,14 @@ function Quiz(props) {
     setBtnColor(false);
     setScoreToggle(false);
     setPoints({ ...points, score: 0 });
+    setWords({...words,WrongAnswers: [], CorrectAnswers: []})
     setHighScore(0);
     setActiveBtn(1);
-    setTimeLeft(120);
+    setTimeLeft(124);
+    setOverlay(true)
+    setTimeout(() => {
+      setOverlay(false)
+    },3500)
   }
 
   function startHiraQuiz(event) {
@@ -202,9 +244,14 @@ function Quiz(props) {
     setBtnColor(false);
     setScoreToggle(false);
     setPoints({ ...points, score: 0 });
+    setWords({...words,WrongAnswers: [], CorrectAnswers: []})
     setHighScore(0);
     setActiveBtn(1);
-    setTimeLeft(120);
+    setTimeLeft(124);
+    setOverlay(true)
+    setTimeout(() => {
+      setOverlay(false)
+    },3500)
   }
 
   function exitToQuizPage(){
@@ -228,6 +275,7 @@ function Quiz(props) {
       language === "Hiragana" || language === "Katakana"
         ? words.Question.Romaji
         : words.Question.English;
+      console.log(event.target.value)
     //console.log(answer);
     //console.log(buttonInput);
     setBtnColor(true);
@@ -349,14 +397,17 @@ function Quiz(props) {
         exitToQuizPage={exitToQuizPage}
       />
       <div
-        className="border-b-2 border-t-2 border-pink-300 flex justify-center items-center"
+        className="border-b-2 border-t-2 border-pink-300 flex justify-center items-center relative"
         style={{
         //   backgroundImage: quizToggle ? `url(${bgImg2})` : `url(${bgImg})`,
          height: `calc(100vh - (10vh + 8vh))`,
         //   backgroundSize: "100vw 82vh",
       }}
       >
-        <QuizBackground user={user.username} bgToggle={{display: quizToggle || scoreToggle ? "none" : "flex"}}/>
+        <QuizBackground 
+        user={user.username} 
+        highScore={highScore}
+        bgToggle={{display: quizToggle || scoreToggle ? "none" : "flex"}}/>
         <Card
           btnColor={btnColor}
           style={{ display: quizToggle ? "inline-flex" : "none" }}
@@ -367,6 +418,11 @@ function Quiz(props) {
           exitQuiz={onHandleExitQuiz}
           language={language}
           gifState={gifState}
+          overlay={overlay}
+          engHighScore={user.engHighScore}
+          jpnHighScore={user.jpnHighScore}
+          kataHighScore={user.kataHighScore}
+          hiraHighScore={user.hiraHighScore}
         />
         <ScoreCard
           score={points.score}

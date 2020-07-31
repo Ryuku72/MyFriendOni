@@ -8,7 +8,7 @@ function QuizBackground(props) {
 
   return (
       <div className="w-full justify-center" style={{height: `calc(100vh - (10vh + 8.5vh))`, ...props.bgToggle}}>
-  <div className="animation flex items-center justify-center bg-black bg-center" style={{ zIndex: -2, height:"92vh", backgroundImage:`url(${bgImg})`, backgroundSize: "100vw 82vh",}}>
+  <div className="animation flex items-center justify-center bg-black bg-center w-full" style={{ zIndex: -2, height:"82vh", backgroundImage:`url(${bgImg})`, backgroundSize: "100vw 82vh",}}>
 <div id="quizOverlay" className="z-1 opacity-0 bg-gray-300 bg-opacity-50 active"  style={{ ...props.overlayStyle }}></div>
     </div>
     <div className="w-full h-full flex items-center justify-center">

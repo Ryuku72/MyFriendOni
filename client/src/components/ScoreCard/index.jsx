@@ -1,4 +1,5 @@
 import React from "react";
+import {  Link } from "react-router-dom";
 import "./style.css";
 
 function grade(input){
@@ -72,7 +73,7 @@ function ScoreCard(props) {
         
         </div>
         <div className="flex items-center justify-center p-4" style={{height:"25%"}}>
-        <button className="w-1/4 p-2 rounded-lg shadow-xl text-gray-700 text-lg font-mono bg-blue-300 hover:bg-purple-400 border-2 border-indigo-400" onClick={props.click}>Exit</button>
+        <Link to="/quiz" className="w-1/4 p-2 flex items-center justify-center rounded-lg shadow-xl text-gray-700 text-lg font-mono bg-blue-300 hover:bg-purple-400 border-2 border-indigo-400" onClick={props.click}>Exit</Link>
         </div>
             </div>
 
