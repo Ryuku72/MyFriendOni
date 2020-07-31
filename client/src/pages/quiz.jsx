@@ -30,12 +30,11 @@ function Quiz(props) {
     CorrectAnswers: [],
     position: 0,
   });
-  const [gifState, setGifState] =useState ("")
-
+  const [gifState, setGifState] = useState("")
   const [timeLeft, setTimeLeft] = useState("end");
 
   //toggles
-  const [quizToggle, setQuizToggle] = useState(true);   //editing
+  const [quizToggle, setQuizToggle] = useState(false); 
   const [scoreToggle, setScoreToggle] = useState(false);
   const [activeBtn, setActiveBtn] = useState(0);
   const [btnColor, setBtnColor] = useState(false);
@@ -92,6 +91,7 @@ function Quiz(props) {
   useEffect(() => {
     setActiveBtn(0);
     loadVocabList();
+
   }, [language]);
 
   useEffect(() => {
@@ -119,10 +119,9 @@ function Quiz(props) {
     if (language === "Hiragana" || language === "Katakana") {
       API.getLetters().then((res) => {
         //console.log(res.data);
-        setGifState("")
         setActiveBtn(0);
         setTimeout(() => {
-          setBtnColor(false);
+          setBtnColor(false)
           setActiveBtn(1);
           setWords({
             ...words,
@@ -224,7 +223,7 @@ function Quiz(props) {
   function handleUserInput(event) {
     event.preventDefault();
     setActiveBtn(0);
-    const buttonInput = event.target.value;
+    let buttonInput = event.target.value;
     let answer =
       language === "Hiragana" || language === "Katakana"
         ? words.Question.Romaji
@@ -232,6 +231,7 @@ function Quiz(props) {
     //console.log(answer);
     //console.log(buttonInput);
     setBtnColor(true);
+    //console.log(event.target)
     if (buttonInput === "true") {
       //console.log("correct")
       setGifState(true)
@@ -271,7 +271,7 @@ function Quiz(props) {
       setTimeLeft(timeLeft - 10);
       setPoints({ ...points, score: minusPoints });
     }
-    loadVocabList();
+     loadVocabList();
   }
 
   function onHandleExitScore() {

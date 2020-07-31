@@ -8,7 +8,7 @@ router.get("/", (req, res) => {
       let question = response.toObject()
       question.Correct = "true";
       let newWordArray = term.filter(element => element.Row !== question.Row)
-      let answerArray = []
+      let answerArray = [];
     for (let i = 0; i < 3; i++){
       let filter = newWordArray[Math.floor(Math.random() * newWordArray.length)]
       let answer = filter.toObject()

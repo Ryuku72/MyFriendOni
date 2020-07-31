@@ -36,10 +36,11 @@ function Card(props) {
               question={result[parentLanguage]}
               btnColor={props.btnColor}
               key={index}
-              value={result['Correct']}
+              value={result.Correct}
               userInput={props.userInput}
               disable={props.disable}
               color={props.color}
+              language={props.language}
             />
           );
         })}

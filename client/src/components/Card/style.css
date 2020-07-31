@@ -4,6 +4,7 @@
   --boxPadding: 2rem;
   --buttonPadding: 1rem;
   --kanjiH: calc(var(--cardH) * (0.25));
+  --gifBoxH: calc(var(--cardH) * 0.75);
 }
 
 .character {
@@ -13,8 +14,8 @@
   height:  calc(var(--kanjiH) * 0.5);
   width: 100%;
   color: white;
-  --max-size: 40;
-  --min-size: 15;
+  --max-size: 25;
+  --min-size: 12;
   font-size: var(--responsive);
   margin-bottom: -0em;
   margin-top: -0.4em;
@@ -39,6 +40,23 @@
   overflow-wrap: break-word;
 }
 
+.jpnChar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height:  var(--kanjiH);
+  padding-left: 2rem;
+  padding-right: 2rem;
+  font-family: 'Kosugi Maru', sans-serif;
+  color: rgb(255, 255, 255);
+  --max-size: 58;
+  --min-size: 25;
+  font-size: var(--responsive);
+  margin-top: -10px;
+  margin-bottom: -10px;
+  overflow-wrap: break-word;
+}
+
 .kanji2 {
   display: flex;
   align-items: center;
@@ -54,7 +72,7 @@
   overflow-wrap: break-word;
 }
 
-.kanji3 {
+.furiChar {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -63,8 +81,23 @@
   padding-right: 2rem;
   font-family: 'Kosugi Maru', sans-serif;
   color: rgb(255, 255, 255);
-  --max-size: 150;
-  --min-size: 80;
+  --max-size: 75;
+  --min-size: 40;
+  font-size: var(--responsive);
+  overflow-wrap: break-word;
+}
+
+.engChar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height:  var(--kanjiH);
+  padding-left: 2rem;
+  padding-right: 2rem;
+  font-family: 'Kosugi Maru', sans-serif;
+  color: rgb(255, 255, 255);
+  --max-size: 35;
+  --min-size: 20;
   font-size: var(--responsive);
   margin-top: -10px;
   margin-bottom: -10px;
@@ -90,16 +123,52 @@
 
 .btn {
   background-color: #90cdf4;
-  --max-size: 15;
-  --min-size: 6;
-  font-size: var(--responsive);
   width: calc((var(--cardW) * 0.5) - (var(--boxPadding) + var(--buttonPadding)));
   height: calc(var(--cardH) * 0.20);
-  overflow-wrap: break-word;
 }
 
 .btn:hover {
   background-color: #5a67d8;
+}
+
+.engWord{
+  overflow-wrap: break-word;
+  --max-size: 20;
+  --min-size: 12;
+  font-size: var(--responsive);
+}
+
+.jpnWord {
+  overflow-wrap: break-word;
+  --max-size: 30;
+  --min-size: 12;
+  font-size: var(--responsive);
+}
+
+.furiWord{
+  overflow-wrap: break-word;
+  --max-size: 40;
+  --min-size: 20;
+  font-size: var(--responsive);
+}
+
+.quizGifBox {
+  height: calc(var(--cardH) * 0.75);
+  width: calc(var(--cardW));
+}
+
+.gifBox {
+  width: calc(var(--cardW) * 0.5);
+  height: calc(var(--gifBoxH) * (4/5))
+}
+
+.textAnswer {
+  width: calc(var(--cardW) * 0.5);
+  height: calc(var(--gifBoxH) * (1/5));
+  --max-size: 35;
+  --min-size: 15;
+  font-size: var(--responsive);
+  letter-spacing: 0.35rem;
 }
 
 
@@ -111,6 +180,45 @@
       font-family: 'Kosugi Maru', sans-serif;
       color: rgb(255, 255, 255);
       --max-size: 60;
+      --min-size: 20;
+      font-size: var(--responsive);
+      margin-top: -10px;
+      margin-bottom: -10px;
+      overflow-wrap: break-word;
+    }
+
+    .kanji4 {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height:  var(--kanjiH);
+      padding-left: 2rem;
+      padding-right: 2rem;
+      font-family: 'Kosugi Maru', sans-serif;
+      color: rgb(255, 255, 255);
+      --max-size: 25;
+      --min-size: 8;
+      font-size: var(--responsive);
+      margin-top: -10px;
+      margin-bottom: -10px;
+      overflow-wrap: break-word;
+    }
+
+  }
+
+  @media only screen 
+  and (max-width: 1100px){ 
+
+    .kanji4 {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height:  var(--kanjiH);
+      padding-left: 2rem;
+      padding-right: 2rem;
+      font-family: 'Kosugi Maru', sans-serif;
+      color: rgb(255, 255, 255);
+      --max-size: 50;
       --min-size: 20;
       font-size: var(--responsive);
       margin-top: -10px;
