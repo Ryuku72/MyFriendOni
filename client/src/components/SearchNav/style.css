@@ -2,7 +2,6 @@
     --max-size: 12;
     --min-size: 8;
   font-size: var(--responsive);
-
 }
 
 .searchDropdownOne {
@@ -21,4 +20,29 @@
     transform: translateX(0%);
     border-radius: 15px;
     box-shadow: rgba(130, 130, 130, 0.317) 1px 1.5px;
+}
+
+.searchInputBar{
+    width: 35vw;
+}
+
+@media only screen and (max-width: 640px){ 
+.form-group{
+ flex-direction: column;
+ width: 100%;
+}
+
+.btnGroup {
+    margin-top: 1rem
+}
+
+.searchInputBar{
+    width: 70vw;
+    border: red solid 1rem;
+}
+
+.searchNavFont {
+    flex-direction: column;
+}
+
 }

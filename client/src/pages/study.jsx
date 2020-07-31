@@ -239,7 +239,7 @@ function Study(props) {
       <Wrapper wrap={{display: searchState.language === "Letters" ? "none" : "block"}}>
         <img src={Vocab} alt="slogan" className="absolute bottom-0 right-0 mb-2" 
         style={{display: searchState.results.length ? "none" : "block"}} />
-        <div className="grid-cols-5 gap-3" style={{display: searchState.language === "Letters" ? "none" : "grid"}}>
+        <div className="xl:grid-cols-5 sm:grid-cols-2 gap-3" style={{display: searchState.language === "Letters" ? "none" : "grid"}}>
         {searchState.results.map((result, index) => (
           <SearchCard
             key={index}
@@ -255,9 +255,9 @@ function Study(props) {
         ))}
         </div>
         </Wrapper>
-        <img src={Letters} alt="slogan" className="p-2 m-6 relative top-0 left-0" 
+        <img src={Letters} alt="slogan" className="relative p-5 my-2 xl:w-1/2 sm:w-3/4 top-0 left-0" 
         style={{display: searchState.language === "Letters" ? "block" : "none"}} />
-        <div className="grid-cols-5 gap-5 mb-4 p-6" style={{display: searchState.language === "Letters" ? "grid" : "none"}}>
+        <div className="xl:grid-cols-5 sm:grid-cols-3 gap-5 mb-4 p-6" style={{display: searchState.language === "Letters" ? "grid" : "none"}}>
          {words.database.map((result, index) => (
         <LetterCard
          display={{display: searchState.language === "Letters" ? "flex" : "none"}}

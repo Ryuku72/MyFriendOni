@@ -6,9 +6,9 @@ function SearchNav(props) {
   //console.log(props.error)
   return (
     <nav className="w-full z-20 searchNavFont bg-gray-100" style={{...props.display}}>
-      <form id="searchBar" className="w-3/5 inline-flex p-3">
-        <div className="form-group inline-flex w-full h-10">
-          <div className="border-2 w-1/2 mr-2 shadow-lg p-1 inline-flex align-middle items-center">
+      <form id="searchBar" className="w-full flex p-3">
+        <div className="form-group flex w-full h-full">
+          <div className="border-2 searchInputBar h-10 mr-2 shadow-lg p-1 inline-flex align-middle items-center">
             <input
               className="w-full h-full px-2 ml-2 outline-none"
               placeholder="Search database..."
@@ -26,12 +26,13 @@ function SearchNav(props) {
                 </a>
               </li>
             </ul>
-          </div>
           <datalist id="searchResults">
           {props.name.map((result, index) => (
             <option value={result} key={index}></option>
             ))}
           </datalist>
+          </div>
+          <div className="inline-flex h-10 btnGroup">
           <SearchBtn title={props.sort} style={{ backgroundColor: "#90cdf4" }}>
             <ul className="searchDropdownOne pt-2 z-50 shadow-lg">
             <li>
@@ -96,7 +97,7 @@ function SearchNav(props) {
           <button
             type="submit"
             onClick={props.onHandleSubmit}
-            className="mr-2 w-32 bg-green-300 text-gray-700 font-semibold py-2 px-4 rounded inline-block items-center shadow-lg"
+            className="mr-2 bg-green-300 text-gray-700 font-semibold py-2 px-4 rounded inline-block items-center shadow-lg"
           >
             Submit
           </button>
@@ -104,16 +105,17 @@ function SearchNav(props) {
           <button
             type="reset"
             onClick={props.clearForm}
-            className="mr-2 w-32 bg-purple-300 text-gray-700 font-semibold py-2 px-4 rounded inline-block items-center shadow-lg"
+            className="mr-2 bg-purple-300 text-gray-700 font-semibold py-2 px-4 rounded inline-block items-center shadow-lg"
           >
             Reset
           </button>
         </div>
+        </div>
       </form>
-      <div className="w-2/5 flex items-center justify-end pr-12 h-16">
+      <div className="w-2/5 flex items-center justify-end h-16">
       <div
           role="alert"
-          className="w-2/3 mx-2 flex flex-col justify-center rounded transition duration-700 ease-out"
+          className="w-2/3 flex flex-col mx-6 justify-center rounded transition duration-700 ease-out"
           style={{ ...props.alert }}>
           <p className="bg-red-400 text-gray-100 font-semibold py-2 px-8 rounded text-center">
             {props.error}

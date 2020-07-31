@@ -34,7 +34,7 @@ function Quiz(props) {
 
   //toggles
   const [quizToggle, setQuizToggle] = useState(false) 
-  const [scoreToggle, setScoreToggle] = useState(true); //testing
+  const [scoreToggle, setScoreToggle] = useState(false);
   const [activeBtn, setActiveBtn] = useState(0);
   const [btnColor, setBtnColor] = useState(false);
   const [language, setLanguage] = useState("English");

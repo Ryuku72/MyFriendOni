@@ -28,8 +28,6 @@ function Card(props) {
       break;
   }
  
-
-
   let parentLanguage = ""
   return (
     <div

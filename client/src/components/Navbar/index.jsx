@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link, useLocation, useHistory } from "react-router-dom";
 import API from "../../utils/API";
 import quizIcon from "../../assets/svg/monster.svg";
@@ -24,6 +24,24 @@ function Navbar(props) {
   const [openOne, setOpenOne] = useState(false);
   const [openTwo, setOpenTwo] = useState(false);
   const [openThree, setOpenThree] = useState(false);
+
+
+  function useOutsideAlerter(ref) {
+    useEffect(() => {
+        function handleClickOutside(event) {
+            if (ref.current && !ref.current.contains(event.target)) {
+              setOpenOne(false);
+            }
+        }
+  
+        // Bind the event listener
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            // Unbind the event listener on clean up
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, [ref]);
+  }
 
   function onHandleDropDownOne() {
     setOpenOne(!openOne);
@@ -100,6 +118,10 @@ function Navbar(props) {
     color = "text-orange-300";
   }
 
+  const wrapperRef = useRef(null);
+  useOutsideAlerter(wrapperRef);
+
+
   return (
     <nav className="navbar">
       <div className="navbar-nav inline-flex flex-wrap items-end justify-between">
@@ -116,6 +138,7 @@ function Navbar(props) {
           <Stat title="Total Score" value={props.totalscore} />
         </div>
         <div className="iconsDiv flex justify-end items-end">
+        <div ref={wrapperRef}>
           <NavItem
             icon={quizIcon}
             color="bg-green-300"
@@ -167,6 +190,7 @@ function Navbar(props) {
               </Link>
             </NavDropDown>
           </NavItem>
+          </div>
           <NavItem
             icon={studyIcon}
             color="bg-pink-300"
