@@ -1,3 +1,68 @@
+* {
+    /* Calculation */
+    --diff: calc(var(--max-size) - var(--min-size));
+    --responsive: calc((var(--min-size) * 1px) + var(--diff) * ((100vw - 420px) / (1200 - 420))); /* Ranges from 421px to 1199px */
+    box-sizing: border-box;
+    --cardW: 50vw;
+    --cardH: 82vw;
+  }
+
+
 .score-sheet {
     font-family: 'Nanum Pen Script', cursive;
 }
+
+.gradeText {
+    --max-size: 50;
+    --min-size: 20;
+    font-size: var(--responsive);
+}
+
+.gradeLetter {
+    --max-size: 180;
+    --min-size: 80;
+    font-size: var(--responsive);
+}
+
+.scoreText{
+    --max-size: 25;
+    --min-size: 12;
+    font-size: var(--responsive);
+}
+
+.dataText {
+    --max-size: 30;
+    --min-size: 16;
+    font-size: var(--responsive);
+}
+
+.exitScoreBtn {
+    --max-size: 25;
+    --min-size: 12;
+    font-size: var(--responsive);
+    padding: calc(var(--cardW) *0.02)
+}
+
+.sloganText {
+    --max-size: 40;
+    --min-size: 20;
+    font-size: var(--responsive);
+}
+
+.answerText {
+    --max-size: 30;
+    --min-size: 18;
+    font-size: var(--responsive);
+}
+
+.quizAnswers {
+    --max-size: 20;
+    --min-size: 12;
+    font-size: var(--responsive);
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    overflow-wrap: break-word;
+}
+

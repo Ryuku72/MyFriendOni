@@ -43,52 +43,52 @@ function ScoreCard(props) {
         <div className="score-sheet w-full h-full bg-yellow-300" style={props.style}>
             <div className="w-1/2 h-full inline-flex flex-col leading-10">
                 <div className="flex justify-center items-center" style={{height:"35%"}}>
-        <p className="text-6xl text-gray-800">Grade: </p>
-        <p className="mx-6 text-red-500" style={{fontSize:"15rem", transform: "rotateZ(-10deg)" }}>{result}</p>
+        <p className="gradeText text-gray-800">Grade: </p>
+        <p className="gradeLetter mx-6 text-red-500" style={{ transform: "rotateZ(-10deg)" }}>{result}</p>
         </div>
         <div className="flex flex-col px-6 text-gray-800" style={{height:"40%"}}>
         <div className="flex justify-between items-center px-4">
-            <p className="text-4xl">Date:</p>
-            <p className="text-6xl">{props.date}</p>
+            <p className="scoreText">Date:</p>
+            <p className="dataText">{props.date}</p>
             </div>
             <div className="flex justify-between items-center px-4 my-2">
-        <p className="text-4xl">Correct Answers:</p>
-        <p className="text-6xl"> {props.correct.length} words</p>
+        <p className="scoreText">Correct Answers:</p>
+        <p className="dataText"> {props.correct.length} words</p>
         </div>
 
         <div className="flex justify-between items-center px-4 my-2">
-        <p className="text-4xl">Wrong Answers:</p>
-        <p className="text-6xl">  {props.wrong.length} words</p>
+        <p className="scoreText">Wrong Answers:</p>
+        <p className="dataText">  {props.wrong.length} words</p>
         </div>
 
         <div className="flex justify-between items-center px-4 my-2">
-            <p className="text-4xl">Total Score:</p> 
-            <p className="text-6xl">{props.score} points</p>
+            <p className="scoreText">Total Score:</p> 
+            <p className="dataText">{props.score} points</p>
             </div>
 
         <div className="flex justify-between items-center px-4 my-2">
-        <p className="text-4xl">Highest Score:</p>
-        <p className="text-6xl"> {props.highScore} points</p>
+        <p className="scoreText">Highest Score:</p>
+        <p className="dataText"> {props.highScore} points</p>
         </div>
         
         </div>
         <div className="flex items-center justify-center p-4" style={{height:"25%"}}>
-        <Link to="/quiz" className="w-1/4 p-2 flex items-center justify-center rounded-lg shadow-xl text-gray-700 text-lg font-mono bg-blue-300 hover:bg-purple-400 border-2 border-indigo-400" onClick={props.click}>Exit</Link>
+        <Link to="/quiz" className="exitScoreBtn flex items-center justify-center rounded-lg shadow-xl text-gray-700 font-mono bg-blue-300 hover:bg-purple-400 border-2 border-indigo-400" onClick={props.click}>Exit</Link>
         </div>
             </div>
 
             <div className="block text-gray-400 p-10 w-1/2 text-2xl h-full bg-gray-800 overflow-y-auto capitalize">
-            <p className="text-4xl mb-3">Remember to keep studying...</p>
-                <p>Correct Answers :</p>
-            <div className="w-full grid grid-cols-3 gap-4 mb-3">
+            <p className="sloganText mb-3">Remember to keep studying...</p>
+                <p className="answerText">Correct Answers :</p>
+            <div className="w-full grid xl:grid-cols-3 sm:grid-cols-1 gap-4 mb-3">
         {props.correct.map((result, index) => (
-        <p key={index} className="p-2 flex items-center justify-center border border-gray-600 bg-green-600 text-white text-centre m-2 rounded-lg">{result}</p>
-        ))}
+        <p key={index} className="quizAnswers w-full h-full flex items-center text-center border border-gray-600 bg-green-600 text-white text-centre m-2 rounded-lg">{result}</p>
+        ))}    
         </div>
-        <p>Wrong Answers :</p>
-        <div className="w-full grid grid-cols-3 gap-4 mb-3">
+        <p className="answerText">Wrong Answers :</p>
+        <div className="w-full grid xl:grid-cols-3 sm:grid-cols-1 gap-4 mb-3">
         {props.wrong.map((result, index) => (
-        <p key={index} className="p-2 flex items-center justify-center border border-gray-600 bg-red-600 text-white m-2 text-centre rounded-lg">{result}</p>
+        <p key={index} className="flex quizAnswers items-center w-full h-full justify-center border border-gray-600 bg-red-600 text-white m-2 text-centre rounded-lg">{result}</p>
         ))}
         </div>
     </div>

@@ -34,7 +34,7 @@ function Quiz(props) {
 
   //toggles
   const [quizToggle, setQuizToggle] = useState(false) 
-  const [scoreToggle, setScoreToggle] = useState(false);
+  const [scoreToggle, setScoreToggle] = useState(true); //testing
   const [activeBtn, setActiveBtn] = useState(0);
   const [btnColor, setBtnColor] = useState(false);
   const [language, setLanguage] = useState("English");
@@ -107,9 +107,6 @@ function Quiz(props) {
     else {
       console.log("Quiz Page")
       setWords({...words,WrongAnswers: [], CorrectAnswers: []})
-      setHighScore(0);
-      setBtnColor(false);
-      setScoreToggle(false);
     }
     
 
