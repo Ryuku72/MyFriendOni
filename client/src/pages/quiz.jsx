@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import API from "../utils/API";
-import bgImg from "../assets/img/background.jpg";
-import bgImg2 from "../assets/img/hiraganabg.jpg";
 import Footer from "../components/Footer";
 import ScoreCard from "../components/ScoreCard";
 import Card from "../components/Card";
@@ -32,15 +30,16 @@ function Quiz(props) {
     CorrectAnswers: [],
     position: 0,
   });
+  const [gifState, setGifState] =useState ("")
 
   const [timeLeft, setTimeLeft] = useState("end");
 
   //toggles
-  const [quizToggle, setQuizToggle] = useState(false);
+  const [quizToggle, setQuizToggle] = useState(true);   //editing
   const [scoreToggle, setScoreToggle] = useState(false);
   const [activeBtn, setActiveBtn] = useState(0);
   const [btnColor, setBtnColor] = useState(false);
-  const [language, setLanguage] = useState("");
+  const [language, setLanguage] = useState("English");
   const location = useLocation()
 
   // useEffects
@@ -120,6 +119,7 @@ function Quiz(props) {
     if (language === "Hiragana" || language === "Katakana") {
       API.getLetters().then((res) => {
         //console.log(res.data);
+        setGifState("")
         setActiveBtn(0);
         setTimeout(() => {
           setBtnColor(false);
@@ -130,7 +130,7 @@ function Quiz(props) {
             Question: res.data.question,
           });
           //console.log(words);
-        }, 350);
+        }, 800);
       });
     } else {
       API.getJapanese()
@@ -146,7 +146,7 @@ function Quiz(props) {
               Question: res.data.question,
             });
             // console.log(words)
-          }, 350);
+          }, 800);
         })
         .catch((err) => console.log(err));
     }
@@ -234,6 +234,7 @@ function Quiz(props) {
     setBtnColor(true);
     if (buttonInput === "true") {
       //console.log("correct")
+      setGifState(true)
       const addPoints = points.score + 5;
       words.CorrectAnswers.push(answer);
       if (addPoints > highScore) {
@@ -244,6 +245,7 @@ function Quiz(props) {
       }
     } else if (buttonInput === "false" && timeLeft <= 10 && points.score >= 3) {
       words.WrongAnswers.push(answer);
+      setGifState(false)
       const minusPoints = points.score - 3;
       setPoints({ ...points, score: minusPoints });
       setTimeLeft("end");
@@ -251,6 +253,7 @@ function Quiz(props) {
       setScoreToggle(true);
     } else if (buttonInput === "false" && timeLeft <= 10 && points.score <= 3) {
       words.WrongAnswers.push(answer);
+      setGifState(false)
       setPoints({ ...points, score: 0 });
       setTimeLeft("end");
       setQuizToggle(false);
@@ -263,6 +266,7 @@ function Quiz(props) {
       //console.log("wrong")
       //console.log("correct")
       words.WrongAnswers.push(answer);
+      setGifState(false)
       const minusPoints = points.score - 3;
       setTimeLeft(timeLeft - 10);
       setPoints({ ...points, score: minusPoints });
@@ -287,8 +291,7 @@ function Quiz(props) {
     //console.log(user);
   }
 
-  function onHandleExitQuiz(event) {
-    event.preventDefault();
+  function onHandleExitQuiz() {
     let scoreLanguage = "";
     switch (language) {
       case "English":
@@ -347,22 +350,23 @@ function Quiz(props) {
       />
       <div
         className="border-b-2 border-t-2 border-pink-300 flex justify-center items-center"
-        // style={{
+        style={{
         //   backgroundImage: quizToggle ? `url(${bgImg2})` : `url(${bgImg})`,
-        //   height: `calc(100vh - (10vh + 8vh))`,
+         height: `calc(100vh - (10vh + 8vh))`,
         //   backgroundSize: "100vw 82vh",
-        // }}
+      }}
       >
-        <QuizBackground />
+        <QuizBackground user={user.username} bgToggle={{display: quizToggle || scoreToggle ? "none" : "flex"}}/>
         <Card
           btnColor={btnColor}
-          style={{ display: quizToggle ? "flex" : "none" }}
+          style={{ display: quizToggle ? "inline-flex" : "none" }}
           question={words.Question}
           userInput={handleUserInput}
           answer={words.Answer}
           disable={activeBtn}
           exitQuiz={onHandleExitQuiz}
           language={language}
+          gifState={gifState}
         />
         <ScoreCard
           score={points.score}
