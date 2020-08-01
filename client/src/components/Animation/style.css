@@ -46,7 +46,7 @@
     animation: 5s green;
     -webkit-animation: green 5s;
     animation-fill-mode: forwards;
-    animation-delay: 1s;
+    animation-delay: 0s;
     clip-path: polygon(48% 100%, 100% 100%, 76% 100%, 64% 100%, 31% 100%, 19% 100%, 0 100%);
     -webkit-clip-path: polygon(48% 100%, 100% 100%, 76% 100%, 64% 100%, 31% 100%, 19% 100%, 0 100%);
   }
