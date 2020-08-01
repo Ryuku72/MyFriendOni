@@ -1,0 +1,5 @@
+.aboutText {
+    --max-size: 30;
+    --min-size: 15;
+    font-size: var(--responsive);
+}
