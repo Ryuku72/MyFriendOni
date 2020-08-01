@@ -4,7 +4,7 @@ import "./style.css";
 function PlayerCard(props) {
 
   return (
-    <div className="w-full p-12 font-mono inline-flex z-20" style={{...props.windowStyle}}>
+    <div className="w-full xl:p-12 sm:p-2 font-mono inline-flex z-20" style={{...props.windowStyle}}>
       {/* Player Card */}
       <div className="w-1/2 h-full rounded-lg shadow-2xl antialiased">
         <header
@@ -30,7 +30,7 @@ function PlayerCard(props) {
           </div>
         </header>
         <section
-          className="w-full xl:p-8 sm:p-1 flex flex-col justify-center border-b-4 border-l-4 border-r-4 border-gray-600 rounded-b-lg text-gray-800 xl:leading-10 md:leading-5 bg-gray-400"
+          className="w-full xl:p-8 sm:p-1 flex flex-col justify-center border-b-4 border-l-4 border-r-4 border-gray-600 rounded-b-lg text-gray-800 xl:leading-10 md:leading-3 bg-gray-400"
           style={{ height: "85%" }}
         >
           <div className="inline-flex justify-between w-full text-gray-800">

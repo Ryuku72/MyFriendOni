@@ -115,3 +115,32 @@
     -webkit-animation: fadein 12s forwards, smoke 16s infinite 0s;
     opacity: 1;
   }
+
+  @media only screen 
+  and (max-width: 1024px) and (max-height: 714px) { 
+    #smoke {
+        margin-bottom: 4rem;
+        margin-left: 1rem;
+    }
+    #house {
+        margin-top: 10px;
+        margin-left: 10px;
+    }
+  }
+
+  @media only screen and (max-width: 640px){ 
+   
+    
+  }
+
+
+  @media only screen 
+  and (max-width: 1100px){ 
+    #smoke {
+        margin-bottom: 4rem;
+        margin-left: 1rem;
+    }
+    #house {
+        margin-left: 10px;
+    }
+  }

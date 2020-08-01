@@ -1,7 +1,7 @@
 .playerInfo {
     font-family: 'Nanum Pen Script', cursive;
     --max-size: 30;
-    --min-size: 16;
+    --min-size: 10;
   font-size: var(--responsive);
   margin-left: 2%;
   margin-right: 15%;
@@ -27,14 +27,14 @@ font-size: var(--responsive);
 
 .playerHeader {
   --max-size: 16;
-  --min-size: 10;
+  --min-size: 6;
 font-size: var(--responsive);
 overflow-wrap: break-word;
 }
 
 .catText{
   --max-size: 16;
-  --min-size: 10;
+  --min-size: 8;
 font-size: var(--responsive);
 }
 
@@ -46,6 +46,23 @@ font-size: var(--responsive);
 
 .editTextHeader{
   --max-size: 12;
-  --min-size: 8;
+  --min-size: 6;
 font-size: var(--responsive);
+}
+
+@media only screen 
+and (max-width: 1024px) and (max-height: 714px) { 
+
+  
+}
+
+@media only screen and (max-width: 640px){ 
+ 
+  
+}
+
+
+@media only screen 
+and (max-width: 1100px){ 
+
 }
