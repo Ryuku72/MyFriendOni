@@ -45,9 +45,10 @@
 /* Animation */
 
 .teacherPortraitBox {
-  animation: 1.5s teacherPortrait;
-  -webkit-animation: 1.5s teacherPortrait;
+  animation: 1.5s tPort;
+  -webkit-animation: 1.5s tPort;
   animation-fill-mode: forwards;
+  opacity: 1;
 }
 
 @keyframes speechText {

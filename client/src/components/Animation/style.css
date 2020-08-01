@@ -77,8 +77,8 @@
     -webkit-animation: 4s skyblue;
     animation-fill-mode: forwards;
     animation-delay: 0s;
-    clip-path: polygon(48% 100%, 100% 100%, 76% 100%, 64% 100%, 31% 100%, 19% 100%, 0 100%);
-    -webkit-clip-path: polygon(48% 100%, 100% 100%, 76% 100%, 64% 100%, 31% 100%, 19% 100%, 0 100%);
+    clip-path: polygon(0 100%, 100% 100%, 100% 100%, 93% 4%, 79% 62%, 59% 84%, 56% 33%, 33% 78%);
+    -webkit-clip-path: polygon(0 100%, 100% 100%, 100% 100%, 93% 4%, 79% 62%, 59% 84%, 56% 33%, 33% 78%);
   }
 
   #titleSeq5 {

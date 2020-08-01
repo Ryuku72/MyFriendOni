@@ -4,10 +4,11 @@ import "./style.css";
 function Animation(props) {
   return (
     <div className="animation flex items-end justify-end bg-black" style={{ zIndex: -6 }}>
-      <div id="titleSeq1" className="animation" style={{ zIndex: -2 }}></div>
-      <div id="titleSeq2" className="animation" style={{ zIndex: -3 }}></div>
-      <div id="titleSeq3" className="animation" style={{ zIndex: -4 }}></div>
-      <div id="titleSeq4" className="animation" style={{ zIndex: -5 }}></div>
+      <div id="titleSeq1" className="animation w-full h-full" style={{ zIndex: -2 }}></div>
+      <div id="titleSeq2" className="animation w-full h-full" style={{ zIndex: -3 }}></div>
+      <div id="titleSeq3" className="animation w-full h-full" style={{ zIndex: -4 }}></div>
+      <div id="titleSeq4" className="animation w-full h-full" style={{ zIndex: -5 }}></div>
+      <div id="titleSeq5" className="animation w-full h-full" style={{ zIndex: -6 }}></div>
       <div id="moon" className="animation" style={{ zIndex: 0 }}></div>
       
       <div className="w-1/3 mb-6 relative" style={{ height: "90%" }}>
