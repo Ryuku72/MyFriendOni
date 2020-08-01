@@ -28,6 +28,7 @@ function Navbar(props) {
 
   function useOutsideAlerter(ref) {
     useEffect(() => {
+
         function handleClickOutside(event) {
             if (ref.current && !ref.current.contains(event.target)) {
               setOpenOne(false);
@@ -137,7 +138,7 @@ function Navbar(props) {
           <Stat title="High Score" value={props.highscore} />
           <Stat title="Total Score" value={props.totalscore} />
         </div>
-        <div className="iconsDiv flex justify-end items-end">
+        <div className="iconsDiv flex justify-between items-end">
         <div ref={wrapperRef}>
           <NavItem
             icon={quizIcon}

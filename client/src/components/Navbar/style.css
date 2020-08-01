@@ -1,9 +1,9 @@
 * {
     --navbar: 10vh;
-    --wfull: 100vw;
+    --wfull: 95vw;
     --locationDiv: calc(var(--wfull) *  (1/6));
     --pointsDiv: calc(var(--wfull) - (var(--iconsDiv) + var(--locationDiv)));
-    --iconsDiv: calc(var(--wfull) * (1/4));
+    --iconsDiv: calc(var(--wfull) * (1/5));
 }
 
 .navbar {

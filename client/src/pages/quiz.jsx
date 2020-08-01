@@ -394,7 +394,7 @@ function Quiz(props) {
         exitToQuizPage={exitToQuizPage}
       />
       <div
-        className="border-b-2 border-t-2 border-pink-300 flex justify-center items-center relative"
+        className="border-b-2 border-t-2 border-pink-300 flex justify-center items-center relative w-full"
         style={{
         //   backgroundImage: quizToggle ? `url(${bgImg2})` : `url(${bgImg})`,
          height: `calc(100vh - (10vh + 8vh))`,

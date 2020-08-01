@@ -27,7 +27,7 @@ function LetterCard(props) {
       className="flex-col items-center rounded-lg mt-2 shadow-lg text-xl font-mono text-gray-700 searchCard"
       style={{ backgroundColor: `${randc(bgColor)}`, ...props.display }}
     >
-      <div className="p-3 capitalize flex flex-col justify-center items-center">
+      <div className="capitalize flex flex-col justify-center items-center">
         <span className="inline-flex items-center kanji2">
           <Character language={props.language} character={props.hiragana} />{" "}
           {"-"}
