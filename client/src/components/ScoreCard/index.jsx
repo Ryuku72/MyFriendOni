@@ -82,7 +82,7 @@ function ScoreCard(props) {
                 <p className="answerText">Correct Answers :</p>
             <div className="w-full grid xl:grid-cols-3 sm:grid-cols-1 gap-4 mb-3">
         {props.correct.map((result, index) => (
-        <p key={index} className="quizAnswers w-full h-full flex items-center text-center border border-gray-600 bg-green-600 text-white text-centre m-2 rounded-lg">{result}</p>
+        <p key={index} className="quizAnswers w-full h-full flex justify-center items-center text-center border border-gray-600 bg-green-600 text-white text-centre m-2 rounded-lg">{result}</p>
         ))}    
         </div>
         <p className="answerText">Wrong Answers :</p>
