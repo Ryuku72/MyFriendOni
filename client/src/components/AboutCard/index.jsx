@@ -24,66 +24,66 @@ import flatPic from "../../assets/img/logos/flaticon.png"
 
 function AboutCard(props){
     return (
-        <div className="aboutText w-full h-full block absolute top-0 overflow-y-auto" style={props.windowStyle}>
-            <div class="flex flex-wrap overflow-hidden">
-                <div class="h-full w-1/3 flex justify-center items-center" style={{width:"20%", height:"20vh" }}>
+        <div className="aboutText w-full h-full block absolute top-0 overflow-hidden" style={props.windowStyle}>
+            <div class="flex flex-wrap flex-row overflow-hidden items-center justify-center p-2">
+                <div class="h-full w-1/3 flex justify-center items-center border-gray-800 border-r-2 border-b-2" style={{width:"20%", height:"20vh" }}>
                 <img src={TailPic} alt="tailwind" style={{width:"50%"}}/> 
                 </div>
-                <div class="h-full flex justify-center items-center" style={{width:"20%", height:"20vh" }}>
+                <div class="h-full flex justify-center items-center border-r-2 border-b-2 border-gray-800" style={{width:"20%", height:"20vh" }}>
                 <img src={NodePic} alt="nodejs" style={{width:"80%"}}/>
                 </div>
-                <div class="h-full flex items-center justify-center" style={{width:"20%", height:"20vh" }}>
+                <div class="h-full flex items-center justify-center border-r-2 border-b-2 border-gray-800" style={{width:"20%", height:"20vh" }}>
                 <img src={ExpressPic} alt="express"style={{width:"70%"}}/>
                 </div>
-                <div class="h-full w-1/4 flex justify-center items-center" style={{width:"20%", height:"20vh" }}>
+                <div class="h-full w-1/4 flex justify-center items-center border-r-2 border-b-2 border-gray-800" style={{width:"20%", height:"20vh" }}>
                 <img src={MongoPic} alt="mongo" style={{width:"80%"}}/> 
                 </div>
-                <div class="h-full w-1/3 flex justify-center items-center" style={{width:"20%", height:"20vh" }}>
+                <div class="h-full w-1/3 flex justify-center items-center border-b-2 border-gray-800" style={{width:"20%", height:"20vh" }}>
                 <img src={htmlPic} alt="htmllogo" style={{width:"50%"}}/> 
                 </div>
-                <div class="h-full w-1/3 flex justify-center items-center" style={{width:"20%", height:"20vh" }}>
+                <div class="h-full w-1/3 flex justify-center items-center border-r-2 border-b-2 border-gray-800" style={{width:"20%", height:"20vh" }}>
                 <img src={cssPic} alt="csslogo" style={{width:"80%"}}/> 
                 </div>
-                <div class="h-full w-1/3 flex justify-center items-center" style={{width:"20%", height:"20vh" }}>
+                <div class="h-full w-1/3 flex justify-center items-center border-r-2 border-b-2 border-gray-800" style={{width:"20%", height:"20vh" }}>
                 <img src={javascriptPic} alt="javascriptlogo" style={{width:"80%"}}/> 
                 </div>
-                <div class="h-full w-1/3 flex justify-center items-center" style={{width:"20%", height:"20vh" }}>
+                <div class="h-full w-1/3 flex justify-center items-center border-r-2 border-b-2 border-gray-800" style={{width:"20%", height:"20vh" }}>
                 <img src={HerokuPic} alt="heroku" style={{width:"25%"}}/>
                 </div>
-                <div class="h-full w-1/3 flex justify-center items-center" style={{width:"20%", height:"20vh" }}>
+                <div class="h-full w-1/3 flex justify-center items-center border-r-2 border-b-2 border-gray-800" style={{width:"20%", height:"20vh" }}>
                 <img src={PhotoPic} alt="photoshop" style={{width:"50%"}}/> 
                 </div>
-                <div class="h-full w-1/3 flex justify-center items-center" style={{width:"20%", height:"20vh" }}>
+                <div class="h-full w-1/3 flex justify-center items-center border-b-2 border-gray-800" style={{width:"20%", height:"20vh" }}>
                 <img src={inkPic} alt="inkscape" style={{width:"40%"}}/> 
                 </div>
-                <div class="h-full w-1/3 flex justify-center items-center" style={{width:"20%", height:"20vh" }}>
+                <div class="h-full w-1/3 flex justify-center items-center border-r-2 border-b-2 border-gray-800" style={{width:"20%", height:"20vh" }}>
                 <img src={iterm2Pic} alt="iterm2pic" style={{width:"45%"}}/> 
                 </div>
-                <div class="h-full w-1/3 flex justify-center items-center" style={{width:"20%", height:"20vh" }}>
+                <div class="h-full w-1/3 flex justify-center items-center border-r-2 border-b-2 border-gray-800" style={{width:"20%", height:"20vh" }}>
                 <img src={vscodePic} alt="vscodelogo" style={{width:"60%"}}/> 
                 </div>
-                <div class="h-full w-1/3 flex justify-center items-center" style={{width:"20%", height:"20vh" }}>
+                <div class="h-full w-1/3 flex justify-center items-center border-r-2 border-b-2 border-gray-800" style={{width:"20%", height:"20vh" }}>
                 <img src={slackPic} alt="slackpic" style={{width:"60%"}}/> 
                 </div>
-                <div class="h-full w-1/3 flex justify-center items-center" style={{width:"20%", height:"20vh" }}>
+                <div class="h-full w-1/3 flex justify-center items-center border-r-2 border-b-2 border-gray-800" style={{width:"20%", height:"20vh" }}>
                 <img src={UWApic} alt="UWApic" style={{width:"65%"}}/> 
                 </div>
-                <div class="h-full w-1/3 flex justify-center items-center" style={{width:"20%", height:"20vh" }}>
+                <div class="h-full w-1/3 flex justify-center items-center border-b-2 border-gray-800" style={{width:"20%", height:"20vh" }}>
                 <img src={trilogyPic} alt="Trilogypic" style={{width:"100%"}}/> 
                 </div>
-                <div class="h-full w-1/3 flex justify-center items-center" style={{width:"20%", height:"20vh" }}>
+                <div class="h-full w-1/3 flex justify-center items-center border-r-2 border-gray-800" style={{width:"20%", height:"20vh" }}>
                 <img src={coffeegif} alt="coffeePic" style={{width:"30%"}}/> 
                 </div>
-                <div class="h-full w-1/3 flex justify-center items-center" style={{width:"20%", height:"20vh" }}>
+                <div class="h-full w-1/3 flex justify-center items-center border-r-2 border-gray-800" style={{width:"20%", height:"20vh" }}>
                 <p className="text-center ftk">Foreign Toolkit</p>
                 </div>
-                <div class="h-full flex justify-center items-center" style={{width:"20%", height:"20vh" }}>
+                <div class="h-full flex justify-center items-center border-r-2 border-gray-800" style={{width:"20%", height:"20vh" }}>
                 <img src={ReactPic} alt="react"style={{width:"30%", height: "80%"}}/>
                 </div>
-                <div class="h-full w-1/3 flex justify-center items-center" style={{width:"20%", height:"20vh" }}>
+                <div class="h-full w-1/3 flex justify-center items-center border-r-2 border-gray-800" style={{width:"20%", height:"20vh" }}>
                 <img src={googlePic} alt="googleFont" style={{width:"90%"}}/> 
                 </div>
-                <div class="h-full w-1/3 flex justify-center items-center" style={{width:"20%", height:"20vh" }}>
+                <div class="h-full w-1/3 flex justify-center items-center border-gray-800" style={{width:"20%", height:"20vh" }}>
                 <img src={flatPic} alt="computerPic" style={{width:"100%"}}/> 
                 </div>
                 
