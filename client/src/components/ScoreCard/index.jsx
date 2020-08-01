@@ -41,7 +41,7 @@ function ScoreCard(props) {
 
     return (
         <div className="score-sheet w-full h-full bg-yellow-300" style={props.style}>
-            <div className="w-1/2 h-full inline-flex flex-col leading-10">
+            <div className="w-1/2 h-full inline-flex flex-col xl:leading-10 sm:leading-6">
                 <div className="flex justify-center items-center" style={{height:"35%"}}>
         <p className="gradeText text-gray-800">Grade: </p>
         <p className="gradeLetter mx-6 text-red-500" style={{ transform: "rotateZ(-10deg)" }}>{result}</p>

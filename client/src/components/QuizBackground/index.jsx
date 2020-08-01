@@ -11,9 +11,9 @@ function QuizBackground(props) {
   <div className="animation flex items-center justify-center bg-black bg-center w-full" style={{ zIndex: -2, height:"82vh", backgroundImage:`url(${bgImg})`, backgroundSize: "100vw 82vh",}}>
 <div id="quizOverlay" className="z-1 opacity-0 bg-gray-300 bg-opacity-50 active"  style={{ ...props.overlayStyle }}></div>
     </div>
-    <div className="w-full h-full flex items-center justify-center">
-  <div className="w-1/3 m-4 border-8 border-red-800 teacherPortraitBox overflow-hidden rounded-lg">
-      <img src={teacherPotrait} alt="teacher_portait" className="teacherPortrait w-full h-full" style={{ zIndex: 20}} />
+    <div className="xl:w-4/5 sm:w-full h-full flex items-center justify-center">
+  <div className="w-1/2 flex justify-center m-4 teacherPortraitBox overflow-hidden rounded-lg">
+      <img src={teacherPotrait} alt="teacher_portait" className="teacherPortrait border-8 border-red-800 rounded-lg" style={{ zIndex: 20}} />
       </div>
       <div className="w-1/2 mx-10 bg-gray-100 speechBubble flex items-center justify-center text-center" style={{height:"80%"}}>
           <div className="w-3/5 px-4">

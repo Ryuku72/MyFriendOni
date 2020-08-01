@@ -42,6 +42,12 @@
   font-family: 'Nanum Pen Script', cursive;
 }
 
+.teacherPortrait {
+  height: 70%;
+  width: 70%;
+  object-fit: cover;
+}
+
 /* Animation */
 
 .teacherPortraitBox {
@@ -81,6 +87,11 @@
     --max-size: 33;
     --min-size: 12;
     font-size: var(--responsive);
+  }
+
+  .teacherPortrait {
+    height: 100%;
+    width: 100%;
   }
 
 }

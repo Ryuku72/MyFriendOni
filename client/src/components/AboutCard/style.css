@@ -3,3 +3,13 @@
     --min-size: 15;
     font-size: var(--responsive);
 }
+
+.ftk {
+    --max-size: 42;
+    --min-size: 16;
+    font-size: var(--responsive);
+    font-family: 'Permanent Marker', cursive;
+    letter-spacing: 0.1rem;
+    line-height: 3rem;
+    color: rgb(26, 24, 24);
+}
