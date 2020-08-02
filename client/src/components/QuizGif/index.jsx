@@ -8,7 +8,7 @@ import waitingGif2 from "../../assets/img/gifs/waiting02.gif";
 import wrongGif1 from "../../assets/img/gifs/wrong01.gif";
 import wrongGif2 from "../../assets/img/gifs/wrong02.gif";
 import wrongGif3 from "../../assets/img/gifs/wrong03.gif";
-import randomGif from "../../assets/img/gifs/random03.gif"
+import byeGif from "../../assets/img/gifs/bye.gif"
 
 const correctArray = [correctGif1, correctGif2, correctGif3 ];
 const waitArray = [waitingGif1, waitingGif2];
@@ -28,7 +28,7 @@ function QuizGif(props) {
     const cardType = {
         "true": correctGif,
         "false": wrongGif,
-        "undefined": randomGif
+        "": byeGif
     }
 
     useEffect(()=> {

@@ -8,7 +8,7 @@ import QuizGif from "../QuizGif";
 function Card(props) {
   let testLanguage = ""
   let hScore = ""
-  console.log(props.Eng)
+  //console.log(props.Eng)
   switch (props.language) {
     case "English":
         testLanguage = "English";

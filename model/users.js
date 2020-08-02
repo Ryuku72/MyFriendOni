@@ -19,7 +19,14 @@ const userSchema = new Schema(
     engHighScore: { type: Number, required: true, default: 0 },
     hiraHighScore: { type: Number, required: true, default: 0 },
     kataHighScore: { type: Number, required: true, default: 0 },
-    totalScore: { type: Number, required: true, default: 0 },
+    totalScore: { type: Number, required: true, default: 0 
+    },
+    sessions: { type:  [{
+      date: { type: Date, default: Date.now},
+      correct: { type: Array, default: [] },
+      incorrect: { type: Array, default: [] },
+    }]
+  },
   },
   { timestamps: true }
 );

@@ -9,7 +9,8 @@ import kana from "../../assets/svg/kana.svg";
 import hiragana from "../../assets/svg/hiragana.svg";
 import menuIcon from "../../assets/svg/watermelon.svg";
 import vocab from "../../assets/svg/book3.svg";
-import furi from "../../assets/svg/book1.svg";
+import pHistory from "../../assets/svg/kanji.svg";
+import furi from "../../assets/svg/book4.svg";
 import player from "../../assets/svg/troll.svg";
 import about from "../../assets/svg/sushi.svg";
 import outside from "../../assets/svg/plug.svg";
@@ -32,6 +33,8 @@ function Navbar(props) {
         function handleClickOutside(event) {
             if (ref.current && !ref.current.contains(event.target)) {
               setOpenOne(false);
+              setOpenTwo(false);
+              setOpenThree(false)
             }
         }
   
@@ -138,8 +141,8 @@ function Navbar(props) {
           <Stat title="High Score" value={props.highscore} />
           <Stat title="Total Score" value={props.totalscore} />
         </div>
-        <div className="iconsDiv flex justify-between items-end">
         <div ref={wrapperRef}>
+        <div className="iconsDiv flex justify-between items-end">
           <NavItem
             icon={quizIcon}
             color="bg-green-300"
@@ -191,7 +194,6 @@ function Navbar(props) {
               </Link>
             </NavDropDown>
           </NavItem>
-          </div>
           <NavItem
             icon={studyIcon}
             color="bg-pink-300"
@@ -205,6 +207,15 @@ function Navbar(props) {
               <p className="m-2 font-mono text-center underline text-xl">
                 Study Material
               </p>
+              <Link to="/study/history">
+                <NavDropDownItem
+                  align="flex-row-reverse"
+                  icon={pHistory}
+                  IconAlign={"flex justify-end"}
+                  color="p-1 bg-yellow-200"
+                  text="Player History"
+                />
+              </Link>
               <Link to="/study/vocab">
                 <NavDropDownItem
                   align="flex-row-reverse"
@@ -219,7 +230,7 @@ function Navbar(props) {
                   align="flex-row-reverse"
                   icon={furi}
                   IconAlign={"flex justify-end"}
-                  color="p-1 bg-teal-100"
+                  color="p-1 bg-green-200"
                   text="Letter Chart"
                 />
               </Link>
@@ -262,6 +273,7 @@ function Navbar(props) {
               />
             </NavDropDown>
           </NavItem>
+        </div>
         </div>
       </div>
     </nav>

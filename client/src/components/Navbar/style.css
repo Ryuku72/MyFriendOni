@@ -1,9 +1,9 @@
 * {
     --navbar: 10vh;
-    --wfull: 95vw;
+    --wfull: 98vw;
     --locationDiv: calc(var(--wfull) *  (1/6));
     --pointsDiv: calc(var(--wfull) - (var(--iconsDiv) + var(--locationDiv)));
-    --iconsDiv: calc(var(--wfull) * (1/5));
+    --iconsDiv: calc(var(--wfull) * (1/6));
 }
 
 .navbar {
@@ -136,7 +136,7 @@
     * {
         --navbar: 10vh;
         --wfull: 95vw;
-        --locationDiv: calc(var(--wfull) *  (1/4));
+        --locationDiv: calc(var(--wfull) *  (1/3));
         --iconsDiv: calc(var(--wfull) * (2/4));
     }
 
@@ -178,7 +178,7 @@
     * {
         --navbar: 10vh;
         --wfull: 95vw;
-        --locationDiv: calc(var(--wfull) *  (1/4));
+        --locationDiv: calc(var(--wfull) *  (1/3));
         --iconsDiv: calc(var(--wfull) * (2/4));
     }
 

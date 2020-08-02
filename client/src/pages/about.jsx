@@ -8,6 +8,14 @@ import PlayerCard from "../components/PlayerCard";
 import AboutCard from "../components/AboutCard";
 
 function About(){
+
+  let dateFormat = {
+  day: 'numeric', month: 'numeric', year: 'numeric',
+  hour: 'numeric', minute: 'numeric', second: 'numeric',
+  hour12: false, timeZone: 'Australia/Perth'
+  };
+
+
     const history = useHistory()
     const location = useLocation()
     const [user, setUser] = useState({
@@ -53,6 +61,7 @@ function About(){
     //console.log(userID)
     API.getUser(user).then((result) => {
       setUser(result.data);
+      //console.log(new Intl.DateTimeFormat('en-AU', dateFormat).format(new Date(result.data.createdAt)))
     });
   }
 

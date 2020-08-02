@@ -15,9 +15,10 @@ function QuizBackground(props) {
   <div className="w-1/2 flex justify-center m-4 teacherPortraitBox overflow-hidden rounded-lg">
       <img src={teacherPotrait} alt="teacher_portait" className="teacherPortrait border-8 border-red-800 rounded-lg" style={{ zIndex: 20}} />
       </div>
-      <div className="w-1/2 mx-10 bg-gray-100 speechBubble flex items-center justify-center text-center" style={{height:"80%"}}>
-          <div className="w-3/5 px-4">
-                <p className="speechText">Hello... <span className="text-purple-500 speechTextPlus font-semibold speechTextName">{props.user}</span>. I am great teacher <span className="text-red-500 speechTextPlus font-semibold">Oni</span>. Let me teach you Japanese. Selecting a Quiz from the drop down menu!!!</p>
+      <div className="w-1/2 mx-10 bg-gray-100 speechBubble inline-flex flex-wrap items-center justify-center text-center" style={{height:"80%"}}>
+          <div className="w-3/5 px-1 block">
+                <p className="speechText flex-wrap">Hello... <span className="text-purple-500 speechTextPlus font-semibold speechTextName">{props.user}</span>. I am great teacher <span className="text-red-500 speechTextPlus font-semibold">Oni</span>. Let me teach you Japanese. Select a Quiz from the drop down menu</p>
+              
           </div>
       </div>
       </div>

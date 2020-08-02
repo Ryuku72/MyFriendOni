@@ -26,6 +26,9 @@ export default {
   deleteUsers: function (id, body) {
     return axios.put("/api/users/delete/" + id, body)
   },
+  updateSessions: function (id, body) {
+    return axios.post("/api/sessions/" + id, body)
+  },
 
   //Quiz
   getJapanese: function () {

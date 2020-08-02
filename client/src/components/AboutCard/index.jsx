@@ -18,7 +18,6 @@ import slackPic from "../../assets/img/logos/slack.png"
 import UWApic from "../../assets/img/logos/UWA.svg"
 import trilogyPic from "../../assets/img/logos/Trilogy.png"
 import coffeegif from "../../assets/img/logos/coffee.gif"
-import compgif from "../../assets/img/logos/computer.gif"
 import flatPic from "../../assets/img/logos/flaticon.png"
 
 

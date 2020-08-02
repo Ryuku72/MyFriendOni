@@ -1,7 +1,10 @@
 import React from "react";
 import "./style.css";
 
+//console.log(new Intl.DateTimeFormat('en-AU', dateFormat).format(new Date(result.data.createdAt)))
+
 function PlayerCard(props) {
+
 
   return (
     <div className="w-full xl:p-12 sm:p-2 font-mono inline-flex z-20" style={{...props.windowStyle}}>
@@ -43,7 +46,7 @@ function PlayerCard(props) {
           <div className="inline-flex justify-between w-full">
             <p className="playerHeader">
               <span className=" font-semibold mr-4">Start Date:</span>
-              {props.start}
+             {props.start}
             </p>
           </div>
 
