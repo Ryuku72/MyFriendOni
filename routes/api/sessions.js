@@ -20,11 +20,19 @@ router.post("/:id", function (req, res) {
 })
 
 router.get("/:id", function (req, res){
-   console.log(req.params)
+   //console.log(req.params)
     sessions
     .find({ user_id: req.params.id })
     .then((dbModel) => res.json(dbModel))
     .catch((err) => res.status(422).json(err));
 });
+
+router.delete("/:id", function (req, res){
+    //console.log(req.params.id)
+    sessions.findByIdAndDelete(req.params.id)
+    .then((deleted) => { res.json({deleted})
+    .catch((err) => res.status(422).json(err));
+    });
+})
 
 module.exports = router;

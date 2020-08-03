@@ -33,7 +33,7 @@ function Quiz(props) {
   const [timeLeft, setTimeLeft] = useState("end");
 
   //toggles
-  const [quizToggle, setQuizToggle] = useState(false) 
+  const [quizToggle, setQuizToggle] = useState(false)
   const [scoreToggle, setScoreToggle] = useState(false);
   const [activeBtn, setActiveBtn] = useState(0);
   const [btnColor, setBtnColor] = useState(false);
@@ -43,65 +43,52 @@ function Quiz(props) {
   const [correctArray, setCorrectArray] = useState([]);
   const location = useLocation()
 
+  // Date functions
+  let today = new Date();
+  let dd = String(today.getDate()).padStart(2, "0");
+  let mm = String(today.getMonth() + 1).padStart(2, "0");
+  let yyyy = today.getFullYear();
+  today = dd + "/" + mm + "/" + yyyy;
+
   // useEffects
   useEffect(() => {
+    function settings(){
+      setWords({...words,WrongAnswers: [], CorrectAnswers: []})
+      setQuizToggle(true);
+      setBtnColor(false);
+      setScoreToggle(false);
+      setPoints({ ...points, score: 0 });
+      setHighScore(0);
+      setActiveBtn(1);
+      setTimeLeft(124);
+      setOverlay(true)
+    }
+
     getUser();
     if (location.pathname === "/quiz/japanese") {
     setLanguage("Japanese");
-    setWords({...words,WrongAnswers: [], CorrectAnswers: []})
-    setQuizToggle(true);
-    setBtnColor(false);
-    setScoreToggle(false);
-    setPoints({ ...points, score: 0 });
-    setHighScore(0);
-    setActiveBtn(1);
-    setTimeLeft(124);
-    setOverlay(true)
+    settings()
     setTimeout(() => {
       setOverlay(false)
     },3500)
     } 
     else if (location.pathname === "/quiz/english"){
       setLanguage("English");
-      setQuizToggle(true);
-      setBtnColor(false);
-      setScoreToggle(false);
-      setWords({...words,WrongAnswers: [], CorrectAnswers: []})
-      setPoints({ ...points, score: 0 });
-      setHighScore(0);
-      setActiveBtn(1);
-      setTimeLeft(124)
-      setOverlay(true)
+      settings()
       setTimeout(() => {
         setOverlay(false)
       },3500);
     }
     else if (location.pathname === "/quiz/hiragana"){
       setLanguage("Hiragana");
-      setQuizToggle(true);
-      setBtnColor(false);
-      setScoreToggle(false);
-      setWords({...words,WrongAnswers: [], CorrectAnswers: []})
-      setPoints({ ...points, score: 0 });
-      setHighScore(0);
-      setActiveBtn(1);
-      setTimeLeft(124);
-      setOverlay(true)
+      settings()
       setTimeout(() => {
         setOverlay(false)
       },3500)
     } 
     else if (location.pathname === "/quiz/katakana") {
-      setLanguage("Hiragana");
-      setQuizToggle(true);
-      setBtnColor(false);
-      setScoreToggle(false);
-      setWords({...words,WrongAnswers: [], CorrectAnswers: []})
-      setPoints({ ...points, score: 0 });
-      setHighScore(0);
-      setActiveBtn(1);
-      setTimeLeft(124);
-      setOverlay(true)
+      setLanguage("Katakana");
+      settings()
       setTimeout(() => {
         setOverlay(false)
       },3500)
@@ -115,7 +102,6 @@ function Quiz(props) {
   useEffect(() => {
     setActiveBtn(0);
     loadVocabList();
-
   }, [language]);
 
   useEffect(() => {
@@ -136,7 +122,7 @@ function Quiz(props) {
     API.getUser(user)
     .then(result => {
       setUser(result.data)
-    })
+    }).catch((err) => console.log(err));
   }
 
   function loadVocabList() {
@@ -154,7 +140,7 @@ function Quiz(props) {
           });
           //console.log(words);
         }, 800);
-      });
+      }).catch((err) => console.log(err));
     } else {
       API.getJapanese()
         .then((res) => {
@@ -174,13 +160,6 @@ function Quiz(props) {
         .catch((err) => console.log(err));
     }
   }
-
-  // Date functions
-  let today = new Date();
-  let dd = String(today.getDate()).padStart(2, "0");
-  let mm = String(today.getMonth() + 1).padStart(2, "0");
-  let yyyy = today.getFullYear();
-  today = dd + "/" + mm + "/" + yyyy;
 
   // InfoRequests
   function startJpnQuiz(event) {
@@ -281,18 +260,7 @@ function Quiz(props) {
         ? words.Question.Romaji
         : words.Question.English;
       // console.log(event.target.value)
-       console.log("Answer is: " + JSON.stringify(words.Question))
-    
-    // let answerObj = ""
-    // switch (language) {
-    //   case "Japanese" || "English": 
-    //  answerObj = {"Language": language, "Japanese": words.Question.Japanese, "English": words.Question.English, "Row": words.Question.Row}
-    //  break;
-    //   case "Hiragana" || "Katakana":
-    //  answerObj = {"Language": language, "Hiragana": words.Question.Hiragana, "Katakana": words.Question.Katakana, "Romaji": words.Question.Romaji} 
-    //   break;
-    // }
-
+      // console.log("Answer is: " + JSON.stringify(words.Question))
     //console.log(answerObj)
     //console.log(words.Question)
     //console.log(answer);
@@ -355,10 +323,10 @@ function Quiz(props) {
       "kataHighScore": user.kataHighScore,
       "totalScore": user.totalScore,
     }
-    console.log("totalScore " + user.totalScore,)
+    console.log("totalScore " + user.totalScore)
     API.updatePoints(user._id, request)
     .then(result => {
-        console.log(result);
+        //console.log(result);
         getUser()
       }).catch(err => console.log(err));  
     setScoreToggle(false);
@@ -382,43 +350,49 @@ function Quiz(props) {
         break;
     }
 
-    if (highScore > user[scoreLanguage]) {
-      //console.log("correct"); 
-      let totalPoints = points.score + user.totalScore;
-      console.log(totalPoints)
-      setUser({ ...user, totalScore: totalPoints, [scoreLanguage]: highScore });
-      setTimeLeft("end");
-      setBtnColor(true);
-      setLanguage("");
-      setWords(words);
-      setTimeout(() => {
-        setQuizToggle(false);
-        setScoreToggle(true);
-      }, 350);
-    } else {
-      let totalPoints = points.score + user.totalScore;
-      console.log(points.score)
-      setUser({ ...user, totalScore: totalPoints });
-      setTimeLeft("end");
-      setBtnColor(true);
-      setLanguage("");
-      setWords(words);
-      setTimeout(() => {
-        setQuizToggle(false);
-        setScoreToggle(true);
-      }, 350);
-    }  
     let sessions = {
       "language" : language,
       "correct" :  correctArray, 
       "incorrect" : wrongArray,
       "score": points.score, 
     }
+  
     console.log(correctArray)
-    API.updateSessions(user._id, sessions)
-    .then(update => {
-      console.log(update)
-    }).catch(err => console.log(err));
+
+    function preSets(){
+      setTimeLeft("end");
+      setBtnColor(true);
+      setLanguage("");
+      setWords(words);
+      if ((correctArray.length === 0) || (wrongArray.length === 0)){
+        console.log("no information recorded")
+      } else {
+      API.updateSessions(user._id, sessions)
+      .then(update => {
+        console.log("Entries saved: " + update.data.data.incorrect.length + " plus " + update.data.data.correct.length)
+      }).catch(err => console.log(err));
+    }
+    }
+
+    if (highScore > user[scoreLanguage]) {
+      //console.log("correct"); 
+      let totalPoints = points.score + user.totalScore;
+      console.log(totalPoints)
+      preSets()
+      setTimeout(() => {
+        setQuizToggle(false);
+        setScoreToggle(true);
+      }, 350);
+    } else {
+      let totalPoints = points.score + user.totalScore;
+      console.log("point score " + points.score)
+      setUser({ ...user, totalScore: totalPoints });
+      preSets()
+      setTimeout(() => {
+        setQuizToggle(false);
+        setScoreToggle(true);
+      }, 350);
+    }
   }
 
   return (
@@ -444,7 +418,8 @@ function Quiz(props) {
         <QuizBackground 
         user={user.username} 
         highScore={highScore}
-        bgToggle={{display: quizToggle || scoreToggle ? "none" : "flex"}}/>
+        bgToggle={{display: quizToggle || scoreToggle ? "none" : "flex"}}
+        />
         <Card
           btnColor={btnColor}
           style={{ display: quizToggle ? "inline-flex" : "none" }}
@@ -460,6 +435,7 @@ function Quiz(props) {
           jpnHighScore={user.jpnHighScore}
           kataHighScore={user.kataHighScore}
           hiraHighScore={user.hiraHighScore}
+          score={points.score}
         />
         <ScoreCard
           score={points.score}

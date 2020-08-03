@@ -49,10 +49,6 @@ function Study(props) {
     Row: false,
   });
   const [userHistory, setUserHistory] = useState([])
-  const [uTime, setUTime] = useState({
-    createdAt: "",
-    updatedAt: ""
-  })
   const location = useLocation()
 
   let dateFormat = {
@@ -95,7 +91,7 @@ function Study(props) {
       //console.log(user)
       API.getSessions(user)
       .then((list) => {
-        console.log(list)
+       // console.log(list)
         setUserHistory(list.data)
       })
     }
@@ -108,12 +104,26 @@ function Study(props) {
     //console.log(user)
     API.getUser(user).then((result) => {
       setUser(result.data);
-      let create = (new Intl.DateTimeFormat('en-AU', dateFormat).format(new Date(result.data.createdAt)))
-      let update = (new Intl.DateTimeFormat('en-AU', dateFormat).format(new Date(result.data.updatedAt)))
-
-      setUTime({createdAt: create, updatedAt: update})
     });
   }
+
+  function deleteMemo(event){
+    event.preventDefault()
+    console.log(event.target.value)
+    const memoID = event.target.value
+    API.deleteSession(memoID)
+    .then((result) => {
+      console.log(result)
+      setPageType("History")
+      const user = localStorage.getItem("tokens");
+      //console.log(user)
+      API.getSessions(user)
+      .then((list) => {
+       // console.log(list)
+        setUserHistory(list.data)
+      })
+    }).catch((err) => console.log(err));
+}
 
  //handler
   function onHandleOrder(event) {
@@ -231,11 +241,16 @@ function Study(props) {
     }
   } 
 
-  console.log(userHistory)
+  //console.log(userHistory)
 
   return (
     <div className="block">
       <Navbar highscore={0} totalscore={user.totalScore} score={0} />
+      <HistoryCard 
+        userHistory={userHistory}
+        style={{display: pageType === "History" ? "block" : "none"}}
+        deleteMemo={deleteMemo}
+        />
       <SearchNav
         display={{display: pageType === "Vocab" ? "flex" : "none"}}
         name={words.searchArray}
@@ -259,7 +274,7 @@ function Study(props) {
       <Wrapper wrap={{display: pageType === "Vocab" ? "block" : "none"}}>
         <img src={Vocab} alt="slogan" className="absolute bottom-0 right-0 mb-2" 
         style={{display: searchState.results.length ? "none" : "block"}} />
-        <div className="xl:grid-cols-5 sm:grid-cols-2 gap-3" style={{display: searchState.language === "Letters" ? "none" : "grid"}}>
+        <div className="xl:grid-cols-5 sm:grid-cols-2 gap-3" style={{display: pageType === "Letters" ? "none" : "grid"}}>
         {searchState.results.map((result, index) => (
           <SearchCard
             key={index}
@@ -277,7 +292,7 @@ function Study(props) {
         </Wrapper>
         <img src={Letters} alt="slogan" className="relative p-5 my-2 xl:w-1/2 sm:w-3/4 top-0 left-0" 
         style={{display: pageType === "Letters" ? "block" : "none"}} />
-        <div className="xl:grid-cols-5 sm:grid-cols-3 gap-5 mb-4 p-6" style={{display: searchState.language === "Letters" ? "grid" : "none"}}>
+        <div className="xl:grid-cols-5 sm:grid-cols-3 gap-5 mb-4 p-6" style={{display: pageType === "Letters" ? "grid" : "none"}}>
          {words.database.map((result, index) => (
         <LetterCard
          display={{display: pageType === "Letters" ? "flex" : "none"}}
@@ -289,10 +304,6 @@ function Study(props) {
         />
         ))}
         </div>
-        <HistoryCard 
-        userHistory={userHistory}
-        style={{display: pageType === "History" ? "block" : "none"}}
-        />
       <Footer user={user.username}>
         <p
           className="footer px-2 text-2xl inline-flex font-mono capitalize text-red-500"

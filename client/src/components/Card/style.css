@@ -7,6 +7,11 @@
   --gifBoxH: calc(var(--cardH) * 0.75);
 }
 
+.mobileScore {
+  display: none;
+  height: 12vh;
+}
+
 .quizTitle {
   --max-size: 80;
   --min-size: 40;
@@ -101,8 +106,8 @@
   padding-right: 2rem;
   font-family: 'Kosugi Maru', sans-serif;
   color: rgb(255, 255, 255);
-  --max-size: 75;
-  --min-size: 40;
+  --max-size: 65;
+  --min-size: 16;
   font-size: var(--responsive);
   overflow-wrap: break-word;
 }
@@ -166,8 +171,8 @@
 
 .furiWord{
   overflow-wrap: break-word;
-  --max-size: 40;
-  --min-size: 20;
+  --max-size: 35;
+  --min-size: 10;
   font-size: var(--responsive);
 }
 
@@ -221,6 +226,13 @@
       margin-top: -10px;
       margin-bottom: -10px;
       overflow-wrap: break-word;
+    }
+
+    .furiWord{
+      overflow-wrap: break-word;
+      --max-size: 20;
+      --min-size: 10;
+      font-size: var(--responsive);
     }
 
   }

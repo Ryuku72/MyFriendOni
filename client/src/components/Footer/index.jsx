@@ -10,7 +10,7 @@ function Footer(props) {
         {props.children}
       </article>
       <>
-      <p className="footer mr-16 text-blue-700 text-right flex items-center"><span className="mr-4 text-pink-600 capitalize ">{props.user}</span>{'//'} Foreign Toolkit 2020 </p>
+      <p className="footer text-blue-700 text-right flex items-center"><span className="ftkT mr-4 text-pink-600 capitalize ">{props.user}</span>{'//'} Foreign Toolkit 2020 </p>
       </>
     </footer>
   );

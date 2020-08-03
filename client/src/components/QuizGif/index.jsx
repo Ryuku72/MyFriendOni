@@ -53,7 +53,12 @@ function QuizGif(props) {
     return (
         <div className="quizGifBox flex flex-col justify-center items-center"> 
     <img className="gifBox" src={imgGif} alt="answerGif"/>
-    <p className="textAnswer flex flex-col justify-center items-center text-white">{answerTag}</p>
+    <div className="answerBox" style={{height:"10vh"}}>
+    <p className="w-full textAnswer flex flex-col justify-center items-center text-white">{answerTag}</p>
+    </div>
+    <div className="w-full p-4 flex items-start justify-center text-center">
+    <p className="mobileScore textAnswer text-white font-mono">Score: {props.score ? props.score : "0"}</p>
+    </div>
     </div>
     )
 }

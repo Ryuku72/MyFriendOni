@@ -136,8 +136,8 @@
     * {
         --navbar: 10vh;
         --wfull: 95vw;
-        --locationDiv: calc(var(--wfull) *  (1/3));
-        --iconsDiv: calc(var(--wfull) * (2/4));
+        --locationDiv: calc(var(--wfull) *  (0.40));
+        --iconsDiv: calc(var(--wfull) * (0.5));
     }
 
     .pointsDiv {
@@ -145,9 +145,17 @@
         width: 0em;
     }
 
+    .mobileScore {
+        display: flex;
+        --max-size: 30;
+        --min-size: 20;
+        font-size: var(--responsive);
+    }
+
     .stat{
         display: none;
         width: 0em;
+        
     }
 
     .menuTitle {
@@ -185,6 +193,13 @@
     .pointsDiv {
         display: none;
         width: 0em;
+    }
+
+    .mobileScore {
+        display: flex;
+        --max-size: 20;
+        --min-size: 15;
+        font-size: var(--responsive);
     }
 
     .stat{

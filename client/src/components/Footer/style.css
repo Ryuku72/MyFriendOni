@@ -15,4 +15,15 @@ footer p {
         --max-size: 25;
         --min-size: 15;
       font-size: var(--responsive);
+      margin-right: 3rem;
+}
+
+@media only screen and (max-width: 376px){ 
+    .footer {
+        margin-right: 1rem;
+    }
+
+    .ftkT {
+        margin-right: 1rem;
+    }
 }

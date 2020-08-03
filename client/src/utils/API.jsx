@@ -32,6 +32,9 @@ export default {
   getSessions: function (id) {
     return axios.get("/api/sessions/" + id)
   },
+  deleteSession: function(id) {
+    return axios.delete("/api/sessions/" + id)
+  },
 
   //Quiz
   getJapanese: function () {

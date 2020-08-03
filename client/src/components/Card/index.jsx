@@ -91,6 +91,7 @@ function Card(props) {
         <QuizGif 
         gifState={props.gifState}
         btnColor={props.btnColor}
+        score={props.score}
         />
       </div>
 </div> 
