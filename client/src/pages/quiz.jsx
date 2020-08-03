@@ -283,15 +283,15 @@ function Quiz(props) {
       // console.log(event.target.value)
        console.log("Answer is: " + JSON.stringify(words.Question))
     
-    let answerObj = ""
-    switch (language) {
-      case "Japanese" || "English": 
-     answerObj = {"Language": language, "Japanese": words.Question.Japanese, "English": words.Question.English, "Row": words.Question.Row}
-     break;
-      case "Hiragana" || "Katakana":
-     answerObj = {"Language": language, "Hiragana": words.Question.Hiragana, "Katakana": words.Question.Katakana, "Romaji": words.Question.Romaji} 
-      break;
-    }
+    // let answerObj = ""
+    // switch (language) {
+    //   case "Japanese" || "English": 
+    //  answerObj = {"Language": language, "Japanese": words.Question.Japanese, "English": words.Question.English, "Row": words.Question.Row}
+    //  break;
+    //   case "Hiragana" || "Katakana":
+    //  answerObj = {"Language": language, "Hiragana": words.Question.Hiragana, "Katakana": words.Question.Katakana, "Romaji": words.Question.Romaji} 
+    //   break;
+    // }
 
     //console.log(answerObj)
     //console.log(words.Question)
@@ -304,7 +304,7 @@ function Quiz(props) {
       setGifState(true)
       const addPoints = points.score + 5;
       words.CorrectAnswers.push(answer);
-      correctArray.push(answerObj);
+      correctArray.push(answer);
       if (addPoints > highScore) {
         setHighScore(addPoints);
         setPoints({ ...points, score: addPoints });
@@ -313,7 +313,7 @@ function Quiz(props) {
       }
     } else if (buttonInput === "false" && timeLeft <= 10 && points.score >= 3) {
       words.WrongAnswers.push(answer);
-      wrongArray.push(answerObj)
+      wrongArray.push(answer)
       setGifState(false)
       const minusPoints = points.score - 3;
       setPoints({ ...points, score: minusPoints });
@@ -322,7 +322,7 @@ function Quiz(props) {
       setScoreToggle(true);
     } else if (buttonInput === "false" && timeLeft <= 10 && points.score <= 3) {
       words.WrongAnswers.push(answer);
-      wrongArray.push(answerObj)
+      wrongArray.push(answer)
       setGifState(false)
       setPoints({ ...points, score: 0 });
       setTimeLeft("end");
@@ -330,14 +330,14 @@ function Quiz(props) {
       setScoreToggle(true);
     } else if (buttonInput === "false" && timeLeft >= 10 && points.score <= 3) {
       words.WrongAnswers.push(answer);
-      wrongArray.push(answerObj)
+      wrongArray.push(answer)
       setPoints({ ...points, score: 0 });
       setTimeLeft(timeLeft - 10);
     } else {
       //console.log("wrong")
       //console.log("correct")
       words.WrongAnswers.push(answer);
-      wrongArray.push(answerObj)
+      wrongArray.push(answer)
       setGifState(false)
       const minusPoints = points.score - 3;
       setTimeLeft(timeLeft - 10);
@@ -348,10 +348,20 @@ function Quiz(props) {
 
   function onHandleExitScore() {
     //console.log(user.totalScore)
+    let request = {
+      "engHighScore": user.engHighScore,
+      "hiraHighScore": user.hiraHighScore,
+      "jpnHighScore": user.jpnHighScore,
+      "kataHighScore": user.kataHighScore,
+      "totalScore": user.totalScore,
+    }
+    console.log("totalScore " + user.totalScore,)
+    API.updatePoints(user._id, request)
+    .then(result => {
+        console.log(result);
+        getUser()
+      }).catch(err => console.log(err));  
     setScoreToggle(false);
-    setCorrectArray(correctArray)
-    setWrongArray(wrongArray)
-    setPoints({ ...points, score: 0 });
     //console.log(user);
   }
 
@@ -373,7 +383,7 @@ function Quiz(props) {
     }
 
     if (highScore > user[scoreLanguage]) {
-      //console.log("correct");
+      //console.log("correct"); 
       let totalPoints = points.score + user.totalScore;
       console.log(totalPoints)
       setUser({ ...user, totalScore: totalPoints, [scoreLanguage]: highScore });
@@ -387,7 +397,7 @@ function Quiz(props) {
       }, 350);
     } else {
       let totalPoints = points.score + user.totalScore;
-      //console.log(totalPoints)
+      console.log(points.score)
       setUser({ ...user, totalScore: totalPoints });
       setTimeLeft("end");
       setBtnColor(true);
@@ -397,30 +407,17 @@ function Quiz(props) {
         setQuizToggle(false);
         setScoreToggle(true);
       }, 350);
+    }  
+    let sessions = {
+      "correct" :  correctArray, 
+      "incorrect" : wrongArray,
+      "score": points.score, 
     }
-
-    let request = {
-      "engHighScore": user.engHighScore,
-      "hiraHighScore": user.hiraHighScore,
-      "jpnHighScore": user.jpnHighScore,
-      "kataHighScore": user.kataHighScore,
-      "totalScore": user.totalScore,
-    }
-    API.updatePoints(user._id, request).then(result => {
-      //console.log(result)
-      try{
-        API.updateSessions(user._id, {sessions: {"correct" :  correctArray, "incorrect" : wrongArray }})
-        .then(results=> 
-         {
-          console.log(results);
-          getUser()
-         } 
-        )
-         } catch (e) {
-         console.log(e.message)
-       }
-      })
-    .catch(err => console.log(err));
+    console.log(correctArray)
+    API.updateSessions(user._id, sessions)
+    .then(update => {
+      console.log(update)
+    }).catch(err => console.log(err));
   }
 
   return (

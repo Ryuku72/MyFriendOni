@@ -81,6 +81,13 @@ function Study(props) {
       })
     } else {
       setPageType("History")
+      const user = localStorage.getItem("tokens");
+      //console.log(user)
+      API.getSessions(user)
+      .then((list) => {
+        console.log(list)
+        setUserHistory(list.data)
+      })
     }
     getUser();
   }, [location]);
@@ -209,11 +216,8 @@ function Study(props) {
      setSearchState({ ...searchState, length: searchLength, results: repArray, error: "" });
     }
   } 
-  // for (const [key, value] of Object.entries(user.sessions)){
-  //   console.log(`${key}: ${value}`);
-  // }
 
-  //console.log(user.sessions)
+  console.log(userHistory)
 
   return (
     <div className="block">
@@ -272,7 +276,7 @@ function Study(props) {
         ))}
         </div>
         <HistoryCard 
-        userDetails={user.sessions}
+        userHistory={userHistory}
         display={{display: pageType === "History" ? "flex" : "none"}}
         />
         <p></p>

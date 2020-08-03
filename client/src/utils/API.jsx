@@ -29,6 +29,9 @@ export default {
   updateSessions: function (id, body) {
     return axios.post("/api/sessions/" + id, body)
   },
+  getSessions: function (id) {
+    return axios.get("/api/sessions/" + id)
+  },
 
   //Quiz
   getJapanese: function () {
