@@ -74,7 +74,7 @@ function HistoryCard(props) {
       />
 
       {props.userHistory.length ? (
-        <div className="grid gap-3 grid-cols-3 border-black mt-2 w-full h-full"
+        <div className="grid gap-3 xl:grid-cols-3 sm:grid-cols-1 md:grid-cols-2 border-black mt-2 w-full h-full"
           style={{ minHeight: "66vh" }}
         >
           {props.userHistory.map((result, index) => (

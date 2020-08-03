@@ -274,7 +274,7 @@ function Study(props) {
       <Wrapper wrap={{display: pageType === "Vocab" ? "block" : "none"}}>
         <img src={Vocab} alt="slogan" className="absolute bottom-0 right-0 mb-2" 
         style={{display: searchState.results.length ? "none" : "block"}} />
-        <div className="xl:grid-cols-5 sm:grid-cols-2 gap-3" style={{display: pageType === "Letters" ? "none" : "grid"}}>
+        <div className="xl:grid-cols-5 md:grid-cols-3 sm:grid-cols-2 gap-3" style={{display: pageType === "Letters" ? "none" : "grid"}}>
         {searchState.results.map((result, index) => (
           <SearchCard
             key={index}
