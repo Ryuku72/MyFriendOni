@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 const sessionSchema = new Schema(
     {
         user_id: { type: String, required: true },
+        language: { type: String },
         score: { type: Number },
         correct: { type: Array, default: [] },
         incorrect: { type: Array, default: [] },

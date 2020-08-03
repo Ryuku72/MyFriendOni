@@ -1,0 +1,14 @@
+.titleFont {
+    --max-size: 50;
+    --min-size: 20;
+    font-size: var(--responsive);
+    font-family: 'Permanent Marker', cursive;
+    text-shadow: rgb(213, 213, 213) 2px 2px;
+    line-height: 3rem;
+    color: rgb(26, 24, 24);
+    margin-top: 0.25em;
+}
+
+.historyCard {
+    min-height: "82vh";
+}

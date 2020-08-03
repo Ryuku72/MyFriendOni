@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   sodipodi:docname="history.svg"
+   inkscape:version="1.0 (4035a4f, 2020-05-01)"
+   id="svg8"
+   version="1.1"
+   viewBox="0 0 236.53628 23.399544"
+   height="23.399544mm"
+   width="236.53629mm">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     inkscape:window-maximized="1"
+     inkscape:window-y="309"
+     inkscape:window-x="3840"
+     inkscape:window-height="1035"
+     inkscape:window-width="1920"
+     showgrid="false"
+     inkscape:document-rotation="0"
+     inkscape:current-layer="layer1"
+     inkscape:document-units="mm"
+     inkscape:cy="153.32789"
+     inkscape:cx="562.98232"
+     inkscape:zoom="0.98994949"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     borderopacity="1.0"
+     bordercolor="#666666"
+     pagecolor="#ffffff"
+     id="base" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     transform="translate(-14.035783,-11.381633)"
+     id="layer1"
+     inkscape:groupmode="layer"
+     inkscape:label="Layer 1">
+    <text
+       transform="scale(0.84617558,1.1817878)"
+       id="text835"
+       y="25.545559"
+       x="16.041779"
+       style="font-style:normal;font-weight:normal;font-size:18.8117px;line-height:1.25;font-family:sans-serif;fill:#3e3e3e;fill-opacity:1;stroke:none;stroke-width:0.470294"
+       xml:space="preserve"><tspan
+         style="stroke-width:0.470294"
+         y="25.545559"
+         x="16.041779"
+         id="tspan833"
+         sodipodi:role="line"><tspan
+           id="tspan855"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Hiragino Maru Gothic Pro';-inkscape-font-specification:'Hiragino Maru Gothic Pro'">進行中の作業 </tspan><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Chalkboard;-inkscape-font-specification:Chalkboard"
+           id="tspan965"><tspan
+   id="tspan975"
+   style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Verdana;-inkscape-font-specification:Verdana">Work in Progress</tspan>　</tspan></tspan></text>
+  </g>
+</svg>

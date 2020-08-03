@@ -48,6 +48,10 @@ function About(){
         edit: false,
         delete: false,
       });
+      const [uTime, setUTime] = useState({
+        createdAt: "",
+        updatedAt: ""
+      })
       
     // API calls
   useEffect(() => {
@@ -61,7 +65,10 @@ function About(){
     //console.log(userID)
     API.getUser(user).then((result) => {
       setUser(result.data);
-      //console.log(new Intl.DateTimeFormat('en-AU', dateFormat).format(new Date(result.data.createdAt)))
+      let create = (new Intl.DateTimeFormat('en-AU', dateFormat).format(new Date(result.data.createdAt)))
+      let update = (new Intl.DateTimeFormat('en-AU', dateFormat).format(new Date(result.data.updatedAt)))
+
+      setUTime({createdAt: create, updatedAt: update})
     });
   }
 
@@ -300,13 +307,13 @@ function confirmUpdate(){
         <PlayerCard
           windowStyle={{height: location.pathname === "/about/player" ? "100%" : "0%", opacity: location.pathname === "/about/player" ?  "1" : "0"}} 
           user={user.username}
-          start={user.createdAt}
+          start={uTime.createdAt}
           eng={user.engHighScore}
           hira={user.hiraHighScore}
           jpn={user.jpnHighScore}
           kata={user.kataHighScore}
           total={user.totalScore}
-          update={user.updatedAt}
+          update={uTime.updatedAt}
           updateDetails={updateDetails}
           deleteUser={deleteUser}
           toggleEditBox={toggleEditBox}

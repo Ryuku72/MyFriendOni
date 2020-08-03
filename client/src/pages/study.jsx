@@ -49,7 +49,17 @@ function Study(props) {
     Row: false,
   });
   const [userHistory, setUserHistory] = useState([])
+  const [uTime, setUTime] = useState({
+    createdAt: "",
+    updatedAt: ""
+  })
   const location = useLocation()
+
+  let dateFormat = {
+    day: 'numeric', month: 'numeric', year: 'numeric',
+    hour: 'numeric', minute: 'numeric', second: 'numeric',
+    hour12: false, timeZone: 'Australia/Perth'
+    };
 
   // API calls
   useEffect(() => {
@@ -98,6 +108,10 @@ function Study(props) {
     //console.log(user)
     API.getUser(user).then((result) => {
       setUser(result.data);
+      let create = (new Intl.DateTimeFormat('en-AU', dateFormat).format(new Date(result.data.createdAt)))
+      let update = (new Intl.DateTimeFormat('en-AU', dateFormat).format(new Date(result.data.updatedAt)))
+
+      setUTime({createdAt: create, updatedAt: update})
     });
   }
 
@@ -277,18 +291,17 @@ function Study(props) {
         </div>
         <HistoryCard 
         userHistory={userHistory}
-        display={{display: pageType === "History" ? "flex" : "none"}}
+        style={{display: pageType === "History" ? "block" : "none"}}
         />
-        <p></p>
       <Footer user={user.username}>
         <p
           className="footer px-2 text-2xl inline-flex font-mono capitalize text-red-500"
-          style={{display: pageType === "Vocab" ? "block" : "none"}}
+          style={{display: pageType === "Vocab" || "History" ? "block" : "none"}}
         >
           <span className="footer text-2xl score-sheet text-gray-800 mr-2">
             Results :{" "}
             <span className="footer px-2 text-2xl inline-flex font-mono capitalize text-red-500">
-              {searchState.results.length}
+              { pageType === "Vocab" ? searchState.results.length : userHistory.length }
             </span>
           </span>
           {""}

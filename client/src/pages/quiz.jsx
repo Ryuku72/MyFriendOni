@@ -409,6 +409,7 @@ function Quiz(props) {
       }, 350);
     }  
     let sessions = {
+      "language" : language,
       "correct" :  correctArray, 
       "incorrect" : wrongArray,
       "score": points.score, 

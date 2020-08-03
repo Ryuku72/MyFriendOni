@@ -6,6 +6,7 @@ router.post("/:id", function (req, res) {
     sessions.create({
         user_id: req.params.id, 
         date: Date.now(),
+        language: req.body.language,
         score: req.body.score,
         correct: req.body.correct,
         incorrect: req.body.incorrect
