@@ -51,12 +51,6 @@ function Study(props) {
   const [userHistory, setUserHistory] = useState([])
   const location = useLocation()
 
-  let dateFormat = {
-    day: 'numeric', month: 'numeric', year: 'numeric',
-    hour: 'numeric', minute: 'numeric', second: 'numeric',
-    hour12: false, timeZone: 'Australia/Perth'
-    };
-
   // API calls
   useEffect(() => {
     if (location.pathname === "/study/letters") {
