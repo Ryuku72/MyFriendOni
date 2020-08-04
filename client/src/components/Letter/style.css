@@ -1,6 +1,6 @@
 .letters {
     font-family: 'Nanum Pen Script', cursive;
-    --max-size: 90;
-    --min-size: 60;
+    --max-size: 80;
+    --min-size: 40;
     font-size: var(--responsive);
 }

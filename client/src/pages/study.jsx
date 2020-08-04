@@ -292,7 +292,7 @@ function Study(props) {
         </Wrapper>
         <img src={Letters} alt="slogan" className="relative p-5 my-2 xl:w-1/2 sm:w-3/4 top-0 left-0" 
         style={{display: pageType === "Letters" ? "block" : "none"}} />
-        <div className="xl:grid-cols-5 sm:grid-cols-3 gap-5 mb-4 p-6" style={{display: pageType === "Letters" ? "grid" : "none"}}>
+        <div className="xl:grid-cols-5 md:grid-cols-3 sm:grid-cols-2 gap-3 mb-4 p-6" style={{display: pageType === "Letters" ? "grid" : "none"}}>
          {words.database.map((result, index) => (
         <LetterCard
          display={{display: pageType === "Letters" ? "flex" : "none"}}

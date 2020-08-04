@@ -41,6 +41,7 @@ function Quiz(props) {
   const [overlay, setOverlay] = useState(false);
   const [wrongArray, setWrongArray] = useState([]);
   const [correctArray, setCorrectArray] = useState([]);
+  const [exp, setExp] = useState(false)
   const location = useLocation()
 
   // Date functions
@@ -121,6 +122,7 @@ function Quiz(props) {
     //console.log(userID)
     API.getUser(user)
     .then(result => {
+      console.log(result.data)
       setUser(result.data)
     }).catch((err) => console.log(err));
   }
@@ -316,6 +318,7 @@ function Quiz(props) {
 
   function onHandleExitScore() {
     //console.log(user.totalScore)
+  if (highScore <= 0){
     let request = {
       "engHighScore": user.engHighScore,
       "hiraHighScore": user.hiraHighScore,
@@ -330,8 +333,24 @@ function Quiz(props) {
         getUser()
       }).catch(err => console.log(err));  
     setScoreToggle(false);
+  } else {
+    let request = {
+      "engHighScore": user.engHighScore,
+      "hiraHighScore": user.hiraHighScore,
+      "jpnHighScore": user.jpnHighScore,
+      "kataHighScore": user.kataHighScore,
+      "totalScore": user.totalScore,
+      "lastHighScore": highScore
+    }
+    console.log("totalScore " + user.totalScore)
+    API.updatePoints(user._id, request)
+    .then(result => {
+        //console.log(result);
+        getUser()
+      }).catch(err => console.log(err));  
+    setScoreToggle(false);
     //console.log(user);
-  }
+  }}
 
   function onHandleExitQuiz() {
     let scoreLanguage = "";
@@ -349,7 +368,6 @@ function Quiz(props) {
         scoreLanguage = "jpnHighScore";
         break;
     }
-
     let sessions = {
       "language" : language,
       "correct" :  correctArray, 
@@ -357,14 +375,15 @@ function Quiz(props) {
       "score": points.score, 
     }
   
-    console.log(correctArray)
+   // console.log(correctArray)
 
     function preSets(){
       setTimeLeft("end");
       setBtnColor(true);
       setLanguage("");
+      setExp(true)
       setWords(words);
-      if ((correctArray.length === 0) || (wrongArray.length === 0)){
+      if ((correctArray.length === 0) && (wrongArray.length === 0)){
         console.log("no information recorded")
       } else {
       API.updateSessions(user._id, sessions)
@@ -377,7 +396,7 @@ function Quiz(props) {
     if (highScore > user[scoreLanguage]) {
       //console.log("correct"); 
       let totalPoints = points.score + user.totalScore;
-      console.log(totalPoints)
+      //console.log(totalPoints)
       preSets()
       setTimeout(() => {
         setQuizToggle(false);
@@ -385,7 +404,7 @@ function Quiz(props) {
       }, 350);
     } else {
       let totalPoints = points.score + user.totalScore;
-      console.log("point score " + points.score)
+      //console.log("point score " + points.score)
       setUser({ ...user, totalScore: totalPoints });
       preSets()
       setTimeout(() => {
@@ -409,16 +428,13 @@ function Quiz(props) {
       />
       <div
         className="border-b-2 border-t-2 border-pink-300 flex justify-center items-center relative w-full"
-        style={{
-        //   backgroundImage: quizToggle ? `url(${bgImg2})` : `url(${bgImg})`,
-         height: `calc(100vh - (10vh + 8vh))`,
-        //   backgroundSize: "100vw 82vh",
-      }}
+        style={{height: "82vh"}}
       >
         <QuizBackground 
         user={user.username} 
-        highScore={highScore}
+        highScore={user.lastHighScore}
         bgToggle={{display: quizToggle || scoreToggle ? "none" : "flex"}}
+        exp={exp}
         />
         <Card
           btnColor={btnColor}

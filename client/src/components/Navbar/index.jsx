@@ -67,6 +67,7 @@ function Navbar(props) {
 
   async function logout(event) {
     event.preventDefault();
+    props.setExp(false)
 
     try {
       await API.logoutUser().then((result) => console.log(result));
@@ -248,7 +249,7 @@ function Navbar(props) {
                 <NavDropDownItem
                   icon={about}
                   color="p-1 bg-green-300"
-                  text="About Us"
+                  text="About Me"
                 />
               </Link>
               <NavDropDownItem

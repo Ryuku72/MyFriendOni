@@ -1,7 +1,26 @@
+.editInfoBox {
+  width: 50%;
+  height: 55%;
+  position: absolute;
+  bottom: 2rem;
+  right: 1rem;
+  z-index: 12;
+}
+
+.delInfoBox {
+  width: 50%;
+  height: 50%;
+  position: absolute;
+  top: 10rem;
+  left: 15rem;
+  z-index: 16;
+}
+
+
 .playerInfo {
-    font-family: 'Nanum Pen Script', cursive;
-    --max-size: 30;
-    --min-size: 10;
+  font-family: 'Nanum Pen Script', cursive;
+  --max-size: 30;
+  --min-size: 10;
   font-size: var(--responsive);
   margin-left: 2%;
   margin-right: 15%;
@@ -9,60 +28,151 @@
 }
 
 .line {
-    line-height: 10px;
-    height: 30px;
+  line-height: 10px;
+  height: 30px;
 }
 
 .playerText {
   --max-size: 16;
   --min-size: 10;
-font-size: var(--responsive);
-} 
+  font-size: var(--responsive);
+}
 
 .btnAboutText {
   --max-size: 10;
   --min-size: 4;
-font-size: var(--responsive);
+  font-size: var(--responsive);
 }
 
 .playerHeader {
   --max-size: 16;
-  --min-size: 6;
-font-size: var(--responsive);
-overflow-wrap: break-word;
+  --min-size: 10;
+  font-size: var(--responsive);
+  overflow-wrap: break-word;
 }
 
-.catText{
+.catText {
   --max-size: 16;
   --min-size: 8;
-font-size: var(--responsive);
+  font-size: var(--responsive);
 }
 
 .editText {
   --max-size: 10;
   --min-size: 6;
-font-size: var(--responsive);
+  font-size: var(--responsive);
 }
 
-.editTextHeader{
+.editTextHeader {
   --max-size: 12;
   --min-size: 6;
-font-size: var(--responsive);
+  font-size: var(--responsive);
 }
 
-@media only screen 
-and (max-width: 1024px) and (max-height: 714px) { 
 
+
+@media only screen and (max-width: 600px) { 
+  .playerInfoBox {
+    height: 75vh;
+  }
+
+  .btnAboutText {
+    --max-size: 10;
+    --min-size: 8;
+    font-size: var(--responsive);
+  }
+
+  .playerText {
+    --max-size: 18;
+    --min-size: 14;
+    font-size: var(--responsive);
+  }
+  
+  .playerHeader {
+    --max-size: 20;
+    --min-size: 14;
+    font-size: var(--responsive);
+    overflow-wrap: break-word;
+  }
+  
+  .playerInfo {
+    --max-size: 30;
+    --min-size: 18;
+    font-size: var(--responsive);
+  }
+  .catText {
+    --max-size: 18;
+    --min-size: 12;
+    font-size: var(--responsive);
+  }
+  
+  .delInfoBox {
+    width: 75%;
+    height: 35%;
+    top: 10rem;
+    left: 2rem;
+  }
+
+  .editInfoBox {
+    width: 80%;
+    height: 55%;
+    position: absolute;
+    top: 5rem;
+    right: 2rem;
+    z-index: 12;
+  }
+  
+  .delInfoBox {
+    width: 80%;
+    height: 50%;
+    top: 7rem;
+    left: 2rem;
+  }
+
+  .editText {
+    --max-size: 12;
+    --min-size: 10;
+    font-size: var(--responsive);
+  }
+  
+  .editTextHeader {
+    --max-size: 16;
+    --min-size: 14;
+    font-size: var(--responsive);
+  }
   
 }
 
-@media only screen and (max-width: 640px){ 
- 
-  
-}
 
+@media only screen and (min-width: 600px) {
 
-@media only screen 
-and (max-width: 1100px){ 
+  .editInfoBox {
+    width: 50%;
+    height: 75%;
+    position: absolute;
+    bottom: 1rem;
+    right: 2rem;
+    z-index: 12;
+  }
+
+  .delInfoBox {
+    width: 50%;
+    height: 70%;
+    position: absolute;
+    top: 5rem;
+    left: 15rem;
+    z-index: 16;
+  }
+
+  .playerInfoBox {
+    height: 75vh;
+    width: 100%;
+  }
+
+  .playerText {
+    --max-size: 18;
+    --min-size: 14;
+    font-size: var(--responsive);
+  }
 
 }

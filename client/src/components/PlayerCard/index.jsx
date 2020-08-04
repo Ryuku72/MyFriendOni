@@ -1,39 +1,41 @@
-import React from "react";
+import React, {useState} from "react";
 import "./style.css";
 
 //console.log(new Intl.DateTimeFormat('en-AU', dateFormat).format(new Date(result.data.createdAt)))
 
 function PlayerCard(props) {
 
+  const [editBox, setEditBox] = useState(false)
+  const [delBox, setDelBox] = useState(false)
 
   return (
-    <div className="w-full xl:p-12 sm:p-2 font-mono inline-flex z-20" style={{...props.windowStyle}}>
+    <div className="w-full relative xl:p-12 sm:p-2 font-mono block z-20 shadow-2xl" style={{...props.windowStyle}}>
       {/* Player Card */}
-      <div className="w-1/2 h-full rounded-lg shadow-2xl antialiased">
+      <div className="playerInfoBox p-2 block rounded-lg antialiased z-10">
         <header
-          className="w-full flex p-4 bg-indigo-500 rounded-t-lg border-4 border-indigo-700"
+          className="xl:w-3/5 md:4/5 flex items-center p-4 bg-indigo-500 rounded-t-lg border-4 border-indigo-700"
           style={{ height: "15%" }}
         >
-          <p className="w-1/2 pl-4 flex items-end text-white playerText">
+          <p className="w-1/2 xl:pl-4 md:pl-2 sm:pl-1 flex items-end text-white playerText">
             Player Information
           </p>
           <div className="w-1/2 flex items-start justify-end">
             <button
               className="w-1/6 btnAboutText rounded-full border-2 border-green-700 xl:px-6 sm:px-3 py-2 bg-green-500 hover:bg-green-400 hover:text-gray-300 focus:outline-none shadow-xl flex justify-center items-center"
-              onClick={props.toggleEditBox}
+              onClick={()=>{setEditBox(!editBox)}}
             >
               Edit
             </button>
             <button
               className="w-1/6 btnAboutText rounded-full border-2 border-red-700 xl:px-6 sm:px-3 py-2  bg-red-500 hover:bg-red-400 hover:text-gray-300 focus:outline-none mx-2 shadow-xl flex justify-center items-center"
-              onClick={props.toggleDeleteBox}
+              onClick={()=>{setDelBox(!delBox)}}
             >
               Del
             </button>
           </div>
         </header>
         <section
-          className="w-full xl:p-8 sm:p-1 flex flex-col justify-center border-b-4 border-l-4 border-r-4 border-gray-600 rounded-b-lg text-gray-800 xl:leading-10 md:leading-3 bg-gray-400"
+          className="xl:w-3/5 md:4/5 p-8 flex flex-col justify-center border-b-4 border-l-4 border-r-4 border-gray-600 rounded-b-lg text-gray-800 xl:leading-10 md:leading-4 bg-gray-400"
           style={{ height: "85%" }}
         >
           <div className="inline-flex justify-between w-full text-gray-800">
@@ -57,7 +59,7 @@ function PlayerCard(props) {
             </p>
           </div>
 
-          <p className="mt-8 playerHeader underline mb-4 font-semibold">
+          <p className="mt-4 playerHeader underline mb-4 font-semibold">
             High Score
           </p>
           <div className="w-11/12">
@@ -112,29 +114,28 @@ function PlayerCard(props) {
 
       {/* Edit Player */}
 
-      <div className="w-1/2 h-full flex flex-col items-end">
+     {editBox ? 
+
         <div
-          className="xl:w-3/4 sm:w-4/5 py-2 xl:pr-20 sm:pr-1 xl:pl-12 sm:pl-1"
-          style={{...props.editBoxStyle}}
-        >
+          className="editInfoBox py-2 xl:pr-20 sm:pr-1 xl:pl-12 sm:pl-1">
           <div className="relative w-full h-full border-4 border-green-500 rounded-lg">
             <header
-              className="w-full border-b-4 border-green-500 bg-green-600 text-gray-200 flex"
-              style={{ height: "20%" }}
+              className="w-full border-b-4 border-green-500 bg-green-600 text-gray-200 flex items-center justify-center"
+              style={{ height: "25%" }}
             >
-              <div className="w-2/3 ml-3 h-full inline-flex items-center xl:ml-8 sm:ml-2 editTextHeader">
+              <div className="w-2/3 ml-3 h-full flex flex-row items-center xl:ml-8 sm:ml-3 editTextHeader">
                 <p>Edit User Details</p>
               </div>
               <div className="w-1/3 h-full flex items-start justify-end">
                 <button
-                  className="rounded-full border border-red-600 px-2 text-base text-red-600 bg-red-600 hover:bg-red-500 hover:text-gray-300 mx-3 my-2 antialiased shadow-xl focus:outline-none"
-                  onClick={props.closeEditBox}
+                  className="rounded-full border border-red-600 xl:px-2 md:px-1 text-base text-red-600 bg-red-600 hover:bg-red-500 hover:text-gray-300 mx-3 my-2 antialiased shadow-xl focus:outline-none"
+                  onClick={()=>{setEditBox(false)}}
                 >
                   &#10006;
                 </button>
               </div>
             </header>
-            <main className="h-full bg-gray-300 editText" style={{ height: "80%" }}>
+            <main className="h-full bg-gray-300 editText" style={{ height: "75%" }}>
               <form
                 id="editForm"
                 className="w-full px-2 flex flex-col h-full items-center justify-center"
@@ -246,34 +247,36 @@ function PlayerCard(props) {
           </div>
         </div>
 
+      : <div></div> }
+
+      {delBox ? 
+
         <div
-          className="xl:w-1/2 sm:w-full xl:p-6 sm:p-1"
-          style={{...props.toggleDeleteStyle}}
-        >
+          className="delInfoBox xl:p-6 sm:p-1">
           <div className="relative w-full h-full border-4 border-red-500 rounded-lg">
             <header
               className="w-full border-b-4 border-red-500 bg-red-600 text-gray-200 flex"
-              style={{ height: "20%" }}
+              style={{ height: "25%" }}
             >
               <div className="w-1/2 2/3 h-full flex items-center xl:ml-8 sm:ml-2 editTextHeader">
                 <p>Delete User</p>
               </div>
               <div className="w-1/2 1/3 h-full flex items-start justify-end">
                 <button
-                  className="rounded-full border border-indigo-600 xl:px-2 sm:px-0 text-base text-indigo-600 bg-indigo-600 hover:bg-indigo-500 hover:text-gray-300 xl:mx-3 sm:mx-2 my-2 antialiased shadow-xl focus:outline-none"
-                  onClick={props.closeDeleteBox}
+                  className="rounded-full border border-indigo-600 xl:px-2 md:px-1 text-base text-indigo-600 bg-indigo-600 hover:bg-indigo-500 hover:text-gray-300 xl:mx-3 sm:mx-2 my-2 antialiased shadow-xl focus:outline-none"
+                  onClick={()=>{setDelBox(false)}}
                 >
                   &#10006;
                 </button>
               </div>
             </header>
-            <main className="h-full bg-gray-300" style={{ height: "80%" }}>
+            <main className="h-full bg-gray-300" style={{ height: "75%" }}>
               <form
                 id="deleteForm"
                 className="w-full p-4 flex flex-col h-full justify-center editTextHeader"
                 onSubmit={props.handleDeleteUser} 
               >
-                <div className="my-2 flex items-end" style={{ height: "20%" }}>
+                <div className="my-2 flex items-star" style={{ height: "20%" }}>
                   <label className="w-2/5 text-gray-800 font-semibold">
                     Password
                   </label>
@@ -346,8 +349,9 @@ function PlayerCard(props) {
             </div>
           </div>
         </div>
+        : <div></div> }
+
       </div>
-    </div>
   );
 }
 
