@@ -319,22 +319,7 @@ function Quiz(props) {
 
   function onHandleExitScore() {
     //console.log(user.totalScore)
-  if (highScore <= 0){
-    let request = {
-      "engHighScore": user.engHighScore,
-      "hiraHighScore": user.hiraHighScore,
-      "jpnHighScore": user.jpnHighScore,
-      "kataHighScore": user.kataHighScore,
-      "totalScore": user.totalScore,
-    }
-    console.log("totalScore " + user.totalScore)
-    API.updatePoints(user._id, request)
-    .then(result => {
-        //console.log(result);
-        getUser()
-      }).catch(err => console.log(err));  
-    setScoreToggle(false);
-  } else {
+
     let request = {
       "engHighScore": user.engHighScore,
       "hiraHighScore": user.hiraHighScore,
@@ -351,7 +336,7 @@ function Quiz(props) {
       }).catch(err => console.log(err));  
     setScoreToggle(false);
     //console.log(user);
-  }}
+  }
 
   function onHandleExitQuiz() {
     let scoreLanguage = "";
