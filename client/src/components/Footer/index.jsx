@@ -6,11 +6,9 @@ function Footer(props) {
 
   return (
     <footer className={`w-full relative flex justify-between items-center footer ${bgColor}`}>
-      <article>
         {props.children}
-      </article>
       <>
-      <p className="footer text-blue-700 text-right flex items-center"><span className="ftkT mr-4 text-pink-600 capitalize ">{props.user}</span>{'//'} Foreign Toolkit 2020 </p>
+      <p className="footer text-blue-700 text-right flex items-center"><span className="ftkT text-pink-600 capitalize">{props.user} </span>{' // '} Foreign Toolkit</p>
       </>
     </footer>
   );

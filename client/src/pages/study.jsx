@@ -305,18 +305,21 @@ function Study(props) {
         ))}
         </div>
       <Footer user={user.username}>
-        <p
-          className="footer px-2 text-2xl inline-flex font-mono capitalize text-red-500"
+        {pageType === "Letters" ? <div></div> :
+        <div className="w-1/2 h-full flex flex-wrap items-center justify-start px-4">
+        <p className="footerChild font-mono capitalize text-red-500"
           style={{display: pageType === "Vocab" || "History" ? "block" : "none"}}
         >
-          <span className="footer text-2xl score-sheet text-gray-800 mr-2">
+          <span className="footerChild text-gray-800">
             Results :{" "}
-            <span className="footer px-2 text-2xl inline-flex font-mono capitalize text-red-500">
+            <span className="footerChild font-mono capitalize text-red-500">
               { pageType === "Vocab" ? searchState.results.length : userHistory.length }
             </span>
           </span>
           {""}
         </p>
+        </div>
+        }
       </Footer>
     </div>
   );

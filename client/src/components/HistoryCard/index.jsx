@@ -85,7 +85,7 @@ function HistoryCard(props) {
             >
               <button
                 className="absolute top-0 right-0 p-3 quizTags historyXbtn focus:outline-none outline-none"
-                id={result._id} onClick={() => setModalOpen({open:true, id: index})}
+                id={result._id} onClick={() => setModalOpen({id: index})}
               >
                 &#10008;
               </button>
@@ -130,7 +130,7 @@ function HistoryCard(props) {
                     new Date(`${result.createdAt}`)
                   )}
                 </p>
-                <div className="w-full flex items-center justify-center mt-4">
+                <div className="w-full flex items-center justify-center">
                 <button
                   className="flex items-center justify-center xl:w-1/6 sm:w-1/12 rounded-lg border-2 border-red-600 px-2 xl:text-lg sm:text-sm bg-red-600 hover:bg-red-500 hover:text-gray-300 mx-2 shadow-xl focus:outline-none"
                   onClick={()=> setModalOpen(false)}

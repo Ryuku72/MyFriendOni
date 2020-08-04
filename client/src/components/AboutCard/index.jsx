@@ -18,10 +18,14 @@ function AboutCard(props){
     return (
         <div className="aboutText w-full h-full block absolute top-0 xl:overflow-hidden min-h-full" style={props.windowStyle}>
             <div  className="flex flex-col items-center justify-center h-full">
-            <div className="grid grid-cols-3 w-full" style={{height:"90%"}}>
-                <div className="aboutBox">
-                <img src={NodePic} alt="nodejs" className="mdIcon"/>
+            <div className="grid grid-cols-3 w-full p-2" style={{height:"85%"}}>
+           
+                <div className=" aboutBox">
+                <img src={inkPic} alt="inkscape" className="bigIcon"/> 
                 </div>
+                <div className="aboutBox">
+                <img src={ReactPic} alt="react" className="mdIcon"/>
+                </div>        
                 <div className="aboutBox" >
                 <img src={ExpressPic} alt="express" className="mdIcon"/>
                 </div>
@@ -29,13 +33,19 @@ function AboutCard(props){
                 <img src={MongoPic} alt="mongo" className="mdIcon"/> 
                 </div>
                 <div className="aboutBox">
-                <img src={PhotoPic} alt="photoshop" className="bigIcon"/> 
-                </div>
-                <div className=" aboutBox">
-                <img src={inkPic} alt="inkscape" className="bigIcon"/> 
-                </div>       
-                <div className="aboutBox">
                 <img src={TailPic} alt="tailwind" className="bigIcon"/> 
+                </div>
+                <div className="aboutBox">
+                <img src={NodePic} alt="nodejs" className="mdIcon"/>
+                </div>
+                <div className="aboutBox">
+                <img src={flatPic} alt="flatIconPic"className="smIcon"/> 
+                </div>
+                <div className="aboutBox">
+                <img src={HerokuPic} alt="Heropkupic" className="mdIcon"/>
+                </div>
+                <div className="aboutBox">
+                <img src={googlePic} alt="googleFont" className="smIcon"/> 
                 </div>
                 <div className="aboutBox">
                 <img src={trilogyPic} alt="Trilogypic"/> 
@@ -44,17 +54,13 @@ function AboutCard(props){
                 <img src={UWApic} alt="UWApic"className="UWAIcon"/> 
                 </div>
                 <div className="aboutBox">
-                <img src={ReactPic} alt="react" className="mdIcon"/>
+                <img src={PhotoPic} alt="photoshop" className="bigIcon"/> 
                 </div>
-                <div className="aboutBox">
-                <img src={googlePic} alt="googleFont" className="smIcon"/> 
-                </div>
-                <div className="aboutBox">
-                <img src={flatPic} alt="flatIconPic"className="smIcon"/> 
-                </div>
-                <div className="aboutBox">
-                <img src={HerokuPic} alt="Heropkupic" className="mdIcon"/>
-                </div>
+                
+               
+               
+            
+               
                 </div>
                 <a href="https://joshuakb.netlify.app/" className="ftk text-center" target="_blank" rel="noopener noreferrer"> More information <span className="text-indigo-500">@</span> https://joshuakb.netlify.app/</a>
                 </div>

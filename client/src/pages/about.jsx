@@ -354,7 +354,9 @@ function confirmUpdate(){
         <Footer 
         user={user.username}
         style={about}
-        />
+        >
+          <div></div>
+          </Footer>
     </div>
     )
 }
