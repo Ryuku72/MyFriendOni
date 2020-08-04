@@ -63,6 +63,7 @@ function Quiz(props) {
       setActiveBtn(1);
       setTimeLeft(124);
       setOverlay(true)
+      setExp(false)
     }
 
     getUser();
@@ -395,8 +396,6 @@ function Quiz(props) {
 
     if (highScore > user[scoreLanguage]) {
       //console.log("correct"); 
-      let totalPoints = points.score + user.totalScore;
-      //console.log(totalPoints)
       preSets()
       setTimeout(() => {
         setQuizToggle(false);

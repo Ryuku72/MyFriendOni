@@ -4,7 +4,7 @@ import bgImg from "../../assets/img/background.jpg";
 import teacherPotrait from "../../assets/img/portrait.jpg"
 
 function QuizBackground(props) {
-  const oniSpeech = `${props.exp}` ? <p className="speechText flex-wrap">Hello... <span className="text-purple-500 speechTextPlus font-semibold speechTextName">{props.user}</span>. Your last High Score was <span className="text-red-500 speechTextPlus font-semibold speechTextName">{props.highScore} points</span>. <br></br> Remember... practice makes perfect!~ </p> : <p className="speechText flex-wrap">Hello... <span className="text-purple-500 speechTextPlus font-semibold speechTextName">{props.user}</span>. I am great teacher <span className="text-red-500 speechTextPlus font-semibold">Oni</span>. Let me teach you Japanese. Select a Quiz from the drop down menu</p>
+  const oniSpeech = props.exp ? <p className="speechText flex-wrap">Hello... <span className="text-purple-500 speechTextPlus font-semibold speechTextName capitalize">{props.user}</span>. Your last High Score was <br></br><span className="text-red-500 speechTextPlus font-semibold speechTextName">{props.highScore} points</span>. <br></br> Remember... practice makes perfect!~ </p> : <p className="speechText flex-wrap">Hello... <span className="capitalize text-purple-500 speechTextPlus font-semibold speechTextName">{props.user}</span>. I am great teacher <span className="text-red-500 speechTextPlus font-semibold">Oni</span>. Let me teach you Japanese. Select a Quiz from the drop down menu</p>
 
   return (
       <div className="w-full justify-center" style={{height: `calc(100vh - (10vh + 8.5vh))`, ...props.bgToggle}}>

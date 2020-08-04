@@ -30,6 +30,9 @@
 
 .speechTextName {
   overflow-wrap: break-word;
+  --max-size: 40;
+  --min-size: 20;
+  font-size: var(--responsive);
 }
 
 .speechBubble {

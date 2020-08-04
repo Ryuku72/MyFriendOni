@@ -67,8 +67,6 @@ function Navbar(props) {
 
   async function logout(event) {
     event.preventDefault();
-    props.setExp(false)
-
     try {
       await API.logoutUser().then((result) => console.log(result));
       window.localStorage.removeItem("tokens");
