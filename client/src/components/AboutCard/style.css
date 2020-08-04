@@ -5,11 +5,55 @@
 }
 
 .ftk {
-    --max-size: 42;
+    --max-size: 32;
     --min-size: 16;
     font-size: var(--responsive);
     font-family: 'Permanent Marker', cursive;
     letter-spacing: 0.1rem;
     line-height: 3rem;
     color: rgb(26, 24, 24);
+}
+
+.aboutBox {
+    width: 100%; 
+    height: 15vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.bigIcon {
+    width: 20%;
+}
+
+.mdIcon {
+    width: 60%;
+}
+
+.smIcon {
+    width: 65%;
+}
+
+.UWAIcon {
+    width: 45%;
+}
+
+@media only screen and (max-width: 640px){ 
+   
+    .bigIcon {
+        width: 50%;
+    }
+
+    .mdIcon {
+        width: 85%;
+    }
+
+    .smIcon {
+        width: 100%;
+    }
+
+    .UWAIcon {
+        width: 70%;
+    }
 }

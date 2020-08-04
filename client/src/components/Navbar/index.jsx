@@ -101,18 +101,6 @@ function Navbar(props) {
     return title;
   };
 
-  const homeURL = () => {
-    let title;
-    if (location.pathname.includes("/quiz")) {
-      title = "/quiz";
-    } else if (location.pathname.includes("/study")) {
-      title = "/study";
-    } else {
-      title = "/about";
-    }
-    return title;
-  };
-
   let color = "";
   if (location.pathname.includes("/quiz")) {
     color = "text-green-300";
@@ -129,12 +117,10 @@ function Navbar(props) {
   return (
     <nav className="navbar">
       <div className="navbar-nav inline-flex flex-wrap items-end justify-between">
-        <div className="locationDiv inline-flex items-end h-full">
-          <Link to={homeURL}>
+        <div className="locationDiv inline-flex items-end h-full">   
             <span className={`menuTitle capitalize ${color}`}>
               {quizTitle()} {`//`}
             </span>
-          </Link>
         </div>
         <div className="inline-flex justify-start items-end pointsDiv">
           <Stat title="Score" value={props.score} />
