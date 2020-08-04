@@ -12,6 +12,7 @@
     letter-spacing: 0.1rem;
     line-height: 3rem;
     color: rgb(26, 24, 24);
+    z-index: 99;
 }
 
 .aboutBox {

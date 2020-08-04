@@ -348,7 +348,7 @@ function confirmUpdate(){
           confirmDeleteStyle={{ display: confirm.delete ? "block" : "none" }}
           cancelDelete={cancelDelete}
         />
-        <AboutCard windowStyle={{opacity: location.pathname === "/about/info" ?  "1" : "0", zIndex: location.pathname === "/about/info" ?  "10" : "-2"}} />
+        <AboutCard windowStyle={{opacity: location.pathname === "/about/info" ?  "1" : "0", zIndex: location.pathname === "/about/info" ?  "30" : "-2"}} />
         
         </div>
         <Footer 

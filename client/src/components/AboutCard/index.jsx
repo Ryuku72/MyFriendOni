@@ -56,10 +56,6 @@ function AboutCard(props){
                 <div className="aboutBox">
                 <img src={PhotoPic} alt="photoshop" className="bigIcon"/> 
                 </div>
-                
-               
-               
-            
                
                 </div>
                 <a href="https://joshuakb.netlify.app/" className="ftk text-center" target="_blank" rel="noopener noreferrer"> More information <span className="text-indigo-500">@</span> https://joshuakb.netlify.app/</a>
