@@ -3,6 +3,11 @@
   line-height: 3.75rem;
 }
 
+.speechPadding {
+  padding-right: 3rem;
+  padding-left: 3rem;
+}
+
 #quizOverlay {
   pointer-events: none;
   transition: 200ms ease-in-out;
@@ -86,17 +91,18 @@
 @media only screen and (max-width: 1024px) and (max-height: 714px) {
 
   .textLineH{
-    line-height: 2.5rem;
+    line-height: 2rem;
+    width: 80%;
   }
 
   .speechText {
-    --max-size: 30;
+    --max-size: 28;
     --min-size: 16;
     font-size: var(--responsive);
   }
 
   .speechTextPlus {
-    --max-size: 33;
+    --max-size: 28;
     --min-size: 16;
     font-size: var(--responsive);
   }
@@ -122,7 +128,19 @@
   }
 
   .textLineH{
-    line-height: 2.8rem;
+    line-height: 1.6rem;
   }
+
+  .speechText {
+    --max-size: 28;
+    --min-size: 16;
+    font-size: var(--responsive);
+  }
+
+  .speechPadding {
+    padding-right: 2.2rem;
+    padding-left: 2.2rem;
+  }
+
 
 }

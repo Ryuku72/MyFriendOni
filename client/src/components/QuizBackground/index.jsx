@@ -5,9 +5,9 @@ import teacherPotrait from "../../assets/img/portrait.jpg"
 import japan from "../../assets/svg/monster.svg";
 
 function QuizBackground(props) {
-  const oniSpeech = props.exp ? <p className="speechText flex-wrap">Hello... <span className="text-purple-500 speechTextPlus font-semibold speechTextName capitalize">{props.user}</span>. Your last High Score was <br></br><span className="text-red-500 speechTextPlus font-semibold speechTextName">{props.highScore} points</span>. <br></br> Remember... practice makes perfect!~ </p> 
+  const oniSpeech = props.exp ? <p className="speechText">Hello... <span className="text-purple-500 speechTextPlus font-semibold speechTextName capitalize">{props.user}</span>. Your last High Score was <br></br><span className="text-red-500 speechTextPlus font-semibold speechTextName">{props.highScore} points</span>. <br></br> Remember... practice makes perfect!~ </p> 
   :
-  <div className="textLineH"><p className="speechText flex-wrap">Hello... <span className="capitalize text-purple-500 speechTextPlus font-semibold speechTextName">{props.user}</span>. <br></br> I am great teacher <span className="text-red-500 speechTextPlus font-semibold">Oni</span>. Let me teach you Japanese. Select a Quiz from the drop down menu.</p></div>
+  <div className="textLineH"><p className="speechText">Hello... <span className="capitalize text-purple-500 speechTextPlus font-semibold speechTextName">{props.user}</span>. <br></br> I am great teacher <span className="text-red-500 speechTextPlus font-semibold">Oni</span>. Let me teach you Japanese. Select a Quiz from the drop down menu.</p></div>
 
 
   return (
@@ -19,8 +19,8 @@ function QuizBackground(props) {
   <div className="w-1/2 flex justify-center m-4 teacherPortraitBox overflow-hidden rounded-lg">
       <img src={teacherPotrait} alt="teacher_portait" className="teacherPortrait border-8 border-red-800 rounded-lg" style={{ zIndex: 20}} />
       </div>
-      <div className="xl:w-1/2 md:w-full sm:w-full mx-10 bg-gray-100 speechBubble inline-flex flex-wrap items-center justify-center text-center" style={{height:"80%"}}>
-          <div className="w-3/5 px-1 block">
+      <div className="w-1/2 mx-10 bg-gray-100 speechBubble inline-flex flex-wrap items-center justify-center text-center" style={{height:"80%"}}>
+          <div className="xl:w-4/5 md:w-full speechPadding flex items-center justify-center">
                {oniSpeech}
           </div>
       </div>
