@@ -7,6 +7,7 @@ import Card from "../components/Card";
 import Navbar from "../components/Navbar";
 import QuizBackground from "../components/QuizBackground";
 
+
 function Quiz(props) {
   // States
   const [user, setUser] = useState({
