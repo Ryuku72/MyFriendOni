@@ -329,7 +329,7 @@ function confirmUpdate(){
           editErrorMsg={errorMsg.edit}
           resetEditForm={resetEditForm}
           onHandleUpdate={onHandleUpdate}
-          confirmEdit={{display: confirm.edit ? "block" : "none"}}
+          confirmEdit={{display: confirm.edit ? "flex" : "none"}}
           updateUser={updateUser}
           updatePw={updatePw}
           updateEditError={{opacity: updateError ? "1" : "0"}}
@@ -345,7 +345,7 @@ function confirmUpdate(){
           deleteErrorMsg={errorMsg.delete}
           resetDeleteForm={resetDeleteForm}
           handleDeleteUser={handleDeleteUser}
-          confirmDeleteStyle={{ display: confirm.delete ? "block" : "none" }}
+          confirmDeleteStyle={{ display: confirm.delete ? "flex" : "none" }}
           cancelDelete={cancelDelete}
         />
         <AboutCard windowStyle={{opacity: location.pathname === "/about/info" ?  "1" : "0", zIndex: location.pathname === "/about/info" ?  "30" : "-2"}} />

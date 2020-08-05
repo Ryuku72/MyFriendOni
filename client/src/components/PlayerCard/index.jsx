@@ -120,10 +120,10 @@ function PlayerCard(props) {
           className="editInfoBox py-2 xl:pr-20 sm:pr-1 xl:pl-12 sm:pl-1">
           <div className="relative w-full h-full border-4 border-green-500 rounded-lg">
             <header
-              className="w-full border-b-4 border-green-500 bg-green-600 text-gray-200 flex items-center justify-center"
+              className="w-full border-b-4 border-green-500 bg-green-600 text-gray-200 flex items-center justify-center p-4"
               style={{ height: "25%" }}
             >
-              <div className="w-2/3 ml-3 h-full flex flex-row items-center xl:ml-8 sm:ml-3 editTextHeader">
+              <div className="w-2/3 ml-3 h-full flex flex-row items-center xl:ml-8 sm:ml-3 catText">
                 <p>Edit User Details</p>
               </div>
               <div className="w-1/3 h-full flex items-start justify-end">
@@ -216,15 +216,15 @@ function PlayerCard(props) {
               </form>
             </main>
             <div
-              className="bg-black z-10 w-full h-full absolute top-0 xl:p-6 sm:p-2 xl:leading-10 sm:leading-6 catText items-center"
+              className="bg-black z-10 w-full h-full absolute top-0 xl:p-6 sm:p-2 flex-col justify-center items-center xl:leading-10 sm:leading-6"
               style={{ ...props.confirmEdit }}
             >
-              <div className="flex flex-col justify-center w-full h-full">
-              <p className="text-white text-center font-mono font-semibold underline editTextHeader">
+      
+              <p className="text-white text-center font-mono font-semibold underline catText2">
                 Confirm Update
               </p>
-              <p className="text-white text-center font-mono editText">New UserName: {props.updateUser}</p>
-              <p className="text-white text-center font-mono editText">New Password: {props.updatePw}</p>
+              <p className="text-white text-center font-mono catText2">New UserName: {props.updateUser}</p>
+              <p className="text-white text-center font-mono catText2">New Password: {props.updatePw}</p>
              
               <div className="w-full flex items-start justify-end mt-6">
               <div className="w-3/5" style={{...props.updateEditError}}>
@@ -244,7 +244,6 @@ function PlayerCard(props) {
               </div>
               </div>
             </div>
-          </div>
         </div>
 
       : <div></div> }
@@ -255,10 +254,10 @@ function PlayerCard(props) {
           className="delInfoBox xl:p-6 sm:p-1">
           <div className="relative w-full h-full border-4 border-red-500 rounded-lg">
             <header
-              className="w-full border-b-4 border-red-500 bg-red-600 text-gray-200 flex"
+              className="w-full border-b-4 border-red-500 bg-red-600 text-gray-200 flex p-4"
               style={{ height: "25%" }}
             >
-              <div className="w-1/2 2/3 h-full flex items-center xl:ml-8 sm:ml-2 editTextHeader">
+              <div className="w-1/2 2/3 h-full flex items-center xl:ml-8 sm:ml-2 font catText">
                 <p>Delete User</p>
               </div>
               <div className="w-1/2 1/3 h-full flex items-start justify-end">
@@ -273,11 +272,11 @@ function PlayerCard(props) {
             <main className="h-full bg-gray-300" style={{ height: "75%" }}>
               <form
                 id="deleteForm"
-                className="w-full p-4 flex flex-col h-full justify-center editTextHeader"
+                className="w-full p-8 flex flex-col h-full justify-center"
                 onSubmit={props.handleDeleteUser} 
               >
-                <div className="my-2 flex items-star" style={{ height: "20%" }}>
-                  <label className="w-2/5 text-gray-800 font-semibold">
+                <div className="my-2 flex items-end" style={{ height: "20%" }}>
+                  <label className="w-2/5 text-gray-800 font-semibold catText">
                     Password
                   </label>
                   <input
@@ -291,8 +290,8 @@ function PlayerCard(props) {
                     onSubmit={props.handleDeleteUser} 
                   />
                 </div>
-                <div className="my-2 flex items-end">
-                  <label className="w-2/5  text-gray-800 font-semibold">
+                <div className="my-2 flex items-end" style={{ height: "20%" }}>
+                  <label className="w-2/5 text-gray-800 font-semibold catText">
                     Confirm Pw
                   </label>
                   <input
@@ -326,13 +325,13 @@ function PlayerCard(props) {
               </form>
             </main>
             <div
-              className="bg-black z-10 w-full h-full absolute top-0 catText flex flex-col justify-center p-6 xl:leading-10 sm:leading-6"
+              className="bg-black z-10 w-full h-full absolute top-0 flex flex-col justify-center items-center p-8 xl:leading-10 sm:leading-6"
               style={{...props.confirmDeleteStyle}}
             >
-              <p className="text-white text-center font-mono mb-4 font-semibold underline">
+              <p className="text-white text-center font-mono mb-4 font-semibold underline catText2">
                 Confirm Delete
               </p>
-              <p className="text-white text-centerfont-mono capitalize">
+              <p className="text-white text-centerfont-mono capitalize catText2">
                 User: <span className="mx-2">{props.user}</span>{" "}
               </p>
               <div className="w-full flex items-start justify-end mt-8">

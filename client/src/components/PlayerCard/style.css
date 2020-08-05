@@ -57,6 +57,13 @@
   font-size: var(--responsive);
 }
 
+
+.catText2 {
+  --max-size: 22;
+  --min-size: 12;
+  font-size: var(--responsive);
+}
+
 .editText {
   --max-size: 10;
   --min-size: 6;
