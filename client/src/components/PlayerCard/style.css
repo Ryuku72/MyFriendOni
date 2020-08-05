@@ -175,4 +175,12 @@
     font-size: var(--responsive);
   }
 
+  .playerHeader {
+    --max-size: 16;
+    --min-size: 8;
+    font-size: var(--responsive);
+    overflow-wrap: break-word;
+    padding-top: 0.1rem;
+  }
+
 }
