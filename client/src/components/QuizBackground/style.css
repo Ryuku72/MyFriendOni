@@ -27,20 +27,20 @@
 }
 
 .speechText {
-  --max-size: 35;
+  --max-size: 32;
   --min-size: 18;
   font-size: var(--responsive);
 }
 
 .speechTextPlus {
-  --max-size: 38;
+  --max-size: 32;
   --min-size: 18;
   font-size: var(--responsive);
 }
 
 .speechTextName {
   overflow-wrap: break-word;
-  --max-size: 38;
+  --max-size: 32;
   --min-size: 18;
   font-size: var(--responsive);
 }

@@ -259,6 +259,10 @@ function Quiz(props) {
     event.preventDefault();
     setActiveBtn(0);
     let buttonInput = event.target.value;
+    const addPoints = points.score + 5;
+    const addScore = user.totalScore + 5;
+    const minusPoints = points.score - 3;
+    const minusScore = user.totalScore - 3
     let answer = 
       language === "Hiragana" || language === "Katakana"
         ? words.Question.Romaji
@@ -274,21 +278,23 @@ function Quiz(props) {
     if (buttonInput === "true") {
       //console.log("correct")
       setGifState(true)
-      const addPoints = points.score + 5;
+      
       words.CorrectAnswers.push(answer);
       correctArray.push(answer);
       if (addPoints > highScore) {
         setHighScore(addPoints);
         setPoints({ ...points, score: addPoints });
+        setUser({...user, totalScore: addScore})
       } else {
         setPoints({ ...points, score: addPoints });
+        setUser({...user, totalScore: addScore})
       }
     } else if (buttonInput === "false" && timeLeft <= 10 && points.score >= 3) {
       words.WrongAnswers.push(answer);
       wrongArray.push(answer)
       setGifState(false)
-      const minusPoints = points.score - 3;
       setPoints({ ...points, score: minusPoints });
+      setUser({...user, totalScore: minusScore})
       setTimeLeft("end");
       setQuizToggle(false);
       setScoreToggle(true);
@@ -311,9 +317,9 @@ function Quiz(props) {
       words.WrongAnswers.push(answer);
       wrongArray.push(answer)
       setGifState(false)
-      const minusPoints = points.score - 3;
       setTimeLeft(timeLeft - 10);
       setPoints({ ...points, score: minusPoints });
+      setUser({...user, totalScore: minusScore})
     }
      loadVocabList();
   }
@@ -380,17 +386,36 @@ function Quiz(props) {
     }
     }
 
+    console.log(user[scoreLanguage]); 
+
     if (highScore > user[scoreLanguage]) {
-      //console.log("correct"); 
+      console.log(scoreLanguage); 
+
+      switch(language){
+        case "English":
+       setUser({...user, engHighScore: highScore });
+       console.log("Eng HS")
+       break;
+      case "Hiragana":
+        setUser({...user, hiraHighScore: highScore });
+        console.log("Hira HS");
+        break;
+      case "Katakana":
+        setUser({...user, kataHighScore: highScore })
+        console.log("Kata HS");
+        break;
+      default:
+        setUser({...user, jpnHighScore: highScore })
+        console.log("JPN HS")
+        break;
+      }
+      
       preSets()
       setTimeout(() => {
         setQuizToggle(false);
         setScoreToggle(true);
       }, 350);
     } else {
-      let totalPoints = points.score + user.totalScore;
-      //console.log("point score " + points.score)
-      setUser({ ...user, totalScore: totalPoints });
       preSets()
       setTimeout(() => {
         setQuizToggle(false);

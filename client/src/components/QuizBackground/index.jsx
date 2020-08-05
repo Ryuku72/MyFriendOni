@@ -5,7 +5,7 @@ import teacherPotrait from "../../assets/img/portrait.jpg"
 import japan from "../../assets/svg/monster.svg";
 
 function QuizBackground(props) {
-  const oniSpeech = props.exp ? <p className="speechText">Hello... <span className="text-purple-500 speechTextPlus font-semibold speechTextName capitalize">{props.user}</span>. Your last High Score was <br></br><span className="text-red-500 speechTextPlus font-semibold speechTextName">{props.highScore} points</span>. <br></br> Remember... practice makes perfect!~ </p> 
+  const oniSpeech = props.exp ? <p className="speechText">Hello... <span className="text-purple-500 speechTextPlus font-semibold speechTextName capitalize">{props.user}</span>.<br></br> Your last High Score was <br></br><span className="text-red-500 speechTextPlus font-semibold speechTextName">{props.highScore} points</span>. <br></br> Remember... practice makes perfect!~ </p> 
   :
   <div className="textLineH"><p className="speechText">Hello... <span className="capitalize text-purple-500 speechTextPlus font-semibold speechTextName">{props.user}</span>. <br></br> I am great teacher <span className="text-red-500 speechTextPlus font-semibold">Oni</span>. Let me teach you Japanese. Select a Quiz from the drop down menu.</p></div>
 
