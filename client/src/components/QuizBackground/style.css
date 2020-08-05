@@ -1,15 +1,6 @@
-.oniSymbol {
-  height: 6vh;
-  width: 6vw;
-  background-size: 5vw 5vh;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-color: rgb(148, 224, 148);
-  border: rgb(157, 157, 157) 0.1rem solid
-}
 
 .textLineH{
-  line-height: 2.6rem;
+  line-height: 3.75rem;
 }
 
 #quizOverlay {
@@ -31,7 +22,7 @@
 }
 
 .speechText {
-  --max-size: 30;
+  --max-size: 35;
   --min-size: 18;
   font-size: var(--responsive);
 }
@@ -95,7 +86,7 @@
 @media only screen and (max-width: 1024px) and (max-height: 714px) {
 
   .textLineH{
-    line-height: 2rem;
+    line-height: 2.5rem;
   }
 
   .speechText {
@@ -131,7 +122,7 @@
   }
 
   .textLineH{
-    line-height: 1.6rem;
+    line-height: 2.8rem;
   }
 
 }

@@ -7,12 +7,8 @@ import japan from "../../assets/svg/monster.svg";
 function QuizBackground(props) {
   const oniSpeech = props.exp ? <p className="speechText flex-wrap">Hello... <span className="text-purple-500 speechTextPlus font-semibold speechTextName capitalize">{props.user}</span>. Your last High Score was <br></br><span className="text-red-500 speechTextPlus font-semibold speechTextName">{props.highScore} points</span>. <br></br> Remember... practice makes perfect!~ </p> 
   :
-  <div className="textLineH"><p className="speechText flex-wrap">Hello... <span className="capitalize text-purple-500 speechTextPlus font-semibold speechTextName">{props.user}</span>. I am great teacher <span className="text-red-500 speechTextPlus font-semibold">Oni</span>. Let me teach you Japanese.</p>
-  <div className="flex flex-row-reverse w-full h-full items-end justify-center symbolBoxIcon"> 
-  <div className="rounded-full oniSymbol flex items-end justify-end" alt="oni icon" style={{backgroundImage: `url(${japan})`}}></div>
-  <div><p className="speechText flex items-center justify-center">Select a Quiz from the drop down menu.</p></div>
-  </div>
-  </div>
+  <div className="textLineH"><p className="speechText flex-wrap">Hello... <span className="capitalize text-purple-500 speechTextPlus font-semibold speechTextName">{props.user}</span>. <br></br> I am great teacher <span className="text-red-500 speechTextPlus font-semibold">Oni</span>. Let me teach you Japanese. Select a Quiz from the drop down menu.</p></div>
+
 
   return (
       <div className="w-full justify-center" style={{height: `calc(100vh - (10vh + 8.5vh))`, ...props.bgToggle}}>
