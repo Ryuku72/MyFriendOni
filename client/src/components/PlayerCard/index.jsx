@@ -152,7 +152,7 @@ function PlayerCard(props) {
                   <input
                     name="updatePreviousPw"
                     value={props.updatePreviousPw}
-                    type="text"
+                    type="password"
                     placeholder="#PreviousPw"
                     id="updatePreviousPw"
                     className="w-3/4 h-full p-1 mx-4 outline-none shadow-xl rounded "
@@ -186,7 +186,7 @@ function PlayerCard(props) {
                   <input
                     name="passwordUpdate"
                     value={props.updatePw}
-                    type="text"
+                    type="password"
                     placeholder="#Secret" 
                     id="passwordUpdate"
                     className="w-3/4 h-full p-1 mx-4 outline-none shadow-xl rounded "
@@ -224,7 +224,7 @@ function PlayerCard(props) {
                 Confirm Update
               </p>
               <p className="text-white text-center font-mono catText2">New UserName: {props.updateUser}</p>
-              <p className="text-white text-center font-mono catText2">New Password: {props.updatePw}</p>
+              <p className="text-white text-center font-mono catText2">New Password: {props.updatePw.length} Digit Code</p>
              
               <div className="w-full flex items-start justify-end mt-6">
               <div className="w-3/5" style={{...props.updateEditError}}>
@@ -282,7 +282,7 @@ function PlayerCard(props) {
                   <input
                     name="delUser01"
                     value={props.passwordOne}
-                    type="text"
+                    type="password"
                     placeholder="Password..."
                     id="delUser01"
                     className="w-4/5 h-full p-2 mx-2 outline-none shadow-xl rounded "
@@ -297,7 +297,7 @@ function PlayerCard(props) {
                   <input
                     name="delUser02"
                     value={props.passwordTwo}
-                    type="text"
+                    type="password"
                     placeholder="Password..."
                     id="delUser02"
                     className="w-4/5 h-full p-2 mx-2 outline-none shadow-xl rounded "
