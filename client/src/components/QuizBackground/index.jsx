@@ -19,7 +19,7 @@ function QuizBackground(props) {
   <div className="w-1/2 flex justify-center m-4 teacherPortraitBox overflow-hidden rounded-lg">
       <img src={teacherPotrait} alt="teacher_portait" className="teacherPortrait border-8 border-red-800 rounded-lg" style={{ zIndex: 20}} />
       </div>
-      <div className="w-1/2 mx-10 bg-gray-100 speechBubble inline-flex flex-wrap items-center justify-center text-center" style={{height:"80%"}}>
+      <div className="xl:w-1/2 sm:w-3/4 mx-10 bg-gray-100 speechBubble inline-flex flex-wrap items-center justify-center text-center" style={{height:"80%"}}>
           <div className="xl:w-4/5 md:w-full speechPadding flex items-center justify-center">
                {oniSpeech}
           </div>

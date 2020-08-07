@@ -54,7 +54,10 @@ function Quiz(props) {
 
   // useEffects
   useEffect(() => {
-    function settings(){
+    setActiveBtn(0);
+    loadVocabList();
+    function settings(inputLanguage){
+      setLanguage(inputLanguage)
       setWords({...words,WrongAnswers: [], CorrectAnswers: []})
       setQuizToggle(true);
       setBtnColor(false);
@@ -65,47 +68,29 @@ function Quiz(props) {
       setTimeLeft(124);
       setOverlay(true)
       setExp(false)
+      setTimeout(() => {
+        setOverlay(false)
+      },3500)
     }
 
     getUser();
     if (location.pathname === "/quiz/japanese") {
-    setLanguage("Japanese");
-    settings()
-    setTimeout(() => {
-      setOverlay(false)
-    },3500)
+    settings("Japanese")
     } 
     else if (location.pathname === "/quiz/english"){
-      setLanguage("English");
-      settings()
-      setTimeout(() => {
-        setOverlay(false)
-      },3500);
+      settings("English")
     }
     else if (location.pathname === "/quiz/hiragana"){
-      setLanguage("Hiragana");
-      settings()
-      setTimeout(() => {
-        setOverlay(false)
-      },3500)
+      settings("Hiragana")
     } 
     else if (location.pathname === "/quiz/katakana") {
-      setLanguage("Katakana");
-      settings()
-      setTimeout(() => {
-        setOverlay(false)
-      },3500)
+      settings("Katakana")
     } 
     else {
       console.log("Quiz Page")
       setWords({...words,WrongAnswers: [], CorrectAnswers: []})
     }
-  }, []);
-
-  useEffect(() => {
-    setActiveBtn(0);
-    loadVocabList();
-  }, [language]);
+  }, [location.pathname]);
 
   useEffect(() => {
     if (timeLeft <= 0) {

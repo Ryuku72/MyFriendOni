@@ -144,7 +144,7 @@ function Navbar(props) {
               <Link to="/quiz/hiragana">
                 <NavDropDownItem
                   icon={hiragana}
-                  align="gap-6"
+                  IconAlign="mr-6"
                   color="p-1 bg-green-300"
                   text="LVL 1 Hiragana"
                   click={props.startHiraQuiz}
@@ -152,8 +152,8 @@ function Navbar(props) {
                 </Link>
                   <Link to="/quiz/katakana">
                 <NavDropDownItem
-                  icon={kana}        
-                  align="gap-6"   
+                  icon={kana}    
+                  IconAlign="mr-6"  
                   color="p-1 bg-orange-500"
                   text="LVL 2 Katakana"
                   click={props.startKataQuiz}
@@ -162,7 +162,8 @@ function Navbar(props) {
               <Link to="/quiz/japanese">
                 <NavDropDownItem
                   icon={japan}
-                  align="gap-6"
+                  align="flex-row-reverse justify-between"
+                  IconAlign="ml-6"   
                   color="p-1 bg-gray-300"
                   text="LVL 3 Japanese"
                   click={props.startJpnQuiz}
@@ -170,7 +171,8 @@ function Navbar(props) {
               </Link>
               <Link to="/quiz/english">
                 <NavDropDownItem
-                  align="gap-6"
+                  align="flex-row-reverse justify-between"
+                  IconAlign="ml-6"  
                   icon={english}
                   color="p-1 bg-blue-100"
                   text="LVL 4 English "
@@ -202,7 +204,7 @@ function Navbar(props) {
               </Link>
               <Link to="/study/vocab">
                 <NavDropDownItem
-                  align="justify-between"
+                  align="flex-row-reverse justify-between"
                   icon={vocab}
                   color="p-1 bg-purple-200"
                   text="Vocab Search"
@@ -210,7 +212,7 @@ function Navbar(props) {
               </Link>
               <Link to="/study/history">
                 <NavDropDownItem
-                  align="flex-row-reverse justify-between"
+                  align="justify-between"
                   icon={pHistory}
                   color="p-1 bg-yellow-200"
                   text="Player History"
