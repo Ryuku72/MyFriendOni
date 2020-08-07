@@ -143,9 +143,8 @@ function Navbar(props) {
               </span>
               <Link to="/quiz/hiragana">
                 <NavDropDownItem
-                  align="flex-row-reverse"
                   icon={hiragana}
-                  IconAlign={"flex justify-end"}
+                  align="gap-6"
                   color="p-1 bg-green-300"
                   text="LVL 1 Hiragana"
                   click={props.startHiraQuiz}
@@ -153,9 +152,8 @@ function Navbar(props) {
                 </Link>
                   <Link to="/quiz/katakana">
                 <NavDropDownItem
-                  align="flex-row-reverse"
-                  icon={kana}
-                  IconAlign={"flex justify-end"}
+                  icon={kana}        
+                  align="gap-6"   
                   color="p-1 bg-orange-500"
                   text="LVL 2 Katakana"
                   click={props.startKataQuiz}
@@ -164,6 +162,7 @@ function Navbar(props) {
               <Link to="/quiz/japanese">
                 <NavDropDownItem
                   icon={japan}
+                  align="gap-6"
                   color="p-1 bg-gray-300"
                   text="LVL 3 Japanese"
                   click={props.startJpnQuiz}
@@ -171,9 +170,10 @@ function Navbar(props) {
               </Link>
               <Link to="/quiz/english">
                 <NavDropDownItem
+                  align="gap-6"
                   icon={english}
                   color="p-1 bg-blue-100"
-                  text="LVL 4 English"
+                  text="LVL 4 English "
                   click={props.startEngQuiz}
                 />
               </Link>
@@ -194,27 +194,24 @@ function Navbar(props) {
               </p>
               <Link to="/study/letters">
                 <NavDropDownItem
-                  align="flex-row-reverse"
+                  align="flex-row-reverse justify-between"
                   icon={furi}
-                  IconAlign={"flex justify-end"}
                   color="p-1 bg-green-200"
                   text="Letter Chart"
                 />
               </Link>
               <Link to="/study/vocab">
                 <NavDropDownItem
-                  align="flex-row-reverse"
+                  align="justify-between"
                   icon={vocab}
-                  IconAlign={"flex justify-end"}
                   color="p-1 bg-purple-200"
-                  text="Vocabulary Search"
+                  text="Vocab Search"
                 />
               </Link>
               <Link to="/study/history">
                 <NavDropDownItem
-                  align="flex-row-reverse"
+                  align="flex-row-reverse justify-between"
                   icon={pHistory}
-                  IconAlign={"flex justify-end"}
                   color="p-1 bg-yellow-200"
                   text="Player History"
                 />
@@ -236,9 +233,8 @@ function Navbar(props) {
               </p>
               <Link to="/about/player">
                 <NavDropDownItem
-                  align="flex-row-reverse"
+                  align="flex-row-reverse justify-between"
                   icon={player}
-                  IconAlign={"flex justify-end"}
                   color="p-1 bg-purple-200"
                   text="Player Stats"
                 />
@@ -246,12 +242,14 @@ function Navbar(props) {
               <Link to="/about/info">
                 <NavDropDownItem
                   icon={about}
+                  align="flex-row-reverse justify-between"
                   color="p-1 bg-green-300"
                   text="About Me"
                 />
               </Link>
               <NavDropDownItem
                 icon={outside}
+                align="justify-between"
                 click={logout}
                 color="bg-gray-200"
                 text="Log Out"
