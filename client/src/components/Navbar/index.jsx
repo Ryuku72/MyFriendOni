@@ -150,6 +150,7 @@ function Navbar(props) {
                   text="LVL 1 Hiragana"
                   click={props.startHiraQuiz}
                 />
+                </Link>
                   <Link to="/quiz/katakana">
                 <NavDropDownItem
                   align="flex-row-reverse"
@@ -175,7 +176,6 @@ function Navbar(props) {
                   text="LVL 4 English"
                   click={props.startEngQuiz}
                 />
-              </Link>
               </Link>
             </NavDropDown>
           </NavItem>
