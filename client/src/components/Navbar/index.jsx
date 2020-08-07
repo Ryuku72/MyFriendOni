@@ -141,11 +141,30 @@ function Navbar(props) {
               <span className="m-2 font-mono text-center underline flex text-xl justify-center">
                 Quiz
               </span>
+              <Link to="/quiz/hiragana">
+                <NavDropDownItem
+                  align="flex-row-reverse"
+                  icon={hiragana}
+                  IconAlign={"flex justify-end"}
+                  color="p-1 bg-green-300"
+                  text="LVL 1 Hiragana"
+                  click={props.startHiraQuiz}
+                />
+                  <Link to="/quiz/katakana">
+                <NavDropDownItem
+                  align="flex-row-reverse"
+                  icon={kana}
+                  IconAlign={"flex justify-end"}
+                  color="p-1 bg-orange-500"
+                  text="LVL 2 Katakana"
+                  click={props.startKataQuiz}
+                />
+              </Link>
               <Link to="/quiz/japanese">
                 <NavDropDownItem
                   icon={japan}
                   color="p-1 bg-gray-300"
-                  text="Japanese"
+                  text="LVL 3 Japanese"
                   click={props.startJpnQuiz}
                 />
               </Link>
@@ -153,29 +172,10 @@ function Navbar(props) {
                 <NavDropDownItem
                   icon={english}
                   color="p-1 bg-blue-100"
-                  text="English"
+                  text="LVL 4 English"
                   click={props.startEngQuiz}
                 />
               </Link>
-              <Link to="/quiz/katakana">
-                <NavDropDownItem
-                  align="flex-row-reverse"
-                  icon={kana}
-                  IconAlign={"flex justify-end"}
-                  color="p-1 bg-orange-500"
-                  text="Katakana"
-                  click={props.startKataQuiz}
-                />
-              </Link>
-              <Link to="/quiz/hiragana">
-                <NavDropDownItem
-                  align="flex-row-reverse"
-                  icon={hiragana}
-                  IconAlign={"flex justify-end"}
-                  color="p-1 bg-green-300"
-                  text="Hiragana"
-                  click={props.startHiraQuiz}
-                />
               </Link>
             </NavDropDown>
           </NavItem>
@@ -192,13 +192,13 @@ function Navbar(props) {
               <p className="m-2 font-mono text-center underline text-xl">
                 Study Material
               </p>
-              <Link to="/study/history">
+              <Link to="/study/letters">
                 <NavDropDownItem
                   align="flex-row-reverse"
-                  icon={pHistory}
+                  icon={furi}
                   IconAlign={"flex justify-end"}
-                  color="p-1 bg-yellow-200"
-                  text="Player History"
+                  color="p-1 bg-green-200"
+                  text="Letter Chart"
                 />
               </Link>
               <Link to="/study/vocab">
@@ -210,13 +210,13 @@ function Navbar(props) {
                   text="Vocabulary Search"
                 />
               </Link>
-              <Link to="/study/letters">
+              <Link to="/study/history">
                 <NavDropDownItem
                   align="flex-row-reverse"
-                  icon={furi}
+                  icon={pHistory}
                   IconAlign={"flex justify-end"}
-                  color="p-1 bg-green-200"
-                  text="Letter Chart"
+                  color="p-1 bg-yellow-200"
+                  text="Player History"
                 />
               </Link>
             </NavDropDown>
