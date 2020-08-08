@@ -54,13 +54,10 @@ function Quiz(props) {
 
   // useEffects
   useEffect(() => {
-    setActiveBtn(0);
-    loadVocabList();
-    function settings(inputLanguage){
-      
+    
+    async function settings(inputLanguage){
       setLanguage(inputLanguage)
       setWords({...words,WrongAnswers: [], CorrectAnswers: []})
-      loadVocabList()
       setQuizToggle(true);
       setBtnColor(false);
       setScoreToggle(false);
@@ -93,6 +90,10 @@ function Quiz(props) {
       setWords({...words,WrongAnswers: [], CorrectAnswers: []})
     }
   }, [location.pathname]);
+
+  useEffect(() => {
+    loadVocabList();
+  }, [language]);
 
   useEffect(() => {
     if (timeLeft <= 0) {

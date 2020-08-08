@@ -144,6 +144,7 @@ function Navbar(props) {
               <Link to="/quiz/hiragana">
                 <NavDropDownItem
                   icon={hiragana}
+                  align="text-right"
                   IconAlign="mr-6"
                   color="p-1 bg-green-300"
                   text="LVL 1 Hiragana"
@@ -153,6 +154,7 @@ function Navbar(props) {
                   <Link to="/quiz/katakana">
                 <NavDropDownItem
                   icon={kana}    
+                  align="text-right"
                   IconAlign="mr-6"  
                   color="p-1 bg-orange-500"
                   text="LVL 2 Katakana"
