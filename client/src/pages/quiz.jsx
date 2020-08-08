@@ -57,8 +57,10 @@ function Quiz(props) {
     setActiveBtn(0);
     loadVocabList();
     function settings(inputLanguage){
+      
       setLanguage(inputLanguage)
       setWords({...words,WrongAnswers: [], CorrectAnswers: []})
+      loadVocabList()
       setQuizToggle(true);
       setBtnColor(false);
       setScoreToggle(false);
