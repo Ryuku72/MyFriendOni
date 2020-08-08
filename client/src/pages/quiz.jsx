@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useHistory } from "react-router-dom";
 import API from "../utils/API";
 import Footer from "../components/Footer";
 import ScoreCard from "../components/ScoreCard";
@@ -44,6 +44,7 @@ function Quiz(props) {
   const [correctArray, setCorrectArray] = useState([]);
   const [exp, setExp] = useState(false)
   const location = useLocation()
+  const history = useHistory()
 
   // Date functions
   let today = new Date();
@@ -65,8 +66,9 @@ function Quiz(props) {
       setHighScore(0);
       setActiveBtn(1);
       setTimeLeft(124);
+      setCorrectArray(correctArray)
+      setWrongArray(wrongArray)
       setOverlay(true)
-      setExp(false)
       setTimeout(() => {
         setOverlay(false)
       },3500)
@@ -156,78 +158,22 @@ function Quiz(props) {
   // InfoRequests
   function startJpnQuiz(event) {
     event.preventDefault();
-    setLanguage("Japanese");
-    setQuizToggle(true);
-    setBtnColor(false);
-    setScoreToggle(false);
-    setPoints({ ...points, score: 0 });
-    setWords({...words,WrongAnswers: [], CorrectAnswers: []})
-    setHighScore(0);
-    setActiveBtn(1);
-    setTimeLeft(124);
-    setCorrectArray(correctArray)
-    setWrongArray(wrongArray)
-    setOverlay(true)
-    setTimeout(() => {
-      setOverlay(false)
-    },3500)
+    history.push("/quiz/japanese")
   }
 
   function startEngQuiz(event) {
     event.preventDefault();
-    setLanguage("English");
-    setQuizToggle(true);
-    setBtnColor(false);
-    setScoreToggle(false);
-    setPoints({ ...points, score: 0 });
-    setWords({...words,WrongAnswers: [], CorrectAnswers: []})
-    setHighScore(0);
-    setActiveBtn(1);
-    setTimeLeft(124);
-    setCorrectArray(correctArray)
-    setWrongArray(wrongArray)
-    setOverlay(true)
-    setTimeout(() => {
-      setOverlay(false)
-    },3500)
+    history.push("/quiz/english")
   }
 
   function startKataQuiz(event) {
     event.preventDefault();
-    setLanguage("Katakana");
-    setQuizToggle(true);
-    setBtnColor(false);
-    setScoreToggle(false);
-    setPoints({ ...points, score: 0 });
-    setWords({...words,WrongAnswers: [], CorrectAnswers: []})
-    setHighScore(0);
-    setActiveBtn(1);
-    setTimeLeft(124);
-    setCorrectArray(correctArray)
-    setWrongArray(wrongArray)
-    setOverlay(true)
-    setTimeout(() => {
-      setOverlay(false)
-    },3500)
+    history.push("/quiz/katakana")
   }
 
   function startHiraQuiz(event) {
     event.preventDefault();
-    setLanguage("Hiragana");
-    setQuizToggle(true);
-    setBtnColor(false);
-    setScoreToggle(false);
-    setPoints({ ...points, score: 0 });
-    setWords({...words,WrongAnswers: [], CorrectAnswers: []})
-    setHighScore(0);
-    setActiveBtn(1);
-    setTimeLeft(124);
-    setCorrectArray(correctArray)
-    setWrongArray(wrongArray)
-    setOverlay(true)
-    setTimeout(() => {
-      setOverlay(false)
-    },3500)
+    history.push("/quiz/hiragana")
   }
 
   function exitToQuizPage(){
