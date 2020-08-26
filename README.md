@@ -16,6 +16,7 @@ https://myfriendoni.herokuapp.com/
 * [Project Issues](#issues)
 * [Project Summary](#summary)
 * [Future Plans](#future)
+* [UPDATES] (#updates)
 * [Installation](#install)
 * [Additional Information](#add)
 
@@ -90,6 +91,12 @@ Overall, I am happy with the project and many lessons were learnt.
 Currently I want to submit this to the app store and actually expand the database to include different levels of the proficiency test. Unfortunately, I will need to first replace any assets that I have downloaded from Flat Icon or from the internet as I don’t own the rights.
 
 Next I will be adding in Google and Facebook authentication and then… the sky is the limit.
+
+<a name="update"></a>
+
+## Update
+
+`24/08 Started adding REDUX to the project as a state manager`
 
 <a name="install"></a>
 
