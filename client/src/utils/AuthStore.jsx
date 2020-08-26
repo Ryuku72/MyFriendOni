@@ -18,4 +18,4 @@ const authReducer = (auth, action) => {
     
 };
 
-export { authReducer, auth, }
+export { authReducer, auth }

@@ -1,0 +1,9 @@
+export const FETCH_USER = 'FETCH_USER';
+export const FETCH_WORDS = 'FETCH_WORDS';
+export const ADD_POINTS = 'ADD_POINTS';
+export const MINUS_POINTS = 'MINUS_POINTS';
+export const ENG_UPDATE = 'ENG_UPDATE';
+export const JPN_UPDATE = 'JPN_UPDATE';
+export const HIRA_UPDATE = 'HIRA_UPDATE';
+export const KATA_UPDATE = 'KATA_UPDATE';
+export const UPDATE_POINTS = 'UPDATE_POINTS';
