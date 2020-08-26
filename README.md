@@ -16,7 +16,7 @@ https://myfriendoni.herokuapp.com/
 * [Project Issues](#issues)
 * [Project Summary](#summary)
 * [Future Plans](#future)
-* [UPDATES] (#updates)
+* [Updates](#updates)
 * [Installation](#install)
 * [Additional Information](#add)
 
@@ -92,9 +92,9 @@ Currently I want to submit this to the app store and actually expand the databas
 
 Next I will be adding in Google and Facebook authentication and then… the sky is the limit.
 
-<a name="update"></a>
+<a name="updates"></a>
 
-## Update
+## Updates
 
 `24/08 Started adding REDUX to the project as a state manager`
 
