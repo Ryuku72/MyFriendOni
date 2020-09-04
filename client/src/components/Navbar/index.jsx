@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link, useLocation, useHistory } from "react-router-dom";
-import API from "../../utils/API";
+import { connect, useDispatch } from 'react-redux'
+import { logOut } from '../../redux/actions/ui';
 import quizIcon from "../../assets/svg/monster.svg";
 import studyIcon from "../../assets/svg/book2.svg";
 import japan from "../../assets/svg/japan.svg";
@@ -22,14 +23,19 @@ import "./style.css";
 
 function Navbar(props) {
   let history = useHistory();
+  let dispatch = useDispatch()
   const [openOne, setOpenOne] = useState(false);
   const [openTwo, setOpenTwo] = useState(false);
   const [openThree, setOpenThree] = useState(false);
 
+  useEffect(()=> {
+    if (props.ui.loggedIn === false){
+      history.push("/");
+    }
+  },[props.ui.loggedIn])
 
   function useOutsideAlerter(ref) {
     useEffect(() => {
-
         function handleClickOutside(event) {
             if (ref.current && !ref.current.contains(event.target)) {
               setOpenOne(false);
@@ -37,7 +43,6 @@ function Navbar(props) {
               setOpenThree(false)
             }
         }
-  
         // Bind the event listener
         document.addEventListener("mousedown", handleClickOutside);
         return () => {
@@ -46,6 +51,9 @@ function Navbar(props) {
         };
     }, [ref]);
   }
+
+  const wrapperRef = useRef(null);
+  useOutsideAlerter(wrapperRef);
 
   function onHandleDropDownOne() {
     setOpenOne(!openOne);
@@ -65,15 +73,9 @@ function Navbar(props) {
     setOpenOne(false);
   }
 
-  async function logout(event) {
+  function logout(event) {
     event.preventDefault();
-    try {
-      await API.logoutUser().then((result) => console.log(result));
-      window.localStorage.removeItem("tokens");
-      history.push("/");
-    } catch (e) {
-      console.log(e.message);
-    }
+      dispatch(logOut())
   }
 
   const location = useLocation();
@@ -108,10 +110,6 @@ function Navbar(props) {
   } else {
     color = "text-orange-300";
   }
-
-  const wrapperRef = useRef(null);
-  useOutsideAlerter(wrapperRef);
-
 
   return (
     <nav className="navbar">
@@ -267,4 +265,10 @@ function Navbar(props) {
   );
 }
 
-export default Navbar;
+const mapStateToProps = (state) => ({
+  user: state.user,
+  quiz: state.quiz,
+  ui: state.ui
+})
+
+export default connect(mapStateToProps )(Navbar);

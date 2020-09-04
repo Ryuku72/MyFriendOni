@@ -1,17 +1,15 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-//import GlobalStore from "./utils/GlobalStore";
+import { Provider } from 'react-redux'
 import Login from "./pages/login";
 import Signup from "./pages/signup";
 import Quiz from "./pages/quiz";
 import Study from "./pages/study";
 import About from "./pages/about";
-import { Provider } from 'react-redux'
 import store from './redux/store'
 
 
  function App() {
-  
   return (
     <Router>
        <Provider store={store}> 

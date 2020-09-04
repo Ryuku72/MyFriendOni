@@ -1,14 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { useLocation, useHistory } from "react-router-dom";
-import API from "../utils/API";
+import { connect, useDispatch } from 'react-redux'
+
+//Redux
+import { fetchUser, increment, decrement, engPoints, jpnPoints, kataPoints, hiraPoints, updatePoints, sessionUpdate, sessionNoUpdate } 
+from '../redux/actions/user';
+import { jpnQuiz, engQuiz, hiraQuiz, kataQuiz, quizPage, loadWords, loadLetters, exitQuiz, addHighScore, scorePage, zeroPoints
+} from '../redux/actions/quiz';
+import { startQuiz, clearOverlay, disableActiveBtn } from '../redux/actions/ui';
+
+//components
 import Footer from "../components/Footer";
 import ScoreCard from "../components/ScoreCard";
 import Card from "../components/Card";
 import Navbar from "../components/Navbar";
 import QuizBackground from "../components/QuizBackground";
-import { connect, useDispatch } from 'react-redux'
-import { fetchUser } from '../redux/actions/user'
-import { increment, engPoints, jpnPoints, kataPoints, hiraPoints, updatePoints } from '../redux/actions/points'
 
 function Quiz(props) {
   // Redux + React-Router
@@ -17,29 +23,7 @@ function Quiz(props) {
   const history = useHistory()
 
   // States 
-  const [points, setPoints] = useState({ score: 0 });
-  const [highScore, setHighScore] = useState(0);
-  const [words, setWords] = useState({
-    Question: [],
-    Answer: [],
-    btnColor: [],
-    WrongAnswers: [],
-    CorrectAnswers: [],
-  });
-  const [gifState, setGifState] = useState("")
   const [timeLeft, setTimeLeft] = useState("end");
-
-  //toggles
-  const [quizToggle, setQuizToggle] = useState(false)
-  const [scoreToggle, setScoreToggle] = useState(false);
-  const [activeBtn, setActiveBtn] = useState(0);
-  const [btnColor, setBtnColor] = useState(false);
-  const [language, setLanguage] = useState("English");
-  const [overlay, setOverlay] = useState(false);
-  const [wrongArray, setWrongArray] = useState([]);
-  const [correctArray, setCorrectArray] = useState([]);
-  const [exp, setExp] = useState(false)
- 
 
   // Date functions
   let today = new Date();
@@ -48,99 +32,7 @@ function Quiz(props) {
   let yyyy = today.getFullYear();
   today = dd + "/" + mm + "/" + yyyy;
 
-  // useEffects
-  useEffect(() => {
-    props.fetchUser()
-  }, [])
-
-  useEffect(() => {
-    
-    async function settings(inputLanguage){
-      setLanguage(inputLanguage)
-      setWords({...words,WrongAnswers: [], CorrectAnswers: []})
-      setQuizToggle(true);
-      setBtnColor(false);
-      setScoreToggle(false);
-      setPoints({ ...points, score: 0 });
-      setHighScore(0);
-      setActiveBtn(1);
-      setTimeLeft(124);
-      setCorrectArray(correctArray)
-      setWrongArray(wrongArray)
-      setOverlay(true)
-      setTimeout(() => {
-        setOverlay(false)
-      },3500)
-    }
-
-    if (location.pathname === "/quiz/japanese") {
-    settings("Japanese")
-    } 
-    else if (location.pathname === "/quiz/english"){
-      settings("English")
-    }
-    else if (location.pathname === "/quiz/hiragana"){
-      settings("Hiragana")
-    } 
-    else if (location.pathname === "/quiz/katakana") {
-      settings("Katakana")
-    } 
-    else {
-      console.log("Quiz Page")
-      setWords({...words,WrongAnswers: [], CorrectAnswers: []})
-    }
-  }, [location.pathname]);
-
-  useEffect(() => {
-    loadVocabList();
-  }, [language]);
-
-  useEffect(() => {
-    if (timeLeft <= 0) {
-      onHandleExitQuiz();
-    }
-    if (!timeLeft) return;
-    const intervalId = setInterval(() => {
-      setTimeLeft(timeLeft - 1);
-    }, 1000);
-    return () => clearInterval(intervalId);
-  }, [timeLeft]);
-
-  function loadVocabList() {
-    if (language === "Hiragana" || language === "Katakana") {
-      API.getLetters().then((res) => {
-        setActiveBtn(0);
-        setTimeout(() => {
-          setBtnColor(false)
-          setActiveBtn(1);
-          setWords({
-            ...words,
-            Answer: res.data.answer,
-            Question: res.data.question,
-          });
-
-        }, 800);
-      }).catch((err) => console.log(err));
-    } else {
-      API.getJapanese()
-        .then((res) => {
-          setActiveBtn(0);
-      
-          setTimeout(() => {
-            setBtnColor(false);
-            setActiveBtn(1);
-            setWords({
-              ...words,
-              Answer: res.data.answer,
-              Question: res.data.question,
-            });
-          }, 800);
-        })
-        .catch((err) => console.log(err));
-    }
-  }
-
-  // InfoRequests
+  // QUIZ URLS
   function startJpnQuiz(event) {
     event.preventDefault();
     history.push("/quiz/japanese")
@@ -161,70 +53,107 @@ function Quiz(props) {
     history.push("/quiz/hiragana")
   }
 
+  // useEffects
+  useEffect(() => {
+    dispatch(fetchUser())
+  }, [])
+
+  useEffect(() => {
+    async function settings(){
+      dispatch(startQuiz())
+      setTimeLeft(125);
+      setTimeout(() => {
+        dispatch(clearOverlay())
+      },3500)
+    }
+
+    if (location.pathname === "/quiz/japanese") {
+    dispatch(jpnQuiz())
+    settings()
+    } 
+    else if (location.pathname === "/quiz/english"){
+      dispatch(engQuiz())
+      settings()
+    }
+    else if (location.pathname === "/quiz/hiragana"){
+      dispatch(hiraQuiz())
+      settings()
+    } 
+    else if (location.pathname === "/quiz/katakana") {
+    dispatch(kataQuiz())
+    settings()
+    } 
+    else {
+      //console.log("Quiz Page")
+      dispatch(quizPage())
+    }
+  }, [location.pathname]);
+
+  useEffect(() => {
+    if (timeLeft <= 0) {
+      onHandleExitQuiz();
+    }
+    if (!timeLeft) return;
+    const intervalId = setInterval(() => {
+      setTimeLeft(timeLeft - 1);
+    }, 1000);
+    return () => clearInterval(intervalId);
+  }, [timeLeft]);
+
+  useEffect(() => {
+    loadVocabList();
+  }, [props.quiz.language]);
+
+  function loadVocabList() {
+    if (props.quiz.language === "Hiragana" || props.quiz.language === "Katakana") {
+      dispatch(disableActiveBtn())
+      setTimeout(() => {
+      dispatch(loadLetters())
+    }, 800);
+    } else {
+      dispatch(disableActiveBtn())
+      setTimeout(() => {
+      dispatch(loadWords())
+    }, 800);
+    }
+  }
+
   function exitToQuizPage(){
     setTimeLeft("end");
-    setBtnColor(true);
-    setQuizToggle(false);
-    setLanguage("");
-    setWords(words);
-    setPoints({ ...points, score: 0 });
-    setHighScore(0);
-    setActiveBtn(0);
-    setScoreToggle(false);
+    dispatch(exitQuiz())
   }
 
   // Handlers
   function handleUserInput(event) {
     event.preventDefault();
-    setActiveBtn(0);
     let buttonInput = event.target.value;
-    const addPoints = points.score + 5;
-    const minusPoints = points.score - 3;
+    const addPoints = props.quiz.points + 5;
     let answer = 
-      language === "Hiragana" || language === "Katakana"
-        ? words.Question.Romaji
-        : words.Question.English;
-     setBtnColor(true);
+      props.quiz.language === "Hiragana" || props.quiz.language === "Katakana"
+        ? props.quiz.Question.Romaji
+        : props.quiz.Question.English;
+     
     if (buttonInput === "true") {
-      setGifState(true)
-      
-      words.CorrectAnswers.push(answer);
-      correctArray.push(answer);
-      if (addPoints > highScore) {
-        setHighScore(addPoints);
-        setPoints({ ...points, score: addPoints });
-        dispatch(increment(5))
+      if (addPoints > props.quiz.highScore) {
+        dispatch(addHighScore(addPoints))
+        dispatch(increment(answer))
       } else {
-        setPoints({ ...points, score: addPoints });
-        dispatch(increment(5))
+        dispatch(increment(answer))
       }
-    } else if (buttonInput === "false" && timeLeft <= 10 && points.score >= 3) {
-      words.WrongAnswers.push(answer);
-      wrongArray.push(answer)
-      setGifState(false)
-      setPoints({ ...points, score: minusPoints });
+    } else if (buttonInput === "false" && timeLeft <= 10 && props.quiz.points >= 3) {
+      dispatch(decrement(answer))
       setTimeLeft("end");
-      setQuizToggle(false);
-      setScoreToggle(true);
-    } else if (buttonInput === "false" && timeLeft <= 10 && points.score <= 3) {
-      words.WrongAnswers.push(answer);
-      wrongArray.push(answer)
-      setGifState(false)
-      setPoints({ ...points, score: 0 });
+      dispatch(scorePage())
+    } else if (buttonInput === "false" && timeLeft <= 10 && props.quiz.points <= 3) {
+      dispatch(zeroPoints(answer))
       setTimeLeft("end");
-      setQuizToggle(false);
-      setScoreToggle(true);
-    } else if (buttonInput === "false" && timeLeft >= 10 && points.score <= 3) {
-      words.WrongAnswers.push(answer);
-      wrongArray.push(answer)
-      setPoints({ ...points, score: 0 });
+      dispatch(scorePage())
+    } else if (buttonInput === "false" && timeLeft >= 10 && props.quiz.points  <= 3) {
+      dispatch(zeroPoints(answer))
       setTimeLeft(timeLeft - 10);
     } else {
-      words.WrongAnswers.push(answer);
-      wrongArray.push(answer)
-      setGifState(false)
+      dispatch(decrement(answer))
       setTimeLeft(timeLeft - 10);
-      setPoints({ ...points, score: minusPoints });
     }
      loadVocabList();
   }
@@ -237,17 +166,18 @@ function Quiz(props) {
       "jpnHighScore": props.user.jpnHighScore,
       "kataHighScore": props.user.kataHighScore,
       "totalScore": props.user.totalScore,
-      "lastHighScore": highScore
+      "lastHighScore": props.user.lastHighScore
     }
+
+   // console.log(request)
 
    dispatch(updatePoints(request))
    dispatch(fetchUser())
-   setScoreToggle(false);
    }
 
    function onHandleExitQuiz() {
     let scoreLanguage = "";
-    switch (language) {
+    switch (props.quiz.language) {
       case "English":
         scoreLanguage = "engHighScore";
         break;
@@ -262,62 +192,56 @@ function Quiz(props) {
         break;
     }
     let sessions = {
-      "language" : language,
-      "correct" :  correctArray, 
-      "incorrect" : wrongArray,
-      "score": points.score, 
+      "language" : props.quiz.language,
+      "correct" :  props.quiz.CorrectArray, 
+      "incorrect" : props.quiz.WrongArray,
+      "score": props.quiz.points, 
      }
 
      function preSets(){
       setTimeLeft("end");
-      setBtnColor(true);
-      setLanguage("");
-      setExp(true)
-      setWords(words);
-      if ((correctArray.length === 0) && (wrongArray.length === 0)){
+      if ((props.quiz.CorrectArray.length === 0) && (props.quiz.WrongArray.length === 0)){
+        dispatch(sessionNoUpdate())
         console.log("no information recorded")
       } else {
-      API.updateSessions(props.user._id, sessions)
-      .then(update => {
-        console.log("Entries saved: " + update.data.data.incorrect.length + " plus " + update.data.data.correct.length)
-      }).catch(err => console.log(err));
+       // console.log(sessions)
+      dispatch(sessionUpdate(sessions))
+      }
     }
-     }
 
-    console.log(props.user[scoreLanguage]); 
+    //console.log(props.user[scoreLanguage]); 
 
-    if (highScore > props.user[scoreLanguage]) {
-      console.log(scoreLanguage); 
+    if ((props.quiz.highScore > props.user[scoreLanguage]) || (props.user[scoreLanguage] === null)) {
+     // console.log(scoreLanguage); 
+     // console.log(props.user.hiraHighScore)
 
-      switch(language){
+      switch(props.quiz.language){
         case "English":
-       dispatch(engPoints(highScore))
-       console.log("Eng HS")
+       dispatch(engPoints(props.quiz.highScore))
+       //console.log("Eng HS")
        break;
       case "Hiragana":
-        dispatch(hiraPoints(highScore))
-        console.log("Hira HS");
+        dispatch(hiraPoints(props.quiz.highScore))
+        //console.log("Hira HS");
         break;
       case "Katakana":
-        dispatch(kataPoints(highScore))
-        console.log("Kata HS");
+        dispatch(kataPoints(props.quiz.highScore))
+        //console.log("Kata HS");
         break;
       default:
-        dispatch(jpnPoints(highScore))
-        console.log("JPN HS")
+        dispatch(jpnPoints(props.quiz.highScore))
+        //console.log("JPN HS")
         break;
       }
       
       preSets()
       setTimeout(() => {
-        setQuizToggle(false);
-        setScoreToggle(true);
+        dispatch(scorePage())
       }, 350);
     } else {
       preSets()
       setTimeout(() => {
-        setQuizToggle(false);
-        setScoreToggle(true);
+        dispatch(scorePage())
       }, 350);
     }
   }
@@ -325,9 +249,9 @@ function Quiz(props) {
   return (
     <div>
       <Navbar
-        highscore={highScore}
+        highscore={props.quiz.highScore}
         totalscore={props.user.totalScore}
-        score={points.score}
+        score={props.quiz.points}
         startJpnQuiz={startJpnQuiz}
         startEngQuiz={startEngQuiz}
         startKataQuiz={startKataQuiz}
@@ -340,33 +264,33 @@ function Quiz(props) {
       >
         <QuizBackground 
         user={props.user.username} 
-        highScore={props.user.lastHighScore}
-        bgToggle={{display: quizToggle || scoreToggle ? "none" : "flex"}}
-        exp={exp}
+        highScore={props.quiz.highScore}
+        bgToggle={{display: props.ui.quizPage || props.ui.scorePage ? "none" : "flex"}}
+        exp={props.ui.quizExp}
         />
         <Card
-          btnColor={btnColor}
-          style={{ display: quizToggle ? "inline-flex" : "none" }}
-          question={words.Question}
+          btnColor={props.ui.btnColor}
+          style={{ display: props.ui.quizPage ? "inline-flex" : "none" }}
+          question={props.quiz.Question}
           userInput={handleUserInput}
-          answer={words.Answer}
-          disable={activeBtn}
+          answer={props.quiz.Answers}
+          disable={props.ui.activeBtn}
           exitQuiz={onHandleExitQuiz}
-          language={language}
-          gifState={gifState}
-          overlay={overlay}
+          language={props.quiz.language}
+          gifState={props.ui.gifState}
+          overlay={props.ui.overlay}
           engHighScore={props.user.engHighScore}
           jpnHighScore={props.user.jpnHighScore}
           kataHighScore={props.user.kataHighScore}
           hiraHighScore={props.user.hiraHighScore}
-          score={points.score}
+          score={props.quiz.points}
         />
         <ScoreCard
-          score={points.score}
-          wrong={words.WrongAnswers}
-          correct={words.CorrectAnswers}
-          highScore={highScore}
-          style={{ display: scoreToggle ? "flex" : "none" }}
+          score={props.quiz.points}
+          wrong={props.quiz.WrongArray}
+          correct={props.quiz.CorrectArray}
+          highScore={props.quiz.highScore}
+          style={{ display: props.ui.scorePage ? "flex" : "none" }}
           date={today}
           click={onHandleExitScore}
         />
@@ -374,7 +298,7 @@ function Quiz(props) {
       <Footer user={props.user.username}>
         <p
           className="footer px-2 text-2xl inline-flex font-mono capitalize text-red-500"
-          style={{ opacity: quizToggle ? "1" : "0" }}
+          style={{ opacity: props.ui.quizPage ? "1" : "0" }}
         >
           <span className="footer text-2xl score-sheet text-gray-800 mr-2">Time: </span>{" "}
           {timeLeft}
@@ -384,8 +308,10 @@ function Quiz(props) {
   );
 }
 
-const mapStateToProps = state => ({
-  user: state.user
+const mapStateToProps = (state) => ({
+  user: state.user,
+  quiz: state.quiz,
+  ui: state.ui
 })
 
-export default connect(mapStateToProps, { fetchUser })(Quiz);
+export default connect(mapStateToProps )(Quiz);

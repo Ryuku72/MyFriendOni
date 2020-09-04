@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux'
-import loginReducer from './loginReducer'
-import wordsReducer from './wordsReducer'
+import quizReducer from './quizReducer'
+import uiReducer from './uiReducer'
 import userReducer from './userReducer'
 
 export default combineReducers({
-    login: loginReducer,
-    words: wordsReducer,
+    quiz: quizReducer,
+    ui: uiReducer,
     user: userReducer
 })
 

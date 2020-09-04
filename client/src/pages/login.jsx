@@ -1,18 +1,29 @@
-import React, { useState } from "react";
-import { useHistory, Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, Redirect } from "react-router-dom";
+import { connect, useDispatch } from 'react-redux'
+import { logIn, clearError, setError, logOutRecieved } from '../redux/actions/ui';
 import Form from "../components/Form";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import API from "../utils/API";
 import Tengu from "../assets/img/onilogin.png"
 import Subheading from "../components/Subheading";
 
 function Login(props) {
-  let history = useHistory();
+  let dispatch = useDispatch()
+
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
-  const [isError, setIsError] = useState(false);
-  const [errors, setErrors] = useState([]);
+
+  useEffect(() => {
+    setTimeout(() => {
+      dispatch(logOutRecieved())
+    },500)
+    return () => {
+      dispatch(logOutRecieved())
+    }
+  },[])
+
+
 
   function clearForm() {
     document.getElementById("loginform").reset();
@@ -22,61 +33,59 @@ function Login(props) {
 
   function postLogin(event) {
     event.preventDefault();
-
     if (userName === "" && password === "") {
-      let errorMsg = "Both feilds are _blank";
-      setErrors([...errorMsg]);
-      setIsError(true);
+      let errorMsg = "Both feilds are blank";
+      dispatch(setError(errorMsg))
     } else if (userName === "") {
-      let errorMsg = "Username is _blank";
-      setErrors([...errorMsg]);
-      setIsError(true);
+      let errorMsg = "Username is blank";
+      dispatch(setError(errorMsg))
     } else if (password === "") {
-      let errorMsg = "Password is _blank";
-      setErrors([...errorMsg]);
-      setIsError(true);
+      let errorMsg = "Password is blank";
+      dispatch(setError(errorMsg))
     } else {
       let request = {
         username: userName,
         password: password,
       };
       //console.log(request)
-      API.loginUser(request)
-        .then((result) => {
-          const userID = result.data.data._id;
-          localStorage.setItem("tokens", userID);
-          history.push("/quiz");
-        })
-        .catch((err) => {
-          console.log(err.response);
-          if (err.response.data.errors) {
-            const errorMsg = err.response.data.errors.map((err) => err.msg);
-            setErrors([...errorMsg]);
-            setIsError(true);
-            clearForm();
-          } else {
-            setErrors(["Whoops please enter your credentials"]);
-            setIsError(true);
-            clearForm();
-          }
-        });
+      dispatch(logIn(request))
+      clearForm();
     }
   }
 
   function onHandleUserName(event) {
     //console.log(event.target.value.trim().toLowerCase())
-    setIsError(false);
+    dispatch(clearError())
     setUserName(event.target.value.trim().toLowerCase());
   }
 
   function onHandlePassword(event) {
     //console.log(event.target.value.trim().toLowerCase())
-    setIsError(false);
+    dispatch(clearError())
     setPassword(event.target.value.trim().toLowerCase());
   }
 
+  if (props.ui.loggedIn === true) {
+    return <Redirect to="/quiz" />;
+  }
+
+  else {
   return (
-    <div className="h-screen w-full p-0 m-0 bg-gray-300 flex flex-col items-center overflow-y-auto">
+    <div className="h-screen w-full p-0 m-0 bg-gray-300 flex flex-col items-center justify-center overflow-y-auto">
+      {props.ui.loading ? 
+      <div className="sk-cube-grid">
+      <div className="sk-cube sk-cube1"></div>
+      <div className="sk-cube sk-cube2"></div>
+      <div className="sk-cube sk-cube3"></div>
+      <div className="sk-cube sk-cube4"></div>
+      <div className="sk-cube sk-cube5"></div>
+      <div className="sk-cube sk-cube6"></div>
+      <div className="sk-cube sk-cube7"></div>
+      <div className="sk-cube sk-cube8"></div>
+      <div className="sk-cube sk-cube9"></div>
+    </div>
+    :
+    <>
       <div className="w-full flex flex-col" style={{height:"18vh"}}>
       <Header/>
       <Subheading />
@@ -89,8 +98,8 @@ function Login(props) {
         onHandleUserName={onHandleUserName}
         onHandlePassword={onHandlePassword}
         postLogin={postLogin}
-        style={{ opacity: isError ? "1" : "0" }}
-        errorMessage={errors}
+        style={{ opacity: props.ui.error ? "1" : "0" }}
+        errorMessage={props.ui.errorMsg}
       />
       </div>
       <div className="w-1/2 flex items-center justify-center antialiased">
@@ -110,8 +119,17 @@ function Login(props) {
        <div></div>
      </Footer>
     </div>
+    </>
+  }
     </div>
   );
+} 
 }
 
-export default Login;
+const mapStateToProps = (state) => ({
+  user: state.user,
+  quiz: state.quiz,
+  ui: state.ui
+})
+
+export default connect(mapStateToProps)(Login);

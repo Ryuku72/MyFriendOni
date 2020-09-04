@@ -1,8 +1,8 @@
 import { 
     FETCH_USER, 
-    ADD_POINTS, MINUS_POINTS, 
+    ADD_POINTS, 
     ENG_UPDATE, JPN_UPDATE, HIRA_UPDATE, KATA_UPDATE,
-    UPDATE_POINTS } from '../actions/types'
+    UPDATE_POINTS, SESSIONS_UPDATE } from '../actions/types'
 
 const initialState = {
     username: "",
@@ -35,50 +35,48 @@ export default function(state = initialState, action) {
                 createdAt: action.payload.createdAt,
                 updatedAt: action.payload.updatedAt,
             };
-        case ADD_POINTS:
-            return {
-                ...state, 
-                totalScore: state.totalScore + action.payload,
-            };
-        case MINUS_POINTS:
-            return {
-                ...state, 
-                totalScore: state.totalScore + action.payload,
-            }
-        case ENG_UPDATE:
-            return {
-                ...state, 
-                engHighScore: action.payload.engHighScore + action.payload,
-            };
-        case JPN_UPDATE:
-            return {
-                ...state, 
-                jpnHighScore: action.payload.jpnHighScore + action.payload,
-            };
-        case HIRA_UPDATE:
-            return {
-                ...state, 
-                hiraHighScore: action.payload.hiraHighScore + action.payload,
-            };
-        case KATA_UPDATE:
-            return {
-                ...state, 
-                kataHighScore: action.payload.kataHighScore + action.payload,
-            };
         case UPDATE_POINTS:
+            console.log(action.payload)
             return {
                 ...state, 
-                username: action.payload.username,
-                _id: action.payload._id,
                 engHighScore: action.payload.engHighScore,
                 hiraHighScore: action.payload.hiraHighScore,
                 jpnHighScore: action.payload.jpnHighScore,
                 kataHighScore: action.payload.kataHighScore,
                 totalScore: action.payload.totalScore,
                 lastHighScore: action.payload.lastHighScore,
-                sessions: action.payload.sessions,
-                createdAt: action.payload.createdAt,
-                updatedAt: action.payload.updatedAt,
+            };
+
+        case SESSIONS_UPDATE:
+            return {
+                ...state,
+                sessions: {correct: action.payload.data.correct, incorrect: action.payload.data.incorrect}
+            };
+        case ADD_POINTS:
+            return {
+                ...state, 
+                totalScore: state.totalScore + 5,
+            };
+        case ENG_UPDATE:
+            return {
+                ...state, 
+                engHighScore: state.engHighScore + action.payload,
+            };
+        case JPN_UPDATE:
+            return {
+                ...state, 
+                jpnHighScore: state.jpnHighScore + action.payload,
+            };
+        case HIRA_UPDATE:
+            console.log(action.payload)
+            return {
+                ...state, 
+                hiraHighScore: state.hiraHighScore + action.payload,
+            };
+        case KATA_UPDATE:
+            return {
+                ...state, 
+                kataHighScore: state.kataHighScore + action.payload,
             };
         default:
             return state;    
