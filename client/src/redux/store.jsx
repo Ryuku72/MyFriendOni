@@ -2,8 +2,6 @@ import { createStore, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk'
 import rootReducer from './reducers'
 
-const initialState = {}
-
 function saveToLocalStorage(state) {
     try {
         const serializeState = JSON.stringify(state)

@@ -17,6 +17,7 @@ router.post("/:id", function (req, res) {
         data: created
     });
 })
+.catch((err) => res.status(422).json(err));
 })
 
 router.get("/:id", function (req, res){
