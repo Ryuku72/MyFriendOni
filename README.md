@@ -97,6 +97,7 @@ Next I will be adding in Google and Facebook authentication and then… the sky 
 ## Updates
 
 `24/08 Started adding REDUX to the project as a state manager`
+`05/09 Added Redux to Login and Quiz Page. Added Redux Persist`
 
 <a name="install"></a>
 
