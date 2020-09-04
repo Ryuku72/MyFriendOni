@@ -136,7 +136,7 @@ function Navbar(props) {
               color={`border-indigo-600 ${btnBg01}`}
               onHandleDropDown={onHandleDropDownOne}
             >
-              <span className="m-2 font-mono text-center underline flex text-xl justify-center">
+              <span className="my-2 mx-1 font-mono text-center underline flex text-xl justify-center">
                 Quiz
               </span>
               <Link to="/quiz/hiragana">
@@ -191,12 +191,13 @@ function Navbar(props) {
               color={`border-pink-600 mt-1 ${btnBg02}`}
               onHandleDropDown={onHandleDropDownTwo}
             >
-              <p className="m-2 font-mono text-center underline text-xl">
+              <p className="my-2 mx-1 font-mono text-center underline text-xl">
                 Study Material
               </p>
               <Link to="/study/letters">
                 <NavDropDownItem
                   align="flex-row-reverse justify-between"
+                  IconAlign="ml-6" 
                   icon={furi}
                   color="p-1 bg-green-200"
                   text="Letter Chart"
@@ -205,6 +206,7 @@ function Navbar(props) {
               <Link to="/study/vocab">
                 <NavDropDownItem
                   align="flex-row-reverse justify-between"
+                  IconAlign="ml-6" 
                   icon={vocab}
                   color="p-1 bg-purple-200"
                   text="Vocab Search"
@@ -212,8 +214,9 @@ function Navbar(props) {
               </Link>
               <Link to="/study/history">
                 <NavDropDownItem
-                  align="justify-between"
                   icon={pHistory}
+                  align="text-right"
+                  IconAlign="mr-6 justify-between" 
                   color="p-1 bg-yellow-200"
                   text="Player History"
                 />
@@ -230,12 +233,13 @@ function Navbar(props) {
               color={`bg-gray-300 border-yellow-600 mt-2 ${btnBg03}`}
               onHandleDropDown={onHandleDropDownThree}
             >
-              <p className="m-2 font-mono text-center underline text-xl">
+              <p className="my-2 mx-1 font-mono text-center underline text-xl">
                 Systems
               </p>
               <Link to="/about/player">
                 <NavDropDownItem
                   align="flex-row-reverse justify-between"
+                  IconAlign="ml-6 justify-between" 
                   icon={player}
                   color="p-1 bg-purple-200"
                   text="Player Stats"
@@ -245,6 +249,7 @@ function Navbar(props) {
                 <NavDropDownItem
                   icon={about}
                   align="flex-row-reverse justify-between"
+                  IconAlign="ml-6 justify-between" 
                   color="p-1 bg-green-300"
                   text="About Me"
                 />
@@ -252,6 +257,7 @@ function Navbar(props) {
               <NavDropDownItem
                 icon={outside}
                 align="justify-between"
+                IconAlign="mr-6 justify-between" 
                 click={logout}
                 color="bg-gray-200"
                 text="Log Out"

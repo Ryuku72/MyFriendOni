@@ -85,7 +85,7 @@ function Quiz(props) {
     } 
     else {
       //console.log("Quiz Page")
-      dispatch(quizPage())
+      //dispatch(quizPage())
     }
   }, [location.pathname]);
 
