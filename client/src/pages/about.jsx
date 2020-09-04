@@ -57,6 +57,7 @@ function About(){
   useEffect(() => {
     getUser();
     setAbout(true)
+    // eslint-disable-next-line
   }, [location]);
 
   // Database Calls
@@ -330,8 +331,6 @@ function confirmUpdate(){
           resetEditForm={resetEditForm}
           onHandleUpdate={onHandleUpdate}
           confirmEdit={{display: confirm.edit ? "flex" : "none"}}
-          updateUser={updateUser}
-          updatePw={updatePw}
           updateEditError={{opacity: updateError ? "1" : "0"}}
           cancelUpdate={cancelUpdate}
           toggleDeleteStyle={{ height: deleteForm ? "50%" : "0", opacity: deleteForm ? "1" : "0"}}

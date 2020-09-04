@@ -18,12 +18,18 @@ function Login(props) {
     setTimeout(() => {
       dispatch(logOutRecieved())
     },500)
-    return () => {
-      dispatch(logOutRecieved())
-    }
+    setTimeout(()=>{
+      dispatch(clearError())
+    }, 3000)
+// eslint-disable-next-line
   },[])
 
-
+  useEffect(() => {
+    setTimeout(()=>{
+      dispatch(clearError())
+    }, 3000)
+// eslint-disable-next-line
+  },[props.ui.loading])
 
   function clearForm() {
     document.getElementById("loginform").reset();
@@ -55,13 +61,11 @@ function Login(props) {
 
   function onHandleUserName(event) {
     //console.log(event.target.value.trim().toLowerCase())
-    dispatch(clearError())
     setUserName(event.target.value.trim().toLowerCase());
   }
 
   function onHandlePassword(event) {
     //console.log(event.target.value.trim().toLowerCase())
-    dispatch(clearError())
     setPassword(event.target.value.trim().toLowerCase());
   }
 

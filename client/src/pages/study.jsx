@@ -90,6 +90,7 @@ function Study(props) {
       })
     }
     getUser();
+    // eslint-disable-next-line
   }, [location]);
 
   // Database Calls
@@ -169,7 +170,6 @@ function Study(props) {
     event.preventDefault()
     //console.log(searchState)
     let searchFeild = searchState.search;
-    const entry = JSON.stringify("");
     let newArray = words.database;
     let searchArray = newArray.filter((obj) => {
       var flag = false;

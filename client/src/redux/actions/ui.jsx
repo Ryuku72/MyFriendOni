@@ -88,6 +88,6 @@ export const setError = (request) => {
 
 export const logOutRecieved = () => {
     return {
-        type: LOGOUT_RECIEVED
+        type: LOGOUT_RECIEVED,
     }
 }

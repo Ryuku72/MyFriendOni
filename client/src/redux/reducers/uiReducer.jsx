@@ -126,7 +126,7 @@ export default function (state = initialState, action) {
         ...state,
         loggedIn: false,
         error: true,
-        errorMsg: "LOGGED OUT",
+        errorMsg: "#Logged Out",
         quizExp: false,
         loading: true,
         quizPage: false,
@@ -163,7 +163,8 @@ export default function (state = initialState, action) {
     case CLEAR_ERROR:
       return {
         ...state,
-        error: false
+        error: false,
+        errorMsg: ""
       }
     case SET_ERROR:
       return {

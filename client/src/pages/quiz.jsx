@@ -5,7 +5,7 @@ import { connect, useDispatch } from 'react-redux'
 //Redux
 import { fetchUser, increment, decrement, engPoints, jpnPoints, kataPoints, hiraPoints, updatePoints, sessionUpdate, sessionNoUpdate } 
 from '../redux/actions/user';
-import { jpnQuiz, engQuiz, hiraQuiz, kataQuiz, quizPage, loadWords, loadLetters, exitQuiz, addHighScore, scorePage, zeroPoints
+import { jpnQuiz, engQuiz, hiraQuiz, kataQuiz, loadWords, loadLetters, exitQuiz, addHighScore, scorePage, zeroPoints
 } from '../redux/actions/quiz';
 import { startQuiz, clearOverlay, disableActiveBtn } from '../redux/actions/ui';
 
@@ -56,6 +56,7 @@ function Quiz(props) {
   // useEffects
   useEffect(() => {
     dispatch(fetchUser())
+  // eslint-disable-next-line
   }, [])
 
   useEffect(() => {
@@ -87,6 +88,7 @@ function Quiz(props) {
       //console.log("Quiz Page")
       //dispatch(quizPage())
     }
+    // eslint-disable-next-line
   }, [location.pathname]);
 
   useEffect(() => {
@@ -98,10 +100,12 @@ function Quiz(props) {
       setTimeLeft(timeLeft - 1);
     }, 1000);
     return () => clearInterval(intervalId);
+    // eslint-disable-next-line
   }, [timeLeft]);
 
   useEffect(() => {
     loadVocabList();
+    // eslint-disable-next-line
   }, [props.quiz.language]);
 
   function loadVocabList() {

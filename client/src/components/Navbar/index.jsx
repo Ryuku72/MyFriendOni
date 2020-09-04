@@ -32,6 +32,7 @@ function Navbar(props) {
     if (props.ui.loggedIn === false){
       history.push("/");
     }
+    // eslint-disable-next-line
   },[props.ui.loggedIn])
 
   function useOutsideAlerter(ref) {
