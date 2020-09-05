@@ -100,7 +100,9 @@ function Quiz(props) {
   }, [timeLeft]);
 
   useEffect(() => {
-    loadVocabList();
+    if (props.quiz.language !== ""){
+      loadVocabList();
+    }
     // eslint-disable-next-line
   }, [props.quiz.language]);
 

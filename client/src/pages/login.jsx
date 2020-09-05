@@ -27,7 +27,7 @@ function Login(props) {
   useEffect(() => {
     setTimeout(()=>{
       dispatch(clearError())
-    }, 3000)
+    }, 5000)
 // eslint-disable-next-line
   },[props.ui.loading])
 
@@ -132,7 +132,6 @@ function Login(props) {
 
 const mapStateToProps = (state) => ({
   user: state.user,
-  quiz: state.quiz,
   ui: state.ui
 })
 

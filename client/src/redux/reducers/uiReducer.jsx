@@ -24,7 +24,7 @@ import {
 const initialState = {
   loggedIn: false,
   error: false,
-  errorMsg: "",
+  errorMsg: [],
   loading: false,
   quizExp: false,
   quizPage: false,
@@ -157,20 +157,20 @@ export default function (state = initialState, action) {
         ...state,
         loggedIn: false,
         error: true,
-        errorMsg: [action.payload],
+        errorMsg: [...state.errorMsg, ...action.payload],
         loading: false,
       }
     case CLEAR_ERROR:
       return {
         ...state,
         error: false,
-        errorMsg: ""
+        errorMsg: []
       }
     case SET_ERROR:
       return {
         ...state,
         error: true,
-        errorMsg: action.payload
+        errorMsg: [...state.errorMsg, ...action.payload]
       }
     default:
       return state;

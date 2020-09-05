@@ -61,6 +61,38 @@ export const logIn = (request) => (dispatch) => {
 }, 500)
 };
 
+export const newUser = (request) => (dispatch) => {
+  dispatch({
+    type: LOADING,
+  });
+  setTimeout(()=> {
+  API.createUser(request)
+    .then((result) => {
+      const userID = result.data.data._id;
+      localStorage.setItem("tokens", userID);
+      dispatch({
+        type: LOG_IN,
+      });
+    })
+    .catch((err) => {
+      if (err.response.data.errors) {
+        let errorMsg = err.response.data.errors.map((err) => err.msg);
+        dispatch({
+          type: LOG_ERROR,
+          payload: errorMsg,
+        });
+      } else {
+        let errorMsg = "Whoops please enter your credentials";
+        dispatch({
+          type: LOG_ERROR,
+          payload: errorMsg,
+        });
+      }
+    });
+}, 500)
+};
+
+
 export const logOut = () => (dispatch) => {
   window.localStorage.removeItem("tokens");
   API.logoutUser()

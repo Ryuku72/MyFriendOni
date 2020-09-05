@@ -1,26 +1,33 @@
-import React, { useState } from 'react';
-import { useHistory } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import { Redirect } from "react-router-dom";
+import { connect, useDispatch } from 'react-redux'
+import { setError, clearError, newUser } from '../redux/actions/ui';
 import Header from "../components/Header";
 import SignUpForm from "../components/SignupForm";
 import Footer from '../components/Footer';
-import API from '../utils/API';
 import Subheading from '../components/Subheading';
 import "../index.css"
 
 function SignUp(props){
-  let history = useHistory();
+  let dispatch = useDispatch();
+
   const [userName, setUserName] = useState("");
   const [passwordOne, setPasswordOne] = useState("");
   const [passwordTwo, setPasswordTwo] = useState("");
-  const [isError, setIsError] = useState(false);
-  const [errors, setErrors] = useState([]);
+
+  useEffect(() => {
+    setTimeout(()=>{
+      dispatch(clearError())
+    }, 5000)
+// eslint-disable-next-line
+  },[props.ui.loading])
 
   function clearForm() {
     document.getElementById("signupform").reset();
     setUserName("")
     setPasswordOne("")
     setPasswordTwo("")
-    setErrors([])
+    dispatch(clearError())
   }
 
   function postSignUp(event) {
@@ -32,24 +39,15 @@ function SignUp(props){
         "password_again": passwordTwo
       }
     if (passwordOne !== passwordTwo) {
-      let errorMsg = "Passwords don't match!"
-      setErrors([errorMsg])
-      setIsError(true);
+      let errorMsg = ["Passwords don't match"]
+      dispatch(setError(errorMsg))
+      setTimeout(()=>{
+        dispatch(clearError())
+      }, 3000)
     } else {
-      API.createUser(request)
-      .then((result) => {
-          const userID = result.data.data._id
-          localStorage.setItem("tokens", userID) 
-          history.push('/quiz')
-      })
-      .catch((err) => {
-        console.log(err.response.data);
-        const errorMsg = err.response.data.errors.map((err) => err.msg);
-        setErrors([...errorMsg]);
-        setIsError(true);
-      })
+      dispatch(newUser(request))
     }
-    }
+  }
 
 function onHandleUserName(event){
     setUserName(event.target.value.trim().toLowerCase())
@@ -62,6 +60,12 @@ function onHandleUserName(event){
 function onHandlePasswordTwo(event){
     setPasswordTwo(event.target.value.trim().toLowerCase())
 }
+
+if (props.ui.loggedIn === true) {
+  return <Redirect to="/quiz" />;
+}
+
+else {
     return (
        <div className="xl:flex flex-col justify-center items-center md:block bg-gray-300 w-full h-screen">
         <Header />
@@ -72,8 +76,8 @@ function onHandlePasswordTwo(event){
         onHandlePasswordOne={onHandlePasswordOne}
         onHandlePasswordTwo={onHandlePasswordTwo}
         postSignUp={postSignUp}
-        style={{ opacity : isError ? "1" : "0" }}
-        errors={errors}
+        style={{ opacity: props.ui.error ? "1" : "0" }}
+        errors={props.ui.errorMsg}
         clearForm={clearForm}
         />
         </div>
@@ -83,5 +87,11 @@ function onHandlePasswordTwo(event){
         </div>
         
       );
+  }
 }
-export default SignUp;
+const mapStateToProps = (state) => ({
+  user: state.user,
+  ui: state.ui
+})
+
+export default connect(mapStateToProps)(SignUp)
