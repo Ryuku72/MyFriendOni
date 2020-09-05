@@ -66,7 +66,7 @@
 .dropdown{
     position: absolute;
     top: 11vh;
-    width: calc(100vw * (1/5));
+    width: 300px;
     transform: translateX(-82.5%);
     border-radius: 15px;
     box-shadow: rgba(130, 130, 130, 0.317) 1px 1.5px;
@@ -96,7 +96,7 @@
 
 
 @media only screen 
-  and (max-width: 1100px){ 
+  and (max-width: 1024px){ 
     * {
         --navbar: 10vh;
         --wfull: 95vw;
@@ -118,7 +118,8 @@
     }
 
     .dropdown{
-        width: calc(100vw * (1/4));
+        width: 300px;
+        padding: 10px;
     }
 
     .menu-item{
@@ -128,6 +129,12 @@
     .dropDownIcon {
      width: 4rem;
      height: 3.5rem;
+    }
+
+    .icon-button {
+        width: 50px;
+        margin-right: 0.25rem;
+        margin-left: 0.25rem;
     }
 }
 
@@ -168,11 +175,12 @@
     }
 
     .iconDiv{
-        width: var(--iconsDiv);
+        width: var(--iconsDiv * 1/2);
     }
 
     .dropdown{
-        width: calc(100vw * (2/5));
+        width: 165px;
+        padding: 10px;
     }
     
     .menu-item{
@@ -228,7 +236,8 @@
     }
 
     .dropdown{
-        width: calc(100vw * (1/4));
+        padding: 20px;
+        width: 220px;
         transform: translateX(-82.5%);
     }
     

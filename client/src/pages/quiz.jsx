@@ -72,22 +72,18 @@ function Quiz(props) {
     dispatch(jpnQuiz())
     settings()
     } 
-    else if (location.pathname === "/quiz/english"){
+    if (location.pathname === "/quiz/english"){
       dispatch(engQuiz())
       settings()
     }
-    else if (location.pathname === "/quiz/hiragana"){
+    if (location.pathname === "/quiz/hiragana"){
       dispatch(hiraQuiz())
       settings()
     } 
-    else if (location.pathname === "/quiz/katakana") {
+    if (location.pathname === "/quiz/katakana") {
     dispatch(kataQuiz())
     settings()
     } 
-    else {
-      //console.log("Quiz Page")
-      //dispatch(quizPage())
-    }
     // eslint-disable-next-line
   }, [location.pathname]);
 

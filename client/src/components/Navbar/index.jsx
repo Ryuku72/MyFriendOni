@@ -132,15 +132,16 @@ function Navbar(props) {
             color="bg-green-300"
             open={openOne}
             onHandleDropDown={onHandleDropDownOne}
+            onClick={onHandleDropDownOne}
           >
             <NavDropDown
               color={`border-indigo-600 ${btnBg01}`}
               onHandleDropDown={onHandleDropDownOne}
             >
-              <span className="my-2 mx-1 font-mono text-center underline flex text-xl justify-center">
+              <Link to="/quiz" onClick={onHandleDropDownOne} className="my-2 mx-1 font-mono text-center underline flex text-xl justify-center">
                 Quiz
-              </span>
-              <Link to="/quiz/hiragana">
+              </Link>
+              <Link to="/quiz/hiragana" onClick={onHandleDropDownOne}>
                 <NavDropDownItem
                   icon={hiragana}
                   align="text-right"
@@ -150,7 +151,7 @@ function Navbar(props) {
                   click={props.startHiraQuiz}
                 />
                 </Link>
-                  <Link to="/quiz/katakana">
+                  <Link to="/quiz/katakana" onClick={onHandleDropDownOne}>
                 <NavDropDownItem
                   icon={kana}    
                   align="text-right"
@@ -160,7 +161,7 @@ function Navbar(props) {
                   click={props.startKataQuiz}
                 />
               </Link>
-              <Link to="/quiz/japanese">
+              <Link to="/quiz/japanese" onClick={onHandleDropDownOne}>
                 <NavDropDownItem
                   icon={japan}
                   align="flex-row-reverse justify-between"
@@ -170,7 +171,7 @@ function Navbar(props) {
                   click={props.startJpnQuiz}
                 />
               </Link>
-              <Link to="/quiz/english">
+              <Link to="/quiz/english" onClick={onHandleDropDownOne}>
                 <NavDropDownItem
                   align="flex-row-reverse justify-between"
                   IconAlign="ml-6"  
@@ -187,15 +188,16 @@ function Navbar(props) {
             color="bg-pink-300"
             onHandleDropDown={onHandleDropDownTwo}
             open={openTwo}
+            onClick={onHandleDropDownTwo}
           >
             <NavDropDown
               color={`border-pink-600 mt-1 ${btnBg02}`}
               onHandleDropDown={onHandleDropDownTwo}
             >
-              <p className="my-2 mx-1 font-mono text-center underline text-xl">
+              <Link to="/study/history" onClick={onHandleDropDownTwo} className="my-2 mx-1 font-mono text-center underline flex text-xl justify-center">
                 Study Material
-              </p>
-              <Link to="/study/letters">
+              </Link>
+              <Link to="/study/letters" onClick={onHandleDropDownTwo}>
                 <NavDropDownItem
                   align="flex-row-reverse justify-between"
                   IconAlign="ml-6" 
@@ -204,7 +206,7 @@ function Navbar(props) {
                   text="Letter Chart"
                 />
               </Link>
-              <Link to="/study/vocab">
+              <Link to="/study/vocab" onClick={onHandleDropDownTwo}>
                 <NavDropDownItem
                   align="flex-row-reverse justify-between"
                   IconAlign="ml-6" 
@@ -213,7 +215,7 @@ function Navbar(props) {
                   text="Vocab Search"
                 />
               </Link>
-              <Link to="/study/history">
+              <Link to="/study/history" onClick={onHandleDropDownTwo}>
                 <NavDropDownItem
                   icon={pHistory}
                   align="text-right"
@@ -229,15 +231,16 @@ function Navbar(props) {
             color="bg-yellow-300"
             onHandleDropDown={onHandleDropDownThree}
             open={openThree}
+            onClick={onHandleDropDownThree}
           >
             <NavDropDown
               color={`bg-gray-300 border-yellow-600 mt-2 ${btnBg03}`}
               onHandleDropDown={onHandleDropDownThree}
             >
-              <p className="my-2 mx-1 font-mono text-center underline text-xl">
+              <Link to="/about" onClick={onHandleDropDownThree} className="my-2 mx-1 font-mono text-center underline flex text-xl justify-center">
                 Systems
-              </p>
-              <Link to="/about/player">
+              </Link>
+              <Link to="/about/player" onClick={onHandleDropDownThree}>
                 <NavDropDownItem
                   align="flex-row-reverse justify-between"
                   IconAlign="ml-6 justify-between" 
@@ -246,7 +249,7 @@ function Navbar(props) {
                   text="Player Stats"
                 />
               </Link>
-              <Link to="/about/info">
+              <Link to="/about/info" onClick={onHandleDropDownThree}>
                 <NavDropDownItem
                   icon={about}
                   align="flex-row-reverse justify-between"

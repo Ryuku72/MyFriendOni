@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import historyB from "../../assets/svg/history.svg";
 import "./style.css";
 
