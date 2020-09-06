@@ -9,7 +9,7 @@ import {
   MINUS_POINTS,
   SCORE_PAGE,
   ZERO_POINTS,
-  UPDATE_POINTS,
+  FETCH_USER,
   SESSIONS_UPDATE,
   SESSIONS_NO_UPDATE,
   LOG_OUT,
@@ -18,7 +18,7 @@ import {
   LOG_ERROR,
   CLEAR_ERROR,
   SET_ERROR,
-  LOGOUT_RECIEVED
+  LOGOUT_RECIEVED,
 } from "../actions/types";
 
 const initialState = {
@@ -104,7 +104,7 @@ export default function (state = initialState, action) {
         btnColor: true,
         activeBtn: 0,
       };
-    case UPDATE_POINTS:
+    case FETCH_USER:
       return {
         ...state,
         scorePage: false,

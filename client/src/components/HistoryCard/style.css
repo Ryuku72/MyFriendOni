@@ -40,7 +40,6 @@
 }
 
 .overlayHistory {
-    pointer-events: none;
     transition: 200ms ease-in-out;
     position: fixed;
     opacity: 1;
@@ -49,7 +48,7 @@
     right: 0;
     bottom: 0;
     z-index: 50;
-    pointer-events: none;
+    pointer-events: all;
     background-color: rgba(0, 0, 0, 0.488);
 }
 

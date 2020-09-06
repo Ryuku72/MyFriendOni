@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 import { Provider } from 'react-redux'
 import Login from "./pages/login";
 import Signup from "./pages/signup";
@@ -20,6 +20,7 @@ import store from './redux/store'
           <Route path="/quiz" component={Quiz} />
           <Route path="/study" component={Study} />
           <Route path="/about" component={About} />
+          <Route render={() => <Redirect to={{pathname: "/"}} />} />
         </Switch>
        </Provider> 
     </Router>

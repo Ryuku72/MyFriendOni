@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import API from "../utils/API";
+import { connect, useDispatch } from 'react-redux'
+import { lettersPage, historyPage, fetchSessions, deleteSession, vocabPage } from '../redux/actions/study'
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Wrapper from "../components/Wrapper";
@@ -13,22 +14,15 @@ import LetterCard from "../components/LetterCard";
 import HistoryCard from "../components/HistoryCard";
 
 function Study(props) {
-  const [pageType, setPageType] = useState()
-  const [user, setUser] = useState({
-    createdAt: "",
-    engHighScore: 0,
-    hiraHighScore: 0,
-    jpnHighScore: 0,
-    kataHighScore: 0,
-    password: "",
-    totalScore: 0,
-    updatedAt: "",
-    username: "",
-  });
+
+  let dispatch = useDispatch()
+  const location = useLocation()
+
   const [words, setWords] = useState({
     searchArray: [],
     database: []
   })
+
   const initialState = {
     search: JSON.stringify(""),
     language: "Vocab",
@@ -38,86 +32,40 @@ function Study(props) {
     sort: "Sort By",
     order: "Order By",
   }
+
   const [searchState, setSearchState] = useState(initialState);
+
   const [orderState, setOrderState] = useState({
     ascend: false,
     descend: false,
   });
+
   const [sortState, setSortState] = useState({
     Japanese: false,
     English: false,
     Row: false,
   });
-  const [userHistory, setUserHistory] = useState([])
-  const location = useLocation()
 
   // API calls
   useEffect(() => {
     if (location.pathname === "/study/letters") {
-      API.getFurigana()
-      .then((lists) => {
-        let list = lists.data
-         let hiragana = list.map(result => result.Hiragana);
-         let katakana = list.map(result => result.Katakana);
-         let romaji = list.map(result => result.Romaji);
-         const database = hiragana.concat(katakana, romaji);
-         let filterArray = list.sort(Filters.compareValues("Hiragana"));
-         setPageType("Letters")
-         setWords({database: filterArray, searchArray: database});
-         setSearchState({ ...searchState, error: "", language: "Letters"})
-        //console.log(list)
-      })
+         dispatch(lettersPage())
     } else if (location.pathname === "/study/vocab") {
-      setPageType("Vocab")
-      API.getVocab()
-      .then((lists) => {
-        let list = lists.data;
-        let jpnArray = list.map(result => result.Japanese)
-        let engArray = list.map(result => result.English)
-        const database = jpnArray.concat(engArray)
-        //console.log(database)
-        setWords({database: list, searchArray: database})
-        setSearchState({ ...searchState, error: "", language: "Vocab"})
-      })
+      dispatch(vocabPage())
+      setWords({ database: props.study.vocabDb, searchArray: props.study.vocabArray })
     } else {
-      setPageType("History")
-      const user = localStorage.getItem("tokens");
-      //console.log(user)
-      API.getSessions(user)
-      .then((list) => {
-       // console.log(list)
-        setUserHistory(list.data)
-      })
+      dispatch(historyPage())
     }
-    getUser();
     // eslint-disable-next-line
   }, [location]);
 
-  // Database Calls
-  function getUser() {
-    const user = localStorage.getItem("tokens");
-    //console.log(user)
-    API.getUser(user).then((result) => {
-      setUser(result.data);
-    });
-  }
 
   function deleteMemo(event){
     event.preventDefault()
-    console.log(event.target.value)
-    const memoID = event.target.value
-    API.deleteSession(memoID)
-    .then((result) => {
-      console.log(result)
-      setPageType("History")
-      const user = localStorage.getItem("tokens");
-      //console.log(user)
-      API.getSessions(user)
-      .then((list) => {
-       // console.log(list)
-        setUserHistory(list.data)
-      })
-    }).catch((err) => console.log(err));
+    //console.log(event.target.id)
+    const memoID = event.target.id
+    dispatch(deleteSession(memoID))
+    dispatch(fetchSessions())
 }
 
  //handler
@@ -169,8 +117,12 @@ function Study(props) {
   function onHandleSubmit(event){
     event.preventDefault()
     //console.log(searchState)
+   
     let searchFeild = searchState.search;
     let newArray = words.database;
+    let orderBy = searchState.order;
+    let sortBy = searchState.sort;
+
     let searchArray = newArray.filter((obj) => {
       var flag = false;
       Object.values(obj).forEach((val) => {
@@ -184,11 +136,9 @@ function Study(props) {
       return null;
     });
 
-    //console.log(searchArray)
-
-    let orderBy = searchState.order;
-    let sortBy = searchState.sort;
     const searchLength = searchArray.length;
+
+    //console.log(searchArray)
     //console.log(searchArray.length)
 
     if (
@@ -235,18 +185,17 @@ function Study(props) {
     }
   } 
 
-  //console.log(userHistory)
-
   return (
     <div className="block">
-      <Navbar highscore={0} totalscore={user.totalScore} score={0} />
+      <Navbar highscore={0} totalscore={props.user.totalScore} score={0} />
       <HistoryCard 
-        userHistory={userHistory}
-        style={{display: pageType === "History" ? "block" : "none"}}
+        userHistory={props.study.sessions}
+        style={{display: props.study.page === "History" ? "block" : "none"}}
         deleteMemo={deleteMemo}
+        length={props.study.sessions.length}
         />
       <SearchNav
-        display={{display: pageType === "Vocab" ? "flex" : "none"}}
+        display={{display: props.study.page === "Vocab" ? "flex" : "none"}}
         name={words.searchArray}
         length={searchState.length}
         order={searchState.order}
@@ -265,10 +214,10 @@ function Study(props) {
         ascend={{ color: orderState.ascend ? "#f56565" : "#4a5568" }}
         descend={{ color: orderState.descend ? "#f56565" : "#4a5568" }}
       />
-      <Wrapper wrap={{display: pageType === "Vocab" ? "block" : "none"}}>
+      <Wrapper wrap={{display: props.study.page === "Vocab" ? "block" : "none"}}>
         <img src={Vocab} alt="slogan" className="absolute bottom-0 right-0 mb-2" 
         style={{display: searchState.results.length ? "none" : "block"}} />
-        <div className="xl:grid-cols-5 md:grid-cols-3 sm:grid-cols-2 gap-3" style={{display: pageType === "Letters" ? "none" : "grid"}}>
+        <div className="xl:grid-cols-5 md:grid-cols-3 sm:grid-cols-2 gap-3" style={{display: props.study.page === "Letters" ? "none" : "grid"}}>
         {searchState.results.map((result, index) => (
           <SearchCard
             key={index}
@@ -284,39 +233,53 @@ function Study(props) {
         ))}
         </div>
         </Wrapper>
+        <div className="flex flex-wrap justify-between">
         <img src={Letters} alt="slogan" className="relative p-5 my-2 xl:w-1/2 sm:w-3/4 top-0 left-0" 
-        style={{display: pageType === "Letters" ? "block" : "none"}} />
-        <div className="xl:grid-cols-5 md:grid-cols-3 sm:grid-cols-2 gap-3 mb-4 p-6" style={{display: pageType === "Letters" ? "grid" : "none"}}>
-         {words.database.map((result, index) => (
+        style={{display: props.study.page === "Letters" ? "block" : "none"}} />
+        <h2 className=" text-gray-800 text-2xl items-end justify-end p-5 my-2 footerChild" style={{display: props.study.page === "Letters" ? "flex" : "none"}}>
+            Results :
+            <span className="footerChild capitalize ml-2 text-red-500">
+              { props.study.page === "Letters" ? props.study.letterDb.length : searchState.results.length }
+              </span>
+          </h2>
+          </div>
+        <div className="xl:grid-cols-5 md:grid-cols-3 sm:grid-cols-2 gap-3 mb-4 p-6" 
+        style={{display: props.study.page === "Letters" ? "grid" : "none"}}>
+         {props.study.letterDb.map((result, index) => (
         <LetterCard
-         display={{display: pageType === "Letters" ? "flex" : "none"}}
+         display={{display: props.study.page === "Letters" ? "flex" : "none"}}
          key={index}
-         language={searchState.language}
+         language={props.study.page}
          hiragana={result.Hiragana}
          katakana={result.Katakana}
          romaji={result.Romaji}
         />
         ))}
         </div>
-      <Footer user={user.username}>
-        {pageType === "Letters" ? <div></div> :
+      <Footer user={props.user.username}>     
         <div className="w-1/2 h-full flex flex-wrap items-center justify-start px-4">
         <p className="footerChild font-mono capitalize text-red-500"
-          style={{display: pageType === "Vocab" || "History" ? "block" : "none"}}
         >
           <span className="footerChild text-gray-800">
             Results :{" "}
             <span className="footerChild font-mono capitalize text-red-500">
-              { pageType === "Vocab" ? searchState.results.length : userHistory.length }
+              { props.study.page === "Letters" ? props.study.letterDb.length : "" }
+              { props.study.page === "Vocab" ? searchState.length : "" }
+              { props.study.page === "History" ? props.study.sessions.length : "" }
             </span>
           </span>
           {""}
         </p>
         </div>
-        }
       </Footer>
     </div>
   );
 }
 
-export default Study;
+const mapStateToProps = (state) => ({
+  user: state.user,
+  study: state.study,
+  ui: state.ui
+})
+
+export default connect(mapStateToProps )(Study);

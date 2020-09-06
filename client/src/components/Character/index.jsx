@@ -14,7 +14,7 @@ function Character(props) {
     case "Vocab":
       return <p className="kanji2 text-center w-full capitalize">{props.character}</p>;
     case "Letters":
-    return <span className="kanji2 mx-8 w-full capitalize">{props.character}</span>;
+    return <span className="kanji2 mx-4 w-full capitalize">{props.character}</span>;
     default:
       return <p className="kanji w-full capitalize">Unknown</p>;
   }

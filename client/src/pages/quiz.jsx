@@ -3,11 +3,12 @@ import { useLocation, useHistory } from "react-router-dom";
 import { connect, useDispatch } from 'react-redux'
 
 //Redux
-import { fetchUser, increment, decrement, engPoints, jpnPoints, kataPoints, hiraPoints, updatePoints, sessionUpdate, sessionNoUpdate } 
+import { fetchUser, increment, decrement, engPoints, jpnPoints, kataPoints, hiraPoints, updatePoints } 
 from '../redux/actions/user';
-import { jpnQuiz, engQuiz, hiraQuiz, kataQuiz, loadWords, loadLetters, exitQuiz, addHighScore, scorePage, zeroPoints
+import { jpnQuiz, engQuiz, hiraQuiz, kataQuiz, loadWords, loadLetters, exitQuiz, addHighScore, scorePage, zeroPoints, sessionUpdate, sessionNoUpdate
 } from '../redux/actions/quiz';
 import { startQuiz, clearOverlay, disableActiveBtn } from '../redux/actions/ui';
+import { fetchFurigana, fetchVocab, fetchSessions } from '../redux/actions/study'
 
 //components
 import Footer from "../components/Footer";
@@ -56,6 +57,9 @@ function Quiz(props) {
   // useEffects
   useEffect(() => {
     dispatch(fetchUser())
+    dispatch(fetchFurigana())
+    dispatch(fetchVocab())
+    dispatch(fetchSessions())
   // eslint-disable-next-line
   }, [])
 
@@ -160,23 +164,6 @@ function Quiz(props) {
      loadVocabList();
   }
 
-   function onHandleExitScore() {
-
-    let request = {
-      "engHighScore": props.user.engHighScore,
-      "hiraHighScore": props.user.hiraHighScore,
-      "jpnHighScore": props.user.jpnHighScore,
-      "kataHighScore": props.user.kataHighScore,
-      "totalScore": props.user.totalScore,
-      "lastHighScore": props.user.lastHighScore
-    }
-
-   // console.log(request)
-
-   dispatch(updatePoints(request))
-   dispatch(fetchUser())
-   }
-
    function onHandleExitQuiz() {
     let scoreLanguage = "";
     switch (props.quiz.language) {
@@ -206,33 +193,34 @@ function Quiz(props) {
         dispatch(sessionNoUpdate())
         console.log("no information recorded")
       } else {
-       // console.log(sessions)
       dispatch(sessionUpdate(sessions))
       }
+
+      let request = {
+        "engHighScore": props.user.engHighScore,
+        "hiraHighScore": props.user.hiraHighScore,
+        "jpnHighScore": props.user.jpnHighScore,
+        "kataHighScore": props.user.kataHighScore,
+        "totalScore": props.user.totalScore,
+        "lastHighScore": props.user.lastHighScore
+      }
+  
+     dispatch(updatePoints(request))
     }
 
-    //console.log(props.user[scoreLanguage]); 
-
     if ((props.quiz.highScore > props.user[scoreLanguage]) || (props.user[scoreLanguage] === null)) {
-     // console.log(scoreLanguage); 
-     // console.log(props.user.hiraHighScore)
-
       switch(props.quiz.language){
         case "English":
        dispatch(engPoints(props.quiz.highScore))
-       //console.log("Eng HS")
        break;
       case "Hiragana":
         dispatch(hiraPoints(props.quiz.highScore))
-        //console.log("Hira HS");
         break;
       case "Katakana":
         dispatch(kataPoints(props.quiz.highScore))
-        //console.log("Kata HS");
         break;
       default:
         dispatch(jpnPoints(props.quiz.highScore))
-        //console.log("JPN HS")
         break;
       }
       
@@ -247,6 +235,10 @@ function Quiz(props) {
       }, 350);
     }
   }
+
+  function onHandleExitScore() {
+    dispatch(fetchUser())
+    }
 
   return (
     <div>
@@ -313,7 +305,8 @@ function Quiz(props) {
 const mapStateToProps = (state) => ({
   user: state.user,
   quiz: state.quiz,
-  ui: state.ui
+  ui: state.ui,
+  study: state.ui
 })
 
 export default connect(mapStateToProps )(Quiz);

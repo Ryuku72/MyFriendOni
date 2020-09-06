@@ -87,9 +87,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height:  calc(var(--kanjiH)*0.5);
-  padding-left: 0.25rem;
-  padding-right: 0.25rem;
+  height:  calc(var(--kanjiH)*0.25);
   font-family: 'Kosugi Maru', sans-serif;
   color: rgb(80, 80, 80);
   --max-size: 45;

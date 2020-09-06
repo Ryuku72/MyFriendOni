@@ -15,21 +15,34 @@ function Login(props) {
   const [password, setPassword] = useState("");
 
   useEffect(() => {
-    setTimeout(() => {
-      dispatch(logOutRecieved())
-    },500)
-    setTimeout(()=>{
-      dispatch(clearError())
-    }, 3000)
+      if (props.ui.loading === true){
+        setTimeout(() => {
+        dispatch(logOutRecieved())
+      },500)
+      setTimeout(()=>{
+        dispatch(clearError())
+      }, 3000)
+      }
 // eslint-disable-next-line
   },[])
 
   useEffect(() => {
-    setTimeout(()=>{
+    if (props.ui.error === true){
       dispatch(clearError())
-    }, 5000)
+    }
 // eslint-disable-next-line
-  },[props.ui.loading])
+  },[userName, password])
+
+  useEffect(() => {
+    if (props.ui.error === true){
+    setTimeout(()=>{
+      if (props.ui.error === true){
+      dispatch(clearError())
+      }
+    }, 3000)
+    }
+// eslint-disable-next-line
+},[props.ui.error])
 
   function clearForm() {
     document.getElementById("loginform").reset();

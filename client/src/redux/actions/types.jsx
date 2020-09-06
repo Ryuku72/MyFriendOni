@@ -1,4 +1,4 @@
-//quiz state
+//Quiz state
 export const JPN_QUIZ = 'JPN_QUIZ';
 export const ENG_QUIZ = 'ENG_QUIZ';
 export const HIRA_QUIZ = 'HIRA_QUIZ';
@@ -24,7 +24,7 @@ export const LOGOUT_RECIEVED = 'LOGOUT_RECIEVED';
 export const CLEAR_ERROR = 'CLEAR_ERROR';
 export const SET_ERROR = 'SET_ERROR';
 
-//user state
+//User state
 export const FETCH_USER = 'FETCH_USER';
 export const ADD_POINTS = 'ADD_POINTS';
 export const MINUS_POINTS = 'MINUS_POINTS';
@@ -35,6 +35,15 @@ export const HIRA_UPDATE = 'HIRA_UPDATE';
 export const KATA_UPDATE = 'KATA_UPDATE';
 export const SESSIONS_UPDATE = 'SESSIONS_UPDATE'
 export const SESSIONS_NO_UPDATE = 'SESSIONS_NO_UPDATE'
+
+//Study state
+export const FETCH_FURIGANA = 'FETCH_FURIGANA';
+export const FETCH_VOCAB = 'FETCH_VOCAB';
+export const FETCH_SESSIONS = 'FETCH_SESSIONS';
+export const DELETE_SESSION = 'DELETE_SESSION';
+export const LETTERS_PAGE = 'LETTERS_PAGE';
+export const HISTORY_PAGE = 'HISTORY_PAGE';
+export const VOCAB_PAGE = 'VOCAB_PAGE';
 
 
 

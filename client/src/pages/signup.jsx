@@ -16,11 +16,23 @@ function SignUp(props){
   const [passwordTwo, setPasswordTwo] = useState("");
 
   useEffect(() => {
-    setTimeout(()=>{
+    if (props.ui.error === true){
       dispatch(clearError())
-    }, 5000)
+    }
 // eslint-disable-next-line
-  },[props.ui.loading])
+  },[userName, passwordOne, passwordTwo])
+
+
+  useEffect(() => {
+    if (props.ui.error === true){
+    setTimeout(()=>{
+      if (props.ui.error === true){
+      dispatch(clearError())
+      }
+    }, 3000)
+    }
+// eslint-disable-next-line
+},[props.ui.error])
 
   function clearForm() {
     document.getElementById("signupform").reset();
@@ -67,7 +79,21 @@ if (props.ui.loggedIn === true) {
 
 else {
     return (
-       <div className="xl:flex flex-col justify-center items-center md:block bg-gray-300 w-full h-screen">
+       <div className="flex flex-col justify-center items-center bg-gray-300 w-full h-screen">
+         {props.ui.loading ? 
+      <div className="sk-cube-grid">
+      <div className="sk-cube sk-cube1"></div>
+      <div className="sk-cube sk-cube2"></div>
+      <div className="sk-cube sk-cube3"></div>
+      <div className="sk-cube sk-cube4"></div>
+      <div className="sk-cube sk-cube5"></div>
+      <div className="sk-cube sk-cube6"></div>
+      <div className="sk-cube sk-cube7"></div>
+      <div className="sk-cube sk-cube8"></div>
+      <div className="sk-cube sk-cube9"></div>
+    </div>
+   :
+   <>
         <Header />
         <Subheading />
         <div className="xl:w-1/2 sm:w-full p-4 bg-gray-300">
@@ -84,7 +110,9 @@ else {
           <Footer>
          <div></div>
          </Footer> 
-        </div>
+    </>
+}
+       </div>
         
       );
   }

@@ -50,15 +50,13 @@ const randc = function (array) {
 
 function HistoryCard(props) {
 
-    const [ modalOpen, setModalOpen ] = useState({ id: "" })
     const [deletedItem, setDeletedItem] = useState("")
     const [overlayActive, setOverlayActive] = useState(false)
 
     function memoDeleted(event){
-        console.log(event.target.name)
+        //console.log(event.target.name)
         setDeletedItem(event.target.name)
         setOverlayActive(true)
-        setModalOpen(false)
         setTimeout(()=>{
             setOverlayActive(false)
             setDeletedItem("")
@@ -67,12 +65,19 @@ function HistoryCard(props) {
 
   return (
     <div className="text-black p-2 historyCard" style={props.style}>
+      <div className="flex flex-wrap w-full justify-between">
       <img
         src={historyB}
         alt="slogan"
         className="relative p-5 my-2 xl:w-2/5 sm:w-3/4 top-0 left-0"
       />
-
+      <h2 className="footerChild text-gray-800 text-2xl flex items-end justify-end p-6 my-2">
+            Results :
+            <span className="footerChild font-mono capitalize ml-2 text-red-500">
+              { props.length }
+            </span>
+          </h2>
+          </div>
       {props.userHistory.length ? (
         <div className="grid gap-3 xl:grid-cols-3 sm:grid-cols-1 md:grid-cols-2 border-black mt-2 w-full h-full"
           style={{ minHeight: "66vh" }}
@@ -83,9 +88,10 @@ function HistoryCard(props) {
               className="p-8 flex flex-col justify-center historyCardClip relative"
               style={{ backgroundColor: `${randc(bgColor)}` }}
             >
-              <button
+              <button name={new Intl.DateTimeFormat("en-AU", deleteFormat).format(
+                    new Date(`${result.createdAt}`))}
                 className="absolute top-0 right-0 p-3 quizTags historyXbtn focus:outline-none outline-none"
-                id={result._id} onClick={() => setModalOpen({id: index})}
+                id={result._id} onClick={(e)=>{props.deleteMemo(e); memoDeleted(e) }}
               >
                 &#10008;
               </button>
@@ -109,41 +115,18 @@ function HistoryCard(props) {
                 <span className="font-semibold">SCORE: </span> {result.score}
               </p>
 
-              <p className="capitalize quizTags underline mt-2 font-semibold">
-                Correct Answers
+              <p className="capitalize quizTags mt-2">
+              <span className="underline font-semibold"> Correct Answers</span>: {result.correct.length}
               </p>
               <p className="capitalize quizTags">
                 {result.correct.join(" , ")}
               </p>
-              <p className="capitalize quizTags underline mt-2 font-semibold">
-                Wrong Answers
+              <p className="capitalize quizTags mt-2">
+                <span className="underline font-semibold"> Wrong Answers</span>: {result.incorrect.length}
               </p>
               <p className="capitalize quizTags">
                 {result.incorrect.join(" , ")}
               </p>
-              { modalOpen.id === index ? 
-              <div className="quizTags historyPopup text-white text-center p-4 flex flex-col items-center justify-center bg-gray-900 rounded-lg"
-              >
-                <p>Confirm Delete</p>
-                <p>
-                  {new Intl.DateTimeFormat("en-AU", deleteFormat).format(
-                    new Date(`${result.createdAt}`)
-                  )}
-                </p>
-                <div className="w-full flex items-center justify-center">
-                <button
-                  className="flex items-center justify-center xl:w-1/6 sm:w-1/12 rounded-lg border-2 border-red-600 px-2 xl:text-lg sm:text-sm bg-red-600 hover:bg-red-500 hover:text-gray-300 mx-2 shadow-xl focus:outline-none"
-                  onClick={()=> setModalOpen(false)}
-                >
-                  &#10008;
-                </button>
-                <button value={result._id} name={new Intl.DateTimeFormat("en-AU", deleteFormat).format(
-                    new Date(`${result.createdAt}`))} className="flex items-center justify-center xl:w-1/6 sm:w-1/12 mr-3 rounded-lg border-2 border-green-500 px-2 xl:text-lg sm:text-sm bg-green-500 hover:bg-green-400 hover:text-gray-300 shadow-xl focus:outline-none" onClick={(e)=>{props.deleteMemo(e); memoDeleted(e) }}>
-                  &#10004;
-                </button>
-              </div>
-              </div>  
-              : <div></div> }
             </div>
           ))}
         </div>

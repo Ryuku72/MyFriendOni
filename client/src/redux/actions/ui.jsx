@@ -9,7 +9,7 @@ import {
   LOG_ERROR,
   CLEAR_ERROR,
   SET_ERROR,
-  LOGOUT_RECIEVED
+  LOGOUT_RECIEVED,
 } from "./types";
 
 export const startQuiz = () => {
@@ -123,3 +123,4 @@ export const logOutRecieved = () => {
         type: LOGOUT_RECIEVED,
     }
 }
+

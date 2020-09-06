@@ -1,5 +1,5 @@
 import API from '../../utils/API'
-import { JPN_QUIZ, ENG_QUIZ, HIRA_QUIZ, KATA_QUIZ, QUIZ_PAGE, RECIEVE_WORDS, RECIEVE_LETTERS, EXIT_QUIZ, EXIT_SCORE, SET_HIGHSCORE, SCORE_PAGE, ZERO_POINTS } from'./types'
+import { JPN_QUIZ, ENG_QUIZ, HIRA_QUIZ, KATA_QUIZ, QUIZ_PAGE, RECIEVE_WORDS, RECIEVE_LETTERS, EXIT_QUIZ, EXIT_SCORE, SET_HIGHSCORE, SCORE_PAGE, ZERO_POINTS, SESSIONS_UPDATE, SESSIONS_NO_UPDATE } from'./types'
 
 export const jpnQuiz = () => {
     return {
@@ -84,3 +84,24 @@ export const zeroPoints = nr => {
         payload: nr
     }
 }
+
+export const sessionUpdate = (request) => dispatch => {
+    const user = localStorage.getItem("tokens");
+    // console.log(request)
+    API.updateSessions(user, request)
+    .then(result => {
+        //console.log("Entries saved: " + result.data.data.incorrect.length + " plus " + result.data.data.correct.length)
+        dispatch({
+            type: SESSIONS_UPDATE,
+            payload: result.data
+        })
+    })
+    .catch(err => console.log(err));
+}
+
+export const sessionNoUpdate = () => {
+    return {
+        type: SESSIONS_NO_UPDATE,
+    }
+}
+

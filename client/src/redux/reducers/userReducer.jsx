@@ -2,7 +2,7 @@ import {
     FETCH_USER, 
     ADD_POINTS, 
     ENG_UPDATE, JPN_UPDATE, HIRA_UPDATE, KATA_UPDATE,
-    UPDATE_POINTS, SESSIONS_UPDATE } from '../actions/types'
+    UPDATE_POINTS, } from '../actions/types'
 
 const initialState = {
     username: "",
@@ -13,7 +13,6 @@ const initialState = {
     kataHighScore: 0,
     totalScore: 0,
     lastHighScore: 0,
-    sessions: [],
     createdAt: "",
     updatedAt: "",
 }
@@ -31,7 +30,6 @@ export default function(state = initialState, action) {
                 kataHighScore: action.payload.kataHighScore,
                 totalScore: action.payload.totalScore,
                 lastHighScore: action.payload.lastHighScore,
-                sessions: action.payload.sessions,
                 createdAt: action.payload.createdAt,
                 updatedAt: action.payload.updatedAt,
             };
@@ -45,12 +43,6 @@ export default function(state = initialState, action) {
                 kataHighScore: action.payload.kataHighScore,
                 totalScore: action.payload.totalScore,
                 lastHighScore: action.payload.lastHighScore,
-            };
-
-        case SESSIONS_UPDATE:
-            return {
-                ...state,
-                sessions: {correct: action.payload.data.correct, incorrect: action.payload.data.incorrect}
             };
         case ADD_POINTS:
             return {
