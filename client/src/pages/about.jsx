@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useHistory } from "react-router-dom";
+import { connect, useDispatch } from 'react-redux'
+import { fetchUser } 
+from '../redux/actions/user';
 import API from "../utils/API";
 import Navbar from "../components/Navbar";
 import Footer from '../components/Footer';
@@ -7,28 +10,17 @@ import Animation from "../components/Animation"
 import PlayerCard from "../components/PlayerCard";
 import AboutCard from "../components/AboutCard";
 
-function About(){
-
+function About(props){
+  const history = useHistory()
+  const location = useLocation()
+  const dispatch = useDispatch()
+ 
   let dateFormat = {
   day: 'numeric', month: 'numeric', year: 'numeric',
   hour: 'numeric', minute: 'numeric', second: 'numeric',
   hour12: false, timeZone: 'Australia/Perth'
   };
-
-
-    const history = useHistory()
-    const location = useLocation()
-    const [user, setUser] = useState({
-        createdAt: "",
-        engHighScore: 0,
-        hiraHighScore: 0,
-        jpnHighScore: 0,
-        kataHighScore: 0,
-        password: "",
-        totalScore: 0,
-        updatedAt: "",
-        username: "",
-      });
+ 
       const [about, setAbout] = useState(false)
       const [updatePreviousPw, setUpdatePreviousPw] = useState("")
       const [updateUser, setUpdateUser] = useState("")
@@ -62,15 +54,11 @@ function About(){
 
   // Database Calls
   function getUser() {
-    const user = localStorage.getItem("tokens");
     //console.log(userID)
-    API.getUser(user).then((result) => {
-      setUser(result.data);
-      let create = (new Intl.DateTimeFormat('en-AU', dateFormat).format(new Date(result.data.createdAt)))
-      let update = (new Intl.DateTimeFormat('en-AU', dateFormat).format(new Date(result.data.updatedAt)))
-
+      dispatch(fetchUser())
+      let create = (new Intl.DateTimeFormat('en-AU', dateFormat).format(new Date(props.user.createdAt)))
+      let update = (new Intl.DateTimeFormat('en-AU', dateFormat).format(new Date(props.user.updatedAt)))
       setUTime({createdAt: create, updatedAt: update})
-    });
   }
 
   function onHandlePreviousPassword(event) {
@@ -171,7 +159,7 @@ function updateDetails(event){
       "password": updatePw
   }
   
-   API.updateLogin(user._id, request).then(result => {
+   API.updateLogin(props.user._id, request).then(result => {
        //console.log(result)
        confirmUpdate()
        getUser()
@@ -255,9 +243,9 @@ function handleDeleteUser(event) {
 function deleteUser(event) {
   event.preventDefault()
   console.log("delete button triggered")
-  console.log(user._id)  
+  console.log(props.user._id)  
   const request = { "password" : passwordOne}
-  API.deleteUsers(user._id, request)
+  API.deleteUsers(props.user._id, request)
   .then(answer => {
     console.log("hit delete front end")
       // //log out
@@ -298,7 +286,7 @@ function confirmUpdate(){
     <div>
         <Navbar 
         highscore={0} 
-        totalscore={user.totalScore} 
+        totalscore={props.user.totalScore} 
         score={0}
         /><div className="relative" style={{zIndex:2, height: `calc(100vh - (10vh + 8vh))`}} >
         <Animation 
@@ -307,13 +295,13 @@ function confirmUpdate(){
         />
         <PlayerCard
           windowStyle={{height: location.pathname === "/about/player" ? "100%" : "0%", opacity: location.pathname === "/about/player" ?  "1" : "0"}} 
-          user={user.username}
+          user={props.user.username}
           start={uTime.createdAt}
-          eng={user.engHighScore}
-          hira={user.hiraHighScore}
-          jpn={user.jpnHighScore}
-          kata={user.kataHighScore}
-          total={user.totalScore}
+          eng={props.user.engHighScore}
+          hira={props.user.hiraHighScore}
+          jpn={props.user.jpnHighScore}
+          kata={props.user.kataHighScore}
+          total={props.user.totalScore}
           update={uTime.updatedAt}
           updateDetails={updateDetails}
           deleteUser={deleteUser}
@@ -351,7 +339,7 @@ function confirmUpdate(){
         
         </div>
         <Footer 
-        user={user.username}
+        user={props.user.username}
         style={about}
         >
           <div></div>
@@ -360,4 +348,8 @@ function confirmUpdate(){
     )
 }
 
-export default About;
+const mapStateToProps = (state) => ({
+  user: state.user,
+})
+
+export default connect(mapStateToProps )(About);
