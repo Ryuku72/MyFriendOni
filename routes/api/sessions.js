@@ -2,7 +2,7 @@ const router = require("express").Router();
 const { sessions } = require("../../model");
 
 router.post("/:id", function (req, res) {
-    console.log(req.body)
+    //console.log(req.body)
     sessions.create({
         user_id: req.params.id, 
         date: Date.now(),
@@ -12,10 +12,8 @@ router.post("/:id", function (req, res) {
         incorrect: req.body.incorrect
 })
 .then((created)=> {
-    console.log("logged")
-    res.json({
-        data: created
-    });
+    console.log(created)
+    res.json(created);
 })
 .catch((err) => res.status(422).json(err));
 })

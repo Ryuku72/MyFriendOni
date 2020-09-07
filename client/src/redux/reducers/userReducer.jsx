@@ -34,7 +34,6 @@ export default function(state = initialState, action) {
                 updatedAt: action.payload.updatedAt,
             };
         case UPDATE_POINTS:
-            console.log(action.payload)
             return {
                 ...state, 
                 engHighScore: action.payload.engHighScore,

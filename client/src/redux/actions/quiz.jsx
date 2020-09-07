@@ -85,11 +85,12 @@ export const zeroPoints = nr => {
     }
 }
 
-export const sessionUpdate = (request) => dispatch => {
+export const sessionUpdate = request => dispatch => {
     const user = localStorage.getItem("tokens");
     // console.log(request)
     API.updateSessions(user, request)
     .then(result => {
+        //console.log(result.data)
         //console.log("Entries saved: " + result.data.data.incorrect.length + " plus " + result.data.data.correct.length)
         dispatch({
             type: SESSIONS_UPDATE,

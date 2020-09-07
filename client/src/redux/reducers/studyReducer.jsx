@@ -37,7 +37,7 @@ export default function (state = initialState, action) {
     case SESSIONS_UPDATE:
       return {
         ...state,
-        sessions: action.payload,
+        sessions: [...state.sessions, action.payload]
       };
     case FETCH_SESSIONS:
       return {

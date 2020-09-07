@@ -38,7 +38,7 @@ export const fetchSessions = () => dispatch => {
     const user = localStorage.getItem("tokens");
     API.getSessions(user)
     .then((list) => {
-        //console.log(list);
+        console.log(list);
         dispatch({
             type: FETCH_SESSIONS,
             payload: list.data
@@ -50,7 +50,6 @@ export const fetchSessions = () => dispatch => {
 export const deleteSession = (memoID) => dispatch => {
     API.deleteSession(memoID)
     .then(() => {
-        console.log()
         dispatch({
             type: DELETE_SESSION      
           })

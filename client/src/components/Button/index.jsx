@@ -11,22 +11,22 @@ function Button(props) {
     switch (props.language) {
       case "English":
        return( <div className="mx-2 my-2">
-        <button className={`btn border-gray-500 border rounded-lg p-2 flex justify-center items-center font-mono capitalize text-gray-900 hover:text-gray-200 jpnWord ${btnOutput}`} onClick={props.userInput} disabled={props.disable < 1} value={props.value} name={props.value}>{props.question}</button>
+        <a className={`btn border-gray-500 border rounded-lg p-2 flex justify-center items-center font-mono capitalize text-gray-900 hover:text-gray-200 jpnWord ${btnOutput}`} onClick={props.userInput} disabled={props.disable < 1} value={props.value} name={props.value}>{props.question}</a>
         </div>
        )
       case "Katakana":
         return( <div className="mx-2 my-2">
-        <button className={`btn border-gray-500 border rounded-lg p-2 flex justify-center items-center font-mono capitalize text-gray-900 hover:text-gray-200 furiWord ${btnOutput}`} onClick={props.userInput} disabled={props.disable < 1} value={props.value} name={props.value}>{props.question}</button>
+        <a className={`btn border-gray-500 border rounded-lg p-2 flex justify-center items-center font-mono capitalize text-gray-900 hover:text-gray-200 furiWord ${btnOutput}`} onClick={props.userInput} disabled={props.disable < 1} value={props.value} name={props.value}>{props.question}</a>
         </div>
        )
       case "Hiragana":
           return( <div className="mx-2 my-2">
-          <button className={`btn border-gray-500 border rounded-lg p-2 flex justify-center items-center font-mono capitalize text-gray-900 hover:text-gray-200 furiWord ${btnOutput}`} onClick={props.userInput} disabled={props.disable < 1} value={props.value} name={props.value}>{props.question}</button>
+          <a className={`btn border-gray-500 border rounded-lg p-2 flex justify-center items-center font-mono capitalize text-gray-900 hover:text-gray-200 furiWord ${btnOutput}`} onClick={props.userInput} disabled={props.disable < 1} value={props.value} name={props.value}>{props.question}</a>
           </div>
          )
       default:
         return( <div className="mx-2 my-2">
-        <button className={`btn border-gray-500 border rounded-lg p-2 flex justify-center items-center font-mono capitalize text-gray-900 hover:text-gray-200 engWord ${btnOutput}`} onClick={props.userInput} disabled={props.disable < 1} value={props.value} name={props.value}>{props.question}</button>
+        <a className={`btn border-gray-500 border rounded-lg p-2 flex justify-center items-center font-mono capitalize text-gray-900 hover:text-gray-200 engWord ${btnOutput}`} onClick={props.userInput} disabled={props.disable < 1} value={props.value} name={props.value}>{props.question}</a>
         </div>
        )
     };
