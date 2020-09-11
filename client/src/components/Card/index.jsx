@@ -42,7 +42,7 @@ function Card(props) {
   </div> : "" }
 <p className="character mt-2">What does this mean?</p>
       <Character {...props} />
-<div className="grid grid-cols-2 p-2">
+<div id="quizArea" className="grid grid-cols-2 p-2">
         {props.answer.map((result, index) => {
           switch (props.language) {
             case "English":
@@ -63,6 +63,7 @@ function Card(props) {
               question={result[parentLanguage]}
               btnColor={props.btnColor}
               key={index}
+              index={index}
               value={result.Correct}
               userInput={props.userInput}
               disable={props.disable}
@@ -72,8 +73,6 @@ function Card(props) {
           );
         })}
       </div>
-
-
 </div>
 <div className="w-1/2">
  <div className="w-full h-full items-center justify-center flex">

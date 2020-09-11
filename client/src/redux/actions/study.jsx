@@ -38,7 +38,7 @@ export const fetchSessions = () => dispatch => {
     const user = localStorage.getItem("tokens");
     API.getSessions(user)
     .then((list) => {
-        console.log(list);
+        //console.log(list);
         dispatch({
             type: FETCH_SESSIONS,
             payload: list.data

@@ -37,7 +37,7 @@ function Quiz(props) {
   function startJpnQuiz(event) {
     event.preventDefault();
     history.push("/quiz/japanese")
-  }
+    }
 
   function startEngQuiz(event) {
     event.preventDefault();
@@ -73,23 +73,24 @@ function Quiz(props) {
     }
 
     if (location.pathname === "/quiz/japanese") {
-    dispatch(jpnQuiz())
-    settings()
+      settings()
+      dispatch(jpnQuiz())
+    
     } 
     if (location.pathname === "/quiz/english"){
-      dispatch(engQuiz())
       settings()
+      dispatch(engQuiz())
     }
     if (location.pathname === "/quiz/hiragana"){
-      dispatch(hiraQuiz())
       settings()
+      dispatch(hiraQuiz())
     } 
     if (location.pathname === "/quiz/katakana") {
-    dispatch(kataQuiz())
-    settings()
+      settings()
+      dispatch(kataQuiz())
     } 
     // eslint-disable-next-line
-  }, [location.pathname]);
+  }, [location]);
 
   useEffect(() => {
     if (timeLeft <= 0) {
@@ -138,7 +139,7 @@ function Quiz(props) {
       props.quiz.language === "Hiragana" || props.quiz.language === "Katakana"
         ? props.quiz.Question.Romaji
         : props.quiz.Question.English;
-     
+     //console.log(buttonInput)
     if (buttonInput === "true") {
       if (addPoints > props.quiz.highScore) {
         dispatch(addHighScore(addPoints))

@@ -149,6 +149,11 @@
   height: calc(var(--cardH) * 0.20);
 }
 
+.btnQuiz {
+  width: calc((var(--cardW) * 0.5) - (var(--boxPadding) + var(--buttonPadding)));
+  height: calc(var(--cardH) * 0.20);
+}
+
 .btn:hover {
   background-color: #5a67d8;
 }
