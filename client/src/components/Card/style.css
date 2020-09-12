@@ -87,7 +87,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height:  calc(var(--kanjiH)*0.25);
+  height:  calc(var(--kanjiH)*0.5);
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
   font-family: 'Kosugi Maru', sans-serif;
   color: rgb(80, 80, 80);
   --max-size: 45;
@@ -143,21 +145,6 @@
   margin-bottom: -10px;
 }
 
-.btn {
-  background-color: #90cdf4;
-  width: calc((var(--cardW) * 0.5) - (var(--boxPadding) + var(--buttonPadding)));
-  height: calc(var(--cardH) * 0.20);
-}
-
-.btnQuiz {
-  width: calc((var(--cardW) * 0.5) - (var(--boxPadding) + var(--buttonPadding)));
-  height: calc(var(--cardH) * 0.20);
-}
-
-.btn:hover {
-  background-color: #5a67d8;
-}
-
 .engWord{
   overflow-wrap: break-word;
   --max-size: 20;
@@ -198,6 +185,7 @@
   letter-spacing: 0.35rem;
 }
 
+/*media */
 
 @media only screen 
   and (max-width: 1024px) and (max-height: 714px) { 
@@ -261,3 +249,62 @@
     }
 
   }
+
+  .btn {
+    width: calc((var(--cardW) * 0.5) - (var(--boxPadding) + var(--buttonPadding)));
+    height: calc(var(--cardH) * 0.20);
+  }
+  
+
+/* smartphones, touchscreens */
+@media (hover: none) and (pointer: coarse) {
+  .btnCorrect {
+    background-color: #9ae6b4;
+    color: #1a202C  
+  }
+
+  .btnWrong {
+    background-color: #feb2b2;
+    color: #1a202C  
+  }
+
+  .btnIdle {
+    background-color: #90cdf4;
+    color: #1a202C  
+  }
+
+}
+
+/* smartphones, touchscreens */
+@media (hover: hover) and (pointer: fine) {
+
+  .btnIdle {
+    background-color: #90cdf4;
+    color: #1a202C  
+  }
+
+  .btnIdle:hover {
+    background-color: #5a67d8;
+    color: #edf2f7  
+  }
+
+  .btnCorrect {
+    background-color: #9ae6b4;
+    color: #1a202C  
+  }
+
+  .btnCorrect:hover {
+    background-color: #38a169;
+    color: #edf2f7  
+  }
+
+  .btnWrong {
+    background-color: #feb2b2;
+    color: #1a202C  
+  }
+
+  .btnWWrong:hover {
+    background-color: #e53e3e;
+    color: #edf2f7  
+  }
+}
